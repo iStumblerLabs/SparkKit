@@ -7,13 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		753956D61D13F679004DDBDA /* ILSparkStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 753956D41D13F679004DDBDA /* ILSparkStyle.h */; };
+		753956D71D13F679004DDBDA /* ILSparkStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 753956D51D13F679004DDBDA /* ILSparkStyle.m */; };
 		75971DF31D138C0400EA65D3 /* SparkKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DF21D138C0400EA65D3 /* SparkKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75971DFC1D139FBA00EA65D3 /* ILSparkLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DFA1D139FBA00EA65D3 /* ILSparkLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75971DFD1D139FBA00EA65D3 /* ILSparkLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */; };
+		75971E011D13D2D200EA65D3 /* ILDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971E001D13D18B00EA65D3 /* ILDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75971E031D13D37600EA65D3 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75971E021D13D37600EA65D3 /* AppKit.framework */; };
+		75971E091D13D79F00EA65D3 /* ILSparkView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971E071D13D79F00EA65D3 /* ILSparkView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75971E0A1D13D79F00EA65D3 /* ILSparkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971E081D13D79F00EA65D3 /* ILSparkView.m */; };
+		75971E0C1D13DAF600EA65D3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75971E0B1D13DAF600EA65D3 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		753956D41D13F679004DDBDA /* ILSparkStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkStyle.h; sourceTree = "<group>"; };
+		753956D51D13F679004DDBDA /* ILSparkStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkStyle.m; sourceTree = "<group>"; };
 		75971DEF1D138C0400EA65D3 /* SparkKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SparkKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75971DF21D138C0400EA65D3 /* SparkKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SparkKit.h; sourceTree = "<group>"; };
 		75971DF41D138C0400EA65D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75971DFA1D139FBA00EA65D3 /* ILSparkLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkLine.h; sourceTree = "<group>"; };
+		75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkLine.m; sourceTree = "<group>"; };
+		75971DFE1D13CD0D00EA65D3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		75971E001D13D18B00EA65D3 /* ILDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILDefines.h; sourceTree = "<group>"; };
+		75971E021D13D37600EA65D3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		75971E071D13D79F00EA65D3 /* ILSparkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkView.h; sourceTree = "<group>"; };
+		75971E081D13D79F00EA65D3 /* ILSparkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkView.m; sourceTree = "<group>"; };
+		75971E0B1D13DAF600EA65D3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -21,6 +40,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75971E031D13D37600EA65D3 /* AppKit.framework in Frameworks */,
+				75971E0C1D13DAF600EA65D3 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30,7 +51,9 @@
 		75971DE51D138C0400EA65D3 = {
 			isa = PBXGroup;
 			children = (
+				75971DFE1D13CD0D00EA65D3 /* README.md */,
 				75971DF11D138C0400EA65D3 /* SparkKit */,
+				75971E041D13D38C00EA65D3 /* Frameworks */,
 				75971DF01D138C0400EA65D3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,10 +69,26 @@
 		75971DF11D138C0400EA65D3 /* SparkKit */ = {
 			isa = PBXGroup;
 			children = (
-				75971DF21D138C0400EA65D3 /* SparkKit.h */,
 				75971DF41D138C0400EA65D3 /* Info.plist */,
+				75971DF21D138C0400EA65D3 /* SparkKit.h */,
+				75971E001D13D18B00EA65D3 /* ILDefines.h */,
+				753956D41D13F679004DDBDA /* ILSparkStyle.h */,
+				753956D51D13F679004DDBDA /* ILSparkStyle.m */,
+				75971E071D13D79F00EA65D3 /* ILSparkView.h */,
+				75971E081D13D79F00EA65D3 /* ILSparkView.m */,
+				75971DFA1D139FBA00EA65D3 /* ILSparkLine.h */,
+				75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */,
 			);
 			path = SparkKit;
+			sourceTree = "<group>";
+		};
+		75971E041D13D38C00EA65D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75971E0B1D13DAF600EA65D3 /* QuartzCore.framework */,
+				75971E021D13D37600EA65D3 /* AppKit.framework */,
+			);
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -60,15 +99,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				75971DF31D138C0400EA65D3 /* SparkKit.h in Headers */,
+				75971E011D13D2D200EA65D3 /* ILDefines.h in Headers */,
+				75971E091D13D79F00EA65D3 /* ILSparkView.h in Headers */,
+				75971DFC1D139FBA00EA65D3 /* ILSparkLine.h in Headers */,
+				753956D61D13F679004DDBDA /* ILSparkStyle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		75971DEE1D138C0400EA65D3 /* SparkKit */ = {
+		75971DEE1D138C0400EA65D3 /* SparkKit (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75971DF71D138C0400EA65D3 /* Build configuration list for PBXNativeTarget "SparkKit" */;
+			buildConfigurationList = 75971DF71D138C0400EA65D3 /* Build configuration list for PBXNativeTarget "SparkKit (macOS)" */;
 			buildPhases = (
 				75971DEA1D138C0400EA65D3 /* Sources */,
 				75971DEB1D138C0400EA65D3 /* Frameworks */,
@@ -79,7 +122,7 @@
 			);
 			dependencies = (
 			);
-			name = SparkKit;
+			name = "SparkKit (macOS)";
 			productName = SparkKit;
 			productReference = 75971DEF1D138C0400EA65D3 /* SparkKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -110,7 +153,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				75971DEE1D138C0400EA65D3 /* SparkKit */,
+				75971DEE1D138C0400EA65D3 /* SparkKit (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -130,6 +173,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75971DFD1D139FBA00EA65D3 /* ILSparkLine.m in Sources */,
+				753956D71D13F679004DDBDA /* ILSparkStyle.m in Sources */,
+				75971E0A1D13D79F00EA65D3 /* ILSparkView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +282,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.SparkKit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SparkKit;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -254,7 +300,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.SparkKit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SparkKit;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -271,13 +317,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75971DF71D138C0400EA65D3 /* Build configuration list for PBXNativeTarget "SparkKit" */ = {
+		75971DF71D138C0400EA65D3 /* Build configuration list for PBXNativeTarget "SparkKit (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75971DF81D138C0400EA65D3 /* Debug */,
 				75971DF91D138C0400EA65D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
