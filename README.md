@@ -13,3 +13,5 @@ Simple fast Line, Pie, Dial and Bar chart components for macOS and iOS
 
 ### ILSparkCircle 
 
+## License
+

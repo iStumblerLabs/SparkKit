@@ -35,7 +35,7 @@ extern CGFloat const ILBoldlineWidth;
 /*! @brief scale factor */
 @property(nonatomic, assign) CGFloat scale;
 
-/*! @brief default style */
+/*! @brief default style given to ILSparkViews when initilized */
 + (ILSparkStyle*) defaultStyle;
 
 @end

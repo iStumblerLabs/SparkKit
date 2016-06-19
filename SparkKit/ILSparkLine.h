@@ -5,11 +5,10 @@
 
 #pragma mark -
 
-/*! @class ILSparkLine
-    @brief SparkLine View */
+/*! @class ILSparkLine */
 @interface ILSparkLine : ILSparkView
 
-/*! @brief dataSource  */
+/*! @brief dataSource */
 @property(nonatomic, retain) id<ILSparkLineDataSource> dataSource;
 
 @end
@@ -18,17 +17,12 @@
 
 #pragma mark -
 
-/*! @class ILSparkLineCell
-    @brief ILSparkLine Cell implementation */
+/*! @class ILSparkLineCell */
 @interface ILSparkLineCell : NSCell
 
 /*! @brief style information
-    @discussion defautl time scale is one second per pixel
-*/
+    @discussion defautl time scale is one second per pixel */
 @property(nonatomic, retain) ILSparkStyle* style;
-
-/*! @brief cast from [self representedObject] */
-@property(nonatomic, readonly) id<ILSparkLineDataSource> dataSource;
 
 @end
 
