@@ -12,6 +12,8 @@
     NSUInteger sampleIndex = 0;
     NSDate* startDate = [NSDate date];
     NSDate* lastDate = nil;
+    CGPoint firstPoint = CGPointZero;
+    CGPoint lastPoint = CGPointZero;
 
     // TODO add falloff to style and implement gaps in the line
     // CGMutablePathRef gaps = CGPathCreateMutable();
@@ -21,15 +23,21 @@
         CGFloat samplePercent = [data sampleValueAtIndex:sampleIndex];
         CGFloat sampleX = size.width - (sampleInterval / style.scale);
         CGFloat sampleY = size.height - (size.height * samplePercent);
-        CGPoint samplePoint = CGPointMake(fmin(sampleX,size.width),fmin(sampleY,size.height));
+        lastPoint = CGPointMake(fmin(sampleX,size.width),fmin(sampleY,size.height));
 
         // TODO implement filled drawing
         if (!lastDate) {
-            CGPoint origin = CGPointMake(sampleX,fmin(sampleY,size.height));
-            CGPathMoveToPoint(path, NULL, origin.x, origin.y);
+            if (style.filled) {
+                firstPoint = CGPointMake(lastPoint.x, 0);
+                CGPathMoveToPoint(path, NULL, firstPoint.x, firstPoint.y);
+            }
+
+            CGPathMoveToPoint(path, NULL, lastPoint.x, lastPoint.y);
         }
 
-        CGPathAddLineToPoint(path, NULL, samplePoint.x, samplePoint.y);
+        // NSLog(@"line to -> %f,%f", sampleX, sampleY);
+
+        CGPathAddLineToPoint(path, NULL, lastPoint.x, lastPoint.y);
         lastDate = sampleDate;
         sampleIndex++;
 
@@ -38,14 +46,14 @@
         }
     }
 
-    shape.frame = CGRectMake(0, 0, size.width, size.height);
+    if (style.filled) { // bring the line back to the baseline
+        CGPathAddLineToPoint(path, NULL, lastPoint.x, 0);
+        CGPathAddLineToPoint(path, NULL, firstPoint.x, 0);
+    }
+
     shape.strokeColor = style.stroke.CGColor;
     shape.lineWidth = style.width;
-    shape.fillColor = style.fill.CGColor;
-    if (style.outline) {
-        shape.borderColor = style.stroke.CGColor;
-        shape.borderWidth = ILPathlineWidth;
-    }
+    shape.fillColor = (style.filled ? style.fill.CGColor : style.background.CGColor);
     [shape setPath:path];
     return shape;
 }
@@ -53,14 +61,12 @@
 #pragma mark - ILSparkView
 
 - (void) updateView {
-    for (CALayer* layer in self.layer.sublayers) { // remove all sublayers
-        [layer removeFromSuperlayer];
-    }
+    [super updateView];
 
     CGSize viewSize = self.frame.size;
     CAShapeLayer* sparkLine = [ILSparkLine timeSeriesWithData:[self dataSource] size:viewSize style:self.style];
     [self.layer addSublayer:sparkLine];
-    sparkLine.frame = CGRectMake(0,0,viewSize.width,viewSize.height);
+    sparkLine.frame = self.bounds;
 }
 
 @end

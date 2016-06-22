@@ -32,6 +32,8 @@ CGPoint ILPointOnLineToPointAtDistance(CGPoint from, CGPoint to, CGFloat distanc
 
 @implementation ILSparkView
 
+#pragma mark - NSView
+
 - (instancetype) initWithFrame:(CGRect)frame {
     if( self = [super initWithFrame:frame]) {
         [self initView];
@@ -46,15 +48,44 @@ CGPoint ILPointOnLineToPointAtDistance(CGPoint from, CGPoint to, CGFloat distanc
     return self;
 }
 
+#if !TARGET_OS_IPHONE && !TARGET_OS_TV
+- (void)setFrameSize:(NSSize)newSize;
+{
+    [super setFrameSize:newSize];
+    [self updateView];
+}
+#endif
+
 #pragma mark -
+
+- (CAShapeLayer*) border
+{
+    CAShapeLayer* borderLayer = [CAShapeLayer new];
+    borderLayer.path = CGPathCreateWithRect(CGRectIntegral(self.bounds), NULL);
+    return borderLayer;
+}
 
 - (void) initView
 {
+#if !TARGET_OS_IPHONE && !TARGET_OS_TV
+    [self setWantsLayer:YES];
+#endif
     self.style = [ILSparkStyle defaultStyle];
 }
 
 - (void) updateView
 {
+    for (CALayer* layer in [self.layer.sublayers copy]) { // remove all sublayers
+        [layer removeFromSuperlayer];
+    }
+
+    if (self.style.bordered) {
+        CAShapeLayer* borderLayer = self.border;
+        borderLayer.fillColor = [ILColor clearColor].CGColor;
+        borderLayer.lineWidth = self.style.width;
+        borderLayer.strokeColor = self.style.stroke.CGColor;
+        [self.layer addSublayer:borderLayer];
+    }
 }
 
 @end

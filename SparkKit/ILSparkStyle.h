@@ -23,11 +23,14 @@ extern CGFloat const ILBoldlineWidth;
 /*! @brief stroke color */
 @property(nonatomic, retain) ILColor* stroke;
 
+/*! @brief background color */
+@property(nonatomic, retain) ILColor* background;
+
 /*! @brief is the area filled? */
 @property(nonatomic, assign) BOOL filled;
 
 /*! @brief is the view outlined? */
-@property(nonatomic, assign) BOOL outline;
+@property(nonatomic, assign) BOOL bordered;
 
 /*! @brief stroke width */
 @property(nonatomic, assign) CGFloat width;

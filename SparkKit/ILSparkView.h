@@ -25,10 +25,24 @@ CGPoint ILPointOnLineToPointAtDistance(CGPoint from, CGPoint to, CGFloat distanc
 /*! @brief style information */
 @property(nonatomic, retain) ILSparkStyle* style;
 
+/*! @brief border layer */
+@property(nonatomic, readonly) CAShapeLayer* border;
+
 /*! @brief run from initWithFrame: and initWithCoder: override to initilzize the view */
 - (void) initView;
 
 /*! @brief have the view query it's delgate and redraw */
 - (void) updateView;
+
+@end
+
+#pragma mark -
+
+/*! @protocol ILSparkDataSource
+    @brief data source protocol for SparkViews */
+@protocol ILSparkDataSource <NSObject>
+
+/*! @brief instantanious between 0-1 */
+@property(nonatomic, readonly) CGFloat data;
 
 @end
