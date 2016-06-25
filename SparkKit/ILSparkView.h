@@ -1,4 +1,4 @@
-#import <SparkKit/ILDefines.h>
+#import <SparkKit/ILBridgeKit.h>
 #import <SparkKit/ILSparkStyle.h>
 
 /*! @return the largest square centered in the provided rectangle */

@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
-#import <SparkKit/ILDefines.h>
+#import <SparkKit/ILBridgeKit.h>
 
 #pragma mark Line Widths
 

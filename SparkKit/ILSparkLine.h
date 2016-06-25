@@ -9,11 +9,11 @@
 @interface ILSparkLine : ILSparkView
 
 /*! @brief dataSource */
-@property(nonatomic, retain) id<ILSparkLineDataSource> dataSource;
+@property(nonatomic, retain) NSObject<ILSparkLineDataSource>* dataSource;
 
 @end
 
-#if !(TARGET_OS_IPHONE || TARGET_OS_TV)
+#ifdef IL_APP_KIT
 
 #pragma mark -
 

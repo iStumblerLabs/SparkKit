@@ -4,18 +4,27 @@
 
 @implementation ILSparkLine
 
-+ (CAShapeLayer*) timeSeriesWithData:(id<ILSparkLineDataSource>)data size:(CGSize)size style:(ILSparkStyle*)style
++ (CAShapeLayer*) timeSeriesWithData:(NSObject<ILSparkLineDataSource>*)data size:(CGSize)size style:(ILSparkStyle*)style
 {
+    NSArray* sampleDates = nil;
+    NSDate* startDate = [NSDate date];
+    NSDate* lastDate = nil;
     CGMutablePathRef path = CGPathCreateMutable();
     CGMutablePathRef gaps = CGPathCreateMutable();
     NSTimeInterval visibleInterval = (size.width * style.scale);
     NSUInteger sampleIndex = 0;
-    NSDate* startDate = [NSDate date];
-    NSDate* lastDate = nil;
     CGPoint firstPoint = CGPointZero;
     CGPoint lastPoint = CGPointZero;
 
-    for (NSDate* sampleDate in data.sampleDates) {
+    if ([data respondsToSelector:@selector(sampleDatesInPeriod:)]) {
+        ILTimePeriod visiblePeriod = { [startDate timeIntervalSince1970], visibleInterval};
+        sampleDates = [data sampleDatesInPeriod:visiblePeriod];
+    }
+    else {
+        sampleDates = data.sampleDates;
+    }
+
+    for (NSDate* sampleDate in sampleDates) {
         NSTimeInterval sampleInterval = fabs([sampleDate timeIntervalSinceDate:startDate]);
         CGFloat samplePercent = [data sampleValueAtIndex:sampleIndex];
         CGFloat sampleX = size.width - (sampleInterval / style.scale);
@@ -52,6 +61,7 @@
         lastDate = sampleDate;
         sampleIndex++;
 
+        // have we reached the edge of the view?
         if (fabs([lastDate timeIntervalSinceDate:startDate]) > visibleInterval) {
             break;
         }

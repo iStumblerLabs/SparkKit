@@ -7,12 +7,18 @@
 
 @implementation SparkyDelegate
 
+- (void) update
+{
+    [self.sparkline updateView];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     self.sparkline.dataSource = self;
     self.sparkline.style.falloff = 50;
     self.sparkline.style.filled = YES;
-    [self.sparkline updateView];
+    self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(update) userInfo:nil repeats:YES];
+    [self.updateTimer fire];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

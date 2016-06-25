@@ -12,7 +12,7 @@
 		75971DF31D138C0400EA65D3 /* SparkKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DF21D138C0400EA65D3 /* SparkKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75971DFC1D139FBA00EA65D3 /* ILSparkLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DFA1D139FBA00EA65D3 /* ILSparkLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75971DFD1D139FBA00EA65D3 /* ILSparkLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */; };
-		75971E011D13D2D200EA65D3 /* ILDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971E001D13D18B00EA65D3 /* ILDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75971E011D13D2D200EA65D3 /* ILBridgeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971E001D13D18B00EA65D3 /* ILBridgeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75971E031D13D37600EA65D3 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75971E021D13D37600EA65D3 /* AppKit.framework */; };
 		75971E091D13D79F00EA65D3 /* ILSparkView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971E071D13D79F00EA65D3 /* ILSparkView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75971E0A1D13D79F00EA65D3 /* ILSparkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971E081D13D79F00EA65D3 /* ILSparkView.m */; };
@@ -34,7 +34,7 @@
 		75F5A9411D1A134A00A17804 /* ILSparkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971E081D13D79F00EA65D3 /* ILSparkView.m */; };
 		75F5A9421D1A134A00A17804 /* ILSparkPie.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A91F1D1A130800A17804 /* ILSparkPie.m */; };
 		75F5A9471D1A134A00A17804 /* SparkKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DF21D138C0400EA65D3 /* SparkKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75F5A9481D1A134A00A17804 /* ILDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971E001D13D18B00EA65D3 /* ILDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75F5A9481D1A134A00A17804 /* ILBridgeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971E001D13D18B00EA65D3 /* ILBridgeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75F5A9491D1A134A00A17804 /* ILSparkStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 753956D41D13F679004DDBDA /* ILSparkStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75F5A94A1D1A134A00A17804 /* ILSparkView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971E071D13D79F00EA65D3 /* ILSparkView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75F5A94B1D1A134A00A17804 /* ILSparkPie.h in Headers */ = {isa = PBXBuildFile; fileRef = 75F5A91E1D1A130800A17804 /* ILSparkPie.h */; };
@@ -92,7 +92,7 @@
 		75971DFA1D139FBA00EA65D3 /* ILSparkLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkLine.h; sourceTree = "<group>"; };
 		75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkLine.m; sourceTree = "<group>"; };
 		75971DFE1D13CD0D00EA65D3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		75971E001D13D18B00EA65D3 /* ILDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILDefines.h; sourceTree = "<group>"; };
+		75971E001D13D18B00EA65D3 /* ILBridgeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILBridgeKit.h; sourceTree = "<group>"; };
 		75971E021D13D37600EA65D3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		75971E071D13D79F00EA65D3 /* ILSparkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkView.h; sourceTree = "<group>"; };
 		75971E081D13D79F00EA65D3 /* ILSparkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkView.m; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 			children = (
 				75971DF41D138C0400EA65D3 /* Info.plist */,
 				75971DF21D138C0400EA65D3 /* SparkKit.h */,
-				75971E001D13D18B00EA65D3 /* ILDefines.h */,
+				75971E001D13D18B00EA65D3 /* ILBridgeKit.h */,
 				753956D41D13F679004DDBDA /* ILSparkStyle.h */,
 				753956D51D13F679004DDBDA /* ILSparkStyle.m */,
 				75971E071D13D79F00EA65D3 /* ILSparkView.h */,
@@ -238,7 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75971DF31D138C0400EA65D3 /* SparkKit.h in Headers */,
-				75971E011D13D2D200EA65D3 /* ILDefines.h in Headers */,
+				75971E011D13D2D200EA65D3 /* ILBridgeKit.h in Headers */,
 				753956D61D13F679004DDBDA /* ILSparkStyle.h in Headers */,
 				75971E091D13D79F00EA65D3 /* ILSparkView.h in Headers */,
 				75F5A9201D1A130800A17804 /* ILSparkPie.h in Headers */,
@@ -251,7 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75F5A9471D1A134A00A17804 /* SparkKit.h in Headers */,
-				75F5A9481D1A134A00A17804 /* ILDefines.h in Headers */,
+				75F5A9481D1A134A00A17804 /* ILBridgeKit.h in Headers */,
 				75F5A9491D1A134A00A17804 /* ILSparkStyle.h in Headers */,
 				75F5A94A1D1A134A00A17804 /* ILSparkView.h in Headers */,
 				75F5A94B1D1A134A00A17804 /* ILSparkPie.h in Headers */,

@@ -48,7 +48,7 @@ CGPoint ILPointOnLineToPointAtDistance(CGPoint from, CGPoint to, CGFloat distanc
     return self;
 }
 
-#if !TARGET_OS_IPHONE && !TARGET_OS_TV
+#ifdef IL_APP_KIT
 - (void)setFrameSize:(NSSize)newSize;
 {
     [super setFrameSize:newSize];
@@ -67,7 +67,7 @@ CGPoint ILPointOnLineToPointAtDistance(CGPoint from, CGPoint to, CGFloat distanc
 
 - (void) initView
 {
-#if !TARGET_OS_IPHONE && !TARGET_OS_TV
+#ifdef IL_APP_KIT
     [self setWantsLayer:YES];
 #endif
     self.style = [ILSparkStyle defaultStyle];
