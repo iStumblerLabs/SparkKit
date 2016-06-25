@@ -38,6 +38,10 @@ extern CGFloat const ILBoldlineWidth;
 /*! @brief scale factor */
 @property(nonatomic, assign) CGFloat scale;
 
+/*! @brief falloff distance
+    Distance in pixels between samples which are considered contiguous 0.0 is infinite */
+@property(nonatomic, assign) CGFloat falloff;
+
 /*! @brief default style given to ILSparkViews when initilized */
 + (ILSparkStyle*) defaultStyle;
 

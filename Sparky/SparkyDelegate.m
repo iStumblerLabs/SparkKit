@@ -10,6 +10,8 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     self.sparkline.dataSource = self;
+    self.sparkline.style.falloff = 50;
+    self.sparkline.style.filled = YES;
     [self.sparkline updateView];
 }
 
@@ -23,8 +25,10 @@
     static NSArray<NSDate*>* dates = nil;
     if (!dates) {
         NSMutableArray* dateArray = [NSMutableArray new];
-        for (NSInteger index = 0; index < 1024; index++) {
-            [dateArray addObject:[NSDate dateWithTimeIntervalSinceNow:-(index)]];
+        for (NSInteger index = 0; index < 500; index = index+10) {
+            if (index < 100 || index > 200) { // 100 second gap
+                [dateArray addObject:[NSDate dateWithTimeIntervalSinceNow:-(index)]];
+            }
         }
         dates = [NSArray arrayWithArray:dateArray];
     }

@@ -19,6 +19,7 @@ CGFloat const ILBoldlineWidth = 2;
         style.bordered = YES;
         style.width = ILPathlineWidth;
         style.scale = 1.0;
+        style.falloff = 0.0;
     }
     return style;
 }

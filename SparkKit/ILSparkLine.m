@@ -6,8 +6,8 @@
 
 + (CAShapeLayer*) timeSeriesWithData:(id<ILSparkLineDataSource>)data size:(CGSize)size style:(ILSparkStyle*)style
 {
-    CAShapeLayer* shape = [CAShapeLayer new];
     CGMutablePathRef path = CGPathCreateMutable();
+    CGMutablePathRef gaps = CGPathCreateMutable();
     NSTimeInterval visibleInterval = (size.width * style.scale);
     NSUInteger sampleIndex = 0;
     NSDate* startDate = [NSDate date];
@@ -15,29 +15,40 @@
     CGPoint firstPoint = CGPointZero;
     CGPoint lastPoint = CGPointZero;
 
-    // TODO add falloff to style and implement gaps in the line
-    // CGMutablePathRef gaps = CGPathCreateMutable();
-    // CGPathMoveToPoint(path, nil, start.x, start.y);
     for (NSDate* sampleDate in data.sampleDates) {
         NSTimeInterval sampleInterval = fabs([sampleDate timeIntervalSinceDate:startDate]);
         CGFloat samplePercent = [data sampleValueAtIndex:sampleIndex];
         CGFloat sampleX = size.width - (sampleInterval / style.scale);
         CGFloat sampleY = size.height - (size.height * samplePercent);
-        lastPoint = CGPointMake(fmin(sampleX,size.width),fmin(sampleY,size.height));
+        CGPoint thisPoint = CGPointMake(fmin(sampleX,size.width),fmin(sampleY,size.height));
 
-        // TODO implement filled drawing
         if (!lastDate) {
             if (style.filled) {
-                firstPoint = CGPointMake(lastPoint.x, 0);
+                firstPoint = CGPointMake(thisPoint.x, 0);
                 CGPathMoveToPoint(path, NULL, firstPoint.x, firstPoint.y);
             }
 
-            CGPathMoveToPoint(path, NULL, lastPoint.x, lastPoint.y);
+            CGPathMoveToPoint(path, NULL, thisPoint.x, thisPoint.y);
         }
 
         // NSLog(@"line to -> %f,%f", sampleX, sampleY);
+        if (lastDate && (style.falloff > 0) && ((lastPoint.x - thisPoint.x) > style.falloff)) {
+            if (style.filled) {
+                CGPathMoveToPoint(path, NULL, lastPoint.x, 0); // drop it do the baseline
+                CGPathMoveToPoint(path, NULL, thisPoint.x, 0); // move along to the current point
+            }
+            else {
+                CGPathMoveToPoint(path, NULL, thisPoint.x, thisPoint.y);
+            }
+            // draw the gap segment
+            CGPathMoveToPoint(gaps, NULL, lastPoint.x, lastPoint.y);
+            CGPathAddLineToPoint(gaps, NULL, thisPoint.x, thisPoint.y);
+        }
+        else {
+            CGPathAddLineToPoint(path, NULL, thisPoint.x, thisPoint.y);
+        }
 
-        CGPathAddLineToPoint(path, NULL, lastPoint.x, lastPoint.y);
+        lastPoint = thisPoint;
         lastDate = sampleDate;
         sampleIndex++;
 
@@ -51,11 +62,25 @@
         CGPathAddLineToPoint(path, NULL, firstPoint.x, 0);
     }
 
-    shape.strokeColor = style.stroke.CGColor;
-    shape.lineWidth = style.width;
-    shape.fillColor = (style.filled ? style.fill.CGColor : style.background.CGColor);
-    [shape setPath:path];
-    return shape;
+    CAShapeLayer* pathLayer = [CAShapeLayer new];
+    pathLayer.strokeColor = style.stroke.CGColor;
+    pathLayer.lineWidth = style.width;
+    pathLayer.fillColor = (style.filled ? style.fill.CGColor : style.background.CGColor);
+    [pathLayer setPath:path];
+
+    if (style.falloff >  0) {
+        CAShapeLayer* gapsLayer = [CAShapeLayer new];
+        gapsLayer.strokeColor = [ILColor redColor].CGColor;
+        gapsLayer.lineWidth = style.width;
+        gapsLayer.lineDashPattern = @[@(1), @(1)];
+        gapsLayer.frame = CGRectMake(0,0,size.width,size.height);
+        [pathLayer addSublayer:gapsLayer];
+    }
+exit:
+    CFRelease(path);
+    CFRelease(gaps);
+
+    return pathLayer;
 }
 
 #pragma mark - ILSparkView

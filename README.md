@@ -1,7 +1,7 @@
 
 # SparkKit
 
-Simple fast Line, Pie, Dial and Bar chart components for macOS and iOS
+Small, Simple and Fast; Line, Pie, Dial and Bar Views for macOS, iOS and tvOS
 
 ## Classes
 
