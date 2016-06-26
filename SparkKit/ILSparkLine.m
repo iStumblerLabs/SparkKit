@@ -17,7 +17,8 @@
     CGPoint lastPoint = CGPointZero;
 
     if ([data respondsToSelector:@selector(sampleDatesInPeriod:)]) {
-        ILTimePeriod visiblePeriod = { [startDate timeIntervalSince1970], visibleInterval};
+        NSDate* earliestDate = [startDate dateByAddingTimeInterval:-visibleInterval];
+        ILTimePeriod visiblePeriod = {[earliestDate timeIntervalSince1970], visibleInterval};
         sampleDates = [data sampleDatesInPeriod:visiblePeriod];
     }
     else {
