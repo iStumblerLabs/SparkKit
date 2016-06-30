@@ -23,7 +23,7 @@ UIKit & AppKit Bridging Header
 #define ILImage NSImage
 #define ILView NSView
 #define ILViewController NSViewController
-#define ILApplicationDelegate UIApplicationDelegate
+#define ILApplicationDelegate NSApplicationDelegate
 #define IL_APP_KIT
 #endif
 
