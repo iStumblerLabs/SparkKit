@@ -98,7 +98,7 @@
         gapsLayer.path = gaps;
         gapsLayer.strokeColor = [ILColor grayColor].CGColor;
         gapsLayer.lineWidth = style.width;
-        gapsLayer.lineDashPattern = @[@(1), @(1)];
+        gapsLayer.lineDashPattern = @[@(3), @(2)];
         gapsLayer.frame = CGRectMake(0,0,size.width,size.height);
         [seriesLayer addSublayer:gapsLayer];
     }
