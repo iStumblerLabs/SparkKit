@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7526C18A1D25ACF8000E5A60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7526C1861D25ACF8000E5A60 /* Assets.xcassets */; };
+		7526C19A1D25B398000E5A60 /* SparkyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7526C1991D25B398000E5A60 /* SparkyViewController.m */; };
+		7526C19B1D25B43B000E5A60 /* Sparky.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7526C1871D25ACF8000E5A60 /* Sparky.xib */; };
+		7526C19C1D262D59000E5A60 /* SparkyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A90B1D1902C500A17804 /* SparkyDelegate.m */; };
+		7526C19D1D262D59000E5A60 /* SparkyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7526C1991D25B398000E5A60 /* SparkyViewController.m */; };
+		7526C19E1D262D62000E5A60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7526C18E1D25AD5F000E5A60 /* Assets.xcassets */; };
+		7526C19F1D262D62000E5A60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7526C18F1D25AD5F000E5A60 /* LaunchScreen.storyboard */; };
+		7526C1A01D262D62000E5A60 /* Sparky.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7526C1911D25AD5F000E5A60 /* Sparky.storyboard */; };
+		7526C1A11D263506000E5A60 /* SparkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F5A9511D1A134A00A17804 /* SparkKit.framework */; };
+		7526C1A21D26350D000E5A60 /* SparkKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75F5A9511D1A134A00A17804 /* SparkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		753956D61D13F679004DDBDA /* ILSparkStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 753956D41D13F679004DDBDA /* ILSparkStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753956D71D13F679004DDBDA /* ILSparkStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 753956D51D13F679004DDBDA /* ILSparkStyle.m */; };
 		75971DF31D138C0400EA65D3 /* SparkKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DF21D138C0400EA65D3 /* SparkKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -18,17 +28,10 @@
 		75971E0A1D13D79F00EA65D3 /* ILSparkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971E081D13D79F00EA65D3 /* ILSparkView.m */; };
 		75971E0C1D13DAF600EA65D3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75971E0B1D13DAF600EA65D3 /* QuartzCore.framework */; };
 		75F5A90C1D1902C500A17804 /* SparkyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A90B1D1902C500A17804 /* SparkyDelegate.m */; };
-		75F5A9111D1902C500A17804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75F5A9101D1902C500A17804 /* Assets.xcassets */; };
-		75F5A9141D1902C500A17804 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F5A9121D1902C500A17804 /* MainMenu.xib */; };
 		75F5A91B1D19034900A17804 /* SparkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75971DEF1D138C0400EA65D3 /* SparkKit.framework */; };
 		75F5A91D1D19035900A17804 /* SparkKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75971DEF1D138C0400EA65D3 /* SparkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		75F5A9201D1A130800A17804 /* ILSparkPie.h in Headers */ = {isa = PBXBuildFile; fileRef = 75F5A91E1D1A130800A17804 /* ILSparkPie.h */; };
 		75F5A9211D1A130800A17804 /* ILSparkPie.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A91F1D1A130800A17804 /* ILSparkPie.m */; };
-		75F5A92D1D1A133A00A17804 /* iSparkDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A92C1D1A133A00A17804 /* iSparkDelegate.m */; };
-		75F5A9301D1A133A00A17804 /* iSparkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A92F1D1A133A00A17804 /* iSparkController.m */; };
-		75F5A9331D1A133A00A17804 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75F5A9311D1A133A00A17804 /* Main.storyboard */; };
-		75F5A9351D1A133A00A17804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75F5A9341D1A133A00A17804 /* Assets.xcassets */; };
-		75F5A9381D1A133A00A17804 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75F5A9361D1A133A00A17804 /* LaunchScreen.storyboard */; };
 		75F5A93F1D1A134A00A17804 /* ILSparkLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */; };
 		75F5A9401D1A134A00A17804 /* ILSparkStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 753956D51D13F679004DDBDA /* ILSparkStyle.m */; };
 		75F5A9411D1A134A00A17804 /* ILSparkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971E081D13D79F00EA65D3 /* ILSparkView.m */; };
@@ -39,8 +42,6 @@
 		75F5A94A1D1A134A00A17804 /* ILSparkView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971E071D13D79F00EA65D3 /* ILSparkView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75F5A94B1D1A134A00A17804 /* ILSparkPie.h in Headers */ = {isa = PBXBuildFile; fileRef = 75F5A91E1D1A130800A17804 /* ILSparkPie.h */; };
 		75F5A94C1D1A134A00A17804 /* ILSparkLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DFA1D139FBA00EA65D3 /* ILSparkLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75F5A9551D1A143500A17804 /* SparkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F5A9511D1A134A00A17804 /* SparkKit.framework */; };
-		75F5A9571D1A144700A17804 /* SparkKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75F5A9511D1A134A00A17804 /* SparkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,13 +78,22 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				75F5A9571D1A144700A17804 /* SparkKit.framework in CopyFiles */,
+				7526C1A21D26350D000E5A60 /* SparkKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7526C1861D25ACF8000E5A60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7526C1881D25ACF8000E5A60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Sparky.xib; sourceTree = "<group>"; };
+		7526C1891D25ACF8000E5A60 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7526C18E1D25AD5F000E5A60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7526C1901D25AD5F000E5A60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7526C1921D25AD5F000E5A60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Sparky.storyboard; sourceTree = "<group>"; };
+		7526C1931D25AD5F000E5A60 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7526C1981D25B398000E5A60 /* SparkyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SparkyViewController.h; sourceTree = "<group>"; };
+		7526C1991D25B398000E5A60 /* SparkyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SparkyViewController.m; sourceTree = "<group>"; };
 		753956D41D13F679004DDBDA /* ILSparkStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkStyle.h; sourceTree = "<group>"; };
 		753956D51D13F679004DDBDA /* ILSparkStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkStyle.m; sourceTree = "<group>"; };
 		75971DEF1D138C0400EA65D3 /* SparkKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SparkKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,23 +107,12 @@
 		75971E071D13D79F00EA65D3 /* ILSparkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkView.h; sourceTree = "<group>"; };
 		75971E081D13D79F00EA65D3 /* ILSparkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkView.m; sourceTree = "<group>"; };
 		75971E0B1D13DAF600EA65D3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		75F5A9081D1902C500A17804 /* Sparky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparky.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75F5A9081D1902C500A17804 /* Sparky (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sparky (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75F5A90A1D1902C500A17804 /* SparkyDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SparkyDelegate.h; sourceTree = "<group>"; };
 		75F5A90B1D1902C500A17804 /* SparkyDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SparkyDelegate.m; sourceTree = "<group>"; };
-		75F5A9101D1902C500A17804 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		75F5A9131D1902C500A17804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		75F5A9151D1902C500A17804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75F5A91E1D1A130800A17804 /* ILSparkPie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkPie.h; sourceTree = "<group>"; };
 		75F5A91F1D1A130800A17804 /* ILSparkPie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkPie.m; sourceTree = "<group>"; };
-		75F5A9261D1A133A00A17804 /* iSpark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSpark.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		75F5A92B1D1A133A00A17804 /* iSparkDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iSparkDelegate.h; sourceTree = "<group>"; };
-		75F5A92C1D1A133A00A17804 /* iSparkDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iSparkDelegate.m; sourceTree = "<group>"; };
-		75F5A92E1D1A133A00A17804 /* iSparkController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iSparkController.h; sourceTree = "<group>"; };
-		75F5A92F1D1A133A00A17804 /* iSparkController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iSparkController.m; sourceTree = "<group>"; };
-		75F5A9321D1A133A00A17804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		75F5A9341D1A133A00A17804 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		75F5A9371D1A133A00A17804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		75F5A9391D1A133A00A17804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75F5A9261D1A133A00A17804 /* Sparky (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sparky (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75F5A9511D1A134A00A17804 /* SparkKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SparkKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -139,7 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75F5A9551D1A143500A17804 /* SparkKit.framework in Frameworks */,
+				7526C1A11D263506000E5A60 /* SparkKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,13 +152,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7526C1851D25ACF8000E5A60 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				7526C1891D25ACF8000E5A60 /* Info.plist */,
+				7526C1871D25ACF8000E5A60 /* Sparky.xib */,
+				7526C1861D25ACF8000E5A60 /* Assets.xcassets */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		7526C18D1D25AD5F000E5A60 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7526C1931D25AD5F000E5A60 /* Info.plist */,
+				7526C18F1D25AD5F000E5A60 /* LaunchScreen.storyboard */,
+				7526C1911D25AD5F000E5A60 /* Sparky.storyboard */,
+				7526C18E1D25AD5F000E5A60 /* Assets.xcassets */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		75971DE51D138C0400EA65D3 = {
 			isa = PBXGroup;
 			children = (
 				75971DFE1D13CD0D00EA65D3 /* README.md */,
 				75971DF11D138C0400EA65D3 /* SparkKit */,
 				75F5A9091D1902C500A17804 /* Sparky */,
-				75F5A9271D1A133A00A17804 /* iSpark */,
 				75971E041D13D38C00EA65D3 /* Frameworks */,
 				75971DF01D138C0400EA65D3 /* Products */,
 			);
@@ -169,8 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				75971DEF1D138C0400EA65D3 /* SparkKit.framework */,
-				75F5A9081D1902C500A17804 /* Sparky.app */,
-				75F5A9261D1A133A00A17804 /* iSpark.app */,
+				75F5A9081D1902C500A17804 /* Sparky (macOS).app */,
+				75F5A9261D1A133A00A17804 /* Sparky (iOS).app */,
 				75F5A9511D1A134A00A17804 /* SparkKit.framework */,
 			);
 			name = Products;
@@ -208,26 +227,12 @@
 			children = (
 				75F5A90A1D1902C500A17804 /* SparkyDelegate.h */,
 				75F5A90B1D1902C500A17804 /* SparkyDelegate.m */,
-				75F5A9101D1902C500A17804 /* Assets.xcassets */,
-				75F5A9121D1902C500A17804 /* MainMenu.xib */,
-				75F5A9151D1902C500A17804 /* Info.plist */,
+				7526C1981D25B398000E5A60 /* SparkyViewController.h */,
+				7526C1991D25B398000E5A60 /* SparkyViewController.m */,
+				7526C1851D25ACF8000E5A60 /* macOS */,
+				7526C18D1D25AD5F000E5A60 /* iOS */,
 			);
 			path = Sparky;
-			sourceTree = "<group>";
-		};
-		75F5A9271D1A133A00A17804 /* iSpark */ = {
-			isa = PBXGroup;
-			children = (
-				75F5A92B1D1A133A00A17804 /* iSparkDelegate.h */,
-				75F5A92C1D1A133A00A17804 /* iSparkDelegate.m */,
-				75F5A92E1D1A133A00A17804 /* iSparkController.h */,
-				75F5A92F1D1A133A00A17804 /* iSparkController.m */,
-				75F5A9311D1A133A00A17804 /* Main.storyboard */,
-				75F5A9341D1A133A00A17804 /* Assets.xcassets */,
-				75F5A9361D1A133A00A17804 /* LaunchScreen.storyboard */,
-				75F5A9391D1A133A00A17804 /* Info.plist */,
-			);
-			path = iSpark;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,9 +285,9 @@
 			productReference = 75971DEF1D138C0400EA65D3 /* SparkKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		75F5A9071D1902C500A17804 /* Sparky */ = {
+		75F5A9071D1902C500A17804 /* Sparky (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75F5A9181D1902C500A17804 /* Build configuration list for PBXNativeTarget "Sparky" */;
+			buildConfigurationList = 75F5A9181D1902C500A17804 /* Build configuration list for PBXNativeTarget "Sparky (macOS)" */;
 			buildPhases = (
 				75F5A9041D1902C500A17804 /* Sources */,
 				75F5A9051D1902C500A17804 /* Frameworks */,
@@ -294,14 +299,14 @@
 			dependencies = (
 				75F5A91A1D19034400A17804 /* PBXTargetDependency */,
 			);
-			name = Sparky;
+			name = "Sparky (macOS)";
 			productName = Sparky;
-			productReference = 75F5A9081D1902C500A17804 /* Sparky.app */;
+			productReference = 75F5A9081D1902C500A17804 /* Sparky (macOS).app */;
 			productType = "com.apple.product-type.application";
 		};
-		75F5A9251D1A133A00A17804 /* iSpark */ = {
+		75F5A9251D1A133A00A17804 /* Sparky (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75F5A93A1D1A133A00A17804 /* Build configuration list for PBXNativeTarget "iSpark" */;
+			buildConfigurationList = 75F5A93A1D1A133A00A17804 /* Build configuration list for PBXNativeTarget "Sparky (iOS)" */;
 			buildPhases = (
 				75F5A9221D1A133A00A17804 /* Sources */,
 				75F5A9231D1A133A00A17804 /* Frameworks */,
@@ -313,9 +318,9 @@
 			dependencies = (
 				75F5A9541D1A142F00A17804 /* PBXTargetDependency */,
 			);
-			name = iSpark;
+			name = "Sparky (iOS)";
 			productName = iSpark;
-			productReference = 75F5A9261D1A133A00A17804 /* iSpark.app */;
+			productReference = 75F5A9261D1A133A00A17804 /* Sparky (iOS).app */;
 			productType = "com.apple.product-type.application";
 		};
 		75F5A93D1D1A134A00A17804 /* SparkKit (iOS) */ = {
@@ -370,9 +375,9 @@
 			projectRoot = "";
 			targets = (
 				75971DEE1D138C0400EA65D3 /* SparkKit (macOS) */,
-				75F5A9071D1902C500A17804 /* Sparky */,
+				75F5A9071D1902C500A17804 /* Sparky (macOS) */,
 				75F5A93D1D1A134A00A17804 /* SparkKit (iOS) */,
-				75F5A9251D1A133A00A17804 /* iSpark */,
+				75F5A9251D1A133A00A17804 /* Sparky (iOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -389,8 +394,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75F5A9111D1902C500A17804 /* Assets.xcassets in Resources */,
-				75F5A9141D1902C500A17804 /* MainMenu.xib in Resources */,
+				7526C18A1D25ACF8000E5A60 /* Assets.xcassets in Resources */,
+				7526C19B1D25B43B000E5A60 /* Sparky.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,9 +403,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75F5A9381D1A133A00A17804 /* LaunchScreen.storyboard in Resources */,
-				75F5A9351D1A133A00A17804 /* Assets.xcassets in Resources */,
-				75F5A9331D1A133A00A17804 /* Main.storyboard in Resources */,
+				7526C19E1D262D62000E5A60 /* Assets.xcassets in Resources */,
+				7526C19F1D262D62000E5A60 /* LaunchScreen.storyboard in Resources */,
+				7526C1A01D262D62000E5A60 /* Sparky.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75F5A90C1D1902C500A17804 /* SparkyDelegate.m in Sources */,
+				7526C19A1D25B398000E5A60 /* SparkyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,8 +443,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75F5A9301D1A133A00A17804 /* iSparkController.m in Sources */,
-				75F5A92D1D1A133A00A17804 /* iSparkDelegate.m in Sources */,
+				7526C19C1D262D59000E5A60 /* SparkyDelegate.m in Sources */,
+				7526C19D1D262D59000E5A60 /* SparkyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,28 +475,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		75F5A9121D1902C500A17804 /* MainMenu.xib */ = {
+		7526C1871D25ACF8000E5A60 /* Sparky.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				75F5A9131D1902C500A17804 /* Base */,
+				7526C1881D25ACF8000E5A60 /* Base */,
 			);
-			name = MainMenu.xib;
+			name = Sparky.xib;
 			sourceTree = "<group>";
 		};
-		75F5A9311D1A133A00A17804 /* Main.storyboard */ = {
+		7526C18F1D25AD5F000E5A60 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				75F5A9321D1A133A00A17804 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		75F5A9361D1A133A00A17804 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				75F5A9371D1A133A00A17804 /* Base */,
+				7526C1901D25AD5F000E5A60 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7526C1911D25AD5F000E5A60 /* Sparky.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7526C1921D25AD5F000E5A60 /* Base */,
+			);
+			name = Sparky.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -624,7 +630,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Sparky/Info.plist;
+				INFOPLIST_FILE = Sparky/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.Sparky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -636,7 +642,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Sparky/Info.plist;
+				INFOPLIST_FILE = Sparky/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.Sparky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -648,7 +654,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = iSpark/Info.plist;
+				INFOPLIST_FILE = Sparky/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.iSpark;
@@ -663,7 +669,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = iSpark/Info.plist;
+				INFOPLIST_FILE = Sparky/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.iSpark;
@@ -733,7 +739,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75F5A9181D1902C500A17804 /* Build configuration list for PBXNativeTarget "Sparky" */ = {
+		75F5A9181D1902C500A17804 /* Build configuration list for PBXNativeTarget "Sparky (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75F5A9161D1902C500A17804 /* Debug */,
@@ -742,7 +748,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75F5A93A1D1A133A00A17804 /* Build configuration list for PBXNativeTarget "iSpark" */ = {
+		75F5A93A1D1A133A00A17804 /* Build configuration list for PBXNativeTarget "Sparky (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75F5A93B1D1A133A00A17804 /* Debug */,

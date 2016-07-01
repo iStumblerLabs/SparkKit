@@ -1,9 +1,10 @@
 #import "SparkyDelegate.h"
 
+#ifdef IL_APP_KIT
 @interface SparkyDelegate ()
 
-@property (weak) IBOutlet NSWindow *window;
 @end
+#endif
 
 @implementation SparkyDelegate
 
@@ -52,6 +53,16 @@
 
 #pragma mark -
 
+#ifdef IL_APP_KIT
 int main(int argc, const char * argv[]) {
     return NSApplicationMain(argc, argv);
 }
+#endif
+
+#ifdef IL_UI_KIT
+int main(int argc, char * argv[]) {
+    @autoreleasepool {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([SparkyDelegate class]));
+    }
+}
+#endif

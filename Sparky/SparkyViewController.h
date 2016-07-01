@@ -1,8 +1,7 @@
-@import UIKit;
 @import SparkKit;
 
 
-@interface iSparkController : UIViewController <ILSparkLineDataSource>
+@interface SparkyViewController : ILViewController <ILSparkLineDataSource>
 @property(nonatomic, retain) IBOutlet ILSparkLine* sparkline;
 
 @end

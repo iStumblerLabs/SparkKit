@@ -13,6 +13,7 @@ UIKit & AppKit Bridging Header
 #define ILColor UIColor
 #define ILImage UIImage
 #define ILView UIView
+#define ILWindow UIWindow
 #define ILViewController UIViewController
 #define ILApplicationDelegate UIApplicationDelegate
 #define IL_UI_KIT
@@ -22,6 +23,7 @@ UIKit & AppKit Bridging Header
 #define ILColor NSColor
 #define ILImage NSImage
 #define ILView NSView
+#define ILWindow NSWindow
 #define ILViewController NSViewController
 #define ILApplicationDelegate NSApplicationDelegate
 #define IL_APP_KIT
