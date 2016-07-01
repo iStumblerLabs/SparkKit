@@ -38,9 +38,9 @@ CGPoint ILPointOnLineToPointAtDistance(CGPoint from, CGPoint to, CGFloat distanc
 
 #pragma mark -
 
-/*! @protocol ILSparkDataSource
+/*! @protocol ILSparkViewDataSource
     @brief data source protocol for SparkViews */
-@protocol ILSparkDataSource <NSObject>
+@protocol ILSparkViewDataSource <NSObject>
 
 /*! @brief instantanious between 0-1 */
 @property(nonatomic, readonly) CGFloat data;

@@ -10,11 +10,14 @@
 
 - (void) update
 {
+    [self.sparkpie updateView];
     [self.sparkline updateView];
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+    self.sparkpie.dataSource = self;
+    
     self.sparkline.dataSource = self;
     self.sparkline.style.falloff = 50;
     self.sparkline.style.filled = YES;
@@ -24,6 +27,13 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
+}
+
+#pragma mark - ILSParkViewDataSource
+
+- (CGFloat) data
+{
+    return 0.33;
 }
 
 #pragma mark - ILSparkLineDataSource

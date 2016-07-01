@@ -30,7 +30,7 @@
 		75F5A90C1D1902C500A17804 /* SparkyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A90B1D1902C500A17804 /* SparkyDelegate.m */; };
 		75F5A91B1D19034900A17804 /* SparkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75971DEF1D138C0400EA65D3 /* SparkKit.framework */; };
 		75F5A91D1D19035900A17804 /* SparkKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75971DEF1D138C0400EA65D3 /* SparkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		75F5A9201D1A130800A17804 /* ILSparkPie.h in Headers */ = {isa = PBXBuildFile; fileRef = 75F5A91E1D1A130800A17804 /* ILSparkPie.h */; };
+		75F5A9201D1A130800A17804 /* ILSparkPie.h in Headers */ = {isa = PBXBuildFile; fileRef = 75F5A91E1D1A130800A17804 /* ILSparkPie.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75F5A9211D1A130800A17804 /* ILSparkPie.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A91F1D1A130800A17804 /* ILSparkPie.m */; };
 		75F5A93F1D1A134A00A17804 /* ILSparkLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */; };
 		75F5A9401D1A134A00A17804 /* ILSparkStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 753956D51D13F679004DDBDA /* ILSparkStyle.m */; };
@@ -40,7 +40,7 @@
 		75F5A9481D1A134A00A17804 /* ILBridgeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971E001D13D18B00EA65D3 /* ILBridgeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75F5A9491D1A134A00A17804 /* ILSparkStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 753956D41D13F679004DDBDA /* ILSparkStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75F5A94A1D1A134A00A17804 /* ILSparkView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971E071D13D79F00EA65D3 /* ILSparkView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75F5A94B1D1A134A00A17804 /* ILSparkPie.h in Headers */ = {isa = PBXBuildFile; fileRef = 75F5A91E1D1A130800A17804 /* ILSparkPie.h */; };
+		75F5A94B1D1A134A00A17804 /* ILSparkPie.h in Headers */ = {isa = PBXBuildFile; fileRef = 75F5A91E1D1A130800A17804 /* ILSparkPie.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75F5A94C1D1A134A00A17804 /* ILSparkLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DFA1D139FBA00EA65D3 /* ILSparkLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
