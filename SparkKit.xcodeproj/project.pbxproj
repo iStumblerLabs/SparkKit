@@ -107,12 +107,12 @@
 		75971E071D13D79F00EA65D3 /* ILSparkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkView.h; sourceTree = "<group>"; };
 		75971E081D13D79F00EA65D3 /* ILSparkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkView.m; sourceTree = "<group>"; };
 		75971E0B1D13DAF600EA65D3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		75F5A9081D1902C500A17804 /* Sparky (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sparky (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75F5A9081D1902C500A17804 /* Sparky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75F5A90A1D1902C500A17804 /* SparkyDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SparkyDelegate.h; sourceTree = "<group>"; };
 		75F5A90B1D1902C500A17804 /* SparkyDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SparkyDelegate.m; sourceTree = "<group>"; };
 		75F5A91E1D1A130800A17804 /* ILSparkPie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkPie.h; sourceTree = "<group>"; };
 		75F5A91F1D1A130800A17804 /* ILSparkPie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkPie.m; sourceTree = "<group>"; };
-		75F5A9261D1A133A00A17804 /* Sparky (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sparky (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75F5A9261D1A133A00A17804 /* Sparky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75F5A9511D1A134A00A17804 /* SparkKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SparkKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -188,8 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				75971DEF1D138C0400EA65D3 /* SparkKit.framework */,
-				75F5A9081D1902C500A17804 /* Sparky (macOS).app */,
-				75F5A9261D1A133A00A17804 /* Sparky (iOS).app */,
+				75F5A9081D1902C500A17804 /* Sparky.app */,
+				75F5A9261D1A133A00A17804 /* Sparky.app */,
 				75F5A9511D1A134A00A17804 /* SparkKit.framework */,
 			);
 			name = Products;
@@ -301,7 +301,7 @@
 			);
 			name = "Sparky (macOS)";
 			productName = Sparky;
-			productReference = 75F5A9081D1902C500A17804 /* Sparky (macOS).app */;
+			productReference = 75F5A9081D1902C500A17804 /* Sparky.app */;
 			productType = "com.apple.product-type.application";
 		};
 		75F5A9251D1A133A00A17804 /* Sparky (iOS) */ = {
@@ -320,7 +320,7 @@
 			);
 			name = "Sparky (iOS)";
 			productName = iSpark;
-			productReference = 75F5A9261D1A133A00A17804 /* Sparky (iOS).app */;
+			productReference = 75F5A9261D1A133A00A17804 /* Sparky.app */;
 			productType = "com.apple.product-type.application";
 		};
 		75F5A93D1D1A134A00A17804 /* SparkKit (iOS) */ = {
@@ -633,7 +633,7 @@
 				INFOPLIST_FILE = Sparky/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.Sparky;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Sparky;
 			};
 			name = Debug;
 		};
@@ -645,7 +645,7 @@
 				INFOPLIST_FILE = Sparky/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.Sparky;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Sparky;
 			};
 			name = Release;
 		};
@@ -658,7 +658,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.iSpark;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Sparky;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -673,7 +673,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.iSpark;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Sparky;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

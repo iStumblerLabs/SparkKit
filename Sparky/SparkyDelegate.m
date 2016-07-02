@@ -16,11 +16,14 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    ILSparkStyle* defaultStyle = [ILSparkStyle defaultStyle];
+    defaultStyle.falloff = 50;
+    defaultStyle.bordered = YES;
+    defaultStyle.filled = YES;
+
     self.sparkpie.dataSource = self;
-    
+
     self.sparkline.dataSource = self;
-    self.sparkline.style.falloff = 50;
-    self.sparkline.style.filled = YES;
     self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(update) userInfo:nil repeats:YES];
     [self.updateTimer fire];
 }
@@ -33,27 +36,26 @@
 
 - (CGFloat) data
 {
-    return 0.33;
+    NSTimeInterval interval = [NSDate timeIntervalSinceReferenceDate];
+    CGFloat sine = (sin(interval/25)/2)+0.5;
+    // NSLog(@"sampleValueAtIndex: %lu interval: %f -> %f", (unsigned long)index, interval, sine);
+    return sine;
 }
 
 #pragma mark - ILSparkLineDataSource
 
 -(NSArray<NSDate*>*) sampleDates {
-    static NSArray<NSDate*>* dates = nil;
-    if (!dates) {
-        NSMutableArray* dateArray = [NSMutableArray new];
-        for (NSInteger index = 0; index < 500; index = index+10) {
-            if (index < 100 || index > 200) { // 100 second gap
-                [dateArray addObject:[NSDate dateWithTimeIntervalSinceNow:-(index)]];
-            }
+    NSMutableArray* dateArray = [NSMutableArray new];
+    for (NSInteger index = 0; index < 500; index = index+10) {
+        if (index < 100 || index > 200) { // 100 second gap
+            [dateArray addObject:[NSDate dateWithTimeIntervalSinceNow:-(index)]];
         }
-        dates = [NSArray arrayWithArray:dateArray];
     }
-    return dates;
+    return [NSArray arrayWithArray:dateArray];
 }
 
 - (CGFloat) sampleValueAtIndex:(NSUInteger) index {
-    NSTimeInterval interval = [self.sampleDates[index] timeIntervalSinceNow];
+    NSTimeInterval interval = [self.sampleDates[index] timeIntervalSinceReferenceDate];
     CGFloat sine = (sin(interval/25)/2)+0.5;
     // NSLog(@"sampleValueAtIndex: %lu interval: %f -> %f", (unsigned long)index, interval, sine);
     return sine;
