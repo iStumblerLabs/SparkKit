@@ -129,12 +129,17 @@ exit:
 
 @implementation ILSparkLineCell
 
+- (void) initCell
+{
+    self.style = [ILSparkStyle defaultStyle];
+}
+
 #pragma mark - NSObject
 
 - (id) init
 {
     if( self = [super init]) {
-        self.style = [ILSparkStyle defaultStyle];
+        [self initCell];
     }
     return self;
 }
@@ -143,12 +148,18 @@ exit:
 
 - (id) initTextCell:(NSString*)aString
 {
-    return [self init]; // TODO put the text somewhere in the cell for reference
+    if( self = [super initTextCell:aString]) {
+        [self initCell];
+    }
+    return self;
 }
 
 - (id) initImageCell:(NSImage*)anImage
 {
-    return [self init]; // TODO make the image the background of the cell
+    if( self = [super initImageCell:anImage]) {
+        [self initCell];
+    }
+    return self;
 }
 
 - (void)drawWithFrame:(NSRect)rect inView:(NSView *)view
