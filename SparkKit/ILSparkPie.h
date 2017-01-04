@@ -2,7 +2,7 @@
 
 @interface ILSparkPie : ILSparkView
 
-/*! @brief  */
+/*! @brief dataSource */
 @property(nonatomic, retain) NSObject<ILSparkViewDataSource>* dataSource;
 
 @end
