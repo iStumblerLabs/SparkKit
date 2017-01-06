@@ -19,7 +19,7 @@
 
 @end
 
-#pragma mark - Table Data Source
+#pragma mark - Table & Outline Data Source
 
 @interface ILGridTableDataSource : NSObject <NSTableViewDataSource,NSOutlineViewDataSource>
 @property(nonatomic,retain) ILGridData* grid;

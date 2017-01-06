@@ -1,7 +1,9 @@
 #import <Foundation/Foundation.h>
+#import <Quartz/Quartz.h>
 
 typedef enum
 {
+    ILGridDataByteType,
     ILGridDataIntegerType,
     ILGridDataFloatType,
     ILGridDataUnicharType
@@ -10,13 +12,13 @@ ILGridDataType;
 
 @interface ILGridData : NSObject
 {
+    ILGridDataType gridType;
     NSMutableData* data;
     NSUInteger gridRows;
     NSUInteger gridColumns;
     NSUInteger gridValueSize;
     CGFloat gridMinValue;
     CGFloat gridMaxValue;
-    ILGridDataType gridType;
 }
 @property(readonly) NSUInteger rows;
 @property(readonly) NSUInteger columns;
@@ -40,6 +42,7 @@ ILGridDataType;
 
 - (NSUInteger)   sizeOfRow;
 - (void*)     addressOfRow:(NSUInteger)row column:(NSUInteger)column;
+- (uint8_t)      byteAtRow:(NSUInteger)row column:(NSUInteger)column;
 - (NSInteger) integerAtRow:(NSUInteger)row column:(NSUInteger)column;
 - (CGFloat)     floatAtRow:(NSUInteger)row column:(NSUInteger)column;
 - (UniChar)   uniCharAtRow:(NSUInteger)row column:(NSUInteger)column;
@@ -48,6 +51,7 @@ ILGridDataType;
 #pragma mark - Setters
 
 - (void) setValueAtRow:(NSUInteger)row column:(NSUInteger)column data:(void*)data length:(NSUInteger) length;
+- (void) setByte:(uint8_t) byteValue atRow:(NSUInteger)row column:(NSUInteger)column;
 - (void) setInteger:(NSInteger) integerValue atRow:(NSUInteger)row column:(NSUInteger)column;
 - (void) setFloat:(CGFloat) floatValue atRow:(NSUInteger) row column:(NSUInteger)column;
 - (void) setUniChar:(UniChar) charValue atRow:(NSUInteger) row column:(NSUInteger)column;
@@ -69,5 +73,6 @@ ILGridDataType;
 
 - (NSData*) dataAtRow:(NSUInteger)row;
 - (void) setData:(NSData*) data atRow:(NSUInteger)row;
+- (void)appendData:(NSData*) slice;
 
 @end

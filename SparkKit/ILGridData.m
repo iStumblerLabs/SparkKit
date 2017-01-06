@@ -75,6 +75,13 @@
 
 #pragma mark -
 
++ (ILGridData*) byteGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns
+{
+    ILGridData* byteGrid = [[ILGridData alloc] initGridWithRows:rows columns:columns valueSize:sizeof(uint8_t) gridType:ILGridDataByteType];
+    [byteGrid fillByteValue:0];
+    return byteGrid;
+}
+
 + (ILGridData*) integerGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns
 {
     ILGridData* integerGrid = [[ILGridData alloc] initGridWithRows:rows columns:columns valueSize:sizeof(NSInteger) gridType:ILGridDataIntegerType];
@@ -145,10 +152,22 @@
     return [data mutableBytes] + offset;
 }
 
+- (uint8_t) byteAtRow:(NSUInteger)row column:(NSUInteger)column
+{
+    if (gridValueSize != sizeof(uint8_t)) {
+        [[NSException exceptionWithName:NSRangeException reason:nil userInfo:nil] raise];
+    }
+    void* valueAddress = [self addressOfRow:row column:column];
+    uint8_t byteValue = 0;
+    memcpy(&byteValue, valueAddress, gridValueSize);
+    return byteValue;
+}
+
 - (NSInteger) integerAtRow:(NSUInteger)row column:(NSUInteger)column
 {
-    if( gridValueSize != sizeof(NSInteger) )
+    if (gridValueSize != sizeof(NSInteger)) {
         [[NSException exceptionWithName:NSRangeException reason:nil userInfo:nil] raise];
+    }
     void* valueAddress = [self addressOfRow:row column:column];
     NSInteger integerValue = 0;
     memcpy(&integerValue, valueAddress, gridValueSize);
@@ -179,16 +198,20 @@
 {
     CGFloat percent = 0.0;
     
-    if( gridType == ILGridDataIntegerType)
-    {
+    if (gridType == ILGridDataIntegerType) {
         NSInteger thisValue = [self integerAtRow:row column:col];
-        if( thisValue > 0)
+        if( thisValue > 0) {
             percent = fabs(thisValue / gridMaxValue);
-        else
+        }
+        else {
             percent = fabs(thisValue / gridMinValue);
+        }
     }
-    else if( gridType == ILGridDataFloatType)
-    {
+    else if( gridType == ILGridDataByteType) {
+        uint8_t thisValue = [self byteAtRow:row column:col];
+        percent = (CGFloat)thisValue/256;
+    }
+    else if( gridType == ILGridDataFloatType) {
         CGFloat thisValue = [self floatAtRow:row column:col];
         percent = (thisValue / gridMaxValue);
     }
@@ -201,6 +224,18 @@
     void* valueAddress = [self addressOfRow:row column:column];
 //    NSLog(@"setValueAtRow: %lu column: %lu data: %p length: %lu valueAddress: %p", row, column, dataPtr, length, valueAddress);
     memcpy(valueAddress, dataPtr, length);
+}
+
+- (void) setByte:(uint8_t) byteValue atRow:(NSUInteger)row column:(NSUInteger)column
+{
+    if( byteValue > gridMaxValue)
+        gridMaxValue = byteValue;
+
+    if( byteValue < gridMinValue)
+        gridMinValue = byteValue;
+    
+//    NSLog(@"setByte: 0x%X atRow: %lu column: %lu", integerValue, row, column);
+    [self setValueAtRow:row column:column data:&byteValue length:gridValueSize];
 }
 
 - (void) setInteger:(NSInteger) integerValue atRow:(NSUInteger)row column:(NSUInteger)column
@@ -234,14 +269,28 @@
 #pragma mark -
 #pragma mark fill routines
 
+- (void) fillByteValue:(uint8_t) byteValue
+{
+    NSUInteger row = 0;
+    NSUInteger col = 0;
+    while (row < gridRows) {
+        while (col < gridColumns) {
+            [self setByte:byteValue atRow:row column:col];
+            col++;
+        }
+        col = 0;
+        row++;
+    }
+    gridMinValue = byteValue;
+    gridMaxValue = byteValue;
+}
+
 - (void) fillIntegerValue:(NSInteger) integerValue
 {
     NSUInteger row = 0;
     NSUInteger col = 0;
-    while ( row < gridRows)
-    {
-        while ( col < gridColumns)
-        {
+    while (row < gridRows) {
+        while (col < gridColumns) {
             [self setInteger:integerValue atRow:row column:col];
             col++;
         }
@@ -256,10 +305,8 @@
 {
     NSUInteger row = 0;
     NSUInteger col = 0;
-    while ( row < gridRows)
-    {
-        while ( col < gridColumns)
-        {
+    while (row < gridRows) {
+        while (col < gridColumns) {
             [self setUniChar:unicharValue atRow:row column:col];
             col++;
         }
@@ -410,23 +457,39 @@
     {
         switch( gridType)
         {
+            case ILGridDataByteType:
+            {
+                uint8_t byte = [self byteAtRow:row column:colIndex];
+                if (byte > gridMaxValue) {
+                    gridMaxValue = byte;
+                }
+                else if (byte > gridMinValue) {
+                    gridMinValue = byte;
+                }
+                break;
+            }
+
             case ILGridDataIntegerType:
             {
                 NSInteger integer = [self integerAtRow:row column:colIndex];
-                if( integer > gridMaxValue)
+                if( integer > gridMaxValue) {
                     gridMaxValue = integer;
-                else if ( integer < gridMinValue)
+                }
+                else if ( integer < gridMinValue) {
                     gridMinValue = integer;
+                }
                 break;
             }
                 
             case ILGridDataFloatType:
             {
                 CGFloat floatValue = [self floatAtRow:row column:colIndex];
-                if( floatValue > gridMaxValue)
+                if (floatValue > gridMaxValue) {
                     gridMaxValue = floatValue;
-                else if ( floatValue < gridMinValue)
+                }
+                else if (floatValue < gridMinValue) {
                     gridMinValue = floatValue;
+                }
                 break;
             }
                 
@@ -442,6 +505,16 @@
         }
         colIndex++;
     }
+}
+
+- (void)appendData:(NSData*) slice
+{
+    NSInteger sliceColumns = (slice.length / gridValueSize);
+    if (sliceColumns == self.columns) {
+        [data appendData:slice];
+        gridRows++;
+    }
+    else NSLog(@"appendData, wrong sized slice: %lu bytes", slice.length);
 }
 
 @end

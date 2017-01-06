@@ -5,18 +5,29 @@
 
 @implementation ILGridView
 
+-(void)initView
+{
+    self.grid = nil;
+    self.gradient = [[NSGradient alloc] initWithColors:@[[NSColor controlBackgroundColor], [NSColor orangeColor]]];
+    self.background = [NSColor controlBackgroundColor];
+    self.cellInsets = NSMakeSize(0,0); // each cell is inset, total grid line is 2x this value
+    self.labelFont = [NSFont systemFontOfSize:8];
+}
+
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self)
-    {
-        self.grid = nil;
-        self.gradient = [[NSGradient alloc] initWithColors:@[[NSColor controlBackgroundColor], [NSColor orangeColor]]];
-        self.background = [NSColor controlBackgroundColor];
-        self.cellInsets = NSMakeSize(0,0); // each cell is inset, total grid line is 2x this value
-        self.labelFont = [NSFont systemFontOfSize:8];
+    if (self) {
+        [self initView];
     }
     return self;
+}
+
+#pragma mark NSNibAwakening
+
+-(void)awakeFromNib
+{
+    [self initView];
 }
 
 #pragma mark -
@@ -27,16 +38,16 @@
     NSMutableParagraphStyle* centered = [NSMutableParagraphStyle new];
     centered.alignment = NSCenterTextAlignment;
     NSDictionary* labelAttrs = @{
-                                 NSFontAttributeName: [NSFont systemFontOfSize:[NSFont systemFontSize]],
-                                 NSForegroundColorAttributeName: [NSColor controlTextColor],
-                                 NSParagraphStyleAttributeName: centered
-                                 };
+        NSFontAttributeName: [NSFont systemFontOfSize:[NSFont systemFontSize]],
+        NSForegroundColorAttributeName: [NSColor controlTextColor],
+        NSParagraphStyleAttributeName: centered
+    };
     
     NSAttributedString* tooSmall = [[NSAttributedString alloc] initWithString:errorString attributes:labelAttrs];
     NSRect tooSmallRect = NSMakeRect(0,0,tooSmall.size.width*2,tooSmall.size.height*2);
     tooSmallRect = NSOffsetRect(tooSmallRect,
-                                ((self.frame.size.width-tooSmall.size.width)/2),
-                                ((self.frame.size.height-tooSmall.size.height)/2));
+        ((self.frame.size.width-tooSmall.size.width)/2),
+        ((self.frame.size.height-tooSmall.size.height)/2));
     [labelCell setAttributedStringValue:tooSmall];
     [labelCell drawInteriorWithFrame:tooSmallRect inView:self];
 }
@@ -72,7 +83,8 @@
                     cellSize.width, cellSize.height);
                 thisRect = NSInsetRect(thisRect, self.cellInsets.width, self.cellInsets.height);
 //                thisRect = NSIntegralRect(thisRect);
-                NSColor* thisColor = [self.gradient interpolatedColorAtLocation:[self.grid percentAtRow:thisRow column:thisColumn]];
+                float percentValue = [self.grid percentAtRow:thisRow column:thisColumn];
+                NSColor* thisColor = [self.gradient interpolatedColorAtLocation:percentValue];
 // NSLog(@"grid (%lu,%lu) ((%li - %li) / %li) -> %f -> %@", thisColumn, thisRow, thisValue, self.minValue, self.maxValue, thisFloat, thisColor);
                 [NSGraphicsContext saveGraphicsState];
                 [thisColor setFill];
