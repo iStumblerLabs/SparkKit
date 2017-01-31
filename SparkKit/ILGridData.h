@@ -71,8 +71,9 @@ ILGridDataType;
 
 #pragma mark - Slices
 
-- (NSData*) dataAtRow:(NSUInteger)row;
-- (void) setData:(NSData*) data atRow:(NSUInteger)row;
+- (NSData*)dataAtRow:(NSUInteger)row;
+- (void)setData:(NSData*)data atRow:(NSUInteger)row;
 - (void)appendData:(NSData*) slice;
+- (void)trimToRangeOfRows:(NSRange)rows;
 
 @end

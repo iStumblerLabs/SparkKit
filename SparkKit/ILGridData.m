@@ -444,8 +444,7 @@
 - (void) setData:(NSData*) slice atRow:(NSUInteger)row
 {
     NSInteger index = (row * [self sizeOfRow]);
-    if( index+[self sizeOfRow] <= data.length)
-    {
+    if (index+[self sizeOfRow] <= data.length) {
         [data replaceBytesInRange:NSMakeRange(index, [self sizeOfRow])
                         withBytes:[slice bytes]];
     }
@@ -453,12 +452,9 @@
     
     // check the row and set the min/max values
     NSUInteger colIndex = 0;
-    while( colIndex < gridColumns)
-    {
-        switch( gridType)
-        {
-            case ILGridDataByteType:
-            {
+    while (colIndex < gridColumns) {
+        switch (gridType) {
+            case ILGridDataByteType: {
                 uint8_t byte = [self byteAtRow:row column:colIndex];
                 if (byte > gridMaxValue) {
                     gridMaxValue = byte;
@@ -469,8 +465,7 @@
                 break;
             }
 
-            case ILGridDataIntegerType:
-            {
+            case ILGridDataIntegerType: {
                 NSInteger integer = [self integerAtRow:row column:colIndex];
                 if( integer > gridMaxValue) {
                     gridMaxValue = integer;
@@ -481,8 +476,7 @@
                 break;
             }
                 
-            case ILGridDataFloatType:
-            {
+            case ILGridDataFloatType: {
                 CGFloat floatValue = [self floatAtRow:row column:colIndex];
                 if (floatValue > gridMaxValue) {
                     gridMaxValue = floatValue;
@@ -493,8 +487,7 @@
                 break;
             }
                 
-            case ILGridDataUnicharType:
-            {
+            case ILGridDataUnicharType: {
                 UniChar charValue = [self floatAtRow:row column:colIndex];
                 if( charValue > gridMaxValue)
                     gridMaxValue = charValue;
@@ -515,6 +508,16 @@
         gridRows++;
     }
     else NSLog(@"appendData, wrong sized slice: %lu bytes", slice.length);
+}
+
+- (void)trimToRangeOfRows:(NSRange)rowRange;
+{
+    NSAssert(rowRange.location + rowRange.length <= gridRows, @"trimmed range too large");
+    size_t rowSize = [self sizeOfRow];
+    NSRange byteRange = NSMakeRange((rowRange.location * rowSize), (rowRange.length * rowSize));
+    NSData* trimmedData = [data subdataWithRange:byteRange];
+    [data setData:trimmedData];
+    gridRows = rowRange.length;
 }
 
 @end

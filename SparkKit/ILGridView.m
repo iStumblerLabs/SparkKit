@@ -3,12 +3,22 @@
 
 #if IL_APP_KIT
 
+@interface ILGridView ()
+
+@property(nonatomic,retain) NSMutableArray* rowCache; // mutable array of row images which 
+
+@end
+
+#pragma mark -
+
 @implementation ILGridView
 
 -(void)initView
 {
     self.grid = nil;
-    self.gradient = [[NSGradient alloc] initWithColors:@[[NSColor controlBackgroundColor], [NSColor orangeColor]]];
+    self.gradient = [[NSGradient alloc] initWithColors:@[
+        [NSColor controlBackgroundColor],
+        [[NSColor orangeColor] blendedColorWithFraction:0.666 ofColor:[NSColor blackColor]]]];
     self.background = [NSColor controlBackgroundColor];
     self.cellInsets = NSMakeSize(0,0); // each cell is inset, total grid line is 2x this value
     self.labelFont = [NSFont systemFontOfSize:8];
@@ -147,9 +157,9 @@
         return;
     }
     
-    if ([start timeIntervalSinceNow] > 0.1) {
-        NSLog(@"slow draw of: %@ (%lu,%lu) %li ops in in %fs",
-              self.grid, (unsigned long)self.grid.columns, (unsigned long)self.grid.rows, (long)drawCount, [start timeIntervalSinceNow]);
+    if ( fabs([start timeIntervalSinceNow]) > 0.1) {
+        NSLog(@"slow draw of: %@ (%lu,%lu) %li ops in in %0.4fs",
+              self.grid, (unsigned long)self.grid.columns, (unsigned long)self.grid.rows, (long)drawCount, fabs([start timeIntervalSinceNow]));
     }
 }
 
