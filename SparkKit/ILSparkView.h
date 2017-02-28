@@ -1,5 +1,6 @@
-#import <SparkKit/ILBridgeKit.h>
+#import <SparkKit/ILKitBridge.h>
 #import <SparkKit/ILSparkStyle.h>
+
 
 /*! @return the largest square centered in the provided rectangle */
 CGRect ILRectSquareInRect(CGRect rect);
@@ -16,11 +17,14 @@ CGFloat ILVectorRadians(CGVector delta);
 /*! @brief project a point the provided distance along the vector provided */
 CGPoint ILPointOnLineToPointAtDistance(CGPoint from, CGPoint to, CGFloat distance);
 
+
 #pragma mark -
 
 /*! @class ILSparkView
     @brief base class for all SparkKit views */
-@interface ILSparkView : ILView
+@interface ILSparkView : ILView <ILViews, ILSparkStyle>
+
+#pragma mark - ILSparkStyle
 
 /*! @brief style information */
 @property(nonatomic, retain) ILSparkStyle* style;
@@ -28,13 +32,11 @@ CGPoint ILPointOnLineToPointAtDistance(CGPoint from, CGPoint to, CGFloat distanc
 /*! @brief border layer */
 @property(nonatomic, readonly) CAShapeLayer* border;
 
-/*! @brief run from initWithFrame: and initWithCoder: override to initilzize the view */
-- (void) initView;
-
-/*! @brief have the view query it's delgate and redraw */
-- (void) updateView;
+/*! @brief TODO make private to sub-classes */
+@property(nonatomic, retain) CAShapeLayer* borderLayerStorage;
 
 @end
+
 
 #pragma mark -
 
@@ -43,6 +45,6 @@ CGPoint ILPointOnLineToPointAtDistance(CGPoint from, CGPoint to, CGFloat distanc
 @protocol ILSparkViewDataSource <NSObject>
 
 /*! @brief instantanious between 0-1 */
-@property(nonatomic, readonly) CGFloat data;
+@property(nonatomic, readonly) CGFloat datum;
 
 @end

@@ -1,4 +1,5 @@
 #import "ILSparkLine.h"
+#import "ILSparkStyle.h"
 
 #pragma mark -
 

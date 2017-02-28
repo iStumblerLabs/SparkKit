@@ -15,6 +15,7 @@ CGFloat const ILBoldlineWidth = 2;
         style.fill = [ILColor blackColor];
         style.stroke = [ILColor blackColor];
         style.background = [ILColor clearColor];
+        style.gradient = [[ILGradient alloc] initWithStartingColor:[ILColor blackColor] endingColor:[ILColor whiteColor]];
         style.filled = NO;
         style.bordered = YES;
         style.width = ILPathlineWidth;

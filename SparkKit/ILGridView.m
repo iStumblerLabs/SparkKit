@@ -1,11 +1,15 @@
 #import "ILGridView.h"
 #import "ILGridData.h"
+#import "ILSparkStyle.h"
 
-#if IL_APP_KIT
+#import <CoreServices/CoreServices.h>
+#import <ImageIO/ImageIO.h>
 
 @interface ILGridView ()
 
-@property(nonatomic,retain) NSMutableArray* rowCache; // mutable array of row images which 
+@property(nonatomic, retain) NSMutableArray* rowCache; // mutable array of row images or references maybe?
+@property(nonatomic, retain) CALayer* gridLayer; // the grid data layer, an array of CALayer rows
+@property(nonatomic, retain) CALayer* labelLayer; // text and labels ??? move labeling up to GaugeKit?
 
 @end
 
@@ -13,18 +17,193 @@
 
 @implementation ILGridView
 
--(void)initView
+-(CGFloat)rowHeight
 {
-    self.grid = nil;
-    self.gradient = [[NSGradient alloc] initWithColors:@[
-        [NSColor controlBackgroundColor],
-        [[NSColor orangeColor] blendedColorWithFraction:0.666 ofColor:[NSColor blackColor]]]];
-    self.background = [NSColor controlBackgroundColor];
-    self.cellInsets = NSMakeSize(0,0); // each cell is inset, total grid line is 2x this value
-    self.labelFont = [NSFont systemFontOfSize:8];
+    return ((self.frame.size.height > self.grid.rows) ? (self.frame.size.height / self.grid.rows) : 1.0);
 }
 
-- (id)initWithFrame:(NSRect)frame
+-(CGFloat)columnWidth
+{
+    return ((self.frame.size.width > self.grid.columns) ? (self.frame.size.width / self.grid.columns) : 1.0);
+}
+
+-(CGSize)cellSize
+{
+   return CGSizeMake([self rowHeight], [self columnWidth]);
+}
+
+-(CGRect)rectOfRow:(NSUInteger)thisRow
+{
+    CGFloat rowHeight = [self rowHeight];
+    return CGRectMake(0, (rowHeight * thisRow), self.frame.size.width, rowHeight);
+}
+
+-(CGImageRef)bitmapOfRow:(NSUInteger)thisRow
+{
+    static struct CGColorSpace* grayscale;
+    if (!grayscale) {
+        grayscale = CGColorSpaceCreateDeviceGray();
+    }
+
+    size_t channelDepth = 8;
+    size_t channelCount = CGColorSpaceGetNumberOfComponents(grayscale);
+    size_t pixelBits = (channelDepth * channelCount);
+    CGSize rowSize = CGSizeMake(self.grid.columns, 1);
+    NSMutableData* imageData = [NSMutableData dataWithLength:(pixelBits * rowSize.width)];
+    CGContextRef rowContext = CGBitmapContextCreate(imageData.mutableBytes, rowSize.width, rowSize.height, pixelBits, imageData.length, grayscale, kCGImageAlphaNone);
+    CGContextSetFillColorSpace(rowContext, grayscale);
+
+    NSUInteger thisColumn = 0;
+    while (thisColumn < self.grid.columns) {
+        CGFloat percentValue = [self.grid percentAtRow:thisRow column:thisColumn];
+        const CGFloat percentComponents[] = {(1.0 - percentValue),  1.0};
+        CGContextSetFillColor(rowContext, (const CGFloat*)&percentComponents);
+        // CGContextSetAlpha(rowContext, (1.0 - percentValue));
+        CGContextFillRect(rowContext, CGRectMake(thisColumn, 0, 1, rowSize.height)); // single pixel
+        thisColumn++;
+    }
+
+    CGImageRef rowBitMap = CGBitmapContextCreateImage(rowContext);
+    CGContextRelease(rowContext);
+exit:
+    return rowBitMap;
+}
+
+#pragma mark - ILViews
+
+-(void)initView
+{
+#if IL_APP_KIT
+    [self setLayer:[CALayer new]];
+    [self setWantsLayer:YES];
+#endif
+
+    self.grid = nil;
+    self.style = [ILSparkStyle defaultStyle];
+    self.rowCache = [NSMutableArray new];
+}
+
+-(void)updateGrid
+{
+    // NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
+    
+    NSUInteger thisRow = 0;
+    while (thisRow < self.grid.rows) {
+        CGImageRef rowImage = [self bitmapOfRow:thisRow];
+        CALayer* rowLayer = [CALayer new];
+        [self.layer addSublayer:rowLayer];
+        rowLayer.contents = CFBridgingRelease(rowImage);
+        rowLayer.frame = [self rectOfRow:thisRow];
+        // rowLayer.magnificationFilter = kCAFilterLinear; // kCAFilterNearest;
+
+        // rowLayer.mask = [CALayer new];
+        // rowLayer.mask.contentsGravity = kCAGravityResize;
+        // rowLayer.mask.frame = rowLayer.bounds;
+
+        /*
+        CFURLRef imageURL = CFBridgingRetain([NSURL fileURLWithPath:
+            [NSString stringWithFormat:[@"~/Desktop/Grid/at-%f-row-%lu.png" stringByExpandingTildeInPath], now, thisRow]]);
+        CGImageDestinationRef rowDestination = CGImageDestinationCreateWithURL(imageURL, kUTTypePNG, 1, NULL);
+        CGImageDestinationAddImage(rowDestination, rowImage, NULL);
+        CGImageDestinationFinalize(rowDestination);
+        */
+        
+        // NSLog(@"row: %lu %@ %@", thisRow, NSStringFromRect(rowLayer.frame), rowLayer.contents);
+        thisRow++;
+    }
+    // NSLog(@"sublayers: %lu", self.layer.sublayers.count);
+}
+
+-(void)updateLabels
+{
+    if (!self.labelLayer) {
+        self.labelLayer = [CALayer new];
+    }
+    
+    [self.layer addSublayer:self.labelLayer];
+    self.labelLayer.sublayers = nil;
+    self.labelLayer.frame = self.frame;
+    
+    if (self.errorString) { // put it on a text layer in the middle
+        CATextLayer* errorLayer = [CATextLayer new];
+        errorLayer.contentsGravity = kCAGravityCenter;
+        errorLayer.string = self.errorString;
+        errorLayer.font = CFBridgingRetain(self.style.font.fontName);
+        [self.labelLayer addSublayer:errorLayer];
+        errorLayer.position = CGPointMake((self.frame.size.width / 2), (self.frame.size.height / 2)); // No CGPointCenteredInRect?
+#if IL_APP_KIT
+        NSLog(@"error: %@ frame: %@", self.errorString, NSStringFromRect(errorLayer.frame));
+#endif
+    }
+    else {
+        if (self.yAxisLabels && self.yAxisLabels.count > 0) {
+            CGFloat ySpacing = (self.frame.size.width / (self.yAxisLabels.count + 1)); // fencepost
+            NSUInteger yIndex = 1; // fencepost
+            for (NSString* yLabel in self.yAxisLabels) {
+                CATextLayer* labelLayer = [CATextLayer new];
+                labelLayer.string = yLabel;
+                labelLayer.contentsGravity = @"center";
+                labelLayer.frame = CGRectMake(10,(ySpacing * yIndex), 100, 100);
+                [self.labelLayer addSublayer:labelLayer];
+                yIndex++;
+            }
+        }
+        
+        if (self.xAxisLabels) {
+            CGFloat xSpacing = (self.frame.size.width / (self.yAxisLabels.count + 1)); // fencepost
+            NSUInteger xIndex = 1; // fencepost
+            for (NSString* xLabel in self.yAxisLabels) {
+                CATextLayer* labelLayer = [CATextLayer new];
+                labelLayer.string = xLabel;
+                labelLayer.contentsGravity = @"center";
+                labelLayer.frame = CGRectMake((xSpacing * xIndex), 10, 100, 100);
+                [self.labelLayer addSublayer:labelLayer];
+                xIndex++;
+            }
+        }
+    }
+    
+}
+
+-(void)updateView
+{
+    self.layer.sublayers = nil; // TODO use the gridLayer
+    // self.layer.backgroundColor = self.style.fill.CGColor;
+
+    CGSize cellSize = CGSizeMake((self.frame.size.width / self.grid.columns), (self.frame.size.height / self.grid.rows));
+
+    if (!self.grid) {
+        self.errorString = @"No Data";
+    }
+    else if (cellSize.width < 1 || cellSize.height < 1) {
+        self.errorString = @"Too Much Data";
+    }
+    else if ( self.grid.rows == 0 || self.grid.columns == 0) {
+        self.errorString = @"Not Enough Data";
+    }
+    else {
+        [self updateGrid];
+    }
+
+    [self updateLabels];
+}
+
+#pragma mark - NSCoding
+
+- (nullable instancetype) initWithCoder:(NSCoder*)aDecoder; // NS_DESIGNATED_INITIALIZER
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initView];
+    }
+    return self;
+}
+
+#if IL_APP_KIT
+
+#pragma mark - NSView
+
+- (instancetype) initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -33,16 +212,20 @@
     return self;
 }
 
-#pragma mark NSNibAwakening
+#pragma mark - NSNibAwakening
 
--(void)awakeFromNib
+- (void) awakeFromNib
 {
     [self initView];
 }
 
+#endif
+
+#if NO
+
 #pragma mark -
 
-- (void) drawError:(NSString*) errorString
+- (void) drawError:(NSString*)errorString
 {
     NSCell* labelCell = [[NSCell alloc] initTextCell:errorString];
     NSMutableParagraphStyle* centered = [NSMutableParagraphStyle new];
@@ -62,14 +245,15 @@
     [labelCell drawInteriorWithFrame:tooSmallRect inView:self];
 }
 
-- (void)drawRect:(NSRect)dirtyRect
+#pragma mark - NSView
+
+- (void) drawRect:(NSRect)dirtyRect
 {
     [NSGraphicsContext saveGraphicsState];
-    [self.background setFill]; // assume 'average' and show deviation from it as lighter to darker values
+    [self.style.background setFill]; // assume 'average' and show deviation from it as lighter to darker values
     [NSBezierPath fillRect:dirtyRect];
     [NSGraphicsContext restoreGraphicsState];
-    NSDate* start = [NSDate date];
-    NSInteger drawCount = 0;
+
     NSCell* labelCell = [[NSCell alloc] initTextCell:@""];
     
     if (self.grid ) {
@@ -84,18 +268,22 @@
             return;
         }
         
+        NSDate* start = [NSDate date];
         NSUInteger thisRow = 0;
-        while (thisRow < self.grid.rows ) {
+        NSInteger drawCount = 0;
+
+        while (thisRow < self.grid.rows) {
             NSUInteger thisColumn = 0;
             while (thisColumn < self.grid.columns) {
                 NSRect thisRect = NSMakeRect(
-                    cellSize.width*thisColumn, cellSize.height*thisRow,
+                    (cellSize.width * thisColumn), (cellSize.height * thisRow),
                     cellSize.width, cellSize.height);
-                thisRect = NSInsetRect(thisRect, self.cellInsets.width, self.cellInsets.height);
-//                thisRect = NSIntegralRect(thisRect);
+                // thisRect = NSInsetRect(thisRect, self.cellInsets.width, self.cellInsets.height);
+                thisRect = NSIntegralRect(thisRect);
                 float percentValue = [self.grid percentAtRow:thisRow column:thisColumn];
-                NSColor* thisColor = [self.gradient interpolatedColorAtLocation:percentValue];
-// NSLog(@"grid (%lu,%lu) ((%li - %li) / %li) -> %f -> %@", thisColumn, thisRow, thisValue, self.minValue, self.maxValue, thisFloat, thisColor);
+                NSColor* thisColor = [self.style.gradient interpolatedColorAtLocation:percentValue];
+                // NSLog(@"grid (%lu,%lu) ((%li - %li) / %li) -> %f -> %@",
+                //    thisColumn, thisRow, thisValue, self.minValue, self.maxValue, thisFloat, thisColor);
                 [NSGraphicsContext saveGraphicsState];
                 [thisColor setFill];
                 [NSBezierPath fillRect:thisRect];
@@ -105,13 +293,17 @@
             }
             thisRow++;
         }
+        
+        if (fabs([start timeIntervalSinceNow]) > 0.1) { // 10fps
+            NSLog(@"slow draw of: %@ (%lu,%lu) %li ops in in %0.4fs",
+                  self.grid, (unsigned long)self.grid.columns, (unsigned long)self.grid.rows, (long)drawCount, fabs([start timeIntervalSinceNow]));
+        }
 
-        if( self.yAxisLabels ) // draw these along the y axis
-        {
+        if (self.yAxisLabels) { // draw these along the y axis
             NSMutableParagraphStyle* left = [NSMutableParagraphStyle new];
             left.alignment = NSLeftTextAlignment;
             NSDictionary* labelAttrs = @{
-                NSFontAttributeName: self.labelFont,
+                NSFontAttributeName: self.style.font,
                 NSForegroundColorAttributeName: [NSColor lightGrayColor],
                 NSParagraphStyleAttributeName: left
             };
@@ -134,7 +326,7 @@
             NSMutableParagraphStyle* centered = [NSMutableParagraphStyle new];
             centered.alignment = NSCenterTextAlignment;
             NSDictionary* labelAttrs = @{
-                NSFontAttributeName: self.labelFont,
+                NSFontAttributeName: self.style.font,
                 NSForegroundColorAttributeName: [NSColor lightGrayColor],
                 NSParagraphStyleAttributeName: centered
             };
@@ -156,50 +348,8 @@
         [self drawError:@"No Data"];
         return;
     }
-    
-    if ( fabs([start timeIntervalSinceNow]) > 0.1) {
-        NSLog(@"slow draw of: %@ (%lu,%lu) %li ops in in %0.4fs",
-              self.grid, (unsigned long)self.grid.columns, (unsigned long)self.grid.rows, (long)drawCount, fabs([start timeIntervalSinceNow]));
-    }
 }
-
-@end
-
-#pragma mark -
-
-@implementation ILGridTableDataSource
-
-#pragma mark - NSTableViewDataSource
-
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
-{
-    return self.grid.rows;
-}
-
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
-{
-    id value = nil;
-    NSUInteger columnIndex = [tableView.tableColumns indexOfObject:tableColumn];
-
-    if (columnIndex == 0) {
-        value = self.labels[row];
-    }
-    else {
-        if (self.grid.type == ILGridDataIntegerType) {
-            value = [NSNumber numberWithDouble:[self.grid percentAtRow:row column:columnIndex-1]];
-            // value = [NSNumber numberWithInteger:[self.grid integerAtRow:row column:columnIndex-1]];
-        }
-        else if (self.grid.type == ILGridDataFloatType) {
-            value = [NSNumber numberWithDouble:[self.grid floatAtRow:row column:columnIndex-1]];
-        }
-        else if (self.grid.type == ILGridDataUnicharType) {
-            value = [NSString stringWithFormat:@"%C", [self.grid uniCharAtRow:row column:columnIndex-1]];
-        }
-    }
-    
-    return value;
-}
-
-@end
 
 #endif
+
+@end

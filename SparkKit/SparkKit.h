@@ -1,5 +1,6 @@
-
-#import <SparkKit/ILBridgeKit.h>
+/*! @brief SparkKit Umbrella Header */
+#import <SparkKit/ILKitBridge.h>
+#import <SparkKit/ILSparkStyle.h>
 #import <SparkKit/ILSparkView.h>
 #import <SparkKit/ILSparkLine.h>
 #import <SparkKit/ILSparkPie.h>

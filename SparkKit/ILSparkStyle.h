@@ -1,6 +1,4 @@
-#import <Foundation/Foundation.h>
-#import <QuartzCore/QuartzCore.h>
-#import <SparkKit/ILBridgeKit.h>
+#import <SparkKit/ILKitBridge.h>
 
 #pragma mark Line Widths
 
@@ -26,6 +24,12 @@ extern CGFloat const ILBoldlineWidth;
 /*! @brief background color */
 @property(nonatomic, retain) ILColor* background;
 
+/*! @brief gradient for color values */
+@property(nonatomic, retain) ILGradient* gradient;
+
+/*! @brief font used to render labels */
+@property(nonatomic, retain) ILFont* font;
+
 /*! @brief is the area filled? */
 @property(nonatomic, assign) BOOL filled;
 
@@ -44,5 +48,17 @@ extern CGFloat const ILBoldlineWidth;
 
 /*! @brief default style given to ILSparkViews when initilized */
 + (ILSparkStyle*) defaultStyle;
+
+@end
+
+#pragma mark -
+
+@protocol ILSparkStyle <NSObject>
+
+/*! @brief style information */
+@property(nonatomic, retain) ILSparkStyle* style;
+
+/*! @brief border layer */
+@property(nonatomic, readonly) CAShapeLayer* border;
 
 @end

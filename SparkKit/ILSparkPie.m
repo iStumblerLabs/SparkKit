@@ -1,23 +1,28 @@
 #import "ILSparkPie.h"
+#import "ILSparkStyle.h"
+
+#pragma mark -
 
 @implementation ILSparkPie
 
 - (CAShapeLayer*) border
 {
-    CAShapeLayer* borderLayer = [CAShapeLayer new];
-    CGRect square = CGRectInset(ILRectSquareInRect(self.bounds),1,1);
-    borderLayer.path = CGPathCreateWithEllipseInRect(square, NULL);
-    return borderLayer;
+    if (!self.borderLayerStorage) {
+        self.borderLayerStorage = [CAShapeLayer new];
+        CGRect square = CGRectInset(ILRectSquareInRect(self.bounds),1,1);
+        self.borderLayerStorage.path = CGPathCreateWithEllipseInRect(square, NULL);
+    }
+    return self.borderLayerStorage;
 }
 
 - (void) updateView
 {
-    [super updateView]; // clears sublayers and draws the border
+    [super updateView]; // clears sublayers and sets the border
     CGRect square = CGRectInset(ILRectSquareInRect(self.bounds),1,1);
     CGPoint twelve = CGPointMake(CGRectGetMidX(square), CGRectGetMaxY(square));
     CGPoint center = CGPointMake(CGRectGetMidX(square), CGRectGetMidY(square));
     CGFloat zeroAngle = (M_PI / 2);
-    CGFloat valueAngle = zeroAngle - ((2 * M_PI) * self.dataSource.data);
+    CGFloat valueAngle = zeroAngle - ((2 * M_PI) * self.dataSource.datum);
     CGMutablePathRef wedge = CGPathCreateMutable();
     
     /* create the wedge path */

@@ -521,3 +521,40 @@
 }
 
 @end
+
+#pragma mark -
+
+@implementation ILGridTableDataSource
+
+#pragma mark - NSTableViewDataSource
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+{
+    return self.grid.rows;
+}
+
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+    id value = nil;
+    NSUInteger columnIndex = [tableView.tableColumns indexOfObject:tableColumn];
+
+    if (columnIndex == 0) {
+        value = self.labels[row];
+    }
+    else {
+        if (self.grid.type == ILGridDataIntegerType) {
+            value = [NSNumber numberWithDouble:[self.grid percentAtRow:row column:columnIndex-1]];
+            // value = [NSNumber numberWithInteger:[self.grid integerAtRow:row column:columnIndex-1]];
+        }
+        else if (self.grid.type == ILGridDataFloatType) {
+            value = [NSNumber numberWithDouble:[self.grid floatAtRow:row column:columnIndex-1]];
+        }
+        else if (self.grid.type == ILGridDataUnicharType) {
+            value = [NSString stringWithFormat:@"%C", [self.grid uniCharAtRow:row column:columnIndex-1]];
+        }
+    }
+    
+    return value;
+}
+
+@end

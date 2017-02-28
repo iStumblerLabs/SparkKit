@@ -3,15 +3,18 @@
 UIKit & AppKit Bridging Header
 
 */
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 
-#ifndef ILDefines_h
-#define ILDefines_h
+#ifndef ILKitBridge_h
+#define ILKitBridge_h
 #include <TargetConditionals.h>
 
+/* UIKit */
 #if TARGET_OS_IPHONE || TARGET_OS_TV
 #import <UIKit/UIKit.h>
 #define ILColor UIColor
-#define ILGradient UIGradient
+#define ILGradient NSObject // TODO Implement ILGradient on top of CGGradient
 #define ILFont UIFont
 #define ILImage UIImage
 #define ILView UIView
@@ -20,6 +23,7 @@ UIKit & AppKit Bridging Header
 #define ILApplicationDelegate UIApplicationDelegate
 #define IL_UI_KIT 1
 
+/* AppKit */
 #elif TARGET_OS_MAC
 #import <AppKit/AppKit.h>
 #define ILColor NSColor
@@ -30,7 +34,22 @@ UIKit & AppKit Bridging Header
 #define ILWindow NSWindow
 #define ILViewController NSViewController
 #define ILApplicationDelegate NSApplicationDelegate
+#define ILGradient NSGradient
 #define IL_APP_KIT 1
 #endif
 
-#endif /* ILDefines_h */
+#endif /* ILKitBridge_h */
+
+
+#pragma mark -
+
+/*! @brief adds common init and update methods to all views in the SparkKit */
+@protocol ILViews <NSObject>
+
+/*! @brief run from initWithFrame: or initWithCoder: to initilzize the view */
+- (void) initView;
+
+/*! @brief have the view query it's data source and redraw itself */
+- (void) updateView;
+
+@end

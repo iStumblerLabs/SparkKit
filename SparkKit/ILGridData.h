@@ -77,3 +77,11 @@ ILGridDataType;
 - (void)trimToRangeOfRows:(NSRange)rows;
 
 @end
+
+#pragma mark - Table Data Source Adapter
+
+@interface ILGridTableDataSource : NSObject <NSTableViewDataSource>
+@property(nonatomic,retain) ILGridData* grid;
+@property(nonatomic,retain) NSArray* labels;
+@end
+

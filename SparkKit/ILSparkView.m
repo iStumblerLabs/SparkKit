@@ -1,4 +1,5 @@
 #import "ILSparkView.h"
+#import "ILSparkStyle.h"
 
 CGRect ILRectSquareInRect(CGRect rect) {
     CGFloat sideLength = fminf(rect.size.width,rect.size.height);
@@ -30,9 +31,11 @@ CGPoint ILPointOnLineToPointAtDistance(CGPoint from, CGPoint to, CGFloat distanc
     return CGPointMake(from.x-segmentVector.dx, from.y-segmentVector.dy);
 }
 
+#pragma mark -
+
 @implementation ILSparkView
 
-#pragma mark - NSView
+#pragma mark - ILView
 
 - (instancetype) initWithFrame:(CGRect)frame {
     if( self = [super initWithFrame:frame]) {
@@ -40,6 +43,8 @@ CGPoint ILPointOnLineToPointAtDistance(CGPoint from, CGPoint to, CGFloat distanc
     }
     return self;
 }
+
+#pragma mark - NSCoder
 
 - (instancetype) initWithCoder:(NSCoder *)aDecoder {
     if( self = [super initWithCoder:aDecoder]) {
@@ -49,6 +54,9 @@ CGPoint ILPointOnLineToPointAtDistance(CGPoint from, CGPoint to, CGFloat distanc
 }
 
 #ifdef IL_APP_KIT
+
+#pragma mark - NSView
+
 - (void)setFrameSize:(NSSize)newSize;
 {
     [super setFrameSize:newSize];
@@ -56,14 +64,18 @@ CGPoint ILPointOnLineToPointAtDistance(CGPoint from, CGPoint to, CGFloat distanc
 }
 #endif
 
-#pragma mark -
+#pragma mark - ILSparkStyle
 
 - (CAShapeLayer*) border
 {
-    CAShapeLayer* borderLayer = [CAShapeLayer new];
-    borderLayer.path = CGPathCreateWithRect(CGRectIntegral(self.bounds), NULL);
-    return borderLayer;
+    if (!self.borderLayerStorage) {
+        self.borderLayerStorage = [CAShapeLayer new];
+        self.borderLayerStorage.path = CGPathCreateWithRect(CGRectIntegral(self.bounds), NULL);
+    }
+    return self.borderLayerStorage;
 }
+
+#pragma mark - ILViews
 
 - (void) initView
 {
