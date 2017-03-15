@@ -19,6 +19,10 @@
 		7526C1A21D26350D000E5A60 /* SparkKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75F5A9511D1A134A00A17804 /* SparkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		753956D61D13F679004DDBDA /* ILSparkStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 753956D41D13F679004DDBDA /* ILSparkStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753956D71D13F679004DDBDA /* ILSparkStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 753956D51D13F679004DDBDA /* ILSparkStyle.m */; };
+		755E62CB1E68B33C00342CCD /* ILStreamData.h in Headers */ = {isa = PBXBuildFile; fileRef = 755E62C91E68B33C00342CCD /* ILStreamData.h */; };
+		755E62CC1E68B33C00342CCD /* ILStreamData.h in Headers */ = {isa = PBXBuildFile; fileRef = 755E62C91E68B33C00342CCD /* ILStreamData.h */; };
+		755E62CD1E68B33C00342CCD /* ILStreamData.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E62CA1E68B33C00342CCD /* ILStreamData.m */; };
+		755E62CE1E68B33C00342CCD /* ILStreamData.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E62CA1E68B33C00342CCD /* ILStreamData.m */; };
 		75971DF31D138C0400EA65D3 /* SparkKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DF21D138C0400EA65D3 /* SparkKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75971DFC1D139FBA00EA65D3 /* ILSparkLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DFA1D139FBA00EA65D3 /* ILSparkLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75971DFD1D139FBA00EA65D3 /* ILSparkLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */; };
@@ -104,6 +108,8 @@
 		7526C1991D25B398000E5A60 /* SparkyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SparkyViewController.m; sourceTree = "<group>"; };
 		753956D41D13F679004DDBDA /* ILSparkStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkStyle.h; sourceTree = "<group>"; };
 		753956D51D13F679004DDBDA /* ILSparkStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkStyle.m; sourceTree = "<group>"; };
+		755E62C91E68B33C00342CCD /* ILStreamData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILStreamData.h; sourceTree = "<group>"; };
+		755E62CA1E68B33C00342CCD /* ILStreamData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILStreamData.m; sourceTree = "<group>"; };
 		75971DEF1D138C0400EA65D3 /* SparkKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SparkKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75971DF21D138C0400EA65D3 /* SparkKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SparkKit.h; sourceTree = "<group>"; };
 		75971DF41D138C0400EA65D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -225,6 +231,8 @@
 				75F86DC61DF26CAC00BC0A35 /* ILGridData.m */,
 				75F86DC71DF26CAC00BC0A35 /* ILGridView.h */,
 				75F86DC81DF26CAC00BC0A35 /* ILGridView.m */,
+				755E62C91E68B33C00342CCD /* ILStreamData.h */,
+				755E62CA1E68B33C00342CCD /* ILStreamData.m */,
 			);
 			path = SparkKit;
 			sourceTree = "<group>";
@@ -262,6 +270,7 @@
 				75971E011D13D2D200EA65D3 /* ILKitBridge.h in Headers */,
 				753956D61D13F679004DDBDA /* ILSparkStyle.h in Headers */,
 				75971E091D13D79F00EA65D3 /* ILSparkView.h in Headers */,
+				755E62CB1E68B33C00342CCD /* ILStreamData.h in Headers */,
 				75F5A9201D1A130800A17804 /* ILSparkPie.h in Headers */,
 				75F86DCF1DF26CAC00BC0A35 /* ILGridView.h in Headers */,
 				75F86DCB1DF26CAC00BC0A35 /* ILGridData.h in Headers */,
@@ -277,6 +286,7 @@
 				75F5A9481D1A134A00A17804 /* ILKitBridge.h in Headers */,
 				75F5A9491D1A134A00A17804 /* ILSparkStyle.h in Headers */,
 				75F5A94A1D1A134A00A17804 /* ILSparkView.h in Headers */,
+				755E62CC1E68B33C00342CCD /* ILStreamData.h in Headers */,
 				75F5A94B1D1A134A00A17804 /* ILSparkPie.h in Headers */,
 				75F5A94C1D1A134A00A17804 /* ILSparkLine.h in Headers */,
 				75F86DCC1DF26CAC00BC0A35 /* ILGridData.h in Headers */,
@@ -445,6 +455,7 @@
 			files = (
 				75971DFD1D139FBA00EA65D3 /* ILSparkLine.m in Sources */,
 				753956D71D13F679004DDBDA /* ILSparkStyle.m in Sources */,
+				755E62CD1E68B33C00342CCD /* ILStreamData.m in Sources */,
 				75971E0A1D13D79F00EA65D3 /* ILSparkView.m in Sources */,
 				75F86DCD1DF26CAC00BC0A35 /* ILGridData.m in Sources */,
 				75F5A9211D1A130800A17804 /* ILSparkPie.m in Sources */,
@@ -476,6 +487,7 @@
 			files = (
 				75F5A93F1D1A134A00A17804 /* ILSparkLine.m in Sources */,
 				75F5A9401D1A134A00A17804 /* ILSparkStyle.m in Sources */,
+				755E62CE1E68B33C00342CCD /* ILStreamData.m in Sources */,
 				75F5A9411D1A134A00A17804 /* ILSparkView.m in Sources */,
 				75F86DCE1DF26CAC00BC0A35 /* ILGridData.m in Sources */,
 				75F5A9421D1A134A00A17804 /* ILSparkPie.m in Sources */,

@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import <Quartz/Quartz.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 typedef enum
 {
@@ -9,6 +9,8 @@ typedef enum
     ILGridDataUnicharType
 }
 ILGridDataType;
+
+@protocol ILGridDataDelegate;
 
 @interface ILGridData : NSObject
 {
@@ -26,6 +28,7 @@ ILGridDataType;
 @property(readonly) CGFloat minValue;
 @property(readonly) CGFloat maxValue;
 @property(readonly) ILGridDataType type;
+@property(nonatomic, assign) NSObject<ILGridDataDelegate>* delegate;
 
 #pragma mark -
 
@@ -69,19 +72,38 @@ ILGridDataType;
 - (NSString*) jsonFloatRepresentation; // arrays of arrays of numbers
 - (NSString*) jsonUniCharRepresentation; // arrays of unichar strings
 
+#pragma mark - Image Representations
+
+-(CGImageRef)newGrayscaleBitmapOfRow:(NSUInteger)thisRow;
+-(CGImageRef)newGrayscaleBitmap;
+-(CGImageRef)newAlphaBitmap;
+
 #pragma mark - Slices
 
-- (NSData*)dataAtRow:(NSUInteger)row;
-- (void)setData:(NSData*)data atRow:(NSUInteger)row;
-- (void)appendData:(NSData*) slice;
-- (void)trimToRangeOfRows:(NSRange)rows;
+- (NSData*) dataAtRow:(NSUInteger)row;
+- (void) setData:(NSData*)data atRow:(NSUInteger)row;
+- (void) appendData:(NSData*) slice;
+- (void) trimToRangeOfRows:(NSRange)rows;
 
 @end
 
+#pragma mark - ILDataStream
+
+@protocol ILGridDataDelegate <NSObject>
+
+#pragma mark - Slices
+
+- (void) grid:(ILGridData*)grid didSetData:(NSData*)data atRow:(NSUInteger)row;
+- (void) grid:(ILGridData*)grid didAppendedData:(NSData*)data asRow:(NSUInteger)row;
+- (void) grid:(ILGridData*)grid willTrimToRangeOfRows:(NSRange)rows;
+
+@end
+
+#if IL_APP_KIT
 #pragma mark - Table Data Source Adapter
 
 @interface ILGridTableDataSource : NSObject <NSTableViewDataSource>
 @property(nonatomic,retain) ILGridData* grid;
 @property(nonatomic,retain) NSArray* labels;
 @end
-
+#endif

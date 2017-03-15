@@ -70,7 +70,9 @@ CGPoint ILPointOnLineToPointAtDistance(CGPoint from, CGPoint to, CGFloat distanc
 {
     if (!self.borderLayerStorage) {
         self.borderLayerStorage = [CAShapeLayer new];
-        self.borderLayerStorage.path = CGPathCreateWithRect(CGRectIntegral(self.bounds), NULL);
+        CGPathRef borderPath = CGPathCreateWithRect(CGRectIntegral(self.bounds), NULL);
+        self.borderLayerStorage.path = borderPath;
+        CGPathRelease(borderPath);
     }
     return self.borderLayerStorage;
 }

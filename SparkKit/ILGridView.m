@@ -2,12 +2,14 @@
 #import "ILGridData.h"
 #import "ILSparkStyle.h"
 
-#import <CoreServices/CoreServices.h>
 #import <ImageIO/ImageIO.h>
 
-@interface ILGridView ()
+#if IL_APP_KIT
+#import <CoreServices/CoreServices.h>
+#endif
 
-@property(nonatomic, retain) NSMutableArray* rowCache; // mutable array of row images or references maybe?
+@interface ILGridView ()
+@property(nonatomic, retain) ILGridData* gridStorage;
 @property(nonatomic, retain) CALayer* gridLayer; // the grid data layer, an array of CALayer rows
 @property(nonatomic, retain) CALayer* labelLayer; // text and labels ??? move labeling up to GaugeKit?
 
@@ -16,6 +18,18 @@
 #pragma mark -
 
 @implementation ILGridView
+
+-(ILGridData*)grid
+{
+    return self.gridStorage;
+}
+
+-(void)setGrid:(ILGridData*)gridData
+{
+    self.gridStorage = gridData;
+    gridData.delegate = self;
+    self.gridLayer.sublayers = nil; // clear grid layer
+}
 
 -(CGFloat)rowHeight
 {
@@ -38,37 +52,6 @@
     return CGRectMake(0, (rowHeight * thisRow), self.frame.size.width, rowHeight);
 }
 
--(CGImageRef)bitmapOfRow:(NSUInteger)thisRow
-{
-    static struct CGColorSpace* grayscale;
-    if (!grayscale) {
-        grayscale = CGColorSpaceCreateDeviceGray();
-    }
-
-    size_t channelDepth = 8;
-    size_t channelCount = CGColorSpaceGetNumberOfComponents(grayscale);
-    size_t pixelBits = (channelDepth * channelCount);
-    CGSize rowSize = CGSizeMake(self.grid.columns, 1);
-    NSMutableData* imageData = [NSMutableData dataWithLength:(pixelBits * rowSize.width)];
-    CGContextRef rowContext = CGBitmapContextCreate(imageData.mutableBytes, rowSize.width, rowSize.height, pixelBits, imageData.length, grayscale, kCGImageAlphaNone);
-    CGContextSetFillColorSpace(rowContext, grayscale);
-
-    NSUInteger thisColumn = 0;
-    while (thisColumn < self.grid.columns) {
-        CGFloat percentValue = [self.grid percentAtRow:thisRow column:thisColumn];
-        const CGFloat percentComponents[] = {(1.0 - percentValue),  1.0};
-        CGContextSetFillColor(rowContext, (const CGFloat*)&percentComponents);
-        // CGContextSetAlpha(rowContext, (1.0 - percentValue));
-        CGContextFillRect(rowContext, CGRectMake(thisColumn, 0, 1, rowSize.height)); // single pixel
-        thisColumn++;
-    }
-
-    CGImageRef rowBitMap = CGBitmapContextCreateImage(rowContext);
-    CGContextRelease(rowContext);
-exit:
-    return rowBitMap;
-}
-
 #pragma mark - ILViews
 
 -(void)initView
@@ -80,57 +63,68 @@ exit:
 
     self.grid = nil;
     self.style = [ILSparkStyle defaultStyle];
-    self.rowCache = [NSMutableArray new];
+    
+    self.labelLayer = [CALayer new];
+    [self.layer addSublayer:self.labelLayer];
+    self.labelLayer.frame = self.layer.bounds;
+
+    self.gridLayer = [CALayer new];
+    [self.layer addSublayer:self.gridLayer];
+    self.gridLayer.frame = self.layer.bounds;
+    self.gridLayer.contentsGravity = kCAGravityResize;
+}
+
+-(void)drawGrid // one shot, redraw the entire grid into self.gridLayer
+{
+    // NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
+    CGImageRef gridImage = [self.grid newGrayscaleBitmap];
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [CATransaction setValue:@(0.1) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
+        self.gridLayer.frame = self.layer.bounds;
+        self.gridLayer.contents = CFBridgingRelease(gridImage);
+        self.gridLayer.magnificationFilter = kCAFilterNearest; // kCAFilterLinear;
+        [CATransaction commit];
+    }];
+
+    /*
+    self.gridLayer.sublayers = nil;
+
+    NSUInteger thisRow = 0;
+    while (thisRow < self.grid.rows) {
+        CALayer* rowLayer = [CALayer new];
+        [self.gridLayer addSublayer:rowLayer];
+        rowLayer.contents = CFBridgingRelease([self.grid grayscaleBitmapOfRow:thisRow]);
+        rowLayer.frame = [self rectOfRow:thisRow];
+        rowLayer.magnificationFilter = kCAFilterNearest; // kCAFilterLinear;
+        thisRow++;
+    }*/
 }
 
 -(void)updateGrid
 {
-    // NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
-    
+    [CATransaction begin];
+    [CATransaction setValue:@(0.1) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
     NSUInteger thisRow = 0;
-    while (thisRow < self.grid.rows) {
-        CGImageRef rowImage = [self bitmapOfRow:thisRow];
-        CALayer* rowLayer = [CALayer new];
-        [self.layer addSublayer:rowLayer];
-        rowLayer.contents = CFBridgingRelease(rowImage);
+    for (CALayer* rowLayer in self.gridLayer.sublayers) {
         rowLayer.frame = [self rectOfRow:thisRow];
-        // rowLayer.magnificationFilter = kCAFilterLinear; // kCAFilterNearest;
-
-        // rowLayer.mask = [CALayer new];
-        // rowLayer.mask.contentsGravity = kCAGravityResize;
-        // rowLayer.mask.frame = rowLayer.bounds;
-
-        /*
-        CFURLRef imageURL = CFBridgingRetain([NSURL fileURLWithPath:
-            [NSString stringWithFormat:[@"~/Desktop/Grid/at-%f-row-%lu.png" stringByExpandingTildeInPath], now, thisRow]]);
-        CGImageDestinationRef rowDestination = CGImageDestinationCreateWithURL(imageURL, kUTTypePNG, 1, NULL);
-        CGImageDestinationAddImage(rowDestination, rowImage, NULL);
-        CGImageDestinationFinalize(rowDestination);
-        */
-        
-        // NSLog(@"row: %lu %@ %@", thisRow, NSStringFromRect(rowLayer.frame), rowLayer.contents);
         thisRow++;
     }
-    // NSLog(@"sublayers: %lu", self.layer.sublayers.count);
+    [CATransaction commit];
 }
 
 -(void)updateLabels
 {
-    if (!self.labelLayer) {
-        self.labelLayer = [CALayer new];
-    }
-    
-    [self.layer addSublayer:self.labelLayer];
+    self.labelLayer.frame = self.layer.bounds;
     self.labelLayer.sublayers = nil;
-    self.labelLayer.frame = self.frame;
     
     if (self.errorString) { // put it on a text layer in the middle
         CATextLayer* errorLayer = [CATextLayer new];
         errorLayer.contentsGravity = kCAGravityCenter;
         errorLayer.string = self.errorString;
-        errorLayer.font = CFBridgingRetain(self.style.font.fontName);
+        errorLayer.font = (__bridge CFTypeRef _Nullable)(self.style.font.fontName);
         [self.labelLayer addSublayer:errorLayer];
-        errorLayer.position = CGPointMake((self.frame.size.width / 2), (self.frame.size.height / 2)); // No CGPointCenteredInRect?
+        errorLayer.position = CGPointMake((self.labelLayer.frame.size.width / 2), (self.labelLayer.frame.size.height / 2)); // No CGPointCenteredInRect?
 #if IL_APP_KIT
         NSLog(@"error: %@ frame: %@", self.errorString, NSStringFromRect(errorLayer.frame));
 #endif
@@ -167,7 +161,7 @@ exit:
 
 -(void)updateView
 {
-    self.layer.sublayers = nil; // TODO use the gridLayer
+    // self.layer.sublayers = nil; // TODO use the gridLayer
     // self.layer.backgroundColor = self.style.fill.CGColor;
 
     CGSize cellSize = CGSizeMake((self.frame.size.width / self.grid.columns), (self.frame.size.height / self.grid.rows));
@@ -182,7 +176,7 @@ exit:
         self.errorString = @"Not Enough Data";
     }
     else {
-        [self updateGrid];
+        [self drawGrid];
     }
 
     [self updateLabels];
@@ -220,6 +214,43 @@ exit:
 }
 
 #endif
+
+#pragma mark - ILGridDataDelegate
+
+- (void) grid:(ILGridData*)grid didSetData:(NSData*)data atRow:(NSUInteger)row
+{
+    NSLog(@"grid:%@ didSetData:%lu Bytes atRow:%lu", grid, data.length, row);
+    // TODO udpate the gridLayer
+}
+
+- (void) grid:(ILGridData*)grid didAppendedData:(NSData*)data asRow:(NSUInteger)row
+{
+    [self drawGrid];
+/*
+    self.gridLayer.frame = self.layer.bounds;
+
+    // TODO move this to a different queue???
+    CGImageRef rowImage = [self bitmapOfRow:row];
+
+    // move the existing rows down inside of an animation context
+        [CATransaction begin];
+        [self updateGrid];
+        
+        CALayer* rowLayer = [CALayer new];
+        [self.gridLayer addSublayer:rowLayer];
+        rowLayer.frame = [self rectOfRow:row];
+        rowLayer.contents = CFBridgingRelease(rowImage);
+        
+        NSLog(@"grid:%@ didAppendedData:%lu Bytes asRow:%lu", grid, data.length, row);
+        [CATransaction commit];
+*/
+}
+
+- (void) grid:(ILGridData*)grid willTrimToRangeOfRows:(NSRange)rows
+{
+//    NSLog(@"grid:%@ willTrimToRangeOfRows:(%lu,%lu)", grid, rows.location, rows.length);
+    // TODO update the gridLayer
+}
 
 #if NO
 

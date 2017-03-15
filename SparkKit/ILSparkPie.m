@@ -10,7 +10,9 @@
     if (!self.borderLayerStorage) {
         self.borderLayerStorage = [CAShapeLayer new];
         CGRect square = CGRectInset(ILRectSquareInRect(self.bounds),1,1);
-        self.borderLayerStorage.path = CGPathCreateWithEllipseInRect(square, NULL);
+        CGPathRef squarePath = CGPathCreateWithEllipseInRect(square, NULL);
+        self.borderLayerStorage.path = squarePath;
+        CGPathRelease(squarePath);
     }
     return self.borderLayerStorage;
 }
@@ -39,6 +41,8 @@
     
     [self.layer addSublayer:wedgeLayer];
     wedgeLayer.frame = self.bounds;
+exit:
+    CGPathRelease(wedge);
 }
 
 @end

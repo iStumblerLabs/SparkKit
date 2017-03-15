@@ -1,9 +1,9 @@
 #import <SparkKit/ILKitBridge.h>
+#import <SparkKit/ILGridData.h>
 
-@class ILGridData;
 @class ILSparkStyle;
 
-@interface ILGridView : ILView <ILViews>
+@interface ILGridView : ILView <ILViews, ILGridDataDelegate>
 
 /*! @brief style information */
 @property(nonatomic, retain) ILSparkStyle* style;
