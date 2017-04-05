@@ -10,14 +10,23 @@
 
 @interface ILGridView ()
 @property(nonatomic, retain) ILGridData* gridStorage;
+@property(nonatomic, retain) NSArray* yAxisLabelStorage;
+@property(nonatomic, retain) NSString* yAxisUnitStorage;
+@property(nonatomic, retain) NSArray* xAxisLabelStorage;
+@property(nonatomic, retain) NSString* xAxisUnitStorage;
+@property(nonatomic, retain) NSString* errorStringStorage;
+
 @property(nonatomic, retain) CALayer* gridLayer; // the grid data layer, an array of CALayer rows
 @property(nonatomic, retain) CALayer* labelLayer; // text and labels ??? move labeling up to GaugeKit?
+@property(nonatomic, assign) BOOL labelsNeedUpdate; // have the labels been updated?
 
 @end
 
 #pragma mark -
 
 @implementation ILGridView
+
+#pragma mark - Properties
 
 -(ILGridData*)grid
 {
@@ -28,8 +37,69 @@
 {
     self.gridStorage = gridData;
     gridData.delegate = self;
-    self.gridLayer.sublayers = nil; // clear grid layer
+    [self clearGrid];
+    [self updateView];
 }
+
+-(NSArray*)yAxisLabels
+{
+    return self.yAxisLabelStorage;
+}
+
+-(void)setYAxisLabels:(NSArray*)yAxisLabels
+{
+    self.yAxisLabelStorage = yAxisLabels;
+    self.labelsNeedUpdate = YES;
+}
+
+-(NSString*)yAxisUnits
+{
+    return self.yAxisUnitStorage;
+}
+
+-(void)setYAxisUnits:(NSString*)yAxisUnits
+{
+    self.yAxisUnitStorage = yAxisUnits;
+    self.labelsNeedUpdate = YES;
+}
+
+-(NSArray*)xAxisLabels
+{
+    return self.xAxisLabelStorage;
+}
+
+-(void)setXAxisLabels:(NSArray*)xAxisLabels
+{
+    self.xAxisLabelStorage = xAxisLabels;
+    self.labelsNeedUpdate = YES;
+}
+
+-(NSString*)xAxisUnits
+{
+    return self.xAxisUnitStorage;
+}
+
+-(void)setXAxisUnits:(NSString*)xAxisUnits
+{
+    self.xAxisUnitStorage = xAxisUnits;
+    self.labelsNeedUpdate = YES;
+}
+
+-(NSString*)errorString
+{
+    return self.errorStringStorage;
+}
+
+-(void)setErrorString:(NSString*)errorString
+{
+    NSString* oldError = self.errorStringStorage;
+    self.errorStringStorage = errorString;
+    if (oldError != errorString) { // only mark the view for updates if the error string changed
+        self.labelsNeedUpdate = YES;
+    }
+}
+
+#pragma mark - Computed Properties
 
 -(CGFloat)rowHeight
 {
@@ -64,28 +134,50 @@
     self.grid = nil;
     self.style = [ILSparkStyle defaultStyle];
     
-    self.labelLayer = [CALayer new];
-    [self.layer addSublayer:self.labelLayer];
-    self.labelLayer.frame = self.layer.bounds;
-
     self.gridLayer = [CALayer new];
     [self.layer addSublayer:self.gridLayer];
     self.gridLayer.frame = self.layer.bounds;
     self.gridLayer.contentsGravity = kCAGravityResize;
+
+    self.labelLayer = [CALayer new];
+    [self.layer addSublayer:self.labelLayer];
+    self.labelLayer.frame = self.layer.bounds;
+}
+
+-(void)clearGrid
+{
+    self.gridLayer.sublayers = nil; // clear grid layer
+    self.gridLayer.contents = nil;
 }
 
 -(void)drawGrid // one shot, redraw the entire grid into self.gridLayer
 {
-    // NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
-    CGImageRef gridImage = [self.grid newGrayscaleBitmap];
+    BOOL drawAlpha = NO;
     
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [CATransaction setValue:@(0.1) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
-        self.gridLayer.frame = self.layer.bounds;
-        self.gridLayer.contents = CFBridgingRelease(gridImage);
+    [CATransaction setValue:@(0.1) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
+    self.gridLayer.frame = self.layer.bounds;
+
+    if (drawAlpha) {
+        CGImageRef gridMask = [self.grid newAlphaBitmap];
+        // create a mask layer
+        CALayer* maskLayer = [CALayer new];
+        maskLayer.contents = CFBridgingRelease(gridMask);
+        maskLayer.magnificationFilter = kCAFilterNearest; // kCAFilterLinear;
+        maskLayer.frame = self.layer.bounds;
+        
+        // make sure the color are updated
+        self.layer.backgroundColor = self.style.background.CGColor;
+        self.gridLayer.backgroundColor = self.style.fill.CGColor;
+        
+        self.gridLayer.mask = maskLayer;
+    }
+    else {
+        CGImageRef gridBits = [self.grid newGrayscaleBitmap];
+        self.gridLayer.contents = CFBridgingRelease(gridBits);
         self.gridLayer.magnificationFilter = kCAFilterNearest; // kCAFilterLinear;
-        [CATransaction commit];
-    }];
+    }
+
+    [CATransaction commit];
 
     /*
     self.gridLayer.sublayers = nil;
@@ -98,7 +190,8 @@
         rowLayer.frame = [self rectOfRow:thisRow];
         rowLayer.magnificationFilter = kCAFilterNearest; // kCAFilterLinear;
         thisRow++;
-    }*/
+    }
+    */
 }
 
 -(void)updateGrid
@@ -115,48 +208,73 @@
 
 -(void)updateLabels
 {
-    self.labelLayer.frame = self.layer.bounds;
-    self.labelLayer.sublayers = nil;
-    
-    if (self.errorString) { // put it on a text layer in the middle
-        CATextLayer* errorLayer = [CATextLayer new];
-        errorLayer.contentsGravity = kCAGravityCenter;
-        errorLayer.string = self.errorString;
-        errorLayer.font = (__bridge CFTypeRef _Nullable)(self.style.font.fontName);
-        [self.labelLayer addSublayer:errorLayer];
-        errorLayer.position = CGPointMake((self.labelLayer.frame.size.width / 2), (self.labelLayer.frame.size.height / 2)); // No CGPointCenteredInRect?
-#if IL_APP_KIT
-        NSLog(@"error: %@ frame: %@", self.errorString, NSStringFromRect(errorLayer.frame));
-#endif
-    }
-    else {
-        if (self.yAxisLabels && self.yAxisLabels.count > 0) {
-            CGFloat ySpacing = (self.frame.size.width / (self.yAxisLabels.count + 1)); // fencepost
-            NSUInteger yIndex = 1; // fencepost
-            for (NSString* yLabel in self.yAxisLabels) {
-                CATextLayer* labelLayer = [CATextLayer new];
-                labelLayer.string = yLabel;
-                labelLayer.contentsGravity = @"center";
-                labelLayer.frame = CGRectMake(10,(ySpacing * yIndex), 100, 100);
-                [self.labelLayer addSublayer:labelLayer];
-                yIndex++;
+    if (self.labelsNeedUpdate) {
+        [CATransaction setValue:@(0.1) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
+
+        self.labelLayer.frame = self.layer.bounds;
+        self.labelLayer.sublayers = nil;
+        self.labelLayer.zPosition = 1.0; // frontmost
+        
+        if (self.errorString) { // put it on a text layer in the middle
+            CATextLayer* errorLayer = [CATextLayer layer];
+            [self.labelLayer addSublayer:errorLayer];
+            errorLayer.bounds = CGRectMake(0,0,200,50);
+            errorLayer.contentsGravity = kCAGravityCenter;
+            errorLayer.string = self.errorString;
+            errorLayer.font = (__bridge CFTypeRef _Nullable)(self.style.font.fontName);
+            errorLayer.foregroundColor = self.style.stroke.CGColor;
+            errorLayer.alignmentMode = kCAAlignmentCenter;
+            errorLayer.position = CGPointMake((self.labelLayer.frame.size.width / 2), (self.labelLayer.frame.size.height / 2)); // No CGPointCenteredInRect?
+    #if IL_APP_KIT
+            NSLog(@"error: %@ frame: %@", self.errorString, NSStringFromRect(errorLayer.frame));
+    #endif
+        }
+        else {
+            // TODO special case for single value, place it at the bottom left
+            if (self.yAxisLabels && self.yAxisLabels.count > 0) {
+                CGFloat ySpacing = (self.labelLayer.frame.size.height / (self.yAxisLabels.count + 1)); // fencepost
+                NSUInteger yIndex = 1; // fencepost
+                for (NSString* yLabel in self.yAxisLabels) {
+                    CATextLayer* labelLayer = [CATextLayer layer];
+                    [self.labelLayer addSublayer:labelLayer];
+                    if (self.yAxisUnits) {
+                        labelLayer.string = [NSString stringWithFormat:@"%@ %@", yLabel, self.yAxisUnits];
+                    }
+                    else {
+                        labelLayer.string = yLabel;
+                    }
+                    labelLayer.contentsGravity = kCAGravityCenter;
+                    labelLayer.font = (__bridge CFTypeRef _Nullable)(self.style.font.fontName);
+                    labelLayer.foregroundColor = self.style.stroke.CGColor;
+                    labelLayer.frame = CGRectMake(10,(ySpacing * yIndex), 50, 25);
+                    yIndex++;
+                }
+            }
+            
+            if (self.xAxisLabels && self.xAxisLabels.count > 0) {
+                CGFloat xSpacing = (self.labelLayer.frame.size.width / (self.xAxisLabels.count + 1)); // fencepost
+                NSUInteger xIndex = 1; // fencepost
+                for (NSString* xLabel in self.xAxisLabels) {
+                    CATextLayer* labelLayer = [CATextLayer layer];
+                    [self.labelLayer addSublayer:labelLayer];
+                    if (self.xAxisUnits) {
+                        labelLayer.string = [NSString stringWithFormat:@"%@ %@", xLabel, self.xAxisUnits];
+                    }
+                    else {
+                        labelLayer.string = xLabel;
+                    }
+                    labelLayer.font = (__bridge CFTypeRef _Nullable)(self.style.font.fontName);
+                    labelLayer.foregroundColor = self.style.stroke.CGColor;
+                    labelLayer.contentsGravity = kCAGravityCenter;
+                    labelLayer.frame = CGRectMake((xSpacing * xIndex), 5, 50, 25);
+                    xIndex++;
+                }
             }
         }
         
-        if (self.xAxisLabels) {
-            CGFloat xSpacing = (self.frame.size.width / (self.yAxisLabels.count + 1)); // fencepost
-            NSUInteger xIndex = 1; // fencepost
-            for (NSString* xLabel in self.yAxisLabels) {
-                CATextLayer* labelLayer = [CATextLayer new];
-                labelLayer.string = xLabel;
-                labelLayer.contentsGravity = @"center";
-                labelLayer.frame = CGRectMake((xSpacing * xIndex), 10, 100, 100);
-                [self.labelLayer addSublayer:labelLayer];
-                xIndex++;
-            }
-        }
+        [CATransaction commit];
+        self.labelsNeedUpdate = NO;
     }
-    
 }
 
 -(void)updateView
@@ -164,18 +282,16 @@
     // self.layer.sublayers = nil; // TODO use the gridLayer
     // self.layer.backgroundColor = self.style.fill.CGColor;
 
-    CGSize cellSize = CGSizeMake((self.frame.size.width / self.grid.columns), (self.frame.size.height / self.grid.rows));
-
     if (!self.grid) {
         self.errorString = @"No Data";
-    }
-    else if (cellSize.width < 1 || cellSize.height < 1) {
-        self.errorString = @"Too Much Data";
+        [self clearGrid];
     }
     else if ( self.grid.rows == 0 || self.grid.columns == 0) {
         self.errorString = @"Not Enough Data";
+        [self clearGrid];
     }
     else {
+        self.errorString = nil;
         [self drawGrid];
     }
 
@@ -225,7 +341,13 @@
 
 - (void) grid:(ILGridData*)grid didAppendedData:(NSData*)data asRow:(NSUInteger)row
 {
-    [self drawGrid];
+    // check to see if the data is the correct length
+    if ((grid.columns * grid.valueSize) != data.length) {
+        NSLog(@"WARNING data length not suitable for grid columns");
+        // TODO raise an exception?
+    }
+
+    [self updateView];
 /*
     self.gridLayer.frame = self.layer.bounds;
 
