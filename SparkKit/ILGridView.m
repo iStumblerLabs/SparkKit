@@ -37,8 +37,10 @@
 {
     self.gridStorage = gridData;
     gridData.delegate = self;
-    [self clearGrid];
-    [self updateView];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self clearGrid];
+        [self updateView];
+    }];
 }
 
 -(NSArray*)yAxisLabels
@@ -222,6 +224,7 @@
             errorLayer.contentsGravity = kCAGravityCenter;
             errorLayer.string = self.errorString;
             errorLayer.font = (__bridge CFTypeRef _Nullable)(self.style.font.fontName);
+            errorLayer.fontSize = self.style.font.pointSize;
             errorLayer.foregroundColor = self.style.stroke.CGColor;
             errorLayer.alignmentMode = kCAAlignmentCenter;
             errorLayer.position = CGPointMake((self.labelLayer.frame.size.width / 2), (self.labelLayer.frame.size.height / 2)); // No CGPointCenteredInRect?
@@ -245,7 +248,7 @@
                     }
                     labelLayer.contentsGravity = kCAGravityCenter;
                     labelLayer.font = (__bridge CFTypeRef _Nullable)(self.style.font.fontName);
-                    labelLayer.foregroundColor = self.style.stroke.CGColor;
+                    labelLayer.fontSize = self.style.font.pointSize;                    labelLayer.foregroundColor = self.style.stroke.CGColor;
                     labelLayer.frame = CGRectMake(10,(ySpacing * yIndex), 50, 25);
                     yIndex++;
                 }
@@ -264,6 +267,7 @@
                         labelLayer.string = xLabel;
                     }
                     labelLayer.font = (__bridge CFTypeRef _Nullable)(self.style.font.fontName);
+                    labelLayer.fontSize = self.style.font.pointSize;
                     labelLayer.foregroundColor = self.style.stroke.CGColor;
                     labelLayer.contentsGravity = kCAGravityCenter;
                     labelLayer.frame = CGRectMake((xSpacing * xIndex), 5, 50, 25);
@@ -347,7 +351,9 @@
         // TODO raise an exception?
     }
 
-    [self updateView];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self updateView];
+    }];
 /*
     self.gridLayer.frame = self.layer.bounds;
 
