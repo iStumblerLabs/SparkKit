@@ -115,7 +115,7 @@
 		75971DF41D138C0400EA65D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75971DFA1D139FBA00EA65D3 /* ILSparkLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkLine.h; sourceTree = "<group>"; };
 		75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkLine.m; sourceTree = "<group>"; };
-		75971DFE1D13CD0D00EA65D3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		75971DFE1D13CD0D00EA65D3 /* SparkKit.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = SparkKit.md; sourceTree = SOURCE_ROOT; };
 		75971E001D13D18B00EA65D3 /* ILKitBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILKitBridge.h; sourceTree = "<group>"; };
 		75971E021D13D37600EA65D3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		75971E071D13D79F00EA65D3 /* ILSparkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkView.h; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 		75971DE51D138C0400EA65D3 = {
 			isa = PBXGroup;
 			children = (
-				75971DFE1D13CD0D00EA65D3 /* README.md */,
+				75971DFE1D13CD0D00EA65D3 /* SparkKit.md */,
 				75971DF11D138C0400EA65D3 /* SparkKit */,
 				75F5A9091D1902C500A17804 /* Sparky */,
 				75971E041D13D38C00EA65D3 /* Frameworks */,
@@ -227,10 +227,10 @@
 				75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */,
 				75F5A91E1D1A130800A17804 /* ILSparkPie.h */,
 				75F5A91F1D1A130800A17804 /* ILSparkPie.m */,
-				75F86DC51DF26CAC00BC0A35 /* ILGridData.h */,
-				75F86DC61DF26CAC00BC0A35 /* ILGridData.m */,
 				75F86DC71DF26CAC00BC0A35 /* ILGridView.h */,
 				75F86DC81DF26CAC00BC0A35 /* ILGridView.m */,
+				75F86DC51DF26CAC00BC0A35 /* ILGridData.h */,
+				75F86DC61DF26CAC00BC0A35 /* ILGridData.m */,
 				755E62C91E68B33C00342CCD /* ILStreamData.h */,
 				755E62CA1E68B33C00342CCD /* ILStreamData.m */,
 			);
