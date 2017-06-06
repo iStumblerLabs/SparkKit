@@ -25,4 +25,12 @@ CGFloat const ILBoldlineWidth = 2;
     return style;
 }
 
+#pragma mark - NSObject
+
+- (NSString*) description
+{
+    return [NSString stringWithFormat:@"<%@: %p fill=%@ stroke=%@ background=%@ gradient=%@ filled=%i bordered=%i width=%f scale=%f falloff-%f>",
+            [self class], self, self.fill, self.stroke, self.background, self.gradient, self.filled, self.bordered, self.width, self.scale, self.falloff];
+}
+
 @end

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "485A0E7E2580BC9720075EBB2505055E74ED6648",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "485A0E7E2580BC9720075EBB2505055E74ED6648" : 9223372036854775807,
+    "43CA2AF6E6D62FA6A74B1A1627F6D641F63F0DAA" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C933C120-61E0-49E8-AA21-45CAEF1F69D5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "485A0E7E2580BC9720075EBB2505055E74ED6648" : "SparkKit\/",
+    "43CA2AF6E6D62FA6A74B1A1627F6D641F63F0DAA" : "KitBridge\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SparkKit",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SparkKit.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "gitlab.com:alfwatt\/KitBridge.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "43CA2AF6E6D62FA6A74B1A1627F6D641F63F0DAA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "gitlab.com:alfwatt\/SparkKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "485A0E7E2580BC9720075EBB2505055E74ED6648"
+    }
+  ]
+}

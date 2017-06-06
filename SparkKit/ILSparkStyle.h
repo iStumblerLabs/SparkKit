@@ -1,4 +1,5 @@
-#import <SparkKit/ILKitBridge.h>
+#import <KitBridge/KitBridge.h>
+#import <QuartzCore/QuartzCore.h>
 
 #pragma mark Line Widths
 
@@ -11,7 +12,7 @@ extern CGFloat const ILBoldlineWidth;
 
 /*!
 @class ILSparkStyle 
-@abstract encapsulates style information for an ILSparkView or ILSparkCell
+@abstract encapsulates style information for an ILSparkViews or ILSparkCell
 */
 @interface ILSparkStyle : NSObject
 

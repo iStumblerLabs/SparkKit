@@ -1,4 +1,4 @@
-#import "ILGridView.h"
+#import "ILSparkGrid.h"
 #import "ILGridData.h"
 #import "ILSparkStyle.h"
 
@@ -8,7 +8,7 @@
 #import <CoreServices/CoreServices.h>
 #endif
 
-@interface ILGridView ()
+@interface ILSparkGrid ()
 @property(nonatomic, retain) ILGridData* gridStorage;
 @property(nonatomic, retain) NSArray* yAxisLabelStorage;
 @property(nonatomic, retain) NSString* yAxisUnitStorage;
@@ -24,7 +24,7 @@
 
 #pragma mark -
 
-@implementation ILGridView
+@implementation ILSparkGrid
 
 #pragma mark - Properties
 

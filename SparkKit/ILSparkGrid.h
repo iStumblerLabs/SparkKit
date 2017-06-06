@@ -1,9 +1,11 @@
-#import <SparkKit/ILKitBridge.h>
+#import <KitBridge/KitBridge.h>
+#import <QuartzCore/QuartzCore.h>
 #import <SparkKit/ILGridData.h>
 
 @class ILSparkStyle;
 
-@interface ILGridView : ILView <ILViews, ILGridDataDelegate>
+
+@interface ILSparkGrid : ILView <ILViews, ILGridDataDelegate>
 
 /*! @brief style information */
 @property(nonatomic, retain) ILSparkStyle* style;
