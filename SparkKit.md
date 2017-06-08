@@ -3,38 +3,47 @@
 
 Small, Simple and Fast; Line, Pie, Dial and Bar Views for macOS, iOS and tvOS
 
+## Dependencies
+
+### KitBridge.framework
+
+Provides bridging macros for UIKit and AppKit support classes: https://gitlab.com/alfwatt/KitBridge
+
 ## Headers
 
-### ILKitBridge.h
+### SparkKit.h
 
-Provides bridging macros for UIKit and AppKit support classes:
-
-
-    Virtual Class
-    --
-    ILColor
-    ILGradient
-    ILFont
-    ILImage
-    ILView
-    ILWindow
-    ILViewController
-    ILApplicationDelegate
+Umbrella header
 
 ## Classes
 
-### ILSparkBar
+### ILSparkStyle
 
+Style definitions which can be re-used across multiple views. Provides a default style.
 
+### ILSparkView
+
+Base class which manages borders and style information.
 
 ### ILSparkLine
 
-### ILSparkGauge
+Time-sequence line graph
 
-### ILSparkCircle
+### ILSparkIndicator
 
-### ILGridView &amp; ILGridData
+Multiple style indicators
 
+### ILSparkGrid &amp; ILSparkData
+
+High performance grid data view and source
+
+### ILSparkStream &amp; ILStreamData
+
+Streaming data view and source
+
+## Examples
+
+See the included Sparky! application for usage example.
 
 ## License
 
