@@ -23,8 +23,8 @@
     ILSparkStyle* defaultStyle = [ILSparkStyle defaultStyle];
     defaultStyle.falloff = 50;
     defaultStyle.bordered = YES;
-    defaultStyle.filled = NO;
-    defaultStyle.width = 4;
+    defaultStyle.filled = YES;
+    defaultStyle.width = 2;
     
 #ifdef IL_UI_KIT
     UIStoryboard* sparkyStoryboard = [UIStoryboard storyboardWithName:@"Sparky" bundle:nil];
