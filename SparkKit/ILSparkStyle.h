@@ -25,6 +25,9 @@ extern CGFloat const ILBoldlineWidth;
 /*! @brief background color */
 @property(nonatomic, retain) ILColor* background;
 
+/*! @brief border color */
+@property(nonatomic, retain) ILColor* border;
+
 /*! @brief gradient for color values */
 @property(nonatomic, retain) ILGradient* gradient;
 

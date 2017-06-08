@@ -114,12 +114,17 @@ exit:
 #pragma mark - ILSparkView
 
 - (void) updateView {
+    for (CALayer* layer in [self.layer.sublayers copy]) { // remove all sublayers
+       [layer removeFromSuperlayer];
+    }
+
     [super updateView];
 
-    CGSize viewSize = self.frame.size;
+    CGRect insetRect = CGRectIntegral(CGRectInset(self.bounds, self.style.width, self.style.width));
+    CGSize viewSize = insetRect.size;
     CALayer* sparkLine = [ILSparkLine timeSeriesWithData:[self dataSource] size:viewSize style:self.style];
     [self.layer addSublayer:sparkLine];
-    sparkLine.frame = self.bounds;
+    sparkLine.frame = insetRect;
 }
 
 @end

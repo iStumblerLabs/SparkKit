@@ -35,7 +35,7 @@ static CGFloat const IndicatorRingWidth = 15;
     [super initView];
     self.style = ILIndicatorStyleText;
     self.dataSource = nil;
-
+    
     self.indicatorLayer = [CAShapeLayer new];
     [self.layer addSublayer:self.indicatorLayer];
 
@@ -53,7 +53,9 @@ static CGFloat const IndicatorRingWidth = 15;
     self.indicatorText.hidden = (self.style != ILIndicatorStyleText);
 
     CGFloat datum = self.dataSource.datum;
-    if (self.dataSource) {        
+    CGRect insetRect = CGRectInset(self.bounds, self.style.width, self.style.width);
+
+    if (self.dataSource) {
         switch (self.indicatorStyle) {
             case ILIndicatorStyleText: {
                 NSString* valueString = [NSString stringWithFormat:@"%.1f%%", datum * 100];
@@ -79,19 +81,19 @@ static CGFloat const IndicatorRingWidth = 15;
                 break;
             }
             case ILIndicatorStyleVertical: {
-                CGFloat indicatorPosition = self.bounds.size.height - (self.bounds.size.height * datum);
-                CGRect filledRect = CGRectMake(0, indicatorPosition, self.bounds.size.width, (self.bounds.size.height - indicatorPosition));
-                filledPath = [ILBezierPath bezierPathWithRect:CGRectInset(filledRect, self.style.width, self.style.width)];
+                CGFloat indicatorPosition = insetRect.size.height - (insetRect.size.height * datum);
+                CGRect filledRect = CGRectMake(0, indicatorPosition, insetRect.size.width, (insetRect.size.height - indicatorPosition));
+                filledPath = [ILBezierPath bezierPathWithRect:filledRect];
                 break;
             }
             case ILIndicatorStyleHorizontal: {
-                CGFloat indicatorPosition = (self.bounds.size.width * datum);
-                CGRect filledRect = CGRectMake(0, 0, indicatorPosition, self.bounds.size.height);
-                filledPath = [ILBezierPath bezierPathWithRect:CGRectInset(filledRect,self.style.width,self.style.width)];
+                CGFloat indicatorPosition = (insetRect.size.width * datum);
+                CGRect filledRect = CGRectMake(0, 0, indicatorPosition, insetRect.size.height);
+                filledPath = [ILBezierPath bezierPathWithRect:filledRect];
                 break;
             }
             case ILIndicatorStyleSquare: {
-                CGRect squareRect = CGRectInset(ILRectSquareInRect(self.bounds), ILPathlineWidth, ILPathlineWidth);
+                CGRect squareRect = CGRectInset(ILRectSquareInRect(insetRect), ILPathlineWidth, ILPathlineWidth);
                 CGFloat indicatorSideLength = (squareRect.size.height * self.dataSource.datum);
                 CGFloat indicatorInset = (squareRect.size.width-indicatorSideLength)/2; // ??? take the square root?
                 CGRect filledRect = CGRectInset(squareRect, indicatorInset, indicatorInset);
@@ -99,8 +101,7 @@ static CGFloat const IndicatorRingWidth = 15;
                 break;
             }
             case ILIndicatorStyleCircle: {
-                CGFloat squareInsets = ILPathlineWidth + self.style.width;
-                CGRect squareRect = CGRectInset(ILRectSquareInRect(self.bounds), squareInsets, squareInsets);
+                CGRect squareRect = CGRectInset(ILRectSquareInRect(insetRect), ILPathlineWidth, ILPathlineWidth);
                 CGFloat indicatorSideLength = (squareRect.size.height * datum);
                 CGFloat indicatorInset = (squareRect.size.width-indicatorSideLength)/2; // equal area?
                 CGRect filledRect = CGRectInset(squareRect, indicatorInset, indicatorInset);
@@ -108,13 +109,12 @@ static CGFloat const IndicatorRingWidth = 15;
                 break;
             }
             case ILIndicatorStyleRing: {
-                CGFloat squareInsets = ILPathlineWidth + self.style.width;
-                CGRect squareRect = CGRectInset(ILRectSquareInRect(self.bounds), squareInsets, squareInsets);
-                CGFloat indicatorSideLength = (squareRect.size.height / 2.0f) - squareInsets;
+                CGRect squareRect = CGRectInset(ILRectSquareInRect(insetRect), ILPathlineWidth, ILPathlineWidth);
+                CGFloat indicatorSideLength = (squareRect.size.height / 2.0f) - ILPathlineWidth;
                 CGPoint squareCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2.0f), squareRect.origin.y + (squareRect.size.height / 2.0f));
                 CGPoint topDeadCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2.0f), squareCenter.y - indicatorSideLength);
-                CGFloat firstAngle = (CGFloat) -(M_PI / 2.0f);
-                CGFloat secondAngle = (CGFloat) ((2.0f * M_PI) * datum) - (CGFloat) (M_PI / 2.0f);
+                CGFloat firstAngle = -(M_PI / 2.0f);
+                CGFloat secondAngle = ((2.0f * M_PI) * datum) - (CGFloat) (M_PI / 2.0f);
                 filledPath = [ILBezierPath new];
                 [filledPath addArcWithCenter:squareCenter radius:indicatorSideLength startAngle:firstAngle endAngle:secondAngle clockwise:YES];
                 CGPoint outsideEndPoint = filledPath.currentPoint;
@@ -125,13 +125,12 @@ static CGFloat const IndicatorRingWidth = 15;
                 break;
             }
             case ILIndicatorStylePie: {
-                CGFloat squareInsets = ILPathlineWidth + self.style.width;
-                CGRect squareRect = CGRectInset(ILRectSquareInRect(self.bounds), squareInsets, squareInsets);
-                CGFloat indicatorSideLength = (squareRect.size.height/2)-squareInsets;
-                CGPoint squareCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2), squareRect.origin.y + (squareRect.size.height / 2));
-                CGPoint topDeadCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2),squareCenter.y - indicatorSideLength);
-                CGFloat firstAngle = (CGFloat) -(M_PI / 2.0);
-                CGFloat secondAngle = (CGFloat) ((2.0 * M_PI) * datum) - (CGFloat) (M_PI / 2.0);
+                CGRect squareRect = CGRectInset(ILRectSquareInRect(insetRect), ILPathlineWidth, ILPathlineWidth);
+                CGFloat indicatorSideLength = (squareRect.size.height / 2.0f) - ILPathlineWidth;
+                CGPoint squareCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2.0f), squareRect.origin.y + (squareRect.size.height / 2.0f));
+                CGPoint topDeadCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2.0f),squareCenter.y - indicatorSideLength);
+                CGFloat firstAngle = -(M_PI / 2.0);
+                CGFloat secondAngle = ((2.0f * M_PI) * datum) - (M_PI / 2.0f);
                 filledPath = [ILBezierPath new];
                 [filledPath addArcWithCenter:squareCenter radius:indicatorSideLength startAngle:firstAngle endAngle:secondAngle clockwise:YES];
                 [filledPath addLineToPoint:squareCenter];
@@ -139,26 +138,25 @@ static CGFloat const IndicatorRingWidth = 15;
                 break;
             }
             case ILIndicatorStyleDial: {
-                CGFloat squareInsets = ILPathlineWidth + self.style.width;
-                CGRect squareRect = CGRectInset(ILRectSquareInRect(self.bounds), squareInsets, squareInsets);
-                CGFloat indicatorSideLength = (squareRect.size.height / 2) - squareInsets;
+                CGRect squareRect = CGRectInset(ILRectSquareInRect(insetRect), ILPathlineWidth, ILPathlineWidth);
+                CGFloat indicatorSideLength = (squareRect.size.height / 2.0f) - ILPathlineWidth;
                 CGPoint squareCenter = ILPointCenteredInRect(squareRect);
-                CGFloat indicatorAngle = (CGFloat) ((2 * M_PI) * self.dataSource.datum) - (CGFloat) (M_PI / 2);
+                CGFloat indicatorAngle = ((2.0f * M_PI) * self.dataSource.datum) - (M_PI / 2.0f);
                 filledPath = [ILBezierPath new];
                 [filledPath addArcWithCenter:squareCenter radius:indicatorSideLength startAngle:indicatorAngle endAngle:indicatorAngle clockwise:YES];
                 [filledPath addLineToPoint:squareCenter];
-                // XXX don't really want to force this, more of a default setting
-                self.style.width = ILBoldlineWidth;
                 break;
             }
         }
     }
 
-    self.indicatorLayer.path = filledPath.CGPath;
-    // self.indicatorLayer.mask = self.borderMask;
-    self.indicatorLayer.fillColor = self.style.fill.CGColor;
-    self.indicatorLayer.strokeColor = self.style.stroke.CGColor;
-    self.indicatorLayer.lineWidth = self.style.width;
+    if (filledPath) {
+        self.indicatorLayer.path = filledPath.CGPath;
+        // self.indicatorLayer.mask = self.border;
+        self.indicatorLayer.fillColor = self.style.fill.CGColor;
+        self.indicatorLayer.strokeColor = self.style.stroke.CGColor;
+        self.indicatorLayer.lineWidth = self.style.width;
+    }
 }
 
 - (BOOL) isCircular
@@ -167,6 +165,11 @@ static CGFloat const IndicatorRingWidth = 15;
         || (self.indicatorStyle == ILIndicatorStyleRing)
         || (self.indicatorStyle == ILIndicatorStylePie)
         || (self.indicatorStyle == ILIndicatorStyleDial);
+}
+
+- (BOOL) isFlipped
+{
+    return YES;
 }
 
 @end

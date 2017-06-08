@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="SparkyViewController">
+            <connections>
+                <outlet property="sparkCircle" destination="g6p-7e-85t" id="t2V-9j-Wl5"/>
+                <outlet property="sparkDial" destination="pmV-DR-sxj" id="ERi-2w-Lw1"/>
+                <outlet property="sparkHorz" destination="USR-2Y-jIT" id="7jI-rn-oAe"/>
+                <outlet property="sparkLine" destination="oFV-Ot-AWt" id="N0m-TB-3nY"/>
+                <outlet property="sparkPie" destination="XNr-o2-DlQ" id="GAU-yq-DwE"/>
+                <outlet property="sparkRing" destination="vbZ-18-wn4" id="7LE-wA-94J"/>
+                <outlet property="sparkSquare" destination="1ld-30-ee8" id="fPs-BU-qh8"/>
+                <outlet property="sparkText" destination="4Dx-yq-hLY" id="oXk-Xh-XTS"/>
+                <outlet property="sparkVert" destination="Kjc-vd-F16" id="ayU-34-HIX"/>
+                <outlet property="view" destination="62H-Hn-UVi" id="oa7-2J-bcX"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Sparky" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="kPU-Ai-s1O">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="335" y="390" width="496" height="360"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <view key="contentView" id="62H-Hn-UVi">
+                <rect key="frame" x="0.0" y="0.0" width="496" height="360"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="oFV-Ot-AWt" customClass="ILSparkLine">
+                        <rect key="frame" x="20" y="78" width="456" height="262"/>
+                    </customView>
+                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Xl-3k-kN2">
+                        <rect key="frame" x="20" y="20" width="456" height="50"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="4Dx-yq-hLY" customClass="ILSparkIndicator">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4Dx-yq-hLY" secondAttribute="height" multiplier="1:1" id="PHr-BP-mxW"/>
+                                    <constraint firstAttribute="width" constant="50" id="crP-5v-8om"/>
+                                    <constraint firstAttribute="height" constant="50" id="vEl-QI-rtS"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kjc-vd-F16" customClass="ILSparkIndicator">
+                                <rect key="frame" x="58" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6PC-7i-pD8"/>
+                                    <constraint firstAttribute="width" secondItem="Kjc-vd-F16" secondAttribute="height" multiplier="1:1" id="MRQ-dP-nTS"/>
+                                    <constraint firstAttribute="width" constant="50" id="pev-38-sSw"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="USR-2Y-jIT" customClass="ILSparkIndicator">
+                                <rect key="frame" x="116" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="GJl-gF-adz"/>
+                                    <constraint firstAttribute="width" constant="50" id="J5t-Dp-CRF"/>
+                                    <constraint firstAttribute="width" secondItem="USR-2Y-jIT" secondAttribute="height" multiplier="1:1" id="dsu-Ia-9WN"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="1ld-30-ee8" customClass="ILSparkIndicator">
+                                <rect key="frame" x="174" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="0yx-4Z-JNl"/>
+                                    <constraint firstAttribute="width" secondItem="1ld-30-ee8" secondAttribute="height" multiplier="1:1" id="GKt-9H-Gyj"/>
+                                    <constraint firstAttribute="height" constant="50" id="GlN-gz-Kmu"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="g6p-7e-85t" customClass="ILSparkIndicator">
+                                <rect key="frame" x="232" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="g6p-7e-85t" secondAttribute="height" multiplier="1:1" id="4xs-Mj-WNF"/>
+                                    <constraint firstAttribute="width" constant="50" id="USB-0E-Jfu"/>
+                                    <constraint firstAttribute="height" constant="50" id="xCp-YU-gjM"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="XNr-o2-DlQ" customClass="ILSparkIndicator">
+                                <rect key="frame" x="290" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XNr-o2-DlQ" secondAttribute="height" multiplier="1:1" id="Fhs-6P-VLG"/>
+                                    <constraint firstAttribute="height" constant="50" id="a3L-LK-Gpj"/>
+                                    <constraint firstAttribute="width" constant="50" id="wCA-la-o2d"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="vbZ-18-wn4" customClass="ILSparkIndicator">
+                                <rect key="frame" x="348" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="5Zn-ay-toU"/>
+                                    <constraint firstAttribute="height" constant="50" id="E0L-CL-WXZ"/>
+                                    <constraint firstAttribute="width" secondItem="vbZ-18-wn4" secondAttribute="height" multiplier="1:1" id="Kkq-3X-5A2"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="pmV-DR-sxj" customClass="ILSparkIndicator">
+                                <rect key="frame" x="406" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="4fe-Um-QEI"/>
+                                    <constraint firstAttribute="width" secondItem="pmV-DR-sxj" secondAttribute="height" multiplier="1:1" id="bec-U5-UQk"/>
+                                    <constraint firstAttribute="height" constant="50" id="uJP-vl-aHW"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="vbZ-18-wn4" secondAttribute="bottom" id="79m-Ku-xWS"/>
+                            <constraint firstAttribute="bottom" secondItem="4Dx-yq-hLY" secondAttribute="bottom" id="Cmq-S3-ALq"/>
+                            <constraint firstAttribute="bottom" secondItem="pmV-DR-sxj" secondAttribute="bottom" id="Ezw-Pl-zUd"/>
+                            <constraint firstAttribute="bottom" secondItem="USR-2Y-jIT" secondAttribute="bottom" id="Ii2-JU-2yz"/>
+                            <constraint firstAttribute="bottom" secondItem="Kjc-vd-F16" secondAttribute="bottom" id="NXl-P0-PLS"/>
+                            <constraint firstAttribute="bottom" secondItem="g6p-7e-85t" secondAttribute="bottom" id="SnO-Nt-q9d"/>
+                            <constraint firstAttribute="bottom" secondItem="XNr-o2-DlQ" secondAttribute="bottom" id="m0N-9a-cUD"/>
+                            <constraint firstAttribute="bottom" secondItem="1ld-30-ee8" secondAttribute="bottom" id="zXv-Xz-yPM"/>
+                        </constraints>
+                        <visibilityPriorities>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                        </visibilityPriorities>
+                        <customSpacing>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                        </customSpacing>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="oFV-Ot-AWt" secondAttribute="bottom" constant="78" id="D9j-XE-qAT"/>
+                    <constraint firstItem="oFV-Ot-AWt" firstAttribute="leading" secondItem="62H-Hn-UVi" secondAttribute="leading" constant="20" id="TqK-S6-chI"/>
+                    <constraint firstItem="8Xl-3k-kN2" firstAttribute="leading" secondItem="oFV-Ot-AWt" secondAttribute="leading" id="bYT-Ey-NL7"/>
+                    <constraint firstItem="8Xl-3k-kN2" firstAttribute="top" secondItem="oFV-Ot-AWt" secondAttribute="bottom" constant="8" symbolic="YES" id="gVl-Hb-ZBE"/>
+                    <constraint firstItem="oFV-Ot-AWt" firstAttribute="top" secondItem="62H-Hn-UVi" secondAttribute="top" constant="20" id="m6f-YY-B5W"/>
+                    <constraint firstAttribute="trailing" secondItem="oFV-Ot-AWt" secondAttribute="trailing" constant="20" id="wBT-N6-r2a"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="54" y="119"/>
+        </window>
+    </objects>
+</document>

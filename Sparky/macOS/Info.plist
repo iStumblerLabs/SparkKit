@@ -27,7 +27,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2016 iStumbler Labs. All rights reserved.</string>
 	<key>NSMainNibFile</key>
-	<string>Sparky</string>
+	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

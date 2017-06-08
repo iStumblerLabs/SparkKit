@@ -12,10 +12,11 @@ CGFloat const ILBoldlineWidth = 2;
     static ILSparkStyle* style = nil;
     if (!style) {
         style = [ILSparkStyle new];
-        style.fill = [ILColor blackColor];
+        style.fill = [ILColor darkGrayColor];
         style.stroke = [ILColor blackColor];
+        style.border = [ILColor lightGrayColor];
         style.background = [ILColor clearColor];
-        style.gradient = [[ILGradient alloc] initWithStartingColor:[ILColor blackColor] endingColor:[ILColor whiteColor]];
+        style.gradient = nil; // [[ILGradient alloc] initWithStartingColor:[ILColor blackColor] endingColor:[ILColor whiteColor]];
         style.filled = NO;
         style.bordered = YES;
         style.width = ILPathlineWidth;

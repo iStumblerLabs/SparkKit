@@ -6,41 +6,75 @@
 
 @implementation SparkyViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.sparkline = [[ILSparkLine alloc] initWithFrame:self.view.frame];
-    self.sparkline.dataSource = self;
-    [self.view addSubview:self.sparkline];
-    [self.sparkline updateView];
-    // Do any additional setup after loading the view, typically from a nib.
+#pragma mark - ILViews
+
+- (void) initView
+{
+    [self loadView];
+    
+    self.sparkText.indicatorStyle = ILIndicatorStyleText;
+    self.sparkVert.indicatorStyle = ILIndicatorStyleVertical;
+    self.sparkHorz.indicatorStyle = ILIndicatorStyleHorizontal;
+    self.sparkSquare.indicatorStyle = ILIndicatorStyleSquare;
+    self.sparkCircle.indicatorStyle = ILIndicatorStyleCircle;
+    self.sparkRing.indicatorStyle = ILIndicatorStyleRing;
+    self.sparkPie.indicatorStyle = ILIndicatorStylePie;
+    self.sparkDial.indicatorStyle = ILIndicatorStyleDial;
+    
+    self.sparkLine.dataSource = self;
+    self.sparkText.dataSource = self;
+    self.sparkVert.dataSource = self;
+    self.sparkHorz.dataSource = self;
+    self.sparkSquare.dataSource = self;
+    self.sparkCircle.dataSource = self;
+    self.sparkRing.dataSource = self;
+    self.sparkPie.dataSource = self;
+    self.sparkDial.dataSource = self;
 }
 
-#ifdef IL_UI_KIT
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-#endif
+- (void) updateView
+{
+    [self.sparkLine updateView];
 
-#pragma mark - ILSparkLineDataSource
+    // square indicators
+    [self.sparkText updateView];
+    [self.sparkVert updateView];
+    [self.sparkHorz updateView];
+    [self.sparkSquare updateView];
 
--(NSArray<NSDate*>*) sampleDates {
-    static NSArray<NSDate*>* dates = nil;
-    if (!dates) {
-        NSMutableArray* dateArray = [NSMutableArray new];
-        for (NSInteger index = 0; index < 1024; index++) {
-            [dateArray addObject:[NSDate dateWithTimeIntervalSinceNow:-(index)]];
-        }
-        dates = [NSArray arrayWithArray:dateArray];
-    }
-    return dates;
+    // circular indicators
+    [self.sparkCircle updateView];
+    [self.sparkRing updateView];
+    [self.sparkPie updateView];
+    [self.sparkDial updateView];
 }
 
-- (CGFloat) sampleValueAtIndex:(NSUInteger) index {
-    NSTimeInterval interval = [self.sampleDates[index] timeIntervalSinceNow];
+#pragma mark - ILSparkIndicatorDataSource
+
+- (CGFloat) datum
+{
+    NSTimeInterval interval = [NSDate timeIntervalSinceReferenceDate];
     CGFloat sine = (sin(interval/25)/2)+0.5;
     // NSLog(@"sampleValueAtIndex: %lu interval: %f -> %f", (unsigned long)index, interval, sine);
     return sine;
 }
 
+#pragma mark - ILSparkLineDataSource
+
+-(NSArray<NSDate*>*) sampleDates {
+    NSMutableArray* dateArray = [NSMutableArray new];
+    for (NSInteger index = 0; index < 1000; index = index+1) {
+        if (index < 100 || index > 200) { // 100 second gap
+            [dateArray addObject:[NSDate dateWithTimeIntervalSinceNow:-(index)]];
+        }
+    }
+    return [NSArray arrayWithArray:dateArray];
+}
+
+- (CGFloat) sampleValueAtIndex:(NSUInteger) index {
+    NSTimeInterval interval = [self.sampleDates[index] timeIntervalSinceReferenceDate];
+    CGFloat sine = (sin(interval/5)/2)+0.5;
+    // NSLog(@"sampleValueAtIndex: %lu interval: %f -> %f", (unsigned long)index, interval, sine);
+    return sine;
+}
 @end

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		7526C18A1D25ACF8000E5A60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7526C1861D25ACF8000E5A60 /* Assets.xcassets */; };
 		7526C19A1D25B398000E5A60 /* SparkyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7526C1991D25B398000E5A60 /* SparkyViewController.m */; };
-		7526C19B1D25B43B000E5A60 /* Sparky.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7526C1871D25ACF8000E5A60 /* Sparky.xib */; };
+		7526C19B1D25B43B000E5A60 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7526C1871D25ACF8000E5A60 /* MainMenu.xib */; };
 		7526C19C1D262D59000E5A60 /* SparkyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A90B1D1902C500A17804 /* SparkyDelegate.m */; };
 		7526C19D1D262D59000E5A60 /* SparkyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7526C1991D25B398000E5A60 /* SparkyViewController.m */; };
 		7526C19E1D262D62000E5A60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7526C18E1D25AD5F000E5A60 /* Assets.xcassets */; };
@@ -38,6 +38,7 @@
 		75971E0C1D13DAF600EA65D3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75971E0B1D13DAF600EA65D3 /* QuartzCore.framework */; };
 		75B3E64F1ED5EFFE00E7798F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B3E64E1ED5EFFE00E7798F /* UIKit.framework */; };
 		75B3E6511ED5F00600E7798F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B3E6501ED5F00600E7798F /* CoreGraphics.framework */; };
+		75B866EA1EE9EBB40052BD30 /* Sparky.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B866E91EE9EBB40052BD30 /* Sparky.xib */; };
 		75F5A90C1D1902C500A17804 /* SparkyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A90B1D1902C500A17804 /* SparkyDelegate.m */; };
 		75F5A91B1D19034900A17804 /* SparkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75971DEF1D138C0400EA65D3 /* SparkKit.framework */; };
 		75F5A91D1D19035900A17804 /* SparkKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75971DEF1D138C0400EA65D3 /* SparkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -128,7 +129,7 @@
 
 /* Begin PBXFileReference section */
 		7526C1861D25ACF8000E5A60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7526C1881D25ACF8000E5A60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Sparky.xib; sourceTree = "<group>"; };
+		7526C1881D25ACF8000E5A60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		7526C1891D25ACF8000E5A60 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7526C18E1D25AD5F000E5A60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7526C1901D25AD5F000E5A60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -154,6 +155,7 @@
 		75971E0B1D13DAF600EA65D3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		75B3E64E1ED5EFFE00E7798F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		75B3E6501ED5F00600E7798F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		75B866E91EE9EBB40052BD30 /* Sparky.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Sparky.xib; sourceTree = "<group>"; };
 		75D8ADD71ED37A31006F3823 /* KitBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KitBridge.xcodeproj; path = ../KitBridge/KitBridge.xcodeproj; sourceTree = SOURCE_ROOT; };
 		75F5A9081D1902C500A17804 /* Sparky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75F5A90A1D1902C500A17804 /* SparkyDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SparkyDelegate.h; sourceTree = "<group>"; };
@@ -210,7 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				7526C1891D25ACF8000E5A60 /* Info.plist */,
-				7526C1871D25ACF8000E5A60 /* Sparky.xib */,
+				7526C1871D25ACF8000E5A60 /* MainMenu.xib */,
+				75B866E91EE9EBB40052BD30 /* Sparky.xib */,
 				7526C1861D25ACF8000E5A60 /* Assets.xcassets */,
 			);
 			path = macOS;
@@ -495,7 +498,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7526C18A1D25ACF8000E5A60 /* Assets.xcassets in Resources */,
-				7526C19B1D25B43B000E5A60 /* Sparky.xib in Resources */,
+				7526C19B1D25B43B000E5A60 /* MainMenu.xib in Resources */,
+				75B866EA1EE9EBB40052BD30 /* Sparky.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,12 +595,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		7526C1871D25ACF8000E5A60 /* Sparky.xib */ = {
+		7526C1871D25ACF8000E5A60 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				7526C1881D25ACF8000E5A60 /* Base */,
 			);
-			name = Sparky.xib;
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		7526C18F1D25AD5F000E5A60 /* LaunchScreen.storyboard */ = {
