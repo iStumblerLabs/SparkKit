@@ -1,51 +1,51 @@
 
-= SparkKit
+# SparkKit
 
 Small, Simple and Fast; Line, Pie, Dial and Bar Views for macOS, iOS and tvOS
 
-== Dependencies
+## Dependencies
 
-=== KitBridge.framework
+### KitBridge.framework
 
 Provides bridging macros for UIKit and AppKit support classes: https://gitlab.com/alfwatt/KitBridge
 
-== Headers
+## Headers
 
-=== SparkKit.h
+### SparkKit.h
 
 Umbrella header
 
-== Classes
+## Classes
 
-=== ILSparkStyle
+### ILSparkStyle
 
 Style definitions which can be re-used across multiple views. Provides a default style.
 
-=== ILSparkView
+### ILSparkView
 
 Base class which manages borders and style information.
 
-=== ILSparkLine
+### ILSparkLine
 
 Time-sequence line graph
 
-=== ILSparkIndicator
+### ILSparkIndicator
 
-Multiple indicators for displaying a single scalar value
+Multiple style indicators
 
-=== ILSparkGrid &amp; ILSparkData
+### ILSparkGrid &amp; ILSparkData
 
 High performance grid data view and source
 
-=== ILSparkStream &amp; ILStreamData
+### ILSparkStream &amp; ILStreamData
 
 Streaming data view and source
 
-== Examples
+## Examples
 
 See the included Sparky! application for usage example.
 
-== License
+## License
 
     The MIT License (MIT)
 
