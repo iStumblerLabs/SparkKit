@@ -1,6 +1,6 @@
 #import "ILSparkIndicator.h"
 
-static CGFloat const IndicatorRingWidth = 15;
+static CGFloat const IndicatorRingWidth = 8;
 
 #pragma mark - Private
 
@@ -53,7 +53,7 @@ static CGFloat const IndicatorRingWidth = 15;
     self.indicatorText.hidden = (self.style != ILIndicatorStyleText);
 
     CGFloat datum = self.dataSource.datum;
-    CGRect insetRect = CGRectInset(self.bounds, self.style.width, self.style.width);
+    CGRect insetRect = self.borderInset;
 
     if (self.dataSource) {
         switch (self.indicatorStyle) {
@@ -82,13 +82,13 @@ static CGFloat const IndicatorRingWidth = 15;
             }
             case ILIndicatorStyleVertical: {
                 CGFloat indicatorPosition = insetRect.size.height - (insetRect.size.height * datum);
-                CGRect filledRect = CGRectMake(0, indicatorPosition, insetRect.size.width, (insetRect.size.height - indicatorPosition));
+                CGRect filledRect = CGRectMake(insetRect.origin.x, (insetRect.origin.x + indicatorPosition), insetRect.size.width, (insetRect.size.height - indicatorPosition));
                 filledPath = [ILBezierPath bezierPathWithRect:filledRect];
                 break;
             }
             case ILIndicatorStyleHorizontal: {
                 CGFloat indicatorPosition = (insetRect.size.width * datum);
-                CGRect filledRect = CGRectMake(0, 0, indicatorPosition, insetRect.size.height);
+                CGRect filledRect = CGRectMake(insetRect.origin.x, insetRect.origin.y, (insetRect.origin.y + indicatorPosition), insetRect.size.height);
                 filledPath = [ILBezierPath bezierPathWithRect:filledRect];
                 break;
             }
@@ -132,6 +132,8 @@ static CGFloat const IndicatorRingWidth = 15;
                 CGFloat firstAngle = -(M_PI / 2.0);
                 CGFloat secondAngle = ((2.0f * M_PI) * datum) - (M_PI / 2.0f);
                 filledPath = [ILBezierPath new];
+                // filledPath.usesEvenOddFillRule = YES;
+                // filledPath.windingRule = NSEvenOddWindingRule;
                 [filledPath addArcWithCenter:squareCenter radius:indicatorSideLength startAngle:firstAngle endAngle:secondAngle clockwise:YES];
                 [filledPath addLineToPoint:squareCenter];
                 [filledPath addLineToPoint:topDeadCenter];
@@ -165,11 +167,6 @@ static CGFloat const IndicatorRingWidth = 15;
         || (self.indicatorStyle == ILIndicatorStyleRing)
         || (self.indicatorStyle == ILIndicatorStylePie)
         || (self.indicatorStyle == ILIndicatorStyleDial);
-}
-
-- (BOOL) isFlipped
-{
-    return YES;
 }
 
 @end

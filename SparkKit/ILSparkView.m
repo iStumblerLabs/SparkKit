@@ -14,12 +14,16 @@
 
 - (ILSparkStyle*) style
 {
+    ILSparkStyle* effectiveStyle = nil;
+    
     if (self.styleStorage) {
-        return self.styleStorage;
+        effectiveStyle = self.styleStorage;
     }
     else {
-        return [ILSparkStyle defaultStyle];
+        effectiveStyle = [ILSparkStyle defaultStyle];
     }
+    
+    return effectiveStyle;
 }
 
 - (void) setStyle:(ILSparkStyle *)style
@@ -29,19 +33,23 @@
 
 #pragma mark - ILView
 
-- (instancetype) initWithFrame:(CGRect)frame {
-    if( self = [super initWithFrame:frame]) {
+- (instancetype) initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
         [self initView];
     }
+    
     return self;
 }
 
 #pragma mark - NSCoder
 
-- (instancetype) initWithCoder:(NSCoder *)aDecoder {
-    if( self = [super initWithCoder:aDecoder]) {
+- (instancetype) initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
         [self initView];
     }
+    
     return self;
 }
 
@@ -55,6 +63,12 @@
     self.borderLayerStorage = nil;
     [self updateView];
 }
+
+- (BOOL) isFlipped
+{
+    return YES;
+}
+
 #endif
 
 #pragma mark - border
@@ -83,6 +97,20 @@
 - (BOOL) isCircular
 {
     return NO;
+}
+
+- (CGRect) borderInset
+{
+    CGRect insetRect = CGRectZero;
+
+    if (self.style.bordered) {
+        insetRect = CGRectInset(self.bounds, self.style.width, self.style.width);
+    }
+    else {
+        insetRect = self.bounds;
+    }
+
+    return insetRect;
 }
 
 #pragma mark - ILViews

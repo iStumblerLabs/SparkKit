@@ -17,4 +17,7 @@
 /*! @brief is the bortder circular? */
 @property(nonatomic, readonly) BOOL isCircular;
 
+/*! @brief inset of border rectangle, effective drawable area */
+@property(nonatomic, readonly) CGRect borderInset;
+
 @end

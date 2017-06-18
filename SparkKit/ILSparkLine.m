@@ -32,13 +32,13 @@
         NSTimeInterval sampleInterval = fabs([sampleDate timeIntervalSinceDate:startDate]);
         CGFloat samplePercent = [data sampleValueAtIndex:sampleIndex];
         CGFloat sampleX = size.width - (sampleInterval / style.scale);
-        CGFloat sampleY = size.height - (size.height * samplePercent);
+        CGFloat sampleY = (size.height * samplePercent);
         CGPoint thisPoint = CGPointMake(fmin(sampleX,size.width),fmin(sampleY,size.height));
 
         if (!lastDate) {
             firstPoint = thisPoint;
             if (style.filled) {
-                CGPathMoveToPoint(path, NULL, firstPoint.x, 0); // start at the baseline
+                CGPathMoveToPoint(path, NULL, firstPoint.x, size.height); // start at the baseline
                 CGPathAddLineToPoint(path, NULL, thisPoint.x, thisPoint.y);
             }
             else {
@@ -49,8 +49,8 @@
         // NSLog(@"line to -> %f,%f", sampleX, sampleY);
         if (lastDate && (style.falloff > 0) && ((lastPoint.x - thisPoint.x) > style.falloff)) {
             if (style.filled) {
-                CGPathAddLineToPoint(path, NULL, lastPoint.x, 0); // drop it to the baseline
-                CGPathMoveToPoint(path, NULL, thisPoint.x, 0); // move along to the current point
+                CGPathAddLineToPoint(path, NULL, lastPoint.x, size.height); // drop it to the baseline
+                CGPathMoveToPoint(path, NULL, thisPoint.x, size.height); // move along to the current point
             }
             else {
                 CGPathMoveToPoint(path, NULL, thisPoint.x, thisPoint.y);
@@ -75,15 +75,15 @@
         // have we reached the edge of the view?
         if (fabs([lastDate timeIntervalSinceDate:startDate]) > visibleInterval) {
             if (style.filled) {
-                CGPathAddLineToPoint(path, NULL, thisPoint.x, 0); // drop it do the baseline
+                CGPathAddLineToPoint(path, NULL, thisPoint.x, size.height); // drop it do the baseline
             }
             break;
         }
     }
 
     if (style.filled) { // bring the line back to the baseline
-        CGPathAddLineToPoint(path, NULL, lastPoint.x, 0);
-        CGPathAddLineToPoint(path, NULL, firstPoint.x, 0);
+        CGPathAddLineToPoint(path, NULL, lastPoint.x, size.height);
+        CGPathAddLineToPoint(path, NULL, firstPoint.x, size.height);
     }
 
 
@@ -129,7 +129,7 @@ exit:
 
 @end
 
-#if !(TARGET_OS_IPHONE || TARGET_OS_TV)
+#if IL_APP_KIT
 
 #pragma mark -
 
