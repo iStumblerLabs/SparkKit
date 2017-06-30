@@ -1,10 +1,20 @@
-#import "ILSparkIndicator.h"
+#import "ILSparkGauge.h"
 
-static CGFloat const IndicatorRingWidth = 8;
+/*! Default Ring Width */
+CGFloat const ILSparkGaugeDefaultRingWidth = 8;
+
+/*! Pie and Ring Drawing Hints */
+NSString* const ILSparkGaugeMinAngleHint = @"ILSparkGaugeMinAngleHint";
+NSString* const ILSparkGaugeMaxAngleHint = @"ILSparkGaugeMaxAngleHint";
+NSString* const ILSparkGaugeFillClockwiseHint = @"ILSparkGaugeFillClockwiseHint";
+NSString* const ILSparkGaugeRingWidthHint = @"ILSparkGaugeRingWidthHint";
+
+/*! Vert and Horz Drawing Direction Hint */
+NSString* const ILSparkGaugeFillDirectionHint = ILSparkGaugeNaturalFill;
 
 #pragma mark - Private
 
-@interface ILSparkIndicator ()
+@interface ILSparkGauge ()
 @property (nonatomic, retain) CATextLayer *indicatorText;
 @property (nonatomic, retain) CAShapeLayer *indicatorLayer;
 
@@ -12,7 +22,7 @@ static CGFloat const IndicatorRingWidth = 8;
 
 #pragma mark -
 
-@implementation ILSparkIndicator
+@implementation ILSparkGauge
 
 #ifdef IL_UI_KIT
 #pragma mark - UIView
@@ -23,8 +33,8 @@ static CGFloat const IndicatorRingWidth = 8;
     self.indicatorLayer.frame = self.bounds;
 //    NSLog(@"<%@ %p layoutSubviews frame: %@ layer frame: %@ layer bounds: %@>",
 //        self.class, self, NSStringFromCGRect(self.frame),
-//        NSStringFromCGRect(self.style == ILIndicatorStyleText ? self.indicatorText.frame : self.indicatorLayer.frame),
-//        NSStringFromCGRect(self.style == ILIndicatorStyleText ? self.indicatorText.bounds : self.indicatorLayer.bounds));
+//        NSStringFromCGRect(self.style == ILSparkGaugeTextStyle ? self.indicatorText.frame : self.indicatorLayer.frame),
+//        NSStringFromCGRect(self.style == ILSparkGaugeTextStyle ? self.indicatorText.bounds : self.indicatorLayer.bounds));
 }
 #endif
 
@@ -33,7 +43,7 @@ static CGFloat const IndicatorRingWidth = 8;
 - (void)initView
 {
     [super initView];
-    self.style = ILIndicatorStyleText;
+    self.style = ILSparkGaugeTextStyle;
     self.dataSource = nil;
     
     self.indicatorLayer = [CAShapeLayer new];
@@ -49,15 +59,15 @@ static CGFloat const IndicatorRingWidth = 8;
 
     ILBezierPath* filledPath = nil;
 
-    self.indicatorLayer.hidden = (self.style == ILIndicatorStyleText);
-    self.indicatorText.hidden = (self.style != ILIndicatorStyleText);
+    self.indicatorLayer.hidden = (self.style == ILSparkGaugeTextStyle);
+    self.indicatorText.hidden = (self.style != ILSparkGaugeTextStyle);
 
     CGFloat datum = self.dataSource.datum;
     CGRect insetRect = self.borderInset;
 
     if (self.dataSource) {
-        switch (self.indicatorStyle) {
-            case ILIndicatorStyleText: {
+        switch (self.gaugeStyle) {
+            case ILSparkGaugeTextStyle: {
                 NSString* valueString = [NSString stringWithFormat:@"%.1f%%", datum * 100];
                 NSMutableParagraphStyle* valueStyle = [NSMutableParagraphStyle new];
                 valueStyle.alignment = NSTextAlignmentCenter;
@@ -80,19 +90,19 @@ static CGFloat const IndicatorRingWidth = 8;
                 self.indicatorText.frame = stringRect;
                 break;
             }
-            case ILIndicatorStyleVertical: {
+            case ILSparkGaugeVerticalStyle: {
                 CGFloat indicatorPosition = insetRect.size.height - (insetRect.size.height * datum);
                 CGRect filledRect = CGRectMake(insetRect.origin.x, (insetRect.origin.x + indicatorPosition), insetRect.size.width, (insetRect.size.height - indicatorPosition));
                 filledPath = [ILBezierPath bezierPathWithRect:filledRect];
                 break;
             }
-            case ILIndicatorStyleHorizontal: {
+            case ILSparkGaugeHorizontalStyle: {
                 CGFloat indicatorPosition = (insetRect.size.width * datum);
                 CGRect filledRect = CGRectMake(insetRect.origin.x, insetRect.origin.y, (insetRect.origin.y + indicatorPosition), insetRect.size.height);
                 filledPath = [ILBezierPath bezierPathWithRect:filledRect];
                 break;
             }
-            case ILIndicatorStyleSquare: {
+            case ILSparkGaugeSquareStyle: {
                 CGRect squareRect = CGRectInset(ILRectSquareInRect(insetRect), ILPathlineWidth, ILPathlineWidth);
                 CGFloat indicatorSideLength = (squareRect.size.height * self.dataSource.datum);
                 CGFloat indicatorInset = (squareRect.size.width-indicatorSideLength)/2; // ??? take the square root?
@@ -100,7 +110,7 @@ static CGFloat const IndicatorRingWidth = 8;
                 filledPath = [ILBezierPath bezierPathWithRect:filledRect];
                 break;
             }
-            case ILIndicatorStyleCircle: {
+            case ILSparkGaugeCircleStyle: {
                 CGRect squareRect = CGRectInset(ILRectSquareInRect(insetRect), ILPathlineWidth, ILPathlineWidth);
                 CGFloat indicatorSideLength = (squareRect.size.height * datum);
                 CGFloat indicatorInset = (squareRect.size.width-indicatorSideLength)/2; // equal area?
@@ -108,7 +118,7 @@ static CGFloat const IndicatorRingWidth = 8;
                 filledPath = [ILBezierPath bezierPathWithOvalInRect:filledRect];
                 break;
             }
-            case ILIndicatorStyleRing: {
+            case ILSparkGaugeRingStyle: {
                 CGRect squareRect = CGRectInset(ILRectSquareInRect(insetRect), ILPathlineWidth, ILPathlineWidth);
                 CGFloat indicatorSideLength = (squareRect.size.height / 2.0f) - ILPathlineWidth;
                 CGPoint squareCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2.0f), squareRect.origin.y + (squareRect.size.height / 2.0f));
@@ -118,13 +128,13 @@ static CGFloat const IndicatorRingWidth = 8;
                 filledPath = [ILBezierPath new];
                 [filledPath addArcWithCenter:squareCenter radius:indicatorSideLength startAngle:firstAngle endAngle:secondAngle clockwise:YES];
                 CGPoint outsideEndPoint = filledPath.currentPoint;
-                CGPoint insetPoint = ILPointOnLineToPointAtDistance(outsideEndPoint,squareCenter,IndicatorRingWidth);
+                CGPoint insetPoint = ILPointOnLineToPointAtDistance(outsideEndPoint,squareCenter, ILSparkGaugeDefaultRingWidth);
                 [filledPath addLineToPoint:insetPoint];
-                [filledPath addArcWithCenter:squareCenter radius:indicatorSideLength-IndicatorRingWidth startAngle:secondAngle endAngle:firstAngle clockwise:NO];
+                [filledPath addArcWithCenter:squareCenter radius:indicatorSideLength-ILSparkGaugeDefaultRingWidth startAngle:secondAngle endAngle:firstAngle clockwise:NO];
                 [filledPath addLineToPoint:topDeadCenter];
                 break;
             }
-            case ILIndicatorStylePie: {
+            case ILSparkGaugePieStyle: {
                 CGRect squareRect = CGRectInset(ILRectSquareInRect(insetRect), ILPathlineWidth, ILPathlineWidth);
                 CGFloat indicatorSideLength = (squareRect.size.height / 2.0f) - ILPathlineWidth;
                 CGPoint squareCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2.0f), squareRect.origin.y + (squareRect.size.height / 2.0f));
@@ -139,7 +149,7 @@ static CGFloat const IndicatorRingWidth = 8;
                 [filledPath addLineToPoint:topDeadCenter];
                 break;
             }
-            case ILIndicatorStyleDial: {
+            case ILSparkGaugeDialStyle: {
                 CGRect squareRect = CGRectInset(ILRectSquareInRect(insetRect), ILPathlineWidth, ILPathlineWidth);
                 CGFloat indicatorSideLength = (squareRect.size.height / 2.0f) - ILPathlineWidth;
                 CGPoint squareCenter = ILPointCenteredInRect(squareRect);
@@ -163,10 +173,10 @@ static CGFloat const IndicatorRingWidth = 8;
 
 - (BOOL) isCircular
 {
-    return (self.indicatorStyle == ILIndicatorStyleCircle)
-        || (self.indicatorStyle == ILIndicatorStyleRing)
-        || (self.indicatorStyle == ILIndicatorStylePie)
-        || (self.indicatorStyle == ILIndicatorStyleDial);
+    return (self.gaugeStyle == ILSparkGaugeCircleStyle)
+        || (self.gaugeStyle == ILSparkGaugeRingStyle)
+        || (self.gaugeStyle == ILSparkGaugePieStyle)
+        || (self.gaugeStyle == ILSparkGaugeDialStyle);
 }
 
 @end

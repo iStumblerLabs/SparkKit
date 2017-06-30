@@ -21,10 +21,10 @@
 #endif
 {
     ILSparkStyle* defaultStyle = [ILSparkStyle defaultStyle];
-    defaultStyle.falloff = 50;
     defaultStyle.bordered = YES;
     defaultStyle.filled = YES;
     defaultStyle.width = 2;
+    [defaultStyle addHints:@{ILSparkLineFalloffInterval: @(30.0)}];
     
 #ifdef IL_UI_KIT
     UIStoryboard* sparkyStoryboard = [UIStoryboard storyboardWithName:@"Sparky" bundle:nil];
@@ -32,12 +32,13 @@
     self.window.rootViewController = self.viewController;
 #else
     self.viewController = [[SparkyViewController alloc] initWithNibName:@"Sparky" bundle:[NSBundle mainBundle]];
-
 #endif
+    
     [self.viewController initView];
     
     self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(update) userInfo:nil repeats:YES];
     [self.updateTimer fire];
+
 #ifdef IL_UI_KIT
     return YES;
 #endif

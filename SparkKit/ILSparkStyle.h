@@ -43,15 +43,14 @@ extern CGFloat const ILBoldlineWidth;
 /*! @brief stroke width */
 @property(nonatomic, assign) CGFloat width;
 
-/*! @brief scale factor */
-@property(nonatomic, assign) CGFloat scale;
-
-/*! @brief falloff distance
-    Distance in pixels between samples which are considered contiguous 0.0 is infinite */
-@property(nonatomic, assign) CGFloat falloff;
+/*! @brief hints for subclasses */
+@property(nonatomic, retain) NSDictionary* hints;
 
 /*! @brief default style given to ILSparkViews when initilized */
 + (ILSparkStyle*) defaultStyle;
+
+/*! @brief add provided hints to hints dictionary */
+- (void) addHints:(NSDictionary*)additionalHints;
 
 @end
 

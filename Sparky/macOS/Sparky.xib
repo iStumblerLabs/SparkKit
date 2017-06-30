@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="sparkCircle" destination="g6p-7e-85t" id="t2V-9j-Wl5"/>
                 <outlet property="sparkDial" destination="pmV-DR-sxj" id="ERi-2w-Lw1"/>
+                <outlet property="sparkGrid" destination="abH-Nc-wdz" id="xA8-1Z-giO"/>
                 <outlet property="sparkHorz" destination="USR-2Y-jIT" id="7jI-rn-oAe"/>
                 <outlet property="sparkLine" destination="oFV-Ot-AWt" id="N0m-TB-3nY"/>
                 <outlet property="sparkPie" destination="XNr-o2-DlQ" id="GAU-yq-DwE"/>
@@ -28,18 +29,15 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="496" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <view key="contentView" id="62H-Hn-UVi">
                 <rect key="frame" x="0.0" y="0.0" width="496" height="360"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="oFV-Ot-AWt" customClass="ILSparkLine">
-                        <rect key="frame" x="20" y="78" width="456" height="262"/>
-                    </customView>
                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Xl-3k-kN2">
                         <rect key="frame" x="20" y="20" width="456" height="50"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="4Dx-yq-hLY" customClass="ILSparkIndicator">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="4Dx-yq-hLY" customClass="ILSparkGauge">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4Dx-yq-hLY" secondAttribute="height" multiplier="1:1" id="PHr-BP-mxW"/>
@@ -47,7 +45,7 @@
                                     <constraint firstAttribute="height" constant="50" id="vEl-QI-rtS"/>
                                 </constraints>
                             </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kjc-vd-F16" customClass="ILSparkIndicator">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kjc-vd-F16" customClass="ILSparkGauge">
                                 <rect key="frame" x="58" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6PC-7i-pD8"/>
@@ -55,7 +53,7 @@
                                     <constraint firstAttribute="width" constant="50" id="pev-38-sSw"/>
                                 </constraints>
                             </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="USR-2Y-jIT" customClass="ILSparkIndicator">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="USR-2Y-jIT" customClass="ILSparkGauge">
                                 <rect key="frame" x="116" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="GJl-gF-adz"/>
@@ -63,7 +61,7 @@
                                     <constraint firstAttribute="width" secondItem="USR-2Y-jIT" secondAttribute="height" multiplier="1:1" id="dsu-Ia-9WN"/>
                                 </constraints>
                             </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="1ld-30-ee8" customClass="ILSparkIndicator">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="1ld-30-ee8" customClass="ILSparkGauge">
                                 <rect key="frame" x="174" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="0yx-4Z-JNl"/>
@@ -71,7 +69,7 @@
                                     <constraint firstAttribute="height" constant="50" id="GlN-gz-Kmu"/>
                                 </constraints>
                             </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="g6p-7e-85t" customClass="ILSparkIndicator">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="g6p-7e-85t" customClass="ILSparkGauge">
                                 <rect key="frame" x="232" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="g6p-7e-85t" secondAttribute="height" multiplier="1:1" id="4xs-Mj-WNF"/>
@@ -79,7 +77,7 @@
                                     <constraint firstAttribute="height" constant="50" id="xCp-YU-gjM"/>
                                 </constraints>
                             </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="XNr-o2-DlQ" customClass="ILSparkIndicator">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="XNr-o2-DlQ" customClass="ILSparkGauge">
                                 <rect key="frame" x="290" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="XNr-o2-DlQ" secondAttribute="height" multiplier="1:1" id="Fhs-6P-VLG"/>
@@ -87,7 +85,7 @@
                                     <constraint firstAttribute="width" constant="50" id="wCA-la-o2d"/>
                                 </constraints>
                             </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="vbZ-18-wn4" customClass="ILSparkIndicator">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="vbZ-18-wn4" customClass="ILSparkGauge">
                                 <rect key="frame" x="348" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="5Zn-ay-toU"/>
@@ -95,7 +93,7 @@
                                     <constraint firstAttribute="width" secondItem="vbZ-18-wn4" secondAttribute="height" multiplier="1:1" id="Kkq-3X-5A2"/>
                                 </constraints>
                             </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="pmV-DR-sxj" customClass="ILSparkIndicator">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="pmV-DR-sxj" customClass="ILSparkGauge">
                                 <rect key="frame" x="406" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="4fe-Um-QEI"/>
@@ -135,13 +133,23 @@
                             <real value="3.4028234663852886e+38"/>
                         </customSpacing>
                     </stackView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="abH-Nc-wdz" customClass="ILSparkGrid">
+                        <rect key="frame" x="20" y="211" width="456" height="129"/>
+                    </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="oFV-Ot-AWt" customClass="ILSparkLine">
+                        <rect key="frame" x="20" y="78" width="456" height="125"/>
+                    </customView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="abH-Nc-wdz" firstAttribute="leading" secondItem="62H-Hn-UVi" secondAttribute="leading" constant="20" id="5KV-HN-7ZX"/>
+                    <constraint firstItem="abH-Nc-wdz" firstAttribute="top" secondItem="62H-Hn-UVi" secondAttribute="top" constant="20" id="6PZ-S4-fe0"/>
                     <constraint firstAttribute="bottom" secondItem="oFV-Ot-AWt" secondAttribute="bottom" constant="78" id="D9j-XE-qAT"/>
+                    <constraint firstAttribute="trailing" secondItem="abH-Nc-wdz" secondAttribute="trailing" constant="20" id="MFl-nW-zdH"/>
+                    <constraint firstItem="oFV-Ot-AWt" firstAttribute="top" secondItem="62H-Hn-UVi" secondAttribute="top" constant="157" id="PGU-1e-d9O"/>
                     <constraint firstItem="oFV-Ot-AWt" firstAttribute="leading" secondItem="62H-Hn-UVi" secondAttribute="leading" constant="20" id="TqK-S6-chI"/>
                     <constraint firstItem="8Xl-3k-kN2" firstAttribute="leading" secondItem="oFV-Ot-AWt" secondAttribute="leading" id="bYT-Ey-NL7"/>
                     <constraint firstItem="8Xl-3k-kN2" firstAttribute="top" secondItem="oFV-Ot-AWt" secondAttribute="bottom" constant="8" symbolic="YES" id="gVl-Hb-ZBE"/>
-                    <constraint firstItem="oFV-Ot-AWt" firstAttribute="top" secondItem="62H-Hn-UVi" secondAttribute="top" constant="20" id="m6f-YY-B5W"/>
+                    <constraint firstItem="oFV-Ot-AWt" firstAttribute="top" secondItem="abH-Nc-wdz" secondAttribute="bottom" constant="8" id="ryJ-1K-YLn"/>
                     <constraint firstAttribute="trailing" secondItem="oFV-Ot-AWt" secondAttribute="trailing" constant="20" id="wBT-N6-r2a"/>
                 </constraints>
             </view>

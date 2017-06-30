@@ -12,14 +12,14 @@
 {
     [self loadView];
     
-    self.sparkText.indicatorStyle = ILIndicatorStyleText;
-    self.sparkVert.indicatorStyle = ILIndicatorStyleVertical;
-    self.sparkHorz.indicatorStyle = ILIndicatorStyleHorizontal;
-    self.sparkSquare.indicatorStyle = ILIndicatorStyleSquare;
-    self.sparkCircle.indicatorStyle = ILIndicatorStyleCircle;
-    self.sparkRing.indicatorStyle = ILIndicatorStyleRing;
-    self.sparkPie.indicatorStyle = ILIndicatorStylePie;
-    self.sparkDial.indicatorStyle = ILIndicatorStyleDial;
+    self.sparkText.gaugeStyle = ILSparkGaugeTextStyle;
+    self.sparkVert.gaugeStyle = ILSparkGaugeVerticalStyle;
+    self.sparkHorz.gaugeStyle = ILSparkGaugeHorizontalStyle;
+    self.sparkSquare.gaugeStyle = ILSparkGaugeSquareStyle;
+    self.sparkCircle.gaugeStyle = ILSparkGaugeCircleStyle;
+    self.sparkRing.gaugeStyle = ILSparkGaugeRingStyle;
+    self.sparkPie.gaugeStyle = ILSparkGaugePieStyle;
+    self.sparkDial.gaugeStyle = ILSparkGaugeDialStyle;
     
     self.sparkLine.dataSource = self;
     self.sparkText.dataSource = self;
@@ -30,6 +30,11 @@
     self.sparkRing.dataSource = self;
     self.sparkPie.dataSource = self;
     self.sparkDial.dataSource = self;
+    
+    self.gridData = [ILGridData floatGridWithRows:10 columns:0];
+    self.sparkGrid.grid = self.gridData;
+    self.sparkGrid.xAxisLabels = @[@"1", @"", @"3", @"", @"5", @"", @"7", @"", @"9", @""];
+    self.sparkGrid.yAxisLabels = @[@"a", @"b", @"c", @"d", @"e"];
 }
 
 - (void) updateView
@@ -47,9 +52,13 @@
     [self.sparkRing updateView];
     [self.sparkPie updateView];
     [self.sparkDial updateView];
+    
+    for (int index = 0; index < 5; index++) {
+        
+    }
 }
 
-#pragma mark - ILSparkIndicatorDataSource
+#pragma mark - ILSparkGaugeDataSource
 
 - (CGFloat) datum
 {

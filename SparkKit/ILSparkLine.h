@@ -1,5 +1,7 @@
-#import <Foundation/Foundation.h>
 #import <SparkKit/ILSparkView.h>
+
+extern NSString* const ILSparkLineScaleFactor;
+extern NSString* const ILSparkLineFalloffInterval;
 
 @protocol ILSparkLineDataSource;
 

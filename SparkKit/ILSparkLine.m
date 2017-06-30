@@ -1,6 +1,17 @@
 #import "ILSparkLine.h"
 #import "ILSparkStyle.h"
 
+NSString* const ILSparkLineScaleFactor = @"ILSparkLineScaleFactor";
+NSString* const ILSparkLineFalloffInterval = @"ILSparkLineFalloffTInterval";
+
+#pragma mark -
+
+@interface ILSparkStyle (ILSparkLine)
+@property(nonatomic, readonly) CGFloat scale;
+@property(nonatomic, readonly) CGFloat falloff;
+
+@end
+
 #pragma mark -
 
 @implementation ILSparkLine
@@ -128,6 +139,31 @@ exit:
 }
 
 @end
+
+#pragma mark -
+
+@implementation ILSparkStyle (ILSparkLine)
+
+- (CGFloat) scale
+{
+    CGFloat scale = 1.0;
+    if (self.hints[ILSparkLineScaleFactor]) {
+        scale = [self.hints[ILSparkLineScaleFactor] doubleValue];
+    }
+    return scale;
+}
+
+- (NSTimeInterval) falloff
+{
+    NSTimeInterval falloff = 0.0;
+    if (self.hints[ILSparkLineFalloffInterval]) {
+        falloff = [self.hints[ILSparkLineFalloffInterval] doubleValue];
+    }
+    return falloff;
+}
+
+@end
+
 
 #if IL_APP_KIT
 

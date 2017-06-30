@@ -25,10 +25,18 @@
 		755E62CE1E68B33C00342CCD /* ILStreamData.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E62CA1E68B33C00342CCD /* ILStreamData.m */; };
 		756DB21E1ED37AD500B84AE7 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756DB2161ED37A9400B84AE7 /* KitBridge.framework */; };
 		756DB21F1ED37AE600B84AE7 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756DB2181ED37A9400B84AE7 /* KitBridge.framework */; };
-		756DB2221ED37FE000B84AE7 /* ILSparkIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 756DB2201ED37FE000B84AE7 /* ILSparkIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		756DB2231ED37FE000B84AE7 /* ILSparkIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 756DB2201ED37FE000B84AE7 /* ILSparkIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		756DB2241ED37FE000B84AE7 /* ILSparkIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 756DB2211ED37FE000B84AE7 /* ILSparkIndicator.m */; };
-		756DB2251ED37FE000B84AE7 /* ILSparkIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 756DB2211ED37FE000B84AE7 /* ILSparkIndicator.m */; };
+		756DB2221ED37FE000B84AE7 /* ILSparkGauge.h in Headers */ = {isa = PBXBuildFile; fileRef = 756DB2201ED37FE000B84AE7 /* ILSparkGauge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		756DB2231ED37FE000B84AE7 /* ILSparkGauge.h in Headers */ = {isa = PBXBuildFile; fileRef = 756DB2201ED37FE000B84AE7 /* ILSparkGauge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		756DB2241ED37FE000B84AE7 /* ILSparkGauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 756DB2211ED37FE000B84AE7 /* ILSparkGauge.m */; };
+		756DB2251ED37FE000B84AE7 /* ILSparkGauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 756DB2211ED37FE000B84AE7 /* ILSparkGauge.m */; };
+		758EA4B01F04E9A600069634 /* ILSparkBars.h in Headers */ = {isa = PBXBuildFile; fileRef = 758EA4AE1F04E9A600069634 /* ILSparkBars.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		758EA4B11F04E9A600069634 /* ILSparkBars.h in Headers */ = {isa = PBXBuildFile; fileRef = 758EA4AE1F04E9A600069634 /* ILSparkBars.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		758EA4B21F04E9A600069634 /* ILSparkBars.m in Sources */ = {isa = PBXBuildFile; fileRef = 758EA4AF1F04E9A600069634 /* ILSparkBars.m */; };
+		758EA4B31F04E9A600069634 /* ILSparkBars.m in Sources */ = {isa = PBXBuildFile; fileRef = 758EA4AF1F04E9A600069634 /* ILSparkBars.m */; };
+		758EA4BC1F04EB1000069634 /* ILBucketData.h in Headers */ = {isa = PBXBuildFile; fileRef = 758EA4BA1F04EB1000069634 /* ILBucketData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		758EA4BD1F04EB1000069634 /* ILBucketData.h in Headers */ = {isa = PBXBuildFile; fileRef = 758EA4BA1F04EB1000069634 /* ILBucketData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		758EA4BE1F04EB1000069634 /* ILBucketData.m in Sources */ = {isa = PBXBuildFile; fileRef = 758EA4BB1F04EB1000069634 /* ILBucketData.m */; };
+		758EA4BF1F04EB1000069634 /* ILBucketData.m in Sources */ = {isa = PBXBuildFile; fileRef = 758EA4BB1F04EB1000069634 /* ILBucketData.m */; };
 		75971DF31D138C0400EA65D3 /* SparkKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DF21D138C0400EA65D3 /* SparkKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75971DFC1D139FBA00EA65D3 /* ILSparkLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DFA1D139FBA00EA65D3 /* ILSparkLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75971DFD1D139FBA00EA65D3 /* ILSparkLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */; };
@@ -135,20 +143,24 @@
 		7526C1901D25AD5F000E5A60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7526C1921D25AD5F000E5A60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Sparky.storyboard; sourceTree = "<group>"; };
 		7526C1931D25AD5F000E5A60 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7526C1981D25B398000E5A60 /* SparkyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SparkyViewController.h; sourceTree = "<group>"; };
-		7526C1991D25B398000E5A60 /* SparkyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SparkyViewController.m; sourceTree = "<group>"; };
+		7526C1981D25B398000E5A60 /* SparkyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SparkyViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		7526C1991D25B398000E5A60 /* SparkyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SparkyViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		753956D41D13F679004DDBDA /* ILSparkStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkStyle.h; sourceTree = "<group>"; };
 		753956D51D13F679004DDBDA /* ILSparkStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkStyle.m; sourceTree = "<group>"; };
 		755E62C91E68B33C00342CCD /* ILStreamData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILStreamData.h; sourceTree = "<group>"; };
 		755E62CA1E68B33C00342CCD /* ILStreamData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILStreamData.m; sourceTree = "<group>"; };
-		756DB2201ED37FE000B84AE7 /* ILSparkIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkIndicator.h; sourceTree = "<group>"; };
-		756DB2211ED37FE000B84AE7 /* ILSparkIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkIndicator.m; sourceTree = "<group>"; };
+		756DB2201ED37FE000B84AE7 /* ILSparkGauge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ILSparkGauge.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		756DB2211ED37FE000B84AE7 /* ILSparkGauge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ILSparkGauge.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		758EA4AE1F04E9A600069634 /* ILSparkBars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkBars.h; sourceTree = "<group>"; };
+		758EA4AF1F04E9A600069634 /* ILSparkBars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkBars.m; sourceTree = "<group>"; };
+		758EA4BA1F04EB1000069634 /* ILBucketData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILBucketData.h; sourceTree = "<group>"; };
+		758EA4BB1F04EB1000069634 /* ILBucketData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILBucketData.m; sourceTree = "<group>"; };
 		75971DEF1D138C0400EA65D3 /* SparkKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SparkKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		75971DF21D138C0400EA65D3 /* SparkKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SparkKit.h; sourceTree = "<group>"; };
-		75971DF41D138C0400EA65D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75971DF21D138C0400EA65D3 /* SparkKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = SparkKit.h; path = SparkKit/SparkKit.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		75971DF41D138C0400EA65D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = SparkKit/Info.plist; sourceTree = "<group>"; };
 		75971DFA1D139FBA00EA65D3 /* ILSparkLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkLine.h; sourceTree = "<group>"; };
 		75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkLine.m; sourceTree = "<group>"; };
-		75971DFE1D13CD0D00EA65D3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		75971DFE1D13CD0D00EA65D3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; lineEnding = 0; path = README.md; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 		75971E021D13D37600EA65D3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		75971E071D13D79F00EA65D3 /* ILSparkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkView.h; sourceTree = "<group>"; };
 		75971E081D13D79F00EA65D3 /* ILSparkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkView.m; sourceTree = "<group>"; };
@@ -239,11 +251,28 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		758EA4C01F04EE2900069634 /* Data Sources */ = {
+			isa = PBXGroup;
+			children = (
+				75F86DC51DF26CAC00BC0A35 /* ILGridData.h */,
+				75F86DC61DF26CAC00BC0A35 /* ILGridData.m */,
+				755E62C91E68B33C00342CCD /* ILStreamData.h */,
+				755E62CA1E68B33C00342CCD /* ILStreamData.m */,
+				758EA4BA1F04EB1000069634 /* ILBucketData.h */,
+				758EA4BB1F04EB1000069634 /* ILBucketData.m */,
+			);
+			name = "Data Sources";
+			path = SparkKit;
+			sourceTree = "<group>";
+		};
 		75971DE51D138C0400EA65D3 = {
 			isa = PBXGroup;
 			children = (
 				75971DFE1D13CD0D00EA65D3 /* README.md */,
-				75971DF11D138C0400EA65D3 /* SparkKit */,
+				75971DF41D138C0400EA65D3 /* Info.plist */,
+				75971DF21D138C0400EA65D3 /* SparkKit.h */,
+				75971DF11D138C0400EA65D3 /* Views */,
+				758EA4C01F04EE2900069634 /* Data Sources */,
 				75F5A9091D1902C500A17804 /* Sparky */,
 				75971E041D13D38C00EA65D3 /* Frameworks */,
 				75971DF01D138C0400EA65D3 /* Products */,
@@ -261,26 +290,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		75971DF11D138C0400EA65D3 /* SparkKit */ = {
+		75971DF11D138C0400EA65D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				75971DF41D138C0400EA65D3 /* Info.plist */,
-				75971DF21D138C0400EA65D3 /* SparkKit.h */,
 				753956D41D13F679004DDBDA /* ILSparkStyle.h */,
 				753956D51D13F679004DDBDA /* ILSparkStyle.m */,
 				75971E071D13D79F00EA65D3 /* ILSparkView.h */,
 				75971E081D13D79F00EA65D3 /* ILSparkView.m */,
 				75971DFA1D139FBA00EA65D3 /* ILSparkLine.h */,
 				75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */,
-				756DB2201ED37FE000B84AE7 /* ILSparkIndicator.h */,
-				756DB2211ED37FE000B84AE7 /* ILSparkIndicator.m */,
+				756DB2201ED37FE000B84AE7 /* ILSparkGauge.h */,
+				756DB2211ED37FE000B84AE7 /* ILSparkGauge.m */,
 				75F86DC71DF26CAC00BC0A35 /* ILSparkGrid.h */,
 				75F86DC81DF26CAC00BC0A35 /* ILSparkGrid.m */,
-				75F86DC51DF26CAC00BC0A35 /* ILGridData.h */,
-				75F86DC61DF26CAC00BC0A35 /* ILGridData.m */,
-				755E62C91E68B33C00342CCD /* ILStreamData.h */,
-				755E62CA1E68B33C00342CCD /* ILStreamData.m */,
+				758EA4AE1F04E9A600069634 /* ILSparkBars.h */,
+				758EA4AF1F04E9A600069634 /* ILSparkBars.m */,
 			);
+			name = Views;
 			path = SparkKit;
 			sourceTree = "<group>";
 		};
@@ -321,7 +347,9 @@
 				75971E091D13D79F00EA65D3 /* ILSparkView.h in Headers */,
 				75F86DCF1DF26CAC00BC0A35 /* ILSparkGrid.h in Headers */,
 				75F86DCB1DF26CAC00BC0A35 /* ILGridData.h in Headers */,
-				756DB2221ED37FE000B84AE7 /* ILSparkIndicator.h in Headers */,
+				756DB2221ED37FE000B84AE7 /* ILSparkGauge.h in Headers */,
+				758EA4B01F04E9A600069634 /* ILSparkBars.h in Headers */,
+				758EA4BC1F04EB1000069634 /* ILBucketData.h in Headers */,
 				755E62CB1E68B33C00342CCD /* ILStreamData.h in Headers */,
 				75971DFC1D139FBA00EA65D3 /* ILSparkLine.h in Headers */,
 			);
@@ -332,11 +360,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				75F5A9471D1A134A00A17804 /* SparkKit.h in Headers */,
-				756DB2231ED37FE000B84AE7 /* ILSparkIndicator.h in Headers */,
+				756DB2231ED37FE000B84AE7 /* ILSparkGauge.h in Headers */,
 				75F5A9491D1A134A00A17804 /* ILSparkStyle.h in Headers */,
 				75F5A94A1D1A134A00A17804 /* ILSparkView.h in Headers */,
 				755E62CC1E68B33C00342CCD /* ILStreamData.h in Headers */,
 				75F5A94C1D1A134A00A17804 /* ILSparkLine.h in Headers */,
+				758EA4B11F04E9A600069634 /* ILSparkBars.h in Headers */,
+				758EA4BD1F04EB1000069634 /* ILBucketData.h in Headers */,
 				75F86DCC1DF26CAC00BC0A35 /* ILGridData.h in Headers */,
 				75F86DD01DF26CAC00BC0A35 /* ILSparkGrid.h in Headers */,
 			);
@@ -528,11 +558,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				75971DFD1D139FBA00EA65D3 /* ILSparkLine.m in Sources */,
-				756DB2241ED37FE000B84AE7 /* ILSparkIndicator.m in Sources */,
+				756DB2241ED37FE000B84AE7 /* ILSparkGauge.m in Sources */,
 				753956D71D13F679004DDBDA /* ILSparkStyle.m in Sources */,
+				758EA4BE1F04EB1000069634 /* ILBucketData.m in Sources */,
 				755E62CD1E68B33C00342CCD /* ILStreamData.m in Sources */,
 				75971E0A1D13D79F00EA65D3 /* ILSparkView.m in Sources */,
 				75F86DCD1DF26CAC00BC0A35 /* ILGridData.m in Sources */,
+				758EA4B21F04E9A600069634 /* ILSparkBars.m in Sources */,
 				75F86DD11DF26CAC00BC0A35 /* ILSparkGrid.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,11 +592,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				75F5A93F1D1A134A00A17804 /* ILSparkLine.m in Sources */,
-				756DB2251ED37FE000B84AE7 /* ILSparkIndicator.m in Sources */,
+				756DB2251ED37FE000B84AE7 /* ILSparkGauge.m in Sources */,
 				75F5A9401D1A134A00A17804 /* ILSparkStyle.m in Sources */,
+				758EA4BF1F04EB1000069634 /* ILBucketData.m in Sources */,
 				755E62CE1E68B33C00342CCD /* ILStreamData.m in Sources */,
 				75F5A9411D1A134A00A17804 /* ILSparkView.m in Sources */,
 				75F86DCE1DF26CAC00BC0A35 /* ILGridData.m in Sources */,
+				758EA4B31F04E9A600069634 /* ILSparkBars.m in Sources */,
 				75F86DD21DF26CAC00BC0A35 /* ILSparkGrid.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

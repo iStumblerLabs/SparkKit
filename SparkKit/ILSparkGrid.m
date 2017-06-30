@@ -227,7 +227,7 @@
             errorLayer.fontSize = self.style.font.pointSize;
             errorLayer.foregroundColor = self.style.stroke.CGColor;
             errorLayer.alignmentMode = kCAAlignmentCenter;
-            errorLayer.position = CGPointMake((self.labelLayer.frame.size.width / 2), (self.labelLayer.frame.size.height / 2)); // No CGPointCenteredInRect?
+            errorLayer.position = ILPointCenteredInRect(self.labelLayer.frame);
     #if IL_APP_KIT
             NSLog(@"error: %@ frame: %@", self.errorString, NSStringFromRect(errorLayer.frame));
     #endif

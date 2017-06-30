@@ -29,9 +29,9 @@ Base class which manages borders and style information.
 
 Time-sequence line graph
 
-### ILSparkIndicator
+### ILSparkGauge
 
-Multiple style indicators
+Multiple style gauge indicators
 
 ### ILSparkGrid &amp; ILSparkData
 
