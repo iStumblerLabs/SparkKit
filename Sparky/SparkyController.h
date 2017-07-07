@@ -1,13 +1,15 @@
 @import SparkKit;
 
 #ifdef IL_APP_KIT
-@interface SparkyViewController : NSViewController <ILSparkGaugeDataSource, ILSparkLineDataSource, ILViews>
+@interface SparkyController : NSViewController <ILSparkGaugeDataSource, ILSparkLineDataSource, ILViews>
 #else
-@interface SparkyViewController : UIViewController <ILSparkGaugeDataSource, ILSparkLineDataSource, ILViews>
+@interface SparkyController : UIViewController <ILSparkGaugeDataSource, ILSparkLineDataSource, ILViews>
 #endif
 
 #pragma mark - Properties
 @property(nonatomic, retain) ILGridData* gridData;
+@property(nonatomic, retain) ILStreamData* streamData;
+@property(nonatomic, retain) ILBucketData* bucketData;
 
 #pragma mark - IBOutlets
 @property(nonatomic, retain) IBOutlet ILSparkLine* sparkLine;

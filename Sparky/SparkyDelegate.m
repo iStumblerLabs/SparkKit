@@ -1,5 +1,5 @@
 #import "SparkyDelegate.h"
-#import "SparkyViewController.h"
+#import "SparkyController.h"
 
 #ifdef IL_APP_KIT
 @interface SparkyDelegate ()
@@ -23,7 +23,7 @@
     ILSparkStyle* defaultStyle = [ILSparkStyle defaultStyle];
     defaultStyle.bordered = YES;
     defaultStyle.filled = YES;
-    defaultStyle.width = 2;
+    defaultStyle.width = 1;
     [defaultStyle addHints:@{ILSparkLineFalloffInterval: @(30.0)}];
     
 #ifdef IL_UI_KIT
@@ -31,7 +31,7 @@
     self.viewController = sparkyStoryboard.instantiateInitialViewController;
     self.window.rootViewController = self.viewController;
 #else
-    self.viewController = [[SparkyViewController alloc] initWithNibName:@"Sparky" bundle:[NSBundle mainBundle]];
+    self.viewController = [[SparkyController alloc] initWithNibName:@"Sparky" bundle:[NSBundle mainBundle]];
 #endif
     
     [self.viewController initView];

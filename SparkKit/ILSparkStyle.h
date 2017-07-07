@@ -1,7 +1,20 @@
 #import <KitBridge/KitBridge.h>
 #import <QuartzCore/QuartzCore.h>
 
-#pragma mark Line Widths
+#pragma mark Constants
+
+extern NSString* const ILSparkStyleFill;
+extern NSString* const ILSparkStyleStroke;
+extern NSString* const ILSparkStyleBackground;
+extern NSString* const ILSparkStyleBorder;
+extern NSString* const ILSparkStyleGradient;
+extern NSString* const ILSparkStyleIsFilled;
+extern NSString* const ILSparkStyleIsBordered;
+extern NSString* const ILSparkStyleWidth;
+extern NSString* const ILSparkStyleHints;
+
+
+#pragma mark - Line Widths
 
 extern CGFloat const ILHairlineWidth;
 extern CGFloat const ILFinelineWidth;

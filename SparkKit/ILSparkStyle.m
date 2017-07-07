@@ -1,5 +1,15 @@
 #import "ILSparkStyle.h"
 
+NSString* const ILSparkStyleFill = @"Fill";
+NSString* const ILSparkStyleStroke = @"Stroke";
+NSString* const ILSparkStyleBackground = @"Background";
+NSString* const ILSparkStyleBorder = @"Border";
+NSString* const ILSparkStyleGradient = @"Gradient";
+NSString* const ILSparkStyleIsFilled = @"IsFilled";
+NSString* const ILSparkStyleIsBordered = @"IsBordered";
+NSString* const ILSparkStyleWidth = @"Width";
+NSString* const ILSparkStyleHints = @"Hints";
+
 CGFloat const ILHairlineWidth = 0.25;
 CGFloat const ILFinelineWidth = 0.5;
 CGFloat const ILPathlineWidth = 1;

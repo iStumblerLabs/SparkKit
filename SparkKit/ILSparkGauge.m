@@ -98,22 +98,22 @@ NSString* const ILSparkGaugeFillDirectionHint = ILSparkGaugeNaturalFill;
             }
             case ILSparkGaugeHorizontalStyle: {
                 CGFloat indicatorPosition = (insetRect.size.width * datum);
-                CGRect filledRect = CGRectMake(insetRect.origin.x, insetRect.origin.y, (insetRect.origin.y + indicatorPosition), insetRect.size.height);
+                CGRect filledRect = CGRectMake(insetRect.origin.x, insetRect.origin.y, indicatorPosition, insetRect.size.height);
                 filledPath = [ILBezierPath bezierPathWithRect:filledRect];
                 break;
             }
             case ILSparkGaugeSquareStyle: {
                 CGRect squareRect = CGRectInset(ILRectSquareInRect(insetRect), ILPathlineWidth, ILPathlineWidth);
-                CGFloat indicatorSideLength = (squareRect.size.height * self.dataSource.datum);
-                CGFloat indicatorInset = (squareRect.size.width-indicatorSideLength)/2; // ??? take the square root?
+                CGFloat indicatorSideLength = (squareRect.size.width * self.dataSource.datum);
+                CGFloat indicatorInset = (squareRect.size.width - indicatorSideLength) / 2; // ??? take the square root?
                 CGRect filledRect = CGRectInset(squareRect, indicatorInset, indicatorInset);
                 filledPath = [ILBezierPath bezierPathWithRect:filledRect];
                 break;
             }
             case ILSparkGaugeCircleStyle: {
                 CGRect squareRect = CGRectInset(ILRectSquareInRect(insetRect), ILPathlineWidth, ILPathlineWidth);
-                CGFloat indicatorSideLength = (squareRect.size.height * datum);
-                CGFloat indicatorInset = (squareRect.size.width-indicatorSideLength)/2; // equal area?
+                CGFloat indicatorSideLength = (squareRect.size.width * datum);
+                CGFloat indicatorInset = (squareRect.size.width - indicatorSideLength) / 2; // ??? equal area?
                 CGRect filledRect = CGRectInset(squareRect, indicatorInset, indicatorInset);
                 filledPath = [ILBezierPath bezierPathWithOvalInRect:filledRect];
                 break;

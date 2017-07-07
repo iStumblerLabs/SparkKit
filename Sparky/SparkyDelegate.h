@@ -1,11 +1,11 @@
 @import SparkKit;
 
-@class SparkyViewController;
+@class SparkyController;
 
 @interface SparkyDelegate : NSObject <ILApplicationDelegate>
 @property(nonatomic, retain) NSTimer* updateTimer;
 @property(nonatomic, retain) ILWindow* window;
-@property(nonatomic, retain) SparkyViewController* viewController;
+@property(nonatomic, retain) SparkyController* viewController;
 
 @end
 

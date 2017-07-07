@@ -1,10 +1,12 @@
-#import "SparkyViewController.h"
+#import "SparkyController.h"
 
-@interface SparkyViewController ()
+@interface SparkyController ()
 
 @end
 
-@implementation SparkyViewController
+#pragma mark -
+
+@implementation SparkyController
 
 #pragma mark - ILViews
 
@@ -63,7 +65,7 @@
 - (CGFloat) datum
 {
     NSTimeInterval interval = [NSDate timeIntervalSinceReferenceDate];
-    CGFloat sine = (sin(interval/25)/2)+0.5;
+    CGFloat sine = (sin(interval / 5) / 2) + 0.5;
     // NSLog(@"sampleValueAtIndex: %lu interval: %f -> %f", (unsigned long)index, interval, sine);
     return sine;
 }
