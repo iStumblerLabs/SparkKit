@@ -340,7 +340,7 @@
 
 - (void) grid:(ILGridData*)grid didSetData:(NSData*)data atRow:(NSUInteger)row
 {
-    NSLog(@"grid:%@ didSetData:%lu Bytes atRow:%lu", grid, data.length, row);
+    NSLog(@"grid:%@ didSetData:%lu Bytes atRow:%lu", grid, (unsigned long)data.length, row);
     // TODO udpate the gridLayer
 }
 

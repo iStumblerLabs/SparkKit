@@ -15,7 +15,7 @@
 }
 
 #ifdef IL_UI_KIT
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (void)applicationDidFinishLaunching:(UIApplication *)application
 #else
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 #endif
@@ -38,10 +38,6 @@
     
     self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(update) userInfo:nil repeats:YES];
     [self.updateTimer fire];
-
-#ifdef IL_UI_KIT
-    return YES;
-#endif
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

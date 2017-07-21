@@ -8,7 +8,7 @@ NSString* const ILSparkLineFalloffInterval = @"ILSparkLineFalloffTInterval";
 
 @interface ILSparkStyle (ILSparkLine)
 @property(nonatomic, readonly) CGFloat scale;
-@property(nonatomic, readonly) CGFloat falloff;
+@property(nonatomic, readonly) NSTimeInterval falloff;
 
 @end
 

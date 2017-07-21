@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="V10-3k-ian">
+    <device id="appleTV" orientation="landscape">
+        <adaptation id="light"/>
+    </device>
+    <dependencies>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sparky Controller-->
+        <scene sceneID="KAO-Ad-Qtm">
+            <objects>
+                <viewController id="V10-3k-ian" customClass="SparkyController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b7s-PE-NqE"/>
+                        <viewControllerLayoutGuide type="bottom" id="byX-qX-P7D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YRk-h5-Fll">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oj1-Hl-182">
+                                <rect key="frame" x="460" y="440" width="1000" height="200"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsV-ay-Wgd" customClass="ILSparkGauge">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="8Oi-wC-7Ve"/>
+                                            <constraint firstAttribute="height" constant="200" id="GvI-Ei-Gnf"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tK-Kq-0h5" customClass="ILSparkGauge">
+                                        <rect key="frame" x="200" y="0.0" width="200" height="200"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="1Xj-kG-zzt"/>
+                                            <constraint firstAttribute="width" constant="200" id="QYA-hB-OQj"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNp-ve-eAa" customClass="ILSparkGauge">
+                                        <rect key="frame" x="400" y="0.0" width="200" height="200"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="Hcn-Hp-G3K"/>
+                                            <constraint firstAttribute="height" constant="200" id="xwR-nL-aFU"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EcN-0u-FUH" customClass="ILSparkGauge">
+                                        <rect key="frame" x="600" y="0.0" width="200" height="200"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="cKc-m6-CbL"/>
+                                            <constraint firstAttribute="width" constant="200" id="uVI-SU-pd0"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRI-ST-StK" customClass="ILSparkLine">
+                                        <rect key="frame" x="800" y="0.0" width="200" height="200"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="JBh-zF-Oud"/>
+                                            <constraint firstAttribute="width" constant="200" id="vbi-B4-7pT"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="fRI-ST-StK" firstAttribute="leading" secondItem="oj1-Hl-182" secondAttribute="leading" constant="800" id="MOH-3G-inm"/>
+                                    <constraint firstItem="gNp-ve-eAa" firstAttribute="leading" secondItem="oj1-Hl-182" secondAttribute="leading" constant="400" id="kaA-9b-2Jb"/>
+                                    <constraint firstItem="4tK-Kq-0h5" firstAttribute="leading" secondItem="oj1-Hl-182" secondAttribute="leading" constant="200" id="nbA-R0-kxT"/>
+                                    <constraint firstItem="gNp-ve-eAa" firstAttribute="centerX" secondItem="oj1-Hl-182" secondAttribute="centerX" id="yzC-w6-TVb"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="oj1-Hl-182" firstAttribute="leading" secondItem="YRk-h5-Fll" secondAttribute="leading" constant="460" id="Av4-fp-qMY"/>
+                            <constraint firstItem="oj1-Hl-182" firstAttribute="top" secondItem="b7s-PE-NqE" secondAttribute="bottom" constant="440" id="YeG-Ot-c5U"/>
+                            <constraint firstItem="oj1-Hl-182" firstAttribute="centerY" secondItem="YRk-h5-Fll" secondAttribute="centerY" id="jbf-uY-cPY"/>
+                            <constraint firstItem="oj1-Hl-182" firstAttribute="centerX" secondItem="YRk-h5-Fll" secondAttribute="centerX" id="pNa-ch-f98"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="sparkDial" destination="4tK-Kq-0h5" id="HKC-Ni-GJq"/>
+                        <outlet property="sparkLine" destination="fRI-ST-StK" id="6aj-CU-kfa"/>
+                        <outlet property="sparkRing" destination="gNp-ve-eAa" id="Hdu-JB-fzq"/>
+                        <outlet property="sparkText" destination="xsV-ay-Wgd" id="Rjp-QN-rUD"/>
+                        <outlet property="sparkVert" destination="EcN-0u-FUH" id="yeR-LT-uBW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dEu-8M-e0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="178" y="-185"/>
+        </scene>
+    </scenes>
+</document>

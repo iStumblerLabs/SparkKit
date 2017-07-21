@@ -135,7 +135,7 @@
 - (void*) addressOfRow:(NSUInteger)row column:(NSUInteger)column
 {
     if ((row > gridRows) || (column > gridColumns)){
-        [[NSException exceptionWithName:NSRangeException reason:[NSString stringWithFormat:@"row: %lu or column: %lu out of range: %lu x %lu", row, column, self.rows, self.columns] userInfo:nil] raise];
+        [[NSException exceptionWithName:NSRangeException reason:[NSString stringWithFormat:@"row: %lu or column: %lu out of range: %lu x %lu", (unsigned long)row, (unsigned long)column, self.rows, self.columns] userInfo:nil] raise];
     }
     
     NSUInteger columnWidth = gridColumns * gridValueSize;
@@ -349,7 +349,7 @@
         NSUInteger columnIndex = 0; // reset to zero for each row
         while (columnIndex < gridColumns) {
             NSInteger datum = [self integerAtRow:rowIndex column:columnIndex];
-            [gridRep appendFormat:@"% 5li", datum];
+            [gridRep appendFormat:@"% 5li", (long)datum];
 //            [gridRep appendFormat:@"% 3li,% 3li", rowIndex, columnIndex];
             if (columnIndex++ < (gridColumns - 1)) {
                 [gridRep appendString:@" "];
@@ -375,7 +375,7 @@
         while ( columnIndex < gridColumns )
         {
             NSInteger datum = [self integerAtRow:rowIndex column:columnIndex];
-            [jsonRep appendFormat:@"%li", datum];
+            [jsonRep appendFormat:@"%li", (long)datum];
             if ( columnIndex++ < (gridColumns-1) )
                 [jsonRep appendString:@","];
         }
@@ -552,7 +552,7 @@ exit:
         [data replaceBytesInRange:NSMakeRange(index, [self sizeOfRow])
                         withBytes:[slice bytes]];
     }
-    else NSLog(@"EXCEPTION %@ setData:atRow: slice lands outside of data range: %@ row %lu", self, slice, row);
+    else NSLog(@"EXCEPTION %@ setData:atRow: slice lands outside of data range: %@ row %lu", self, slice, (unsigned long)row);
     
     // check the row and set the min/max values
     NSUInteger colIndex = 0;
@@ -619,7 +619,7 @@ exit:
             [self.delegate grid:self didAppendedData:slice asRow:gridRows];
         }
     }
-    else NSLog(@"EXCEPTION appendData, wrong sized slice: %lu bytes", slice.length);
+    else NSLog(@"EXCEPTION appendData, wrong sized slice: %lu bytes", (unsigned long)slice.length);
 }
 
 - (void)trimToRangeOfRows:(NSRange)rowRange;
@@ -634,13 +634,13 @@ exit:
         NSData* trimmedData = [data subdataWithRange:byteRange];
         
         if ((trimmedData.length % gridColumns) != 0) {
-            NSLog(@"EXCEPTION byte range (%lu,%lu) invalid data length: %lu", byteRange.location, byteRange.length, trimmedData.length);
+            NSLog(@"EXCEPTION byte range (%lu,%lu) invalid data length: %lu", (unsigned long)byteRange.location, (unsigned long)byteRange.length, trimmedData.length);
         }
         
         [data setData:trimmedData];
         gridRows = rowRange.length;
     }
-    else NSLog(@"EXCEPTION trimmed range (%lu,%lu) exceeds grid size: %lu", rowRange.location, rowRange.length, gridRows);
+    else NSLog(@"EXCEPTION trimmed range (%lu,%lu) exceeds grid size: %lu", (unsigned long)rowRange.location, (unsigned long)rowRange.length, gridRows);
 }
 
 @end

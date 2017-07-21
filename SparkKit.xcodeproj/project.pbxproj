@@ -19,6 +19,14 @@
 		7526C1A21D26350D000E5A60 /* SparkKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75F5A9511D1A134A00A17804 /* SparkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		753956D61D13F679004DDBDA /* ILSparkStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 753956D41D13F679004DDBDA /* ILSparkStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753956D71D13F679004DDBDA /* ILSparkStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 753956D51D13F679004DDBDA /* ILSparkStyle.m */; };
+		75543AFD1F22A1E70050BAF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75543AFB1F22A1E70050BAF2 /* Main.storyboard */; };
+		75543AFF1F22A1E70050BAF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75543AFE1F22A1E70050BAF2 /* Assets.xcassets */; };
+		75543B041F22A31C0050BAF2 /* SparkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F5A9511D1A134A00A17804 /* SparkKit.framework */; };
+		75543B051F22A3220050BAF2 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756DB2181ED37A9400B84AE7 /* KitBridge.framework */; };
+		75543B061F22A33C0050BAF2 /* SparkyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A90B1D1902C500A17804 /* SparkyDelegate.m */; };
+		75543B071F22A33E0050BAF2 /* SparkyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7526C1991D25B398000E5A60 /* SparkyController.m */; };
+		75543B0E1F22A4F20050BAF2 /* Sparky.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75543B0C1F22A4F20050BAF2 /* Sparky.storyboard */; };
+		75543B0F1F22A5FD0050BAF2 /* Sparky.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75543B0C1F22A4F20050BAF2 /* Sparky.storyboard */; };
 		755E62CB1E68B33C00342CCD /* ILStreamData.h in Headers */ = {isa = PBXBuildFile; fileRef = 755E62C91E68B33C00342CCD /* ILStreamData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755E62CC1E68B33C00342CCD /* ILStreamData.h in Headers */ = {isa = PBXBuildFile; fileRef = 755E62C91E68B33C00342CCD /* ILStreamData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755E62CD1E68B33C00342CCD /* ILStreamData.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E62CA1E68B33C00342CCD /* ILStreamData.m */; };
@@ -68,6 +76,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		75543B0A1F22A3880050BAF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75971DE61D138C0400EA65D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 75F5A93D1D1A134A00A17804;
+			remoteInfo = "SparkKit (iOS)";
+		};
 		756DB2151ED37A9400B84AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 75D8ADD71ED37A31006F3823 /* KitBridge.xcodeproj */;
@@ -147,6 +162,11 @@
 		7526C1991D25B398000E5A60 /* SparkyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SparkyController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		753956D41D13F679004DDBDA /* ILSparkStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkStyle.h; sourceTree = "<group>"; };
 		753956D51D13F679004DDBDA /* ILSparkStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkStyle.m; sourceTree = "<group>"; };
+		75543AF01F22A1E70050BAF2 /* Sparky TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sparky TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75543AFC1F22A1E70050BAF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		75543AFE1F22A1E70050BAF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		75543B001F22A1E70050BAF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75543B0D1F22A4F20050BAF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Sparky.storyboard; sourceTree = "<group>"; };
 		755E62C91E68B33C00342CCD /* ILStreamData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILStreamData.h; sourceTree = "<group>"; };
 		755E62CA1E68B33C00342CCD /* ILStreamData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILStreamData.m; sourceTree = "<group>"; };
 		756DB2201ED37FE000B84AE7 /* ILSparkGauge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ILSparkGauge.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -181,6 +201,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		75543AED1F22A1E70050BAF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75543B051F22A3220050BAF2 /* KitBridge.framework in Frameworks */,
+				75543B041F22A31C0050BAF2 /* SparkKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75971DEB1D138C0400EA65D3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -242,6 +271,18 @@
 			path = iOS;
 			sourceTree = "<group>";
 		};
+		75543AF11F22A1E70050BAF2 /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				75543B001F22A1E70050BAF2 /* Info.plist */,
+				75543AFB1F22A1E70050BAF2 /* Main.storyboard */,
+				75543B0C1F22A4F20050BAF2 /* Sparky.storyboard */,
+				75543AFE1F22A1E70050BAF2 /* Assets.xcassets */,
+			);
+			name = tvOS;
+			path = Sparky/tvOS;
+			sourceTree = SOURCE_ROOT;
+		};
 		756DB2111ED37A9400B84AE7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +327,7 @@
 				75F5A9081D1902C500A17804 /* Sparky.app */,
 				75F5A9261D1A133A00A17804 /* Sparky.app */,
 				75F5A9511D1A134A00A17804 /* SparkKit.framework */,
+				75543AF01F22A1E70050BAF2 /* Sparky TV.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -331,6 +373,7 @@
 				7526C1991D25B398000E5A60 /* SparkyController.m */,
 				7526C1851D25ACF8000E5A60 /* macOS */,
 				7526C18D1D25AD5F000E5A60 /* iOS */,
+				75543AF11F22A1E70050BAF2 /* tvOS */,
 			);
 			path = Sparky;
 			sourceTree = "<group>";
@@ -375,6 +418,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		75543AEF1F22A1E70050BAF2 /* Sparky TV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75543B031F22A1E70050BAF2 /* Build configuration list for PBXNativeTarget "Sparky TV" */;
+			buildPhases = (
+				75543AEC1F22A1E70050BAF2 /* Sources */,
+				75543AED1F22A1E70050BAF2 /* Frameworks */,
+				75543AEE1F22A1E70050BAF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				75543B0B1F22A3880050BAF2 /* PBXTargetDependency */,
+			);
+			name = "Sparky TV";
+			productName = "Sparky TV";
+			productReference = 75543AF01F22A1E70050BAF2 /* Sparky TV.app */;
+			productType = "com.apple.product-type.application";
+		};
 		75971DEE1D138C0400EA65D3 /* SparkKit (macOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 75971DF71D138C0400EA65D3 /* Build configuration list for PBXNativeTarget "SparkKit (macOS)" */;
@@ -460,6 +521,11 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "iStumbler Labs";
 				TargetAttributes = {
+					75543AEF1F22A1E70050BAF2 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = E8G8ARB44Z;
+						ProvisioningStyle = Automatic;
+					};
 					75971DEE1D138C0400EA65D3 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -494,6 +560,7 @@
 				75F5A9071D1902C500A17804 /* Sparky (macOS) */,
 				75F5A93D1D1A134A00A17804 /* SparkKit (iOS) */,
 				75F5A9251D1A133A00A17804 /* Sparky (iOS) */,
+				75543AEF1F22A1E70050BAF2 /* Sparky TV */,
 			);
 		};
 /* End PBXProject section */
@@ -516,10 +583,21 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		75543AEE1F22A1E70050BAF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75543AFF1F22A1E70050BAF2 /* Assets.xcassets in Resources */,
+				75543B0F1F22A5FD0050BAF2 /* Sparky.storyboard in Resources */,
+				75543AFD1F22A1E70050BAF2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75971DED1D138C0400EA65D3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75543B0E1F22A4F20050BAF2 /* Sparky.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,6 +631,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		75543AEC1F22A1E70050BAF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75543B061F22A33C0050BAF2 /* SparkyDelegate.m in Sources */,
+				75543B071F22A33E0050BAF2 /* SparkyController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75971DEA1D138C0400EA65D3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -606,6 +693,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		75543B0B1F22A3880050BAF2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 75F5A93D1D1A134A00A17804 /* SparkKit (iOS) */;
+			targetProxy = 75543B0A1F22A3880050BAF2 /* PBXContainerItemProxy */;
+		};
 		756DB21A1ED37AA300B84AE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "KitBridge (macOS)";
@@ -653,9 +745,62 @@
 			name = Sparky.storyboard;
 			sourceTree = "<group>";
 		};
+		75543AFB1F22A1E70050BAF2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				75543AFC1F22A1E70050BAF2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		75543B0C1F22A4F20050BAF2 /* Sparky.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				75543B0D1F22A4F20050BAF2 /* Base */,
+			);
+			name = Sparky.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		75543B011F22A1E70050BAF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = E8G8ARB44Z;
+				INFOPLIST_FILE = Sparky/tvOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.istumbler.labs.Sparky-TV";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Debug;
+		};
+		75543B021F22A1E70050BAF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = E8G8ARB44Z;
+				INFOPLIST_FILE = Sparky/tvOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.istumbler.labs.Sparky-TV";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		75971DF51D138C0400EA65D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -857,6 +1002,7 @@
 				PRODUCT_NAME = SparkKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos iphoneos iphonesimulator";
 			};
 			name = Debug;
 		};
@@ -877,12 +1023,22 @@
 				PRODUCT_NAME = SparkKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos iphoneos iphonesimulator";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		75543B031F22A1E70050BAF2 /* Build configuration list for PBXNativeTarget "Sparky TV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75543B011F22A1E70050BAF2 /* Debug */,
+				75543B021F22A1E70050BAF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		75971DE91D138C0400EA65D3 /* Build configuration list for PBXProject "SparkKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -43,7 +43,7 @@ ILGridDataType;
 
 #pragma mark - Properties
 
-- (NSUInteger)   sizeOfRow;
+- (size_t)   sizeOfRow;
 - (void*)     addressOfRow:(NSUInteger)row column:(NSUInteger)column;
 - (uint8_t)      byteAtRow:(NSUInteger)row column:(NSUInteger)column;
 - (NSInteger) integerAtRow:(NSUInteger)row column:(NSUInteger)column;
