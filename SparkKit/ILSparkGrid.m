@@ -248,7 +248,8 @@
                     }
                     labelLayer.contentsGravity = kCAGravityCenter;
                     labelLayer.font = (__bridge CFTypeRef _Nullable)(self.style.font.fontName);
-                    labelLayer.fontSize = self.style.font.pointSize;                    labelLayer.foregroundColor = self.style.stroke.CGColor;
+                    labelLayer.fontSize = self.style.font.pointSize;
+                    labelLayer.foregroundColor = self.style.stroke.CGColor;
                     labelLayer.frame = CGRectMake(10,(ySpacing * yIndex), 50, 25);
                     yIndex++;
                 }

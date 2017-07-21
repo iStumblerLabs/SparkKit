@@ -69,25 +69,36 @@ NSString* const ILSparkGaugeFillDirectionHint = ILSparkGaugeNaturalFill;
         switch (self.gaugeStyle) {
             case ILSparkGaugeTextStyle: {
                 NSString* valueString = [NSString stringWithFormat:@"%.1f%%", datum * 100];
-                NSMutableParagraphStyle* valueStyle = [NSMutableParagraphStyle new];
-                valueStyle.alignment = NSTextAlignmentCenter;
 
-                NSAttributedString* attributedValueString = [[NSAttributedString alloc] initWithString:valueString attributes:@{
-                    NSParagraphStyleAttributeName: valueStyle,
-                    NSFontAttributeName: [ILFont systemFontOfSize:self.style.font.pointSize],
-                    NSForegroundColorAttributeName: self.style.stroke
-                }];
+                self.indicatorText.string = valueString;
+                self.indicatorText.alignmentMode = kCAAlignmentCenter;
+                self.indicatorText.font = (__bridge CFTypeRef _Nullable)(self.style.font.fontName);
+                self.indicatorText.fontSize = self.style.font.pointSize;
+                self.indicatorText.frame = self.borderInset; // TODO center vertically at 2 x the point size
+                self.indicatorText.zPosition = 1.0; // frontmost?
+                self.indicatorText.contentsGravity = kCAGravityCenter;
+                self.indicatorText.foregroundColor = self.style.stroke.CGColor;
+                self.indicatorText.truncationMode = kCATruncationEnd;
+                self.indicatorText.contentsScale = [[ILScreen mainScreen] scale];
+
+                self.indicatorText.hidden = NO;
+
+                // self.indicatorText.shouldRasterize = YES;
+                // self.indicatorText.sublayers = nil;
+
+                // self.indicatorText.backgroundColor = [ILColor orangeColor].CGColor;
 
                 // compute the string size and offsets
-                CGSize stringSize = attributedValueString.size;
-                CGFloat xOffset = (self.bounds.size.width-stringSize.width)/2;
-                CGFloat yOffset = (self.bounds.size.height-stringSize.height)/2;
-                CGRect stringRect = CGRectIntegral(CGRectMake(xOffset, yOffset, stringSize.width, stringSize.height));
+                // CGSize stringSize = attributedValueString.size;
+                // CGFloat xOffset = (self.bounds.size.width-stringSize.width)/2;
+                // CGFloat yOffset = (self.bounds.size.height-stringSize.height)/2;
+                // CGRect stringRect = CGRectIntegral(CGRectMake(xOffset, yOffset, stringSize.width, stringSize.height));
 
                 // set text properties and mask
                 // self.indicatorText.mask = self.borderMask;
-                self.indicatorText.string = attributedValueString;
-                self.indicatorText.frame = stringRect;
+                
+
+                // self.indicatorText.frame = stringRect;
                 break;
             }
             case ILSparkGaugeVerticalStyle: {

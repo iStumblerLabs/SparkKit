@@ -1,9 +1,10 @@
+@import KitBridge;
 @import SparkKit;
 
-#ifdef IL_APP_KIT
-@interface SparkyController : NSViewController <ILSparkGaugeDataSource, ILSparkLineDataSource, ILViews>
-#else
+#ifdef IL_UI_KIT
 @interface SparkyController : UIViewController <ILSparkGaugeDataSource, ILSparkLineDataSource, ILViews>
+#else
+@interface SparkyController : NSViewController <ILSparkGaugeDataSource, ILSparkLineDataSource, ILViews>
 #endif
 
 #pragma mark - Properties

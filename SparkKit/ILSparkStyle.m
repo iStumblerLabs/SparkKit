@@ -30,6 +30,7 @@ CGFloat const ILBoldlineWidth = 2;
         style.filled = NO;
         style.bordered = YES;
         style.width = ILPathlineWidth;
+        style.font = [ILFont fontWithName:@"Helvetica" size:12];
     }
     return style;
 }

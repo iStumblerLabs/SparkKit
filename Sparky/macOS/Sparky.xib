@@ -8,7 +8,7 @@
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="SparkyViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="SparkyController">
             <connections>
                 <outlet property="sparkCircle" destination="g6p-7e-85t" id="t2V-9j-Wl5"/>
                 <outlet property="sparkDial" destination="pmV-DR-sxj" id="ERi-2w-Lw1"/>
@@ -29,7 +29,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="496" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="62H-Hn-UVi">
                 <rect key="frame" x="0.0" y="0.0" width="496" height="360"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
