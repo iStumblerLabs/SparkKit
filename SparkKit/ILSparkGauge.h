@@ -4,11 +4,14 @@
 extern NSString* const ILSparkGaugeMinAngleHint; // Deg or Rad?
 extern NSString* const ILSparkGaugeMaxAngleHint; // Deg or Rad?
 extern NSString* const ILSparkGaugeFillClockwiseHint; // Boolean
-extern NSString* const ILSparkGaugeRingWidthHint; // Defaults to 8px
+extern NSString* const ILSparkGaugeDialWidthHint; // Defaults to ILSparkGaugeDefaultDialWidth
+extern NSString* const ILSparkGaugeRingWidthHint; // Defaults to ILSparkGaugeDefaultRingWidth
 
 /*! Vert and Horz Drawing Direction Hint */
 extern NSString* const ILSparkGaugeFillDirectionHint;
 
+/*! Defaults */
+extern CGFloat const ILSparkGaugeDefaultDialWidth; // 4
 extern CGFloat const ILSparkGaugeDefaultRingWidth; // 8
 
 typedef NS_ENUM(NSInteger, ILSparkGaugeFillDirection) {

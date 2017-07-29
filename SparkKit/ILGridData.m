@@ -118,7 +118,7 @@
         gridValueSize = size;
         gridType = type;
         gridMinValue = 0;
-        gridMaxValue = -1500; // this negative case has to work for samples in DBm, and it should anyway
+        gridMaxValue = 1; // this negative case has to work for samples in DBm, and it should anyway
 
         bzero((void*)[data bytes], gridSize);
     }
@@ -138,8 +138,7 @@
         [[NSException exceptionWithName:NSRangeException reason:[NSString stringWithFormat:@"row: %lu or column: %lu out of range: %lu x %lu", (unsigned long)row, (unsigned long)column, self.rows, self.columns] userInfo:nil] raise];
     }
     
-    NSUInteger columnWidth = gridColumns * gridValueSize;
-    NSUInteger offset = (row*columnWidth) + (column*gridValueSize); // offset in bytes
+    NSUInteger offset = ((row * self.sizeOfRow) + (column * gridValueSize)); // offset in bytes
     
 /*   NSLog(@"grid %lu x %lu = %lu",row,column,offset);
     if( offset > [data length]) // range check so we don't send a pointer to hyperspace
@@ -540,20 +539,8 @@ exit:
 
 #pragma mark - Slices
 
-- (NSData*) dataAtRow:(NSUInteger)row
+- (void) updateMinMaxAtRow:(NSUInteger) row
 {
-    return [NSData dataWithBytes:[self addressOfRow:row column:0] length:[self sizeOfRow]];
-}
-
-- (void) setData:(NSData*) slice atRow:(NSUInteger)row
-{
-    NSInteger index = (row * [self sizeOfRow]);
-    if (index+[self sizeOfRow] <= data.length) {
-        [data replaceBytesInRange:NSMakeRange(index, [self sizeOfRow])
-                        withBytes:[slice bytes]];
-    }
-    else NSLog(@"EXCEPTION %@ setData:atRow: slice lands outside of data range: %@ row %lu", self, slice, (unsigned long)row);
-    
     // check the row and set the min/max values
     NSUInteger colIndex = 0;
     while (colIndex < gridColumns) {
@@ -568,7 +555,7 @@ exit:
                 }
                 break;
             }
-
+                
             case ILGridDataIntegerType: {
                 NSInteger integer = [self integerAtRow:row column:colIndex];
                 if( integer > gridMaxValue) {
@@ -602,6 +589,23 @@ exit:
         }
         colIndex++;
     }
+}
+
+- (NSData*) dataAtRow:(NSUInteger)row
+{
+    return [NSData dataWithBytes:[self addressOfRow:row column:0] length:[self sizeOfRow]];
+}
+
+- (void) setData:(NSData*) slice atRow:(NSUInteger)row
+{
+    NSInteger index = (row * [self sizeOfRow]);
+    if (index+[self sizeOfRow] <= data.length) {
+        [data replaceBytesInRange:NSMakeRange(index, [self sizeOfRow])
+                        withBytes:[slice bytes]];
+    }
+    else NSLog(@"EXCEPTION %@ setData:atRow: slice lands outside of data range: %@ row %lu", self, slice, (unsigned long)row);
+    
+    [self updateMinMaxAtRow:row];
 
     if (self.delegate && [self.delegate respondsToSelector:@selector(grid:didSetData:atRow:)]) {
         [self.delegate grid:self didSetData:slice atRow:row];
@@ -613,7 +617,9 @@ exit:
     NSInteger sliceColumns = (slice.length / gridValueSize);
     if ((sliceColumns % self.columns) == 0) { // allow appending 0-N rows at a time
         [data appendData:slice];
-        gridRows++;
+        gridRows++; // XXX multi-row appends break this
+        
+        [self updateMinMaxAtRow:gridRows];
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(grid:didAppendedData:asRow:)]) {
             [self.delegate grid:self didAppendedData:slice asRow:gridRows];

@@ -154,9 +154,9 @@
 
 -(void)drawGrid // one shot, redraw the entire grid into self.gridLayer
 {
-    BOOL drawAlpha = NO;
+    BOOL drawAlpha = YES;
     
-    [CATransaction setValue:@(0.1) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
+    // [CATransaction setValue:@(0.1) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
     self.gridLayer.frame = self.layer.bounds;
 
     if (drawAlpha) {
@@ -179,7 +179,7 @@
         self.gridLayer.magnificationFilter = kCAFilterNearest; // kCAFilterLinear;
     }
 
-    [CATransaction commit];
+    // [CATransaction commit];
 
     /*
     self.gridLayer.sublayers = nil;

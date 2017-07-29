@@ -22,8 +22,8 @@ CGFloat const ILBoldlineWidth = 2;
     static ILSparkStyle* style = nil;
     if (!style) {
         style = [ILSparkStyle new];
-        style.fill = [ILColor darkGrayColor];
-        style.stroke = [ILColor blackColor];
+        style.fill = [ILColor grayColor];
+        style.stroke = [ILColor darkGrayColor];
         style.border = [ILColor lightGrayColor];
         style.background = [ILColor clearColor];
         style.gradient = nil; // [[ILGradient alloc] initWithStartingColor:[ILColor blackColor] endingColor:[ILColor whiteColor]];

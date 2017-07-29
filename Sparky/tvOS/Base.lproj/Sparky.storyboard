@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="V10-3k-ian">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="V10-3k-ian">
     <device id="appleTV" orientation="landscape">
         <adaptation id="light"/>
     </device>
     <dependencies>
         <deployment identifier="tvOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,70 +22,122 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oj1-Hl-182">
-                                <rect key="frame" x="460" y="440" width="1000" height="200"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsV-ay-Wgd" customClass="ILSparkGauge">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="8Oi-wC-7Ve"/>
-                                            <constraint firstAttribute="height" constant="200" id="GvI-Ei-Gnf"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tK-Kq-0h5" customClass="ILSparkGauge">
-                                        <rect key="frame" x="200" y="0.0" width="200" height="200"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="1Xj-kG-zzt"/>
-                                            <constraint firstAttribute="width" constant="200" id="QYA-hB-OQj"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNp-ve-eAa" customClass="ILSparkGauge">
-                                        <rect key="frame" x="400" y="0.0" width="200" height="200"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="Hcn-Hp-G3K"/>
-                                            <constraint firstAttribute="height" constant="200" id="xwR-nL-aFU"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EcN-0u-FUH" customClass="ILSparkGauge">
-                                        <rect key="frame" x="600" y="0.0" width="200" height="200"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="cKc-m6-CbL"/>
-                                            <constraint firstAttribute="width" constant="200" id="uVI-SU-pd0"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRI-ST-StK" customClass="ILSparkLine">
-                                        <rect key="frame" x="800" y="0.0" width="200" height="200"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="JBh-zF-Oud"/>
-                                            <constraint firstAttribute="width" constant="200" id="vbi-B4-7pT"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsV-ay-Wgd" customClass="ILSparkGauge">
+                                <rect key="frame" x="132" y="648" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="fRI-ST-StK" firstAttribute="leading" secondItem="oj1-Hl-182" secondAttribute="leading" constant="800" id="MOH-3G-inm"/>
-                                    <constraint firstItem="gNp-ve-eAa" firstAttribute="leading" secondItem="oj1-Hl-182" secondAttribute="leading" constant="400" id="kaA-9b-2Jb"/>
-                                    <constraint firstItem="4tK-Kq-0h5" firstAttribute="leading" secondItem="oj1-Hl-182" secondAttribute="leading" constant="200" id="nbA-R0-kxT"/>
-                                    <constraint firstItem="gNp-ve-eAa" firstAttribute="centerX" secondItem="oj1-Hl-182" secondAttribute="centerX" id="yzC-w6-TVb"/>
+                                    <constraint firstAttribute="height" constant="200" id="gBC-Je-TT5"/>
+                                    <constraint firstAttribute="width" constant="200" id="v0r-eu-IHs"/>
                                 </constraints>
-                            </stackView>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tK-Kq-0h5" customClass="ILSparkGauge">
+                                <rect key="frame" x="756" y="648" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Y6Y-5b-f4w"/>
+                                    <constraint firstAttribute="width" constant="200" id="t5z-M1-HkA"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNp-ve-eAa" customClass="ILSparkGauge">
+                                <rect key="frame" x="964" y="648" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="AyC-ax-J3e"/>
+                                    <constraint firstAttribute="height" constant="200" id="Uoq-hA-5wI"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ne-Up-Xc0" customClass="ILSparkGauge">
+                                <rect key="frame" x="340" y="648" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Fdm-M5-7ou"/>
+                                    <constraint firstAttribute="height" constant="200" id="pKm-qP-Ru7"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTg-pk-o0L" customClass="ILSparkGauge">
+                                <rect key="frame" x="1380" y="648" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="MGO-ce-Vc0"/>
+                                    <constraint firstAttribute="height" constant="200" id="Na4-Uw-mFO"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NaM-5i-f2a" customClass="ILSparkGauge">
+                                <rect key="frame" x="1172" y="648" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Vsf-Cf-r6d"/>
+                                    <constraint firstAttribute="width" constant="200" id="tcD-tX-TPx"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRI-ST-StK" customClass="ILSparkLine">
+                                <rect key="frame" x="132" y="440" width="1656" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="AqW-Cr-IQK"/>
+                                    <constraint firstAttribute="width" constant="1656" id="f41-gm-PIT"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3q8-om-Q6q" customClass="ILSparkGauge">
+                                <rect key="frame" x="1588" y="648" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="25u-0y-SJc"/>
+                                    <constraint firstAttribute="height" constant="200" id="O34-Nt-YWG"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EcN-0u-FUH" customClass="ILSparkGauge">
+                                <rect key="frame" x="548" y="648" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="21H-iv-p2r"/>
+                                    <constraint firstAttribute="height" constant="200" id="BYj-2a-QQB"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kEI-Df-09U" customClass="ILSparkGrid">
+                                <rect key="frame" x="132" y="232" width="1656" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1656" id="JhF-fZ-F8B"/>
+                                    <constraint firstAttribute="height" constant="200" id="LOR-Xs-nSF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="oj1-Hl-182" firstAttribute="leading" secondItem="YRk-h5-Fll" secondAttribute="leading" constant="460" id="Av4-fp-qMY"/>
-                            <constraint firstItem="oj1-Hl-182" firstAttribute="top" secondItem="b7s-PE-NqE" secondAttribute="bottom" constant="440" id="YeG-Ot-c5U"/>
-                            <constraint firstItem="oj1-Hl-182" firstAttribute="centerY" secondItem="YRk-h5-Fll" secondAttribute="centerY" id="jbf-uY-cPY"/>
-                            <constraint firstItem="oj1-Hl-182" firstAttribute="centerX" secondItem="YRk-h5-Fll" secondAttribute="centerX" id="pNa-ch-f98"/>
+                            <constraint firstItem="7Ne-Up-Xc0" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="1Ci-jQ-LSy"/>
+                            <constraint firstItem="xsV-ay-Wgd" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="3RK-73-Nw2"/>
+                            <constraint firstItem="3q8-om-Q6q" firstAttribute="leading" secondItem="GTg-pk-o0L" secondAttribute="trailing" constant="8" id="9RK-MT-vEd"/>
+                            <constraint firstItem="fRI-ST-StK" firstAttribute="top" secondItem="kEI-Df-09U" secondAttribute="bottom" constant="8" id="DF5-hW-U9w"/>
+                            <constraint firstItem="kEI-Df-09U" firstAttribute="top" secondItem="b7s-PE-NqE" secondAttribute="bottom" constant="232" id="Fi0-he-dXi"/>
+                            <constraint firstItem="kEI-Df-09U" firstAttribute="leading" secondItem="YRk-h5-Fll" secondAttribute="leadingMargin" constant="112" id="HfZ-v9-D9q"/>
+                            <constraint firstItem="GTg-pk-o0L" firstAttribute="leading" secondItem="NaM-5i-f2a" secondAttribute="trailing" constant="8" id="M2M-kh-RLP"/>
+                            <constraint firstItem="GTg-pk-o0L" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="NEk-cL-R0Z"/>
+                            <constraint firstItem="gNp-ve-eAa" firstAttribute="leading" secondItem="4tK-Kq-0h5" secondAttribute="trailing" constant="8" id="Q8a-Dt-7mD"/>
+                            <constraint firstItem="4tK-Kq-0h5" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="Sax-0A-wqC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fRI-ST-StK" secondAttribute="trailing" constant="112" id="Tzy-2u-EVy"/>
+                            <constraint firstItem="3q8-om-Q6q" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="UXX-hV-2nn"/>
+                            <constraint firstItem="xsV-ay-Wgd" firstAttribute="leading" secondItem="YRk-h5-Fll" secondAttribute="leadingMargin" constant="112" id="WP1-Sq-gK1"/>
+                            <constraint firstItem="fRI-ST-StK" firstAttribute="leading" secondItem="YRk-h5-Fll" secondAttribute="leadingMargin" constant="112" id="ap0-LC-RzO"/>
+                            <constraint firstItem="7Ne-Up-Xc0" firstAttribute="leading" secondItem="xsV-ay-Wgd" secondAttribute="trailing" constant="8" id="cdz-Tj-vgU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kEI-Df-09U" secondAttribute="trailing" constant="112" id="cfU-f5-JEr"/>
+                            <constraint firstItem="EcN-0u-FUH" firstAttribute="leading" secondItem="7Ne-Up-Xc0" secondAttribute="trailing" constant="8" id="jct-ow-IV2"/>
+                            <constraint firstItem="EcN-0u-FUH" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="k0k-F2-uyY"/>
+                            <constraint firstItem="4tK-Kq-0h5" firstAttribute="leading" secondItem="EcN-0u-FUH" secondAttribute="trailing" constant="8" id="kx7-gc-KWX"/>
+                            <constraint firstItem="gNp-ve-eAa" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="oRP-kc-DqO"/>
+                            <constraint firstItem="NaM-5i-f2a" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="sNB-in-vKa"/>
+                            <constraint firstItem="NaM-5i-f2a" firstAttribute="leading" secondItem="gNp-ve-eAa" secondAttribute="trailing" constant="8" id="tvO-yi-Otd"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="sparkCircle" destination="GTg-pk-o0L" id="Ahi-NT-usH"/>
                         <outlet property="sparkDial" destination="4tK-Kq-0h5" id="HKC-Ni-GJq"/>
+                        <outlet property="sparkGrid" destination="kEI-Df-09U" id="Fc6-6b-Ohp"/>
+                        <outlet property="sparkHorz" destination="7Ne-Up-Xc0" id="ZXZ-vr-2SK"/>
                         <outlet property="sparkLine" destination="fRI-ST-StK" id="6aj-CU-kfa"/>
+                        <outlet property="sparkPie" destination="NaM-5i-f2a" id="P0m-Op-1wH"/>
                         <outlet property="sparkRing" destination="gNp-ve-eAa" id="Hdu-JB-fzq"/>
-                        <outlet property="sparkText" destination="xsV-ay-Wgd" id="Rjp-QN-rUD"/>
+                        <outlet property="sparkSquare" destination="3q8-om-Q6q" id="HMZ-JE-KJB"/>
+                        <outlet property="sparkText" destination="xsV-ay-Wgd" id="OfE-n1-rZI"/>
                         <outlet property="sparkVert" destination="EcN-0u-FUH" id="yeR-LT-uBW"/>
                     </connections>
                 </viewController>

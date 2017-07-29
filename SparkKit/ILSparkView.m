@@ -104,7 +104,8 @@
     CGRect insetRect = CGRectZero;
 
     if (self.style.bordered) {
-        insetRect = CGRectInset(self.bounds, self.style.width, self.style.width);
+        CGFloat inset = (self.style.width * 2);
+        insetRect = CGRectInset(self.bounds, inset, inset);
     }
     else {
         insetRect = self.bounds;
@@ -129,9 +130,10 @@
     // udpate the border view
     if (self.style.bordered) {
         CAShapeLayer* borderLayer = self.border;
-        borderLayer.fillColor = [ILColor clearColor].CGColor;
+        borderLayer.fillColor = self.style.background.CGColor;
         borderLayer.lineWidth = self.style.width;
         borderLayer.strokeColor = self.style.border.CGColor;
+        borderLayer.zPosition = -1;
         if (![self.layer.sublayers containsObject:borderLayer]) {
             [self.layer addSublayer:borderLayer];
         }

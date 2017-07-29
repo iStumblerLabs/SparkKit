@@ -12,6 +12,7 @@ ILGridDataType;
 
 @protocol ILGridDataDelegate;
 
+/*! TODO create GridData and MutableGridData Protocols based on this implementation */
 @interface ILGridData : NSObject
 {
     ILGridDataType gridType;

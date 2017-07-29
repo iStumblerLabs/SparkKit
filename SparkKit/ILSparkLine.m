@@ -131,9 +131,8 @@ exit:
 
     [super updateView];
 
-    CGRect insetRect = CGRectIntegral(CGRectInset(self.bounds, self.style.width, self.style.width));
-    CGSize viewSize = insetRect.size;
-    CALayer* sparkLine = [ILSparkLine timeSeriesWithData:[self dataSource] size:viewSize style:self.style];
+    CGRect insetRect = self.borderInset;
+    CALayer* sparkLine = [ILSparkLine timeSeriesWithData:[self dataSource] size:insetRect.size style:self.style];
     [self.layer addSublayer:sparkLine];
     sparkLine.frame = insetRect;
 }

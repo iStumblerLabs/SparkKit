@@ -25,12 +25,17 @@
 		75543B051F22A3220050BAF2 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756DB2181ED37A9400B84AE7 /* KitBridge.framework */; };
 		75543B061F22A33C0050BAF2 /* SparkyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A90B1D1902C500A17804 /* SparkyDelegate.m */; };
 		75543B071F22A33E0050BAF2 /* SparkyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7526C1991D25B398000E5A60 /* SparkyController.m */; };
-		75543B0E1F22A4F20050BAF2 /* Sparky.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75543B0C1F22A4F20050BAF2 /* Sparky.storyboard */; };
 		75543B0F1F22A5FD0050BAF2 /* Sparky.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75543B0C1F22A4F20050BAF2 /* Sparky.storyboard */; };
 		755E62CB1E68B33C00342CCD /* ILStreamData.h in Headers */ = {isa = PBXBuildFile; fileRef = 755E62C91E68B33C00342CCD /* ILStreamData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755E62CC1E68B33C00342CCD /* ILStreamData.h in Headers */ = {isa = PBXBuildFile; fileRef = 755E62C91E68B33C00342CCD /* ILStreamData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755E62CD1E68B33C00342CCD /* ILStreamData.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E62CA1E68B33C00342CCD /* ILStreamData.m */; };
 		755E62CE1E68B33C00342CCD /* ILStreamData.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E62CA1E68B33C00342CCD /* ILStreamData.m */; };
+		756C2D991F26A1D80060F718 /* ILTimelineData.h in Headers */ = {isa = PBXBuildFile; fileRef = 756C2D971F26A1D80060F718 /* ILTimelineData.h */; };
+		756C2D9A1F26A1D80060F718 /* ILTimelineData.h in Headers */ = {isa = PBXBuildFile; fileRef = 756C2D971F26A1D80060F718 /* ILTimelineData.h */; };
+		756C2D9B1F26A1D80060F718 /* ILTimelineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 756C2D981F26A1D80060F718 /* ILTimelineData.m */; };
+		756C2D9C1F26A1D80060F718 /* ILTimelineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 756C2D981F26A1D80060F718 /* ILTimelineData.m */; };
+		756C2D9F1F26B1DF0060F718 /* SparkKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75F5A9511D1A134A00A17804 /* SparkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		756C2DA01F26B1E90060F718 /* KitBridge.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 756DB2181ED37A9400B84AE7 /* KitBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		756DB21E1ED37AD500B84AE7 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756DB2161ED37A9400B84AE7 /* KitBridge.framework */; };
 		756DB21F1ED37AE600B84AE7 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756DB2181ED37A9400B84AE7 /* KitBridge.framework */; };
 		756DB2221ED37FE000B84AE7 /* ILSparkGauge.h in Headers */ = {isa = PBXBuildFile; fileRef = 756DB2201ED37FE000B84AE7 /* ILSparkGauge.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -128,6 +133,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		756C2D9D1F26B1C80060F718 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				756C2D9F1F26B1DF0060F718 /* SparkKit.framework in CopyFiles */,
+				756C2DA01F26B1E90060F718 /* KitBridge.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75F5A91C1D19034F00A17804 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -169,6 +185,8 @@
 		75543B0D1F22A4F20050BAF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Sparky.storyboard; sourceTree = "<group>"; };
 		755E62C91E68B33C00342CCD /* ILStreamData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILStreamData.h; sourceTree = "<group>"; };
 		755E62CA1E68B33C00342CCD /* ILStreamData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILStreamData.m; sourceTree = "<group>"; };
+		756C2D971F26A1D80060F718 /* ILTimelineData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILTimelineData.h; sourceTree = "<group>"; };
+		756C2D981F26A1D80060F718 /* ILTimelineData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILTimelineData.m; sourceTree = "<group>"; };
 		756DB2201ED37FE000B84AE7 /* ILSparkGauge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ILSparkGauge.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		756DB2211ED37FE000B84AE7 /* ILSparkGauge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ILSparkGauge.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		758EA4AE1F04E9A600069634 /* ILSparkBuckets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkBuckets.h; sourceTree = "<group>"; };
@@ -301,6 +319,8 @@
 				755E62CA1E68B33C00342CCD /* ILStreamData.m */,
 				758EA4BA1F04EB1000069634 /* ILBucketData.h */,
 				758EA4BB1F04EB1000069634 /* ILBucketData.m */,
+				756C2D971F26A1D80060F718 /* ILTimelineData.h */,
+				756C2D981F26A1D80060F718 /* ILTimelineData.m */,
 			);
 			name = "Data Sources";
 			path = SparkKit;
@@ -386,6 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75971DF31D138C0400EA65D3 /* SparkKit.h in Headers */,
+				756C2D991F26A1D80060F718 /* ILTimelineData.h in Headers */,
 				753956D61D13F679004DDBDA /* ILSparkStyle.h in Headers */,
 				75971E091D13D79F00EA65D3 /* ILSparkView.h in Headers */,
 				75F86DCF1DF26CAC00BC0A35 /* ILSparkGrid.h in Headers */,
@@ -403,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75F5A9471D1A134A00A17804 /* SparkKit.h in Headers */,
+				756C2D9A1F26A1D80060F718 /* ILTimelineData.h in Headers */,
 				756DB2231ED37FE000B84AE7 /* ILSparkGauge.h in Headers */,
 				75F5A9491D1A134A00A17804 /* ILSparkStyle.h in Headers */,
 				75F5A94A1D1A134A00A17804 /* ILSparkView.h in Headers */,
@@ -425,6 +447,7 @@
 				75543AEC1F22A1E70050BAF2 /* Sources */,
 				75543AED1F22A1E70050BAF2 /* Frameworks */,
 				75543AEE1F22A1E70050BAF2 /* Resources */,
+				756C2D9D1F26B1C80060F718 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -528,12 +551,19 @@
 					};
 					75971DEE1D138C0400EA65D3 = {
 						CreatedOnToolsVersion = 7.3.1;
+						ProvisioningStyle = Automatic;
 					};
 					75F5A9071D1902C500A17804 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = E8G8ARB44Z;
+						ProvisioningStyle = Automatic;
 					};
 					75F5A9251D1A133A00A17804 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = E8G8ARB44Z;
+					};
+					75F5A93D1D1A134A00A17804 = {
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -597,7 +627,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75543B0E1F22A4F20050BAF2 /* Sparky.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,6 +674,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75971DFD1D139FBA00EA65D3 /* ILSparkLine.m in Sources */,
+				756C2D9B1F26A1D80060F718 /* ILTimelineData.m in Sources */,
 				756DB2241ED37FE000B84AE7 /* ILSparkGauge.m in Sources */,
 				753956D71D13F679004DDBDA /* ILSparkStyle.m in Sources */,
 				758EA4BE1F04EB1000069634 /* ILBucketData.m in Sources */,
@@ -679,6 +709,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75F5A93F1D1A134A00A17804 /* ILSparkLine.m in Sources */,
+				756C2D9C1F26A1D80060F718 /* ILTimelineData.m in Sources */,
 				756DB2251ED37FE000B84AE7 /* ILSparkGauge.m in Sources */,
 				75F5A9401D1A134A00A17804 /* ILSparkStyle.m in Sources */,
 				758EA4BF1F04EB1000069634 /* ILBucketData.m in Sources */,
@@ -771,11 +802,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				DEVELOPMENT_TEAM = E8G8ARB44Z;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Sparky/tvOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.istumbler.labs.Sparky-TV";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
@@ -789,11 +822,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				DEVELOPMENT_TEAM = E8G8ARB44Z;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Sparky/tvOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.istumbler.labs.Sparky-TV";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
@@ -893,9 +928,10 @@
 		75971DF81D138C0400EA65D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -905,6 +941,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.SparkKit;
 				PRODUCT_NAME = SparkKit;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -913,9 +950,10 @@
 		75971DF91D138C0400EA65D3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -925,6 +963,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.SparkKit;
 				PRODUCT_NAME = SparkKit;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -934,11 +973,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = E8G8ARB44Z;
 				INFOPLIST_FILE = Sparky/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.Sparky;
 				PRODUCT_NAME = Sparky;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -946,11 +988,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = E8G8ARB44Z;
 				INFOPLIST_FILE = Sparky/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.Sparky;
 				PRODUCT_NAME = Sparky;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -959,6 +1004,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = E8G8ARB44Z;
 				INFOPLIST_FILE = Sparky/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -974,6 +1020,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = E8G8ARB44Z;
 				INFOPLIST_FILE = Sparky/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -988,9 +1035,10 @@
 		75F5A94F1D1A134A00A17804 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1000,6 +1048,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.SparkKit;
 				PRODUCT_NAME = SparkKit;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos iphoneos iphonesimulator";
@@ -1009,9 +1058,10 @@
 		75F5A9501D1A134A00A17804 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1021,6 +1071,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.SparkKit;
 				PRODUCT_NAME = SparkKit;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos iphoneos iphonesimulator";

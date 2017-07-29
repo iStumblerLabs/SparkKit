@@ -33,10 +33,23 @@
     self.sparkPie.dataSource = self;
     self.sparkDial.dataSource = self;
     
-    self.gridData = [ILGridData floatGridWithRows:10 columns:0];
+    self.gridData = [ILGridData floatGridWithRows:0 columns:10];
     self.sparkGrid.grid = self.gridData;
-    self.sparkGrid.xAxisLabels = @[@"1", @"", @"3", @"", @"5", @"", @"7", @"", @"9", @""];
-    self.sparkGrid.yAxisLabels = @[@"a", @"b", @"c", @"d", @"e"];
+    self.sparkGrid.xAxisLabels = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10"];
+    self.sparkGrid.yAxisLabels = @[@"a", @"b", @"c"];
+    
+#if TARGET_OS_TV
+    [ILSparkStyle defaultStyle].width = 0;
+    [ILSparkStyle defaultStyle].font = [ILFont fontWithName:@"Helvetica" size:48];
+    [ILSparkStyle defaultStyle].background = [ILColor lightGrayColor];
+    [ILSparkStyle defaultStyle].border = [ILColor clearColor];
+    [ILSparkStyle defaultStyle].stroke = [ILColor clearColor];
+    [[ILSparkStyle defaultStyle] addHints:@{
+        ILSparkGaugeRingWidthHint: @36,
+        ILSparkGaugeDialWidthHint: @8,
+        ILSparkLineScaleFactor: @0.5
+    }];
+#endif
 }
 
 - (void) updateView
@@ -55,9 +68,19 @@
     [self.sparkPie updateView];
     [self.sparkDial updateView];
     
-    for (int index = 0; index < 5; index++) {
-        
+    /* append some grid data */
+    NSMutableData* blankRow = [NSMutableData dataWithLength:self.gridData.sizeOfRow]; // start small
+    NSTimeInterval interval = [NSDate timeIntervalSinceReferenceDate];
+
+    int index = 0;
+    while (index < self.gridData.columns) {
+        CGFloat sine = (sin(interval / 5) / 2) + 0.5;
+        void* valueAddress = (blankRow.mutableBytes + (index * sizeof(CGFloat)));
+        memcpy(valueAddress, &sine, sizeof(CGFloat));
+        index++;
     }
+    [self.gridData appendData:blankRow];
+    [self.sparkGrid updateView];
 }
 
 #pragma mark - ILSparkGaugeDataSource
@@ -88,4 +111,5 @@
     // NSLog(@"sampleValueAtIndex: %lu interval: %f -> %f", (unsigned long)index, interval, sine);
     return sine;
 }
+
 @end
