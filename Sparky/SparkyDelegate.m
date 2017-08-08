@@ -1,11 +1,6 @@
 #import "SparkyDelegate.h"
 #import "SparkyController.h"
 
-#ifdef IL_APP_KIT
-@interface SparkyDelegate ()
-
-@end
-#endif
 
 @implementation SparkyDelegate
 

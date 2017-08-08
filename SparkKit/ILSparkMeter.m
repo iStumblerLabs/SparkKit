@@ -1,35 +1,35 @@
-#import "ILSparkGauge.h"
+#import "ILSparkMeter.h"
 
 
 /*! Pie and Ring Drawing Hints */
-NSString* const ILSparkGaugeMinAngleHint = @"ILSparkGaugeMinAngleHint";
-NSString* const ILSparkGaugeMaxAngleHint = @"ILSparkGaugeMaxAngleHint";
-NSString* const ILSparkGaugeFillClockwiseHint = @"ILSparkGaugeFillClockwiseHint";
-NSString* const ILSparkGaugeDialWidthHint = @"ILSparkGaugeDialWidthHint";
-NSString* const ILSparkGaugeRingWidthHint = @"ILSparkGaugeRingWidthHint";
+NSString* const ILSparkMeterMinAngleHint = @"ILSparkMeterMinAngleHint";
+NSString* const ILSparkMeterMaxAngleHint = @"ILSparkMeterMaxAngleHint";
+NSString* const ILSparkMeterFillClockwiseHint = @"ILSparkMeterFillClockwiseHint";
+NSString* const ILSparkMeterDialWidthHint = @"ILSparkMeterDialWidthHint";
+NSString* const ILSparkMeterRingWidthHint = @"ILSparkMeterRingWidthHint";
 
 /*! Vert and Horz Drawing Direction Hint */
-NSString* const ILSparkGaugeFillDirectionHint = @"ILSparkGaugeFillDirectionHint";
+NSString* const ILSparkMeterFillDirectionHint = @"ILSparkMeterFillDirectionHint";
 
 /*! Default Dial and Ring Width */
-CGFloat const ILSparkGaugeDefaultDialWidth = 4;
-CGFloat const ILSparkGaugeDefaultRingWidth = 8;
+CGFloat const ILSparkMeterDefaultDialWidth = 4;
+CGFloat const ILSparkMeterDefaultRingWidth = 8;
 
 #pragma mark - Gauge Style
 
-@interface ILSparkStyle (ILSparkGauge)
+@interface ILSparkStyle (ILSparkMeter)
 @property (nonatomic, readonly) CGFloat minAngle;
 @property (nonatomic, readonly) CGFloat maxAngle;
 @property (nonatomic, readonly) BOOL fillClockwise;
 @property (nonatomic, readonly) CGFloat dialWidth;
 @property (nonatomic, readonly) CGFloat ringWidth;
-@property (nonatomic, readonly) ILSparkGaugeFillDirection fillDirection;
+@property (nonatomic, readonly) ILSparkMeterFillDirection fillDirection;
 
 @end
 
 #pragma mark - Private
 
-@interface ILSparkGauge ()
+@interface ILSparkMeter ()
 @property (nonatomic, retain) CATextLayer *indicatorText;
 @property (nonatomic, retain) CAShapeLayer *indicatorLayer;
 
@@ -37,7 +37,7 @@ CGFloat const ILSparkGaugeDefaultRingWidth = 8;
 
 #pragma mark -
 
-@implementation ILSparkGauge
+@implementation ILSparkMeter
 
 #ifdef IL_UI_KIT
 #pragma mark - UIView
@@ -48,8 +48,8 @@ CGFloat const ILSparkGaugeDefaultRingWidth = 8;
     self.indicatorLayer.frame = self.bounds;
 //    NSLog(@"<%@ %p layoutSubviews frame: %@ layer frame: %@ layer bounds: %@>",
 //        self.class, self, NSStringFromCGRect(self.frame),
-//        NSStringFromCGRect(self.style == ILSparkGaugeTextStyle ? self.indicatorText.frame : self.indicatorLayer.frame),
-//        NSStringFromCGRect(self.style == ILSparkGaugeTextStyle ? self.indicatorText.bounds : self.indicatorLayer.bounds));
+//        NSStringFromCGRect(self.style == ILSparkMeterTextStyle ? self.indicatorText.frame : self.indicatorLayer.frame),
+//        NSStringFromCGRect(self.style == ILSparkMeterTextStyle ? self.indicatorText.bounds : self.indicatorLayer.bounds));
 }
 #endif
 
@@ -58,7 +58,7 @@ CGFloat const ILSparkGaugeDefaultRingWidth = 8;
 - (void)initView
 {
     [super initView];
-    self.style = ILSparkGaugeTextStyle;
+    self.style = ILSparkMeterTextStyle;
     self.dataSource = nil;
     
     self.indicatorLayer = [CAShapeLayer new];
@@ -74,15 +74,15 @@ CGFloat const ILSparkGaugeDefaultRingWidth = 8;
 
     ILBezierPath* filledPath = nil;
 
-    self.indicatorLayer.hidden = (self.style == ILSparkGaugeTextStyle);
-    self.indicatorText.hidden = (self.style != ILSparkGaugeTextStyle);
+    self.indicatorLayer.hidden = (self.style == ILSparkMeterTextStyle);
+    self.indicatorText.hidden = (self.style != ILSparkMeterTextStyle);
 
     CGFloat datum = self.dataSource.datum;
     CGRect insetRect = self.borderInset;
 
     if (self.dataSource) {
         switch (self.gaugeStyle) {
-            case ILSparkGaugeTextStyle: {
+            case ILSparkMeterTextStyle: {
                 NSString* valueString = [NSString stringWithFormat:@"%.1f%%", datum * 100];
                 CGRect textRect = insetRect;
                 textRect.size.height = (self.style.font.pointSize * 1.5); // baseline?
@@ -119,19 +119,19 @@ CGFloat const ILSparkGaugeDefaultRingWidth = 8;
                 // self.indicatorText.frame = stringRect;
                 break;
             }
-            case ILSparkGaugeVerticalStyle: {
+            case ILSparkMeterVerticalStyle: {
                 CGFloat indicatorPosition = insetRect.size.height - (insetRect.size.height * datum);
                 CGRect filledRect = CGRectMake(insetRect.origin.x, (insetRect.origin.x + indicatorPosition), insetRect.size.width, (insetRect.size.height - indicatorPosition));
                 filledPath = [ILBezierPath bezierPathWithRect:filledRect];
                 break;
             }
-            case ILSparkGaugeHorizontalStyle: {
+            case ILSparkMeterHorizontalStyle: {
                 CGFloat indicatorPosition = (insetRect.size.width * datum);
                 CGRect filledRect = CGRectMake(insetRect.origin.x, insetRect.origin.y, indicatorPosition, insetRect.size.height);
                 filledPath = [ILBezierPath bezierPathWithRect:filledRect];
                 break;
             }
-            case ILSparkGaugeSquareStyle: {
+            case ILSparkMeterSquareStyle: {
                 CGRect squareRect = ILRectSquareInRect(insetRect);
                 CGFloat indicatorSideLength = (squareRect.size.width * self.dataSource.datum);
                 CGFloat indicatorInset = (squareRect.size.width - indicatorSideLength) / 2; // ??? take the square root?
@@ -139,7 +139,7 @@ CGFloat const ILSparkGaugeDefaultRingWidth = 8;
                 filledPath = [ILBezierPath bezierPathWithRect:filledRect];
                 break;
             }
-            case ILSparkGaugeCircleStyle: {
+            case ILSparkMeterCircleStyle: {
                 CGRect squareRect = ILRectSquareInRect(insetRect);
                 CGFloat indicatorSideLength = (squareRect.size.width * datum);
                 CGFloat indicatorInset = (squareRect.size.width - indicatorSideLength) / 2; // ??? equal area?
@@ -147,7 +147,7 @@ CGFloat const ILSparkGaugeDefaultRingWidth = 8;
                 filledPath = [ILBezierPath bezierPathWithOvalInRect:filledRect];
                 break;
             }
-            case ILSparkGaugeRingStyle: {
+            case ILSparkMeterRingStyle: {
                 CGRect squareRect = ILRectSquareInRect(insetRect);
                 CGFloat indicatorSideLength = (squareRect.size.height / 2.0f) - ILPathlineWidth;
                 CGPoint squareCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2.0f), squareRect.origin.y + (squareRect.size.height / 2.0f));
@@ -163,7 +163,7 @@ CGFloat const ILSparkGaugeDefaultRingWidth = 8;
                 [filledPath addLineToPoint:topDeadCenter];
                 break;
             }
-            case ILSparkGaugePieStyle: {
+            case ILSparkMeterPieStyle: {
                 CGRect squareRect = ILRectSquareInRect(insetRect);
                 CGFloat indicatorSideLength = (squareRect.size.height / 2.0f) - ILPathlineWidth;
                 CGPoint squareCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2.0f), squareRect.origin.y + (squareRect.size.height / 2.0f));
@@ -178,7 +178,7 @@ CGFloat const ILSparkGaugeDefaultRingWidth = 8;
                 [filledPath addLineToPoint:topDeadCenter];
                 break;
             }
-            case ILSparkGaugeDialStyle: {
+            case ILSparkMeterDialStyle: {
                 CGRect squareRect = ILRectSquareInRect(insetRect);
                 CGFloat indicatorSideLength = (squareRect.size.height / 2.0f) - self.style.dialWidth;
                 CGPoint squareCenter = ILPointCenteredInRect(squareRect);
@@ -196,7 +196,7 @@ CGFloat const ILSparkGaugeDefaultRingWidth = 8;
         // self.indicatorLayer.mask = self.border;
         self.indicatorLayer.fillColor = self.style.fill.CGColor;
         
-        if (self.gaugeStyle == ILSparkGaugeDialStyle) {
+        if (self.gaugeStyle == ILSparkMeterDialStyle) {
             self.indicatorLayer.strokeColor = self.style.fill.CGColor;
             self.indicatorLayer.lineWidth = self.style.dialWidth;
             self.indicatorLayer.lineCap = @"round";
@@ -209,23 +209,23 @@ CGFloat const ILSparkGaugeDefaultRingWidth = 8;
 
 - (BOOL) isCircular
 {
-    return (self.gaugeStyle == ILSparkGaugeCircleStyle)
-        || (self.gaugeStyle == ILSparkGaugeRingStyle)
-        || (self.gaugeStyle == ILSparkGaugePieStyle)
-        || (self.gaugeStyle == ILSparkGaugeDialStyle);
+    return (self.gaugeStyle == ILSparkMeterCircleStyle)
+        || (self.gaugeStyle == ILSparkMeterRingStyle)
+        || (self.gaugeStyle == ILSparkMeterPieStyle)
+        || (self.gaugeStyle == ILSparkMeterDialStyle);
 }
 
 @end
 
 #pragma mark -
 
-@implementation ILSparkStyle (ILSparkGauge)
+@implementation ILSparkStyle (ILSparkMeter)
 
 - (CGFloat) minAngle
 {
     CGFloat angle = 0.0;
-    if (self.hints[ILSparkGaugeMinAngleHint]) {
-        angle = [self.hints[ILSparkGaugeMinAngleHint] doubleValue];
+    if (self.hints[ILSparkMeterMinAngleHint]) {
+        angle = [self.hints[ILSparkMeterMinAngleHint] doubleValue];
     }
     return angle;
 }
@@ -233,8 +233,8 @@ CGFloat const ILSparkGaugeDefaultRingWidth = 8;
 - (CGFloat) maxAngle
 {
     CGFloat angle = 1.0;
-    if (self.hints[ILSparkGaugeMaxAngleHint]) {
-        angle = [self.hints[ILSparkGaugeMaxAngleHint] doubleValue];
+    if (self.hints[ILSparkMeterMaxAngleHint]) {
+        angle = [self.hints[ILSparkMeterMaxAngleHint] doubleValue];
     }
     return angle;
 }
@@ -242,35 +242,35 @@ CGFloat const ILSparkGaugeDefaultRingWidth = 8;
 - (BOOL) fillClockwise
 {
     BOOL clockwise = YES;
-    if (self.hints[ILSparkGaugeFillClockwiseHint]) {
-        clockwise = [self.hints[ILSparkGaugeFillClockwiseHint] boolValue];
+    if (self.hints[ILSparkMeterFillClockwiseHint]) {
+        clockwise = [self.hints[ILSparkMeterFillClockwiseHint] boolValue];
     }
     return clockwise;
 }
 
 - (CGFloat) dialWidth;
 {
-    CGFloat width = ILSparkGaugeDefaultDialWidth;
-    if (self.hints[ILSparkGaugeDialWidthHint]) {
-        width = [self.hints[ILSparkGaugeDialWidthHint] doubleValue];
+    CGFloat width = ILSparkMeterDefaultDialWidth;
+    if (self.hints[ILSparkMeterDialWidthHint]) {
+        width = [self.hints[ILSparkMeterDialWidthHint] doubleValue];
     }
     return width;
 }
 
 - (CGFloat) ringWidth;
 {
-    CGFloat width = ILSparkGaugeDefaultRingWidth;
-    if (self.hints[ILSparkGaugeRingWidthHint]) {
-        width = [self.hints[ILSparkGaugeRingWidthHint] doubleValue];
+    CGFloat width = ILSparkMeterDefaultRingWidth;
+    if (self.hints[ILSparkMeterRingWidthHint]) {
+        width = [self.hints[ILSparkMeterRingWidthHint] doubleValue];
     }
     return width;
 }
 
-- (ILSparkGaugeFillDirection) fillDirection
+- (ILSparkMeterFillDirection) fillDirection
 {
-    ILSparkGaugeFillDirection direciton = ILSparkGaugeNaturalFill;
-    if (self.hints[ILSparkGaugeFillDirectionHint]) {
-        direciton = [self.hints[ILSparkGaugeFillDirectionHint] integerValue]; // TODO range check this
+    ILSparkMeterFillDirection direciton = ILSparkMeterNaturalFill;
+    if (self.hints[ILSparkMeterFillDirectionHint]) {
+        direciton = [self.hints[ILSparkMeterFillDirectionHint] integerValue]; // TODO range check this
     }
     return direciton;
 }

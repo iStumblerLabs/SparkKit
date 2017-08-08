@@ -29,7 +29,7 @@ Base class which manages borders and style information.
 
 Time-sequence line graph
 
-### ILSparkGauge
+### ILSparkMeter
 
 Multiple style gauge indicators
 

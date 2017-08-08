@@ -10,8 +10,12 @@
     A bar chart with frequency buckets is a frequency analyzer
 */
 @interface ILBucketData : NSObject
+
+/*! @brief delegate for data update notifications */
 @property(nonatomic, assign) NSObject<ILBucketDataDelegate>* delegate;
-@property(nonatomic, readonly) NSUInteger bucketCount;
+
+/*! @brief array of numbers representing each bucket */
+@property(nonatomic, retain) NSArray<NSNumber*>* buckets;
 
 - (CGFloat) bucketValue:(NSUInteger) bucketIndex;
 
@@ -20,12 +24,11 @@
 #pragma mark -
 
 /*! @protocol ILBucketDataDelegate
-    @brief notifications for the view when the datat is updated
+    @brief notifications for the view when the data is updated
 */
 @protocol ILBucketDataDelegate <NSObject>
 @optional
 
 - (void) bucketDataDidUpdate:(ILBucketData*) data;
-- (void) bucketDataDidUpdate:(ILBucketData*) data inRange:(NSRange) range;
 
 @end

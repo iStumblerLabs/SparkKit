@@ -1,24 +1,24 @@
 #import <SparkKit/ILSparkView.h>
 
 /*! Pie and Ring Drawing Hints */
-extern NSString* const ILSparkGaugeMinAngleHint; // Deg or Rad?
-extern NSString* const ILSparkGaugeMaxAngleHint; // Deg or Rad?
-extern NSString* const ILSparkGaugeFillClockwiseHint; // Boolean
-extern NSString* const ILSparkGaugeDialWidthHint; // Defaults to ILSparkGaugeDefaultDialWidth
-extern NSString* const ILSparkGaugeRingWidthHint; // Defaults to ILSparkGaugeDefaultRingWidth
+extern NSString* const ILSparkMeterMinAngleHint; // Deg or Rad?
+extern NSString* const ILSparkMeterMaxAngleHint; // Deg or Rad?
+extern NSString* const ILSparkMeterFillClockwiseHint; // Boolean
+extern NSString* const ILSparkMeterDialWidthHint; // Defaults to ILSparkMeterDefaultDialWidth
+extern NSString* const ILSparkMeterRingWidthHint; // Defaults to ILSparkMeterDefaultRingWidth
 
 /*! Vert and Horz Drawing Direction Hint */
-extern NSString* const ILSparkGaugeFillDirectionHint;
+extern NSString* const ILSparkMeterFillDirectionHint;
 
 /*! Defaults */
-extern CGFloat const ILSparkGaugeDefaultDialWidth; // 4
-extern CGFloat const ILSparkGaugeDefaultRingWidth; // 8
+extern CGFloat const ILSparkMeterDefaultDialWidth; // 4
+extern CGFloat const ILSparkMeterDefaultRingWidth; // 8
 
-typedef NS_ENUM(NSInteger, ILSparkGaugeFillDirection) {
-    ILSparkGaugeNaturalFill, // Use system text direction
-    ILSparkGaugeLeftToRightFill, // Fixed Right to Left
-    ILSparkGaugeRightToLeftFill, // Fixed Left to Right
-    ILSparkGaugeFlippedFill // Reverse of System Text Direction
+typedef NS_ENUM(NSInteger, ILSparkMeterFillDirection) {
+    ILSparkMeterNaturalFill, // Use system text direction
+    ILSparkMeterLeftToRightFill, // Fixed Right to Left
+    ILSparkMeterRightToLeftFill, // Fixed Left to Right
+    ILSparkMeterFlippedFill // Reverse of System Text Direction
 };
 
 
@@ -32,30 +32,30 @@ typedef NS_ENUM(NSInteger, ILSparkGaugeFillDirection) {
     @cost IndicatorStylePie - a pie chart, with zero at the 12 o'clock pososion
     @cost IndicatorStyleDial - a dial, with zero at the 12 o'clock pososion
 */
-typedef NS_ENUM(NSInteger, ILSparkGaugeStyle) {
-    ILSparkGaugeTextStyle,
-    ILSparkGaugeVerticalStyle,
-    ILSparkGaugeHorizontalStyle,
-    ILSparkGaugeSquareStyle,
-    ILSparkGaugeCircleStyle,
-    ILSparkGaugeRingStyle,
-    ILSparkGaugePieStyle,
-    ILSparkGaugeDialStyle
-    // TODO ILSparkGaugeStyleLog
+typedef NS_ENUM(NSInteger, ILSparkMeterStyle) {
+    ILSparkMeterTextStyle,
+    ILSparkMeterVerticalStyle,
+    ILSparkMeterHorizontalStyle,
+    ILSparkMeterSquareStyle,
+    ILSparkMeterCircleStyle,
+    ILSparkMeterRingStyle,
+    ILSparkMeterPieStyle,
+    ILSparkMeterDialStyle
+    // TODO ILSparkMeterStyleLog
 };
 
-@protocol ILSparkGaugeDataSource;
+@protocol ILSparkMeterDataSource;
 
 #pragma mark -
 
 /*! @abstract An indicator view which displays a single numeric value as a string */
-@interface ILSparkGauge : ILSparkView
+@interface ILSparkMeter : ILSparkView
 
 /*! @abstract the style of the indicator */
-@property (nonatomic, assign) ILSparkGaugeStyle gaugeStyle;
+@property (nonatomic, assign) ILSparkMeterStyle gaugeStyle;
 
 /*! @abstract the data source for the indicator implmeneting the ILIndicatorDataSource protocol */
-@property (nonatomic, weak) id<ILSparkGaugeDataSource> dataSource;
+@property (nonatomic, weak) id<ILSparkMeterDataSource> dataSource;
 
 // TODO @property (nonatomic, assign) CGFloat minAngle; // angle of the min value for circular indicators
 // TODO @property (nonatomic, assign) CGFloat maxAngle; // angle of the max value for circular indicators
@@ -65,9 +65,9 @@ typedef NS_ENUM(NSInteger, ILSparkGaugeStyle) {
 
 #pragma mark -
 
-/*! @protocol ILSparkGaugeDataSource
+/*! @protocol ILSparkMeterDataSource
  @brief data source protocol for SparkViews */
-@protocol ILSparkGaugeDataSource <NSObject>
+@protocol ILSparkMeterDataSource <NSObject>
 
 /*! @brief instantanious between 0-1 */
 @property(nonatomic, readonly) CGFloat datum;

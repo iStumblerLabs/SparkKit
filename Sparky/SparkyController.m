@@ -1,10 +1,5 @@
 #import "SparkyController.h"
 
-@interface SparkyController ()
-
-@end
-
-#pragma mark -
 
 @implementation SparkyController
 
@@ -14,14 +9,14 @@
 {
     [self loadView];
     
-    self.sparkText.gaugeStyle = ILSparkGaugeTextStyle;
-    self.sparkVert.gaugeStyle = ILSparkGaugeVerticalStyle;
-    self.sparkHorz.gaugeStyle = ILSparkGaugeHorizontalStyle;
-    self.sparkSquare.gaugeStyle = ILSparkGaugeSquareStyle;
-    self.sparkCircle.gaugeStyle = ILSparkGaugeCircleStyle;
-    self.sparkRing.gaugeStyle = ILSparkGaugeRingStyle;
-    self.sparkPie.gaugeStyle = ILSparkGaugePieStyle;
-    self.sparkDial.gaugeStyle = ILSparkGaugeDialStyle;
+    self.sparkText.gaugeStyle = ILSparkMeterTextStyle;
+    self.sparkVert.gaugeStyle = ILSparkMeterVerticalStyle;
+    self.sparkHorz.gaugeStyle = ILSparkMeterHorizontalStyle;
+    self.sparkSquare.gaugeStyle = ILSparkMeterSquareStyle;
+    self.sparkCircle.gaugeStyle = ILSparkMeterCircleStyle;
+    self.sparkRing.gaugeStyle = ILSparkMeterRingStyle;
+    self.sparkPie.gaugeStyle = ILSparkMeterPieStyle;
+    self.sparkDial.gaugeStyle = ILSparkMeterDialStyle;
     
     self.sparkLine.dataSource = self;
     self.sparkText.dataSource = self;
@@ -35,8 +30,13 @@
     
     self.gridData = [ILGridData floatGridWithRows:0 columns:10];
     self.sparkGrid.grid = self.gridData;
-    self.sparkGrid.xAxisLabels = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10"];
-    self.sparkGrid.yAxisLabels = @[@"a", @"b", @"c"];
+    self.sparkGrid.xAxisLabels = @[@"1", @"2", @"3", @"4", @"5"];
+    self.sparkGrid.yAxisLabels = @[@"a", @"b", @"c", @"d", @"e"];
+    
+    self.bucketData = [ILBucketData new];
+    self.sparkBars.dataSource = self.bucketData;
+    self.bucketData.buckets = @[@(0.0), @(0.25), @(0.5), @(.75), @(1.0), @(0.3), @(0.6), @(0.9), @(0.0)];
+    
     
 #if TARGET_OS_TV
     [ILSparkStyle defaultStyle].width = 0;
@@ -45,8 +45,8 @@
     [ILSparkStyle defaultStyle].border = [ILColor clearColor];
     [ILSparkStyle defaultStyle].stroke = [ILColor clearColor];
     [[ILSparkStyle defaultStyle] addHints:@{
-        ILSparkGaugeRingWidthHint: @36,
-        ILSparkGaugeDialWidthHint: @8,
+        ILSparkMeterRingWidthHint: @36,
+        ILSparkMeterDialWidthHint: @8,
         ILSparkLineScaleFactor: @0.5
     }];
 #endif
@@ -81,9 +81,11 @@
     }
     [self.gridData appendData:blankRow];
     [self.sparkGrid updateView];
+    
+    [self.sparkBars updateView];
 }
 
-#pragma mark - ILSparkGaugeDataSource
+#pragma mark - ILSparkMeterDataSource
 
 - (CGFloat) datum
 {

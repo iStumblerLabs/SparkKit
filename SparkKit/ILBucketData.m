@@ -1,15 +1,31 @@
 #import "ILBucketData.h"
 
+@interface ILBucketData ()
+@property(nonatomic, retain) NSArray<NSNumber*>* bucketsStorage;
+
+@end
+
+#pragma mark -
+
 @implementation ILBucketData
 
-- (NSUInteger) bucketCount
+- (NSArray<NSNumber*>*) buckets
 {
-    return 5;
+    return self.bucketsStorage;
+}
+
+- (void) setBuckets:(NSArray<NSNumber *> *)buckets
+{
+    self.bucketsStorage = buckets;
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(bucketDataDidUpdate:)]) {
+        [self.delegate bucketDataDidUpdate:self];
+    }
 }
 
 - (CGFloat) bucketValue:(NSUInteger) bucketIndex
 {
-    return 0.5;
+    return [self.buckets[bucketIndex] doubleValue];
 }
 
 @end

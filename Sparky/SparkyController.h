@@ -2,9 +2,9 @@
 @import SparkKit;
 
 #ifdef IL_UI_KIT
-@interface SparkyController : UIViewController <ILSparkGaugeDataSource, ILSparkLineDataSource, ILViews>
+@interface SparkyController : UIViewController <ILSparkMeterDataSource, ILSparkLineDataSource, ILViews>
 #else
-@interface SparkyController : NSViewController <ILSparkGaugeDataSource, ILSparkLineDataSource, ILViews>
+@interface SparkyController : NSViewController <ILSparkMeterDataSource, ILSparkLineDataSource, ILViews>
 #endif
 
 #pragma mark - Properties
@@ -13,16 +13,18 @@
 @property(nonatomic, retain) ILBucketData* bucketData;
 
 #pragma mark - IBOutlets
+@property(nonatomic, retain) IBOutlet ILSparkBars* sparkBars;
 @property(nonatomic, retain) IBOutlet ILSparkLine* sparkLine;
 @property(nonatomic, retain) IBOutlet ILSparkGrid* sparkGrid;
 
-@property(nonatomic, assign) IBOutlet ILSparkGauge* sparkText;
-@property(nonatomic, assign) IBOutlet ILSparkGauge* sparkVert;
-@property(nonatomic, assign) IBOutlet ILSparkGauge* sparkHorz;
-@property(nonatomic, assign) IBOutlet ILSparkGauge* sparkSquare;
-@property(nonatomic, assign) IBOutlet ILSparkGauge* sparkCircle;
-@property(nonatomic, assign) IBOutlet ILSparkGauge* sparkRing;
-@property(nonatomic, assign) IBOutlet ILSparkGauge* sparkPie;
-@property(nonatomic, assign) IBOutlet ILSparkGauge* sparkDial;
+#pragma mark - Gauges
+@property(nonatomic, assign) IBOutlet ILSparkMeter* sparkText;
+@property(nonatomic, assign) IBOutlet ILSparkMeter* sparkVert;
+@property(nonatomic, assign) IBOutlet ILSparkMeter* sparkHorz;
+@property(nonatomic, assign) IBOutlet ILSparkMeter* sparkSquare;
+@property(nonatomic, assign) IBOutlet ILSparkMeter* sparkCircle;
+@property(nonatomic, assign) IBOutlet ILSparkMeter* sparkRing;
+@property(nonatomic, assign) IBOutlet ILSparkMeter* sparkPie;
+@property(nonatomic, assign) IBOutlet ILSparkMeter* sparkDial;
 
 @end
