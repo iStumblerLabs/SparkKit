@@ -45,7 +45,7 @@
                                 <rect key="frame" x="248" y="510" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D4F-Qx-Hf8" customClass="ILSparkBuckets">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D4F-Qx-Hf8" customClass="ILSparkBars">
                                 <rect key="frame" x="16" y="28" width="288" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
@@ -57,9 +57,10 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <outlet property="sparkBuckets" destination="D4F-Qx-Hf8" id="PkC-jc-Ci1"/>
+                        <outlet property="sparkBars" destination="D4F-Qx-Hf8" id="3GM-72-fHK"/>
                         <outlet property="sparkCircle" destination="jP4-hA-6K6" id="05Z-L3-EjZ"/>
                         <outlet property="sparkDial" destination="v1O-4b-qiG" id="1Mm-mE-iHl"/>
+                        <outlet property="sparkGrid" destination="PUZ-g3-Ydw" id="nFd-0b-cqY"/>
                         <outlet property="sparkLine" destination="4Yi-bo-KNO" id="tAX-c5-u6q"/>
                         <outlet property="sparkPie" destination="RM2-5t-r4Y" id="DSW-wH-7rh"/>
                         <outlet property="sparkRing" destination="vb9-q2-w3y" id="ufy-Da-k0y"/>
