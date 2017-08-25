@@ -14,7 +14,6 @@
     // TODO a style preference and vertical buckets
     
     self.layer.sublayers = nil; // TODO put buckets on a seperate layer
-    [super updateView];
     
     if (self.dataSource) {
         NSUInteger bucketCount = self.dataSource.buckets.count;
@@ -33,10 +32,12 @@
                 CGFloat bucketYOffset = insetRect.origin.y + (insetRect.size.height - bucketHeight);
                 CGRect bucketRect = CGRectMake(bucketXOffset, bucketYOffset, bucketWidth, bucketHeight);
                 CAShapeLayer* bucketLayer = [CAShapeLayer new];
-                bucketLayer.path = CGPathCreateWithRect(bucketRect, nil);
+                CGPathRef bucketPath = CGPathCreateWithRect(bucketRect, nil);
+                bucketLayer.path = bucketPath;
                 bucketLayer.fillColor = self.style.fill.CGColor;
                 bucketLayer.strokeColor = self.style.stroke.CGColor;
                 [self.layer addSublayer:bucketLayer];
+                CGPathRelease(bucketPath);
             }
             bucketIndex++;
         }
@@ -44,13 +45,17 @@
     else {
         NSLog(@"no bucket data");
     }
+
+    [super updateView];
 }
 
 #pragma mark - ILBucketDataDelegate
 
 - (void) bucketDataDidUpdate:(ILBucketData*) data
 {
-    [self updateView];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self updateView];
+    }];
 }
 
 @end

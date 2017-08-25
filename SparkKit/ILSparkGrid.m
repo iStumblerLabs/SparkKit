@@ -154,17 +154,23 @@
 
 -(void)drawGrid // one shot, redraw the entire grid into self.gridLayer
 {
+#if DEBUG
+    NSTimeInterval drawStart = [[NSDate new] timeIntervalSinceReferenceDate];
+#endif
     BOOL drawAlpha = YES;
     
-    // [CATransaction setValue:@(0.1) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
+    [CATransaction setValue:@(0.01) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
     self.gridLayer.frame = self.layer.bounds;
 
+    CGImageRef gridBits = nil;
+    
     if (drawAlpha) {
-        CGImageRef gridMask = [self.grid newAlphaBitmap];
+        gridBits = self.grid.alphaBitmap;
+        
         // create a mask layer
         CALayer* maskLayer = [CALayer new];
-        maskLayer.contents = CFBridgingRelease(gridMask);
-        maskLayer.magnificationFilter = kCAFilterNearest; // kCAFilterLinear;
+        maskLayer.contents = CFBridgingRelease(gridBits);
+        maskLayer.magnificationFilter = kCAFilterNearest;
         maskLayer.frame = self.layer.bounds;
         
         // make sure the color are updated
@@ -174,12 +180,30 @@
         self.gridLayer.mask = maskLayer;
     }
     else {
-        CGImageRef gridBits = [self.grid newGrayscaleBitmap];
+        gridBits = self.grid.grayscaleBitmap;
         self.gridLayer.contents = CFBridgingRelease(gridBits);
         self.gridLayer.magnificationFilter = kCAFilterNearest; // kCAFilterLinear;
     }
 
-    // [CATransaction commit];
+#if DEBUG
+    NSTimeInterval drawDone = [[NSDate new] timeIntervalSinceReferenceDate];
+    NSTimeInterval drawTime = (drawDone - drawStart);
+    CATextLayer* debugLayer = [CATextLayer new];
+    size_t imageBytesPerRow = CGImageGetBytesPerRow(gridBits);
+    size_t imageWidth = CGImageGetWidth(gridBits);
+    size_t imageHeight = CGImageGetHeight(gridBits);
+    size_t imageBytes = (imageHeight * imageBytesPerRow);
+    debugLayer.string = [NSString stringWithFormat:@"%@ (grid %lu x %lu) [image %lu x %lu] %lu bytes on %lu layers in %fs",
+                         self.className, self.grid.columns, self.grid.rows, imageWidth, imageHeight, imageBytes,
+                         (self.layer.sublayers.count + self.gridLayer.sublayers.count + self.labelLayer.sublayers.count), drawTime];
+    debugLayer.font = (__bridge CFTypeRef _Nullable)self.style.font.fontName;
+    debugLayer.fontSize = 14;
+    debugLayer.frame = CGRectMake(10, (self.frame.size.height - 25), (self.frame.size.width - 10), 20);
+    self.gridLayer.sublayers = nil;
+    [self.gridLayer addSublayer:debugLayer];
+#endif
+
+    [CATransaction commit];
 
     /*
     self.gridLayer.sublayers = nil;
@@ -223,9 +247,9 @@
             errorLayer.bounds = CGRectMake(0,0,200,50);
             errorLayer.contentsGravity = kCAGravityCenter;
             errorLayer.string = self.errorString;
-            errorLayer.font = (__bridge CFTypeRef _Nullable)(self.style.font.fontName);
+            errorLayer.font = (__bridge CFTypeRef _Nullable)self.style.font.fontName;
             errorLayer.fontSize = self.style.font.pointSize;
-            errorLayer.foregroundColor = self.style.stroke.CGColor;
+            errorLayer.foregroundColor = self.style.fontColor.CGColor;
             errorLayer.alignmentMode = kCAAlignmentCenter;
             errorLayer.position = ILPointCenteredInRect(self.labelLayer.frame);
     #if IL_APP_KIT
@@ -249,7 +273,7 @@
                     labelLayer.contentsGravity = kCAGravityCenter;
                     labelLayer.font = (__bridge CFTypeRef _Nullable)(self.style.font.fontName);
                     labelLayer.fontSize = self.style.font.pointSize;
-                    labelLayer.foregroundColor = self.style.stroke.CGColor;
+                    labelLayer.foregroundColor = self.style.fontColor.CGColor;
                     labelLayer.frame = CGRectMake(10,(ySpacing * yIndex), 50, 25);
                     yIndex++;
                 }
@@ -269,7 +293,7 @@
                     }
                     labelLayer.font = (__bridge CFTypeRef _Nullable)(self.style.font.fontName);
                     labelLayer.fontSize = self.style.font.pointSize;
-                    labelLayer.foregroundColor = self.style.stroke.CGColor;
+                    labelLayer.foregroundColor = self.style.fontColor.CGColor;
                     labelLayer.contentsGravity = kCAGravityCenter;
                     labelLayer.frame = CGRectMake((xSpacing * xIndex), 5, 50, 25);
                     xIndex++;

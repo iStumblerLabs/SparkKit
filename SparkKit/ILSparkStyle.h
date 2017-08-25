@@ -47,6 +47,9 @@ extern CGFloat const ILBoldlineWidth;
 /*! @brief font used to render labels */
 @property(nonatomic, retain) ILFont* font;
 
+/*! @brief color used to render labels, defaults to stroke color */
+@property(nonatomic, retain) ILColor* fontColor;
+
 /*! @brief is the area filled? */
 @property(nonatomic, assign) BOOL filled;
 
@@ -59,8 +62,12 @@ extern CGFloat const ILBoldlineWidth;
 /*! @brief hints for subclasses */
 @property(nonatomic, retain) NSDictionary* hints;
 
+#pragma mark -
+
 /*! @brief default style given to ILSparkViews when initilized */
 + (ILSparkStyle*) defaultStyle;
+
+#pragma mark -
 
 /*! @brief add provided hints to hints dictionary */
 - (void) addHints:(NSDictionary*)additionalHints;

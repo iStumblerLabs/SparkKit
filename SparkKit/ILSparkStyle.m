@@ -15,6 +15,15 @@ CGFloat const ILFinelineWidth = 0.5;
 CGFloat const ILPathlineWidth = 1;
 CGFloat const ILBoldlineWidth = 2;
 
+#pragma mark - Private
+
+@interface ILSparkStyle ()
+@property(nonatomic, retain) ILColor* fontColorStorage;
+
+@end
+
+#pragma mark -
+
 @implementation ILSparkStyle
 
 + (ILSparkStyle*) defaultStyle
@@ -26,13 +35,25 @@ CGFloat const ILBoldlineWidth = 2;
         style.stroke = [ILColor darkGrayColor];
         style.border = [ILColor lightGrayColor];
         style.background = [ILColor clearColor];
-        style.gradient = nil; // [[ILGradient alloc] initWithStartingColor:[ILColor blackColor] endingColor:[ILColor whiteColor]];
+        style.gradient = nil; // [[ILGradient alloc] initWithStartingColor:self.fill endingColor:self.stroke];
         style.filled = NO;
         style.bordered = YES;
         style.width = ILPathlineWidth;
         style.font = [ILFont fontWithName:@"Helvetica" size:12];
     }
     return style;
+}
+
+#pragma mark - Properties
+
+- (ILColor*) fontColor
+{
+    return (self.fontColorStorage ? self.fontColorStorage : self.stroke);
+}
+
+- (void) setFontColor:(ILColor*)fontColor
+{
+    self.fontColorStorage = fontColor;
 }
 
 #pragma mark -
@@ -48,7 +69,6 @@ CGFloat const ILBoldlineWidth = 2;
         self.hints = additionalHints;
     }
 }
-
 
 #pragma mark - NSObject
 

@@ -1,5 +1,4 @@
 #import "ILSparkLine.h"
-#import "ILSparkStyle.h"
 
 NSString* const ILSparkLineScaleFactor = @"ILSparkLineScaleFactor";
 NSString* const ILSparkLineFalloffInterval = @"ILSparkLineFalloffTInterval";

@@ -1,5 +1,17 @@
 #import "ILGridData.h"
 
+#pragma mark Private
+
+@interface ILGridData ()
+@property(nonatomic, assign) CGFloat minValueStorage;
+@property(nonatomic, assign) BOOL minValueSet;
+@property(nonatomic, assign) CGFloat maxValueStorage;
+@property(nonatomic, assign) BOOL maxValueSet;
+
+@end
+
+#pragma mark -
+
 @implementation ILGridData
 
 - (NSUInteger) rows
@@ -19,10 +31,26 @@
 
 - (CGFloat) minValue
 {
-    return gridMinValue;
+    return (self.minValueSet ? self.minValueStorage : gridMinValue);
 }
 
 - (CGFloat) maxValue
+{
+    return (self.maxValueSet ? self.maxValueStorage : gridMaxValue);
+}
+
+- (void) setMaxValue:(CGFloat) maxValue
+{
+    self.maxValueSet = YES;
+    self.maxValueStorage = maxValue;
+}
+
+- (CGFloat) gridMinValue
+{
+    return gridMinValue;
+}
+
+- (CGFloat) gridMaxValue
 {
     return gridMaxValue;
 }
@@ -73,12 +101,14 @@
 }
 */
 
-#pragma mark -
+#pragma mark - Factory Methods
 
 + (ILGridData*) byteGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns
 {
     ILGridData* byteGrid = [[ILGridData alloc] initGridWithRows:rows columns:columns valueSize:sizeof(uint8_t) gridType:ILGridDataByteType];
     [byteGrid fillByteValue:0];
+    byteGrid.minValue = 0;
+    byteGrid.maxValue = __UINT8_MAX__;
     return byteGrid;
 }
 
@@ -86,6 +116,8 @@
 {
     ILGridData* integerGrid = [[ILGridData alloc] initGridWithRows:rows columns:columns valueSize:sizeof(NSInteger) gridType:ILGridDataIntegerType];
     [integerGrid fillIntegerValue:0];
+    integerGrid.minValue = 0;
+    integerGrid.maxValue = NSIntegerMax;
     return integerGrid;
 }
 
@@ -93,6 +125,8 @@
 {
     ILGridData* floatGrid = [[ILGridData alloc] initGridWithRows:rows columns:columns valueSize:sizeof(CGFloat) gridType:ILGridDataFloatType];
     [floatGrid fillFloatValue:0.0];
+    floatGrid.minValue = 0;
+    floatGrid.maxValue = CGFLOAT_MAX;
     return floatGrid;
 }
 
@@ -104,7 +138,7 @@
     return unicharGrid;
 }
 
-#pragma mark -
+#pragma mark - Designated Initilizer
 
 /** designated initilizer */
 - (ILGridData*) initGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns valueSize:(NSUInteger)size gridType:(ILGridDataType) type
@@ -118,7 +152,9 @@
         gridValueSize = size;
         gridType = type;
         gridMinValue = 0;
-        gridMaxValue = 1; // this negative case has to work for samples in DBm, and it should anyway
+        gridMaxValue = 0;
+        self.minValueSet = NO;
+        self.maxValueSet = NO;
 
         bzero((void*)[data bytes], gridSize);
     }
@@ -200,19 +236,19 @@
     if (gridType == ILGridDataIntegerType) {
         NSInteger thisValue = [self integerAtRow:row column:col];
         if( thisValue > 0) {
-            percent = fabs(thisValue / gridMaxValue);
+            percent = fabs(thisValue / self.maxValue);
         }
         else {
-            percent = fabs(thisValue / gridMinValue);
+            percent = fabs(thisValue / self.minValue);
         }
     }
     else if( gridType == ILGridDataByteType) {
         uint8_t thisValue = [self byteAtRow:row column:col];
-        percent = (CGFloat)thisValue/256;
+        percent = (1.0 - ((CGFloat)thisValue / self.maxValue));
     }
     else if( gridType == ILGridDataFloatType) {
         CGFloat thisValue = [self floatAtRow:row column:col];
-        percent = (thisValue / gridMaxValue);
+        percent = (thisValue / self.maxValue);
     }
     
     return percent;
@@ -439,101 +475,115 @@
 
 #pragma mark - Image Representations
 
--(CGImageRef)newGrayscaleBitmapOfRow:(NSUInteger)thisRow
+-(CGImageRef)grayscaleBitmapOfRow:(NSUInteger)thisRow
 {
-    CGColorSpaceRef grayscale = CGColorSpaceCreateDeviceGray();
-    size_t channelDepth = 8;
-    size_t channelCount = CGColorSpaceGetNumberOfComponents(grayscale);
-    size_t pixelBits = (channelDepth * channelCount);
-    CGSize rowSize = CGSizeMake(self.columns, 1);
-    size_t imageSize = (pixelBits * rowSize.width);
-    void* imageData = calloc(1, imageSize);
-    CGContextRef rowContext = CGBitmapContextCreate(imageData, rowSize.width, rowSize.height, pixelBits, imageSize, grayscale, kCGImageAlphaNone);
-    CGContextSetFillColorSpace(rowContext, grayscale);
+    CGImageRef rowBitMap = nil;
+    @synchronized (self) {
+        CGColorSpaceRef grayscale = CGColorSpaceCreateDeviceGray();
+        size_t channelDepth = 8;
+        size_t channelCount = CGColorSpaceGetNumberOfComponents(grayscale);
+        size_t pixelBits = (channelDepth * channelCount);
+        CGSize rowSize = CGSizeMake(self.columns, 1);
+        size_t imageSize = (pixelBits * rowSize.width);
+        void* imageData = calloc(1, imageSize);
+        CGContextRef rowContext = CGBitmapContextCreate(imageData, rowSize.width, rowSize.height, pixelBits, imageSize, grayscale, kCGImageAlphaNone);
+        CGContextSetFillColorSpace(rowContext, grayscale);
 
-    NSUInteger thisColumn = 0;
-    while (thisColumn < self.columns) {
-        CGFloat percentValue = [self percentAtRow:thisRow column:thisColumn];
-        const CGFloat percentComponents[] = {(1.0 - percentValue),  1.0};
-        CGContextSetFillColor(rowContext, (const CGFloat*)&percentComponents);
-        // CGContextSetAlpha(rowContext, (1.0 - percentValue));
-        CGContextFillRect(rowContext, CGRectMake(thisColumn, 0, 1, 1)); // single pixel
-        thisColumn++;
-    }
-
-    CGImageRef rowBitMap = CGBitmapContextCreateImage(rowContext);
-exit:
-    CGContextRelease(rowContext);
-    CGColorSpaceRelease(grayscale);
-    free(imageData);
-    return rowBitMap;
-}
-
--(CGImageRef)newGrayscaleBitmap
-{
-    CGSize gridSize = CGSizeMake(self.columns, self.rows);
-    CGColorSpaceRef grayscale = CGColorSpaceCreateDeviceGray();
-    size_t bitsPerComponent = 8;
-    size_t channelCount = CGColorSpaceGetNumberOfComponents(grayscale);
-    size_t bytesPerRow = (channelCount * gridSize.width);
-    size_t imageBytes =  (bytesPerRow * gridSize.height);
-    CFMutableDataRef imageData = CFDataCreateMutable(kCFAllocatorDefault, imageBytes);
-    CGContextRef gridContext = CGBitmapContextCreate((void*)CFDataGetMutableBytePtr(imageData), gridSize.width, gridSize.height, bitsPerComponent, bytesPerRow, grayscale, kCGImageAlphaNone);
-    CGContextSetFillColorSpace(gridContext, grayscale);
-
-    NSUInteger thisRow = 0;
-    while (thisRow < gridSize.height) {
-    NSUInteger thisColumn = 0;
-        while (thisColumn < gridSize.width) {
+        NSUInteger thisColumn = 0;
+        while (thisColumn < self.columns) {
             CGFloat percentValue = [self percentAtRow:thisRow column:thisColumn];
             const CGFloat percentComponents[] = {(1.0 - percentValue),  1.0};
-            CGContextSetFillColor(gridContext, (const CGFloat*)&percentComponents);
+            CGContextSetFillColor(rowContext, (const CGFloat*)&percentComponents);
             // CGContextSetAlpha(rowContext, (1.0 - percentValue));
-            CGContextFillRect(gridContext, CGRectMake(thisColumn, thisRow, 1, 1)); // single pixel
+            CGContextFillRect(rowContext, CGRectMake(thisColumn, 0, 1, 1)); // single pixel
             thisColumn++;
         }
-        thisRow++;
-    }
 
-    CGImageRef rowBitMap = CGBitmapContextCreateImage(gridContext);
+        rowBitMap = CGBitmapContextCreateImage(rowContext);
 exit:
-    CGContextRelease(gridContext);
-    CGColorSpaceRelease(grayscale);
-    CFRelease(imageData);
+        CGContextRelease(rowContext);
+        CGColorSpaceRelease(grayscale);
+        free(imageData);
+        // CFAutorelease(rowBitMap);
+    }
+    
     return rowBitMap;
 }
 
--(CGImageRef)newAlphaBitmap
+-(CGImageRef)grayscaleBitmap
 {
-    CGSize gridSize = CGSizeMake(self.columns, self.rows);
-    CGColorSpaceRef grayscale = CGColorSpaceCreateDeviceGray();
-    size_t bitsPerComponent = 8;
-    size_t channelCount = CGColorSpaceGetNumberOfComponents(grayscale);
-    size_t bytesPerRow = (channelCount * gridSize.width);
-    size_t imageBytes =  (bytesPerRow * gridSize.height);
-    CFMutableDataRef imageData = CFDataCreateMutable(kCFAllocatorDefault, imageBytes);
-    CGContextRef maskContext = CGBitmapContextCreate((void*)CFDataGetMutableBytePtr(imageData), gridSize.width, gridSize.height, bitsPerComponent, bytesPerRow, grayscale, kCGImageAlphaOnly);
-    CGContextSetFillColorSpace(maskContext, grayscale);
+    CGImageRef rowBitMap = nil;
+    @synchronized (self) {
+        CGSize gridSize = CGSizeMake(self.columns, self.rows);
+        CGColorSpaceRef grayscale = CGColorSpaceCreateDeviceGray();
+        size_t bitsPerComponent = 8;
+        size_t channelCount = CGColorSpaceGetNumberOfComponents(grayscale);
+        size_t bytesPerRow = (channelCount * gridSize.width);
+        size_t imageBytes =  (bytesPerRow * gridSize.height);
+        CFMutableDataRef imageData = CFDataCreateMutable(kCFAllocatorDefault, imageBytes);
+        CGContextRef gridContext = CGBitmapContextCreate((void*)CFDataGetMutableBytePtr(imageData), gridSize.width, gridSize.height, bitsPerComponent, bytesPerRow, grayscale, kCGImageAlphaNone);
+        CGContextSetFillColorSpace(gridContext, grayscale);
 
-    NSUInteger thisRow = 0;
-    while (thisRow < gridSize.height) {
+        NSUInteger thisRow = 0;
+        while (thisRow < gridSize.height) {
         NSUInteger thisColumn = 0;
-        while (thisColumn < gridSize.width) {
-            CGFloat percentValue = [self percentAtRow:thisRow column:thisColumn];
-            // const CGFloat percentComponents[] = {1.0,  percentValue};
-            // CGContextSetFillColor(maskContext, (const CGFloat*)&percentComponents);
-            CGContextSetAlpha(maskContext, percentValue);
-            CGContextFillRect(maskContext, CGRectMake(thisColumn, thisRow, 1, 1)); // single pixel
-            thisColumn++;
+            while (thisColumn < gridSize.width) {
+                CGFloat percentValue = [self percentAtRow:thisRow column:thisColumn];
+                const CGFloat percentComponents[] = {percentValue,  1.0};
+                CGContextSetFillColor(gridContext, (const CGFloat*)&percentComponents);
+                CGContextFillRect(gridContext, CGRectMake(thisColumn, thisRow, 1, 1)); // single pixel
+                thisColumn++;
+            }
+            thisRow++;
         }
-        thisRow++;
+
+        rowBitMap = CGBitmapContextCreateImage(gridContext);
+exit:
+        CGContextRelease(gridContext);
+        CGColorSpaceRelease(grayscale);
+        CFRelease(imageData);
+        // CFAutorelease(rowBitMap);
     }
 
-    CGImageRef maskBitMap = CGImageMaskCreate(gridSize.width, gridSize.height, bitsPerComponent, bitsPerComponent, bytesPerRow, CGDataProviderCreateWithCFData(imageData), nil, NO);
+    return rowBitMap;
+}
+
+-(CGImageRef)alphaBitmap
+{
+    CGImageRef maskBitMap = nil;
+    @synchronized (self) {
+        CGSize gridSize = CGSizeMake(self.columns, self.rows);
+        CGColorSpaceRef grayscale = CGColorSpaceCreateDeviceGray();
+        size_t bitsPerComponent = 8;
+        size_t channelCount = CGColorSpaceGetNumberOfComponents(grayscale);
+        size_t bytesPerRow = (channelCount * gridSize.width);
+        size_t imageBytes =  (bytesPerRow * gridSize.height);
+        CFMutableDataRef imageData = CFDataCreateMutable(kCFAllocatorDefault, imageBytes);
+        CGContextRef maskContext = CGBitmapContextCreate((void*)CFDataGetMutableBytePtr(imageData), gridSize.width, gridSize.height, bitsPerComponent, bytesPerRow, grayscale, kCGImageAlphaOnly);
+        CGContextSetFillColorSpace(maskContext, grayscale);
+
+        NSUInteger thisRow = 0;
+        while (thisRow < gridSize.height) {
+            NSUInteger thisColumn = 0;
+            while (thisColumn < gridSize.width) {
+                CGFloat percentValue = [self percentAtRow:thisRow column:thisColumn];
+                // const CGFloat percentComponents[] = {1.0,  percentValue};
+                // CGContextSetFillColor(maskContext, (const CGFloat*)&percentComponents);
+                CGContextSetAlpha(maskContext, percentValue);
+                CGContextFillRect(maskContext, CGRectMake(thisColumn, thisRow, 1, 1)); // single pixel
+                thisColumn++;
+            }
+            thisRow++;
+        }
+
+        maskBitMap = CGImageMaskCreate(gridSize.width, gridSize.height, bitsPerComponent, bitsPerComponent, bytesPerRow, CGDataProviderCreateWithCFData(imageData), nil, NO);
 exit:
-    CGContextRelease(maskContext);
-    CGColorSpaceRelease(grayscale);
-    CFRelease(imageData);
+        CGContextRelease(maskContext);
+        CGColorSpaceRelease(grayscale);
+        CFRelease(imageData);
+        // CFAutorelease(maskBitMap);
+    }
+    
     return maskBitMap;
 }
 
@@ -598,55 +648,59 @@ exit:
 
 - (void) setData:(NSData*) slice atRow:(NSUInteger)row
 {
-    NSInteger index = (row * [self sizeOfRow]);
-    if (index+[self sizeOfRow] <= data.length) {
-        [data replaceBytesInRange:NSMakeRange(index, [self sizeOfRow])
-                        withBytes:[slice bytes]];
-    }
-    else NSLog(@"EXCEPTION %@ setData:atRow: slice lands outside of data range: %@ row %lu", self, slice, (unsigned long)row);
-    
-    [self updateMinMaxAtRow:row];
+    @synchronized (self) {
+        NSInteger index = (row * [self sizeOfRow]);
+        if ((index + [self sizeOfRow]) <= data.length) {
+            [data replaceBytesInRange:NSMakeRange(index, [self sizeOfRow]) withBytes:[slice bytes]];
+        }
+        else NSLog(@"EXCEPTION %@ setData:atRow: slice lands outside of data range: %@ row %lu", self, slice, (unsigned long)row);
+        
+        [self updateMinMaxAtRow:row];
 
-    if (self.delegate && [self.delegate respondsToSelector:@selector(grid:didSetData:atRow:)]) {
-        [self.delegate grid:self didSetData:slice atRow:row];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(grid:didSetData:atRow:)]) {
+            [self.delegate grid:self didSetData:slice atRow:row];
+        }
     }
 }
 
 - (void)appendData:(NSData*) slice
 {
-    NSInteger sliceColumns = (slice.length / gridValueSize);
-    if ((sliceColumns % self.columns) == 0) { // allow appending 0-N rows at a time
-        [data appendData:slice];
-        gridRows++; // XXX multi-row appends break this
-        
-        [self updateMinMaxAtRow:gridRows];
-        
-        if (self.delegate && [self.delegate respondsToSelector:@selector(grid:didAppendedData:asRow:)]) {
-            [self.delegate grid:self didAppendedData:slice asRow:gridRows];
+    @synchronized (self) {
+        NSInteger sliceColumns = (slice.length / gridValueSize);
+        if ((sliceColumns % self.columns) == 0) { // allow appending 0-N rows at a time
+            [data appendData:slice];
+            gridRows++; // XXX multi-row appends break this
+            [self updateMinMaxAtRow:gridRows];
+            
+            if (self.delegate && [self.delegate respondsToSelector:@selector(grid:didAppendedData:asRow:)]) {
+                [self.delegate grid:self didAppendedData:slice asRow:gridRows];
+            }
         }
+        else NSLog(@"EXCEPTION appendData, wrong sized slice: %lu bytes", (unsigned long)slice.length);
     }
-    else NSLog(@"EXCEPTION appendData, wrong sized slice: %lu bytes", (unsigned long)slice.length);
 }
 
 - (void)trimToRangeOfRows:(NSRange)rowRange;
 {
-    if ((rowRange.location + rowRange.length) <= gridRows) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(grid:willTrimToRangeOfRows:)]) {
-            [self.delegate grid:self willTrimToRangeOfRows:rowRange];
+    @synchronized (self) {
+        if ((rowRange.location + rowRange.length) <= gridRows) {
+            if (self.delegate && [self.delegate respondsToSelector:@selector(grid:willTrimToRangeOfRows:)]) {
+                [self.delegate grid:self willTrimToRangeOfRows:rowRange];
+            }
+            
+            size_t rowSize = [self sizeOfRow];
+            NSRange byteRange = NSMakeRange((rowRange.location * rowSize), (rowRange.length * rowSize));
+            NSData* trimmedData = [data subdataWithRange:byteRange];
+            
+            if ((trimmedData.length % gridColumns) != 0) {
+                NSLog(@"EXCEPTION byte range (%lu,%lu) invalid data length: %lu", (unsigned long)byteRange.location, (unsigned long)byteRange.length, trimmedData.length);
+            }
+            
+            [data setData:trimmedData];
+            gridRows = rowRange.length;
         }
-        
-        size_t rowSize = [self sizeOfRow];
-        NSRange byteRange = NSMakeRange((rowRange.location * rowSize), (rowRange.length * rowSize));
-        NSData* trimmedData = [data subdataWithRange:byteRange];
-        
-        if ((trimmedData.length % gridColumns) != 0) {
-            NSLog(@"EXCEPTION byte range (%lu,%lu) invalid data length: %lu", (unsigned long)byteRange.location, (unsigned long)byteRange.length, trimmedData.length);
-        }
-        
-        [data setData:trimmedData];
-        gridRows = rowRange.length;
+        else NSLog(@"EXCEPTION trimmed range (%lu,%lu) exceeds grid size: %lu", (unsigned long)rowRange.location, (unsigned long)rowRange.length, gridRows);
     }
-    else NSLog(@"EXCEPTION trimmed range (%lu,%lu) exceeds grid size: %lu", (unsigned long)rowRange.location, (unsigned long)rowRange.length, gridRows);
 }
 
 @end

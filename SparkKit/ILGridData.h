@@ -26,8 +26,10 @@ ILGridDataType;
 @property(readonly) NSUInteger rows;
 @property(readonly) NSUInteger columns;
 @property(readonly) NSUInteger valueSize;
-@property(readonly) CGFloat minValue;
-@property(readonly) CGFloat maxValue;
+@property(nonatomic, assign) CGFloat minValue;
+@property(nonatomic, assign) CGFloat maxValue;
+@property(readonly) CGFloat gridMinValue;
+@property(readonly) CGFloat gridMaxValue;
 @property(readonly) ILGridDataType type;
 @property(nonatomic, assign) NSObject<ILGridDataDelegate>* delegate;
 
@@ -44,7 +46,7 @@ ILGridDataType;
 
 #pragma mark - Properties
 
-- (size_t)   sizeOfRow;
+- (size_t)       sizeOfRow;
 - (void*)     addressOfRow:(NSUInteger)row column:(NSUInteger)column;
 - (uint8_t)      byteAtRow:(NSUInteger)row column:(NSUInteger)column;
 - (NSInteger) integerAtRow:(NSUInteger)row column:(NSUInteger)column;
@@ -75,9 +77,9 @@ ILGridDataType;
 
 #pragma mark - Image Representations
 
--(CGImageRef)newGrayscaleBitmapOfRow:(NSUInteger)thisRow;
--(CGImageRef)newGrayscaleBitmap;
--(CGImageRef)newAlphaBitmap;
+- (CGImageRef) grayscaleBitmapOfRow:(NSUInteger)thisRow CF_RETURNS_RETAINED;
+- (CGImageRef) grayscaleBitmap CF_RETURNS_RETAINED;
+- (CGImageRef) alphaBitmap CF_RETURNS_RETAINED;
 
 #pragma mark - Slices
 
