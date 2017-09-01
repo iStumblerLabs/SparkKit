@@ -10,7 +10,6 @@
 
 - (void) updateView
 {
-    // draw horizontal buckets
     // TODO a style preference and vertical buckets
     
     self.layer.sublayers = nil; // TODO put buckets on a seperate layer
