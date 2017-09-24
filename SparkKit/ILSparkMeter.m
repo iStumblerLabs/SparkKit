@@ -58,7 +58,7 @@ CGFloat const ILSparkMeterDefaultRingWidth = 8;
 - (void)initView
 {
     [super initView];
-    self.style = ILSparkMeterTextStyle;
+    self.style = [ILSparkStyle defaultStyle];
     self.dataSource = nil;
     
     self.indicatorLayer = [CAShapeLayer new];
