@@ -165,7 +165,7 @@
     CGImageRef gridBits = nil;
     
     if (drawAlpha) {
-        gridBits = self.grid.alphaBitmap;
+        gridBits = [self.grid alphaBitmapWithRange:NSMakeRange(0, 255)];
         
         // create a mask layer
         CALayer* maskLayer = [CALayer new];
@@ -180,7 +180,7 @@
         self.gridLayer.mask = maskLayer;
     }
     else {
-        gridBits = self.grid.grayscaleBitmap;
+        gridBits = [self.grid grayscaleBitmapWithRange:NSMakeRange(0, 255)];
         self.gridLayer.contents = CFBridgingRelease(gridBits);
         self.gridLayer.magnificationFilter = kCAFilterNearest; // kCAFilterLinear;
     }
@@ -370,12 +370,6 @@
 
 - (void) grid:(ILGridData*)grid didAppendedData:(NSData*)data asRow:(NSUInteger)row
 {
-    // check to see if the data is the correct length
-    if ((grid.columns * grid.valueSize) != data.length) {
-        NSLog(@"WARNING data length not suitable for grid columns");
-        // TODO raise an exception?
-    }
-
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self updateView];
     }];

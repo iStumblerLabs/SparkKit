@@ -1,40 +1,20 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-typedef enum
-{
-    ILGridDataByteType,
-    ILGridDataIntegerType,
-    ILGridDataFloatType,
-    ILGridDataUnicharType
-}
-ILGridDataType;
-
 @protocol ILGridDataDelegate;
 
-/*! TODO create GridData and MutableGridData Protocols based on this implementation */
+/*! ILGridData is a wrapper for NSMutableData which provides access to a 2d array of values or a given size */
 @interface ILGridData : NSObject
-{
-    ILGridDataType gridType;
-    NSMutableData* data;
-    NSUInteger gridRows;
-    NSUInteger gridColumns;
-    NSUInteger gridValueSize;
-    CGFloat gridMinValue;
-    CGFloat gridMaxValue;
-}
-@property(readonly) NSUInteger rows;
-@property(readonly) NSUInteger columns;
-@property(readonly) NSUInteger valueSize;
-@property(nonatomic, assign) CGFloat minValue;
-@property(nonatomic, assign) CGFloat maxValue;
-@property(readonly) CGFloat gridMinValue;
-@property(readonly) CGFloat gridMaxValue;
-@property(readonly) ILGridDataType type;
+@property(retain) NSMutableData* data;
+@property(assign) size_t valueSize;
+@property(readonly) NSUInteger rows; // computed
+@property(assign) NSUInteger columns;
 @property(nonatomic, assign) NSObject<ILGridDataDelegate>* delegate;
 
 #pragma mark -
 
++ (instancetype) gridWithValueSize:(size_t)valueSize rows:(NSUInteger)rows columns:(NSUInteger)columns;
++ (instancetype) byteGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns;
 + (instancetype) integerGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns;
 + (instancetype) floatGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns;
 + (instancetype) uniCharGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns;
@@ -42,21 +22,23 @@ ILGridDataType;
 #pragma mark -
 
 /** @designated initilizer */
-- (instancetype) initGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns valueSize:(NSUInteger)size gridType:(ILGridDataType) type;
+- (instancetype) initGridWithValueSize:(size_t)valueSize rows:(NSUInteger)rows columns:(NSUInteger)columns;
 
 #pragma mark - Properties
 
-- (size_t)       sizeOfRow;
-- (void*)     addressOfRow:(NSUInteger)row column:(NSUInteger)column;
-- (uint8_t)      byteAtRow:(NSUInteger)row column:(NSUInteger)column;
+- (size_t) sizeOfRow;
+- (void*) addressOfRow:(NSUInteger)row column:(NSUInteger)column;
+
+- (uint8_t) byteAtRow:(NSUInteger)row column:(NSUInteger)column;
 - (NSInteger) integerAtRow:(NSUInteger)row column:(NSUInteger)column;
-- (CGFloat)     floatAtRow:(NSUInteger)row column:(NSUInteger)column;
-- (UniChar)   uniCharAtRow:(NSUInteger)row column:(NSUInteger)column;
-- (CGFloat)   percentAtRow:(NSUInteger)row column:(NSUInteger)column;
+- (CGFloat) floatAtRow:(NSUInteger)row column:(NSUInteger)column;
+- (UniChar) uniCharAtRow:(NSUInteger)row column:(NSUInteger)column;
+
+- (CGFloat) percentOfValueAtRow:(NSUInteger)row column:(NSUInteger)column inRange:(NSRange)range;
 
 #pragma mark - Setters
 
-- (void) setValueAtRow:(NSUInteger)row column:(NSUInteger)column data:(void*)data length:(NSUInteger) length;
+- (void) setValue:(void*)data ofSize:(size_t)valueSize atRow:(NSUInteger)row column:(NSUInteger)column;
 - (void) setByte:(uint8_t) byteValue atRow:(NSUInteger)row column:(NSUInteger)column;
 - (void) setInteger:(NSInteger) integerValue atRow:(NSUInteger)row column:(NSUInteger)column;
 - (void) setFloat:(CGFloat) floatValue atRow:(NSUInteger) row column:(NSUInteger)column;
@@ -64,6 +46,7 @@ ILGridDataType;
 
 #pragma mark - Fill Grid with a Value
 
+- (void) fillByteValue:(uint8_t) byteValue;
 - (void) fillIntegerValue:(NSInteger) integerValue;
 - (void) fillUniCharValue:(UniChar) unicharValue;
 - (void) fillFloatValue:(CGFloat) floatValue;
@@ -77,9 +60,9 @@ ILGridDataType;
 
 #pragma mark - Image Representations
 
-- (CGImageRef) grayscaleBitmapOfRow:(NSUInteger)thisRow CF_RETURNS_RETAINED;
-- (CGImageRef) grayscaleBitmap CF_RETURNS_RETAINED;
-- (CGImageRef) alphaBitmap CF_RETURNS_RETAINED;
+- (CGImageRef) grayscaleBitmapOfRow:(NSUInteger)thisRow withRange:(NSRange)range CF_RETURNS_RETAINED;
+- (CGImageRef) grayscaleBitmapWithRange:(NSRange)range CF_RETURNS_RETAINED;
+- (CGImageRef) alphaBitmapWithRange:(NSRange) range  CF_RETURNS_RETAINED;
 
 #pragma mark - Slices
 
@@ -90,11 +73,11 @@ ILGridDataType;
 
 @end
 
-#pragma mark - ILDataStream
+#pragma mark - ILGridDataDelegate
 
 @protocol ILGridDataDelegate <NSObject>
 
-#pragma mark - Slices
+#pragma mark - Slice Operations
 
 - (void) grid:(ILGridData*)grid didSetData:(NSData*)data atRow:(NSUInteger)row;
 - (void) grid:(ILGridData*)grid didAppendedData:(NSData*)data asRow:(NSUInteger)row;
@@ -108,5 +91,6 @@ ILGridDataType;
 @interface ILGridTableDataSource : NSObject <NSTableViewDataSource>
 @property(nonatomic,retain) ILGridData* grid;
 @property(nonatomic,retain) NSArray* labels;
+
 @end
 #endif
