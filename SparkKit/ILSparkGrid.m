@@ -157,7 +157,7 @@
 #if DEBUG
     NSTimeInterval drawStart = [[NSDate new] timeIntervalSinceReferenceDate];
 #endif
-    BOOL drawAlpha = YES;
+    BOOL drawAlpha = NO;
     
     [CATransaction setValue:@(0.01) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
     self.gridLayer.frame = self.layer.bounds;

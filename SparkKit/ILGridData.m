@@ -57,7 +57,7 @@
 
 - (NSUInteger) rows
 {
-    return (self.data.length / self.columns); // TODO throw if there's any modulo
+    return (self.columns > 0 ? (self.data.length / self.columns) : 0); // TODO throw if there's any modulo
 }
 
 #pragma mark - Factory Methods
@@ -469,6 +469,7 @@ exit:
         size_t imageBytes =  (bytesPerRow * gridSize.height);
         CFMutableDataRef imageData = CFDataCreateMutable(kCFAllocatorDefault, imageBytes);
         CGContextRef maskContext = CGBitmapContextCreate((void*)CFDataGetMutableBytePtr(imageData), gridSize.width, gridSize.height, bitsPerComponent, bytesPerRow, grayscale, kCGImageAlphaOnly);
+        CGDataProviderRef maskDataProvider = CGDataProviderCreateWithCFData(imageData);
         CGContextSetFillColorSpace(maskContext, grayscale);
 
         NSUInteger thisRow = 0;
@@ -485,10 +486,11 @@ exit:
             thisRow++;
         }
 
-        maskBitMap = CGImageMaskCreate(gridSize.width, gridSize.height, bitsPerComponent, bitsPerComponent, bytesPerRow, CGDataProviderCreateWithCFData(imageData), nil, NO);
+        maskBitMap = CGImageMaskCreate(gridSize.width, gridSize.height, bitsPerComponent, bitsPerComponent, bytesPerRow, maskDataProvider, nil, NO);
 exit:
         CGContextRelease(maskContext);
         CGColorSpaceRelease(grayscale);
+        CGDataProviderRelease(maskDataProvider);
         CFRelease(imageData);
         // CFAutorelease(maskBitMap);
     }
@@ -545,7 +547,7 @@ exit:
             NSRange byteRange = NSMakeRange((rowRange.location * rowSize), (rowRange.length * rowSize));
             NSData* trimmedData = [self.data subdataWithRange:byteRange];
             
-            if ((trimmedData.length % self.columns) != 0) {
+            if (self.columns > 0 && ((trimmedData.length % self.columns) != 0)) {
                 NSLog(@"EXCEPTION byte range (%lu,%lu) invalid data length: %lu", (unsigned long)byteRange.location, (unsigned long)byteRange.length, trimmedData.length);
             }
             

@@ -62,7 +62,7 @@
 
 - (CGImageRef) grayscaleBitmapOfRow:(NSUInteger)thisRow withRange:(NSRange)range CF_RETURNS_RETAINED;
 - (CGImageRef) grayscaleBitmapWithRange:(NSRange)range CF_RETURNS_RETAINED;
-- (CGImageRef) alphaBitmapWithRange:(NSRange) range  CF_RETURNS_RETAINED;
+- (CGImageRef) alphaBitmapWithRange:(NSRange) range CF_RETURNS_RETAINED;
 
 #pragma mark - Slices
 
