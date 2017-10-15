@@ -21,7 +21,6 @@ typedef NS_ENUM(NSInteger, ILSparkMeterFillDirection) {
     ILSparkMeterFlippedFill // Reverse of System Text Direction
 };
 
-
 /*! @abstract drawing style of the level indicator
     @cost IndicatorStyleText - the default style, a textual description of the value
     @cost IndicatorStyleVertical - a vertical indicator, like a thermometer
@@ -52,14 +51,13 @@ typedef NS_ENUM(NSInteger, ILSparkMeterStyle) {
 @interface ILSparkMeter : ILSparkView
 
 /*! @abstract the style of the indicator */
-@property (nonatomic, assign) ILSparkMeterStyle gaugeStyle;
+@property(nonatomic, assign) ILSparkMeterStyle gaugeStyle;
 
 /*! @abstract the data source for the indicator implmeneting the ILIndicatorDataSource protocol */
-@property (nonatomic, weak) id<ILSparkMeterDataSource> dataSource;
+@property(nonatomic, weak) id<ILSparkMeterDataSource> dataSource;
 
 // TODO @property (nonatomic, assign) CGFloat minAngle; // angle of the min value for circular indicators
 // TODO @property (nonatomic, assign) CGFloat maxAngle; // angle of the max value for circular indicators
-// TODO @property (nonatomic, assign) NSUInteger valueDivisions; // number of value divisions (tick-marks)
 
 @end
 
@@ -73,3 +71,18 @@ typedef NS_ENUM(NSInteger, ILSparkMeterStyle) {
 @property(nonatomic, readonly) CGFloat datum;
 
 @end
+
+#ifdef IL_APP_KIT
+
+/*! @class ILSparkMeterCell */
+@interface ILSparkMeterCell : NSActionCell
+
+/*! @abstract the style of the indicator */
+@property(nonatomic, assign) ILSparkMeterStyle gaugeStyle;
+
+/*! @brief style information */
+@property(nonatomic, retain) ILSparkStyle* style;
+
+@end
+
+#endif

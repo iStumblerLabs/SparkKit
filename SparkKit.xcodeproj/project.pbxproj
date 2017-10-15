@@ -53,8 +53,6 @@
 		75971E091D13D79F00EA65D3 /* ILSparkView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971E071D13D79F00EA65D3 /* ILSparkView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75971E0A1D13D79F00EA65D3 /* ILSparkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971E081D13D79F00EA65D3 /* ILSparkView.m */; };
 		75971E0C1D13DAF600EA65D3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75971E0B1D13DAF600EA65D3 /* QuartzCore.framework */; };
-		75B3E64F1ED5EFFE00E7798F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B3E64E1ED5EFFE00E7798F /* UIKit.framework */; };
-		75B3E6511ED5F00600E7798F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B3E6501ED5F00600E7798F /* CoreGraphics.framework */; };
 		75B866EA1EE9EBB40052BD30 /* Sparky.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B866E91EE9EBB40052BD30 /* Sparky.xib */; };
 		75F5A90C1D1902C500A17804 /* SparkyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A90B1D1902C500A17804 /* SparkyDelegate.m */; };
 		75F5A91B1D19034900A17804 /* SparkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75971DEF1D138C0400EA65D3 /* SparkKit.framework */; };
@@ -197,8 +195,6 @@
 		75971E071D13D79F00EA65D3 /* ILSparkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkView.h; sourceTree = "<group>"; };
 		75971E081D13D79F00EA65D3 /* ILSparkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkView.m; sourceTree = "<group>"; };
 		75971E0B1D13DAF600EA65D3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		75B3E64E1ED5EFFE00E7798F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		75B3E6501ED5F00600E7798F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		75B866E91EE9EBB40052BD30 /* Sparky.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Sparky.xib; sourceTree = "<group>"; };
 		75D8ADD71ED37A31006F3823 /* KitBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KitBridge.xcodeproj; path = ../KitBridge/KitBridge.xcodeproj; sourceTree = SOURCE_ROOT; };
 		75F5A9081D1902C500A17804 /* Sparky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparky.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -252,8 +248,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75B3E6511ED5F00600E7798F /* CoreGraphics.framework in Frameworks */,
-				75B3E64F1ED5EFFE00E7798F /* UIKit.framework in Frameworks */,
 				756DB21F1ED37AE600B84AE7 /* KitBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,8 +362,6 @@
 			isa = PBXGroup;
 			children = (
 				75D8ADD71ED37A31006F3823 /* KitBridge.xcodeproj */,
-				75B3E6501ED5F00600E7798F /* CoreGraphics.framework */,
-				75B3E64E1ED5EFFE00E7798F /* UIKit.framework */,
 				75971E0B1D13DAF600EA65D3 /* QuartzCore.framework */,
 				75971E021D13D37600EA65D3 /* AppKit.framework */,
 			);

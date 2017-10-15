@@ -57,7 +57,7 @@
 
 - (NSUInteger) rows
 {
-    return (self.columns > 0 ? (self.data.length / self.columns) : 0); // TODO throw if there's any modulo
+    return (self.columns > 0 ? (self.data.length / self.sizeOfRow) : 0); // TODO throw if there's any modulo
 }
 
 #pragma mark - Factory Methods
@@ -184,14 +184,19 @@
     // TODO? CGFloat minValue = range.location;
     CGFloat maxValue = range.location + range.length;
     CGFloat percent = 0.0;
-
+    
     if (self.valueSize == sizeof(uint8_t)) {
         uint8_t thisValue = [self byteAtRow:row column:col];
         percent = (thisValue / maxValue);
     }
     else if (self.valueSize == sizeof(NSInteger)) {
         NSInteger thisValue = [self integerAtRow:row column:col];
-        percent = (thisValue / maxValue);
+        if (thisValue > 0) {
+            percent = (thisValue / maxValue);
+        }
+        else if (thisValue < 0) {
+            percent = (labs(thisValue) / maxValue);
+        }
     }
     
     return percent;
@@ -512,7 +517,12 @@ exit:
         if ((index + [self sizeOfRow]) <= self.data.length) {
             [self.data replaceBytesInRange:NSMakeRange(index, [self sizeOfRow]) withBytes:[slice bytes]];
         }
-        else NSLog(@"EXCEPTION %@ setData:atRow: slice lands outside of data range: %@ row %lu", self, slice, (unsigned long)row);
+        else {
+            [[NSException
+                exceptionWithName:NSRangeException
+                reason:[NSString stringWithFormat:@"%@ setData:atRow: slice lands outside of data range: %@ row %lu", self.className, slice, (unsigned long)row]
+                userInfo:nil] raise];
+        }
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(grid:didSetData:atRow:)]) {
             [self.delegate grid:self didSetData:slice atRow:row];
@@ -520,7 +530,7 @@ exit:
     }
 }
 
-- (void)appendData:(NSData*) slice
+- (void) appendData:(NSData*) slice
 {
     @synchronized (self) {
         NSInteger sliceColumns = (slice.length / self.valueSize);
@@ -531,11 +541,16 @@ exit:
                 [self.delegate grid:self didAppendedData:slice asRow:self.rows];
             }
         }
-        else NSLog(@"EXCEPTION appendData, wrong sized slice: %lu bytes", (unsigned long)slice.length);
+        else {
+            [[NSException
+                exceptionWithName:NSRangeException
+                reason: [NSString stringWithFormat:@"%@ appendData, wrong sized slice: %lu bytes", self.className, (unsigned long)slice.length]
+                userInfo:nil] raise];
+        }
     }
 }
 
-- (void)trimToRangeOfRows:(NSRange)rowRange;
+- (void) trimToRangeOfRows:(NSRange)rowRange
 {
     @synchronized (self) {
         if ((rowRange.location + rowRange.length) <= self.rows) {
@@ -557,6 +572,19 @@ exit:
     }
 }
 
+- (void) extendToRow:(NSUInteger)rows
+{
+    @synchronized (self) {
+        NSUInteger row = self.rows;
+        while (row < rows) {
+            NSMutableData* extendedData = [NSMutableData dataWithLength:self.sizeOfRow];
+            bzero((void*)extendedData.bytes, extendedData.length);
+            [self appendData:extendedData];
+            row++;
+        }
+    }
+}
+
 @end
 
 #pragma mark -
@@ -566,12 +594,12 @@ exit:
 
 #pragma mark - NSTableViewDataSource
 
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+- (NSInteger) numberOfRowsInTableView:(NSTableView *)tableView
 {
     return self.grid.rows;
 }
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+- (id) tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     id value = nil;
     NSUInteger columnIndex = [tableView.tableColumns indexOfObject:tableColumn];
@@ -580,14 +608,14 @@ exit:
         value = self.labels[row];
     }
     else {
-        if (self.grid.type == ILGridDataIntegerType) {
-            value = [NSNumber numberWithDouble:[self.grid percentAtRow:row column:columnIndex-1]];
+        if (self.type == ILGridDataIntegerType) {
+            value = [NSNumber numberWithDouble:[self.grid percentOfValueAtRow:row column:(columnIndex -1) inRange:self.range]];
             // value = [NSNumber numberWithInteger:[self.grid integerAtRow:row column:columnIndex-1]];
         }
-        else if (self.grid.type == ILGridDataFloatType) {
+        else if (self.type == ILGridDataFloatType) {
             value = [NSNumber numberWithDouble:[self.grid floatAtRow:row column:columnIndex-1]];
         }
-        else if (self.grid.type == ILGridDataUnicharType) {
+        else if (self.type == ILGridDataUnicharType) {
             value = [NSString stringWithFormat:@"%C", [self.grid uniCharAtRow:row column:columnIndex-1]];
         }
     }

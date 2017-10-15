@@ -11,7 +11,7 @@
 - (void) updateView
 {
     // TODO a style preference and vertical buckets
-    
+    self.layer.backgroundColor = self.style.background.CGColor;
     self.layer.sublayers = nil; // TODO put buckets on a seperate layer
     
     if (self.dataSource) {

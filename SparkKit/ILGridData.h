@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import <KitBridge/KitBridge.h>
 
 @protocol ILGridDataDelegate;
 
@@ -70,6 +71,7 @@
 - (void) setData:(NSData*)data atRow:(NSUInteger)row;
 - (void) appendData:(NSData*) slice;
 - (void) trimToRangeOfRows:(NSRange)rows;
+- (void) extendToRow:(NSUInteger)rows;
 
 @end
 
@@ -88,9 +90,18 @@
 #if IL_APP_KIT
 #pragma mark - Table Data Source Adapter
 
+typedef enum {
+    ILGridDataByteType,
+    ILGridDataIntegerType,
+    ILGridDataFloatType,
+    ILGridDataUnicharType
+}   ILGridDataType;
+
 @interface ILGridTableDataSource : NSObject <NSTableViewDataSource>
-@property(nonatomic,retain) ILGridData* grid;
-@property(nonatomic,retain) NSArray* labels;
+@property(nonatomic, assign) ILGridDataType type;
+@property(nonatomic, retain) ILGridData* grid;
+@property(nonatomic, retain) NSArray* labels;
+@property(nonatomic, assign) NSRange range;
 
 @end
 #endif

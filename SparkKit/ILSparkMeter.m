@@ -30,8 +30,7 @@ CGFloat const ILSparkMeterDefaultRingWidth = 8;
 #pragma mark - Private
 
 @interface ILSparkMeter ()
-@property (nonatomic, retain) CATextLayer *indicatorText;
-@property (nonatomic, retain) CAShapeLayer *indicatorLayer;
+@property (nonatomic, retain) CALayer *indicatorLayer;
 
 @end
 
@@ -39,84 +38,36 @@ CGFloat const ILSparkMeterDefaultRingWidth = 8;
 
 @implementation ILSparkMeter
 
-#ifdef IL_UI_KIT
-#pragma mark - UIView
-
-- (void)layoutSubviews
++ (CALayer*) sparkMeterWithData:(NSObject<ILSparkMeterDataSource>*)dataSource size:(CGSize)size meterStyle:(ILSparkMeterStyle) meterStyle sparkStyle:(ILSparkStyle*)sparkStyle
 {
-    [super layoutSubviews];
-    self.indicatorLayer.frame = self.bounds;
-//    NSLog(@"<%@ %p layoutSubviews frame: %@ layer frame: %@ layer bounds: %@>",
-//        self.class, self, NSStringFromCGRect(self.frame),
-//        NSStringFromCGRect(self.style == ILSparkMeterTextStyle ? self.indicatorText.frame : self.indicatorLayer.frame),
-//        NSStringFromCGRect(self.style == ILSparkMeterTextStyle ? self.indicatorText.bounds : self.indicatorLayer.bounds));
-}
-#endif
-
-#pragma mark - ILBorderedView
-
-- (void)initView
-{
-    [super initView];
-    self.style = [ILSparkStyle defaultStyle];
-    self.dataSource = nil;
-    
-    self.indicatorLayer = [CAShapeLayer new];
-    [self.layer addSublayer:self.indicatorLayer];
-
-    self.indicatorText = [CATextLayer new];
-    [self.layer addSublayer:self.indicatorText];
-}
-
-- (void)updateView
-{
-    [super updateView];
-
+    CALayer* meterLayer = nil;
     ILBezierPath* filledPath = nil;
-
-    self.indicatorLayer.hidden = (self.style == ILSparkMeterTextStyle);
-    self.indicatorText.hidden = (self.style != ILSparkMeterTextStyle);
-
-    CGFloat datum = self.dataSource.datum;
-    CGRect insetRect = self.borderInset;
-
-    if (self.dataSource) {
-        switch (self.gaugeStyle) {
+    
+    CGFloat datum = dataSource.datum;
+    CGRect insetRect = NSMakeRect(0, 0, size.width, size.height); // self.borderInset;
+    
+    if (dataSource) {
+        switch (meterStyle) {
             case ILSparkMeterTextStyle: {
                 NSString* valueString = [NSString stringWithFormat:@"%.1f%%", datum * 100];
                 CGRect textRect = insetRect;
-                textRect.size.height = (self.style.font.pointSize * 1.5); // baseline?
+                textRect.size.height = (sparkStyle.font.pointSize * 1.5); // baseline?
                 textRect.origin.y = (((insetRect.size.height - textRect.size.height) / 2) + insetRect.origin.y);
                 
-                self.indicatorText.string = valueString;
-                self.indicatorText.alignmentMode = kCAAlignmentCenter;
-                self.indicatorText.font = (__bridge CFTypeRef _Nullable)(self.style.font.fontName);
-                self.indicatorText.fontSize = self.style.font.pointSize;
-                self.indicatorText.frame = textRect;
-                self.indicatorText.zPosition = 1.0; // frontmost?
-                self.indicatorText.contentsGravity = kCAGravityCenter;
-                self.indicatorText.foregroundColor = self.style.fill.CGColor;
-                self.indicatorText.truncationMode = kCATruncationEnd;
-                self.indicatorText.contentsScale = [[ILScreen mainScreen] scale];
-                self.indicatorText.hidden = NO;
-            
-
-                // self.indicatorText.shouldRasterize = YES;
-                // self.indicatorText.sublayers = nil;
-
-                // self.indicatorText.backgroundColor = [ILColor orangeColor].CGColor;
-
-                // compute the string size and offsets
-                // CGSize stringSize = attributedValueString.size;
-                // CGFloat xOffset = (self.bounds.size.width-stringSize.width)/2;
-                // CGFloat yOffset = (self.bounds.size.height-stringSize.height)/2;
-                // CGRect stringRect = CGRectIntegral(CGRectMake(xOffset, yOffset, stringSize.width, stringSize.height));
-
-                // set text properties and mask
-                // self.indicatorText.mask = self.borderMask;
+                CATextLayer* indicatorText = [CATextLayer layer];
+                indicatorText.string = valueString;
+                indicatorText.alignmentMode = kCAAlignmentCenter;
+                indicatorText.font = (__bridge CFTypeRef _Nullable)(sparkStyle.font.fontName);
+                indicatorText.fontSize = sparkStyle.font.pointSize;
+                indicatorText.frame = textRect;
+                indicatorText.zPosition = 1.0; // frontmost?
+                indicatorText.contentsGravity = kCAGravityCenter;
+                indicatorText.foregroundColor = sparkStyle.fill.CGColor;
+                indicatorText.truncationMode = kCATruncationEnd;
+                indicatorText.contentsScale = [[ILScreen mainScreen] scale];
+                indicatorText.hidden = NO;
                 
-
-                // self.indicatorText.frame = stringRect;
+                meterLayer = indicatorText;
                 break;
             }
             case ILSparkMeterVerticalStyle: {
@@ -133,7 +84,7 @@ CGFloat const ILSparkMeterDefaultRingWidth = 8;
             }
             case ILSparkMeterSquareStyle: {
                 CGRect squareRect = ILRectSquareInRect(insetRect);
-                CGFloat indicatorSideLength = (squareRect.size.width * self.dataSource.datum);
+                CGFloat indicatorSideLength = (squareRect.size.width * datum);
                 CGFloat indicatorInset = (squareRect.size.width - indicatorSideLength) / 2; // ??? take the square root?
                 CGRect filledRect = CGRectInset(squareRect, indicatorInset, indicatorInset);
                 filledPath = [ILBezierPath bezierPathWithRect:filledRect];
@@ -157,9 +108,9 @@ CGFloat const ILSparkMeterDefaultRingWidth = 8;
                 filledPath = [ILBezierPath new];
                 [filledPath addArcWithCenter:squareCenter radius:indicatorSideLength startAngle:firstAngle endAngle:secondAngle clockwise:YES];
                 CGPoint outsideEndPoint = filledPath.currentPoint;
-                CGPoint insetPoint = ILPointOnLineToPointAtDistance(outsideEndPoint, squareCenter, self.style.ringWidth);
+                CGPoint insetPoint = ILPointOnLineToPointAtDistance(outsideEndPoint, squareCenter, sparkStyle.ringWidth);
                 [filledPath addLineToPoint:insetPoint];
-                [filledPath addArcWithCenter:squareCenter radius:(indicatorSideLength - self.style.ringWidth) startAngle:secondAngle endAngle:firstAngle clockwise:NO];
+                [filledPath addArcWithCenter:squareCenter radius:(indicatorSideLength - sparkStyle.ringWidth) startAngle:secondAngle endAngle:firstAngle clockwise:NO];
                 [filledPath addLineToPoint:topDeadCenter];
                 break;
             }
@@ -180,9 +131,9 @@ CGFloat const ILSparkMeterDefaultRingWidth = 8;
             }
             case ILSparkMeterDialStyle: {
                 CGRect squareRect = ILRectSquareInRect(insetRect);
-                CGFloat indicatorSideLength = (squareRect.size.height / 2.0f) - self.style.dialWidth;
+                CGFloat indicatorSideLength = (squareRect.size.height / 2.0f) - sparkStyle.dialWidth;
                 CGPoint squareCenter = ILPointCenteredInRect(squareRect);
-                CGFloat indicatorAngle = ((2.0f * M_PI) * self.dataSource.datum) - (M_PI / 2.0f);
+                CGFloat indicatorAngle = ((2.0f * M_PI) * datum) - (M_PI / 2.0f);
                 filledPath = [ILBezierPath new];
                 [filledPath addArcWithCenter:squareCenter radius:indicatorSideLength startAngle:indicatorAngle endAngle:indicatorAngle clockwise:YES];
                 [filledPath addLineToPoint:squareCenter];
@@ -190,21 +141,56 @@ CGFloat const ILSparkMeterDefaultRingWidth = 8;
             }
         }
     }
-
+    
     if (filledPath) {
-        self.indicatorLayer.path = filledPath.CGPath;
+        CAShapeLayer* indicatorLayer = [CAShapeLayer layer];
+        indicatorLayer.path = filledPath.CGPath;
         // self.indicatorLayer.mask = self.border;
-        self.indicatorLayer.fillColor = self.style.fill.CGColor;
+        indicatorLayer.fillColor = sparkStyle.fill.CGColor;
         
-        if (self.gaugeStyle == ILSparkMeterDialStyle) {
-            self.indicatorLayer.strokeColor = self.style.fill.CGColor;
-            self.indicatorLayer.lineWidth = self.style.dialWidth;
-            self.indicatorLayer.lineCap = @"round";
+        if (meterStyle == ILSparkMeterDialStyle) {
+            indicatorLayer.strokeColor = sparkStyle.fill.CGColor;
+            indicatorLayer.lineWidth = sparkStyle.dialWidth;
+            indicatorLayer.lineCap = @"round";
         } else {
-            self.indicatorLayer.strokeColor = self.style.stroke.CGColor;
-            self.indicatorLayer.lineWidth = self.style.width;
+            indicatorLayer.strokeColor = sparkStyle.stroke.CGColor;
+            indicatorLayer.lineWidth = sparkStyle.width;
         }
+        
+        meterLayer = indicatorLayer;
     }
+    
+    return meterLayer;
+}
+
+#ifdef IL_UI_KIT
+#pragma mark - UIView
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.indicatorLayer.frame = self.bounds;
+//    NSLog(@"<%@ %p layoutSubviews frame: %@ layer frame: %@ layer bounds: %@>",
+//        self.class, self, NSStringFromCGRect(self.frame),
+//        NSStringFromCGRect(self.style == ILSparkMeterTextStyle ? self.indicatorText.frame : self.indicatorLayer.frame),
+//        NSStringFromCGRect(self.style == ILSparkMeterTextStyle ? self.indicatorText.bounds : self.indicatorLayer.bounds));
+}
+#endif
+
+#pragma mark - ILSparkView
+
+- (void)initView
+{
+    [super initView];
+    self.style = [ILSparkStyle defaultStyle];
+    self.dataSource = nil;
+}
+
+- (void)updateView
+{
+    [super updateView];
+    self.indicatorLayer = [ILSparkMeter sparkMeterWithData:self.dataSource size:self.frame.size meterStyle:self.gaugeStyle sparkStyle:self.style];
+    self.indicatorLayer.frame = self.bounds;
 }
 
 - (BOOL) isCircular
@@ -277,3 +263,56 @@ CGFloat const ILSparkMeterDefaultRingWidth = 8;
 
 @end
 
+
+#if IL_APP_KIT
+
+#pragma mark -
+
+@implementation ILSparkMeterCell
+
+- (void) initCell
+{
+    self.gaugeStyle = ILSparkMeterHorizontalStyle;
+    self.style = [ILSparkStyle defaultStyle];
+}
+
+#pragma mark - NSObject
+
+- (id) init
+{
+    if( self = [super init]) {
+        [self initCell];
+    }
+    return self;
+}
+
+#pragma mark - NSCell
+
+- (id) initTextCell:(NSString*)aString
+{
+    if( self = [super initTextCell:aString]) {
+        [self initCell];
+    }
+    return self;
+}
+
+- (id) initImageCell:(NSImage*)anImage
+{
+    if( self = [super initImageCell:anImage]) {
+        [self initCell];
+    }
+    return self;
+}
+
+- (void)drawWithFrame:(NSRect)rect inView:(NSView *)view
+{
+    if ([[self representedObject] conformsToProtocol:@protocol(ILSparkMeterDataSource)]) {
+        CALayer* sparkMeter = [ILSparkMeter sparkMeterWithData:[self representedObject] size:rect.size meterStyle:self.gaugeStyle sparkStyle:self.style];
+        [[view layer] addSublayer:sparkMeter];
+        sparkMeter.frame = rect;
+    }
+}
+
+@end
+
+#endif
