@@ -1,11 +1,12 @@
 #import <KitBridge/KitBridge.h>
 #import <QuartzCore/QuartzCore.h>
 #import <SparkKit/ILGridData.h>
+#import <SparkKit/ILSparkView.h>
 
 @class ILSparkStyle;
 
 
-@interface ILSparkGrid : ILView <ILViews, ILGridDataDelegate>
+@interface ILSparkGrid : ILSparkView <ILViews, ILGridDataDelegate>
 
 /*! @brief style information */
 @property(nonatomic, retain) ILSparkStyle* style;
@@ -14,11 +15,6 @@
 @property(nonatomic, readonly) CAShapeLayer* border;
 
 @property(nonatomic, retain) ILGridData* grid;
-@property(nonatomic, retain) NSArray* yAxisLabels;
-@property(nonatomic, retain) NSString* yAxisUnits;
-@property(nonatomic, retain) NSArray* xAxisLabels;
-@property(nonatomic, retain) NSString* xAxisUnits;
-@property(nonatomic, retain) NSString* errorString;
 @property(nonatomic, assign) NSRange valueRange;
 
 @end

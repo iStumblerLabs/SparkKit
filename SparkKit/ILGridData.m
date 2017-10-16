@@ -443,7 +443,7 @@ exit:
         NSUInteger thisColumn = 0;
             while (thisColumn < gridSize.width) {
                 CGFloat percentValue = [self percentOfValueAtRow:thisRow column:thisColumn inRange:range];
-                const CGFloat percentComponents[] = {percentValue,  1.0};
+                const CGFloat percentComponents[] = {(1.0 - percentValue),  1.0};
                 CGContextSetFillColor(gridContext, (const CGFloat*)&percentComponents);
                 CGContextFillRect(gridContext, CGRectMake(thisColumn, thisRow, 1, 1)); // single pixel
                 thisColumn++;
@@ -462,20 +462,55 @@ exit:
     return rowBitMap;
 }
 
--(CGImageRef)alphaBitmapWithRange:(NSRange) range
+- (CGImageRef) alphaBitmapOfRow:(NSUInteger)thisRow withRange:(NSRange)range
+{
+    CGImageRef rowBitMap = nil;
+    @synchronized (self) {
+        CGSize rowSize = CGSizeMake(self.columns, 1);
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+        size_t bitsPerComponent = 8;
+        size_t channelCount = CGColorSpaceGetNumberOfComponents(colorSpace);
+        size_t bytesPerRow = (channelCount * rowSize.width);
+        size_t imageSize = (bytesPerRow * rowSize.height);
+        CFMutableDataRef imageData = CFDataCreateMutable(kCFAllocatorDefault, imageSize);
+        CGContextRef maskContext = CGBitmapContextCreate((void*)CFDataGetMutableBytePtr(imageData), rowSize.width, rowSize.height, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaOnly);
+        CGContextSetFillColorSpace(maskContext, colorSpace);
+        
+        NSUInteger thisColumn = 0;
+        while (thisColumn < self.columns) {
+            CGFloat percentValue = [self percentOfValueAtRow:thisRow column:thisColumn inRange:range];
+            const CGFloat percentComponents[] = {percentValue,  1.0};
+            CGContextSetFillColor(maskContext, (const CGFloat*)&percentComponents);
+            CGContextSetAlpha(maskContext, percentValue);
+            CGContextFillRect(maskContext, CGRectMake(thisColumn, 0, 1, 1)); // single pixel
+            thisColumn++;
+        }
+        
+        rowBitMap = CGBitmapContextCreateImage(maskContext);
+    exit:
+        CGContextRelease(maskContext);
+        CGColorSpaceRelease(colorSpace);
+        free(imageData);
+        // CFAutorelease(rowBitMap);
+    }
+    
+    return rowBitMap;
+}
+
+- (CGImageRef) alphaBitmapWithRange:(NSRange) range
 {
     CGImageRef maskBitMap = nil;
     @synchronized (self) {
         CGSize gridSize = CGSizeMake(self.columns, self.rows);
-        CGColorSpaceRef grayscale = CGColorSpaceCreateDeviceGray();
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
         size_t bitsPerComponent = 8;
-        size_t channelCount = CGColorSpaceGetNumberOfComponents(grayscale);
+        size_t channelCount = CGColorSpaceGetNumberOfComponents(colorSpace);
         size_t bytesPerRow = (channelCount * gridSize.width);
-        size_t imageBytes =  (bytesPerRow * gridSize.height);
-        CFMutableDataRef imageData = CFDataCreateMutable(kCFAllocatorDefault, imageBytes);
-        CGContextRef maskContext = CGBitmapContextCreate((void*)CFDataGetMutableBytePtr(imageData), gridSize.width, gridSize.height, bitsPerComponent, bytesPerRow, grayscale, kCGImageAlphaOnly);
+        size_t imageSize =  (bytesPerRow * gridSize.height);
+        CFMutableDataRef imageData = CFDataCreateMutable(kCFAllocatorDefault, imageSize);
+        CGContextRef maskContext = CGBitmapContextCreate((void*)CFDataGetMutableBytePtr(imageData), gridSize.width, gridSize.height, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaOnly);
         CGDataProviderRef maskDataProvider = CGDataProviderCreateWithCFData(imageData);
-        CGContextSetFillColorSpace(maskContext, grayscale);
+        CGContextSetFillColorSpace(maskContext, colorSpace);
 
         NSUInteger thisRow = 0;
         while (thisRow < gridSize.height) {
@@ -494,7 +529,7 @@ exit:
         maskBitMap = CGImageMaskCreate(gridSize.width, gridSize.height, bitsPerComponent, bitsPerComponent, bytesPerRow, maskDataProvider, nil, NO);
 exit:
         CGContextRelease(maskContext);
-        CGColorSpaceRelease(grayscale);
+        CGColorSpaceRelease(colorSpace);
         CGDataProviderRelease(maskDataProvider);
         CFRelease(imageData);
         // CFAutorelease(maskBitMap);

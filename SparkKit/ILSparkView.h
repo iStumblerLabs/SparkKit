@@ -20,4 +20,14 @@
 /*! @brief inset of border rectangle, effective drawable area */
 @property(nonatomic, readonly) CGRect borderInset;
 
+#pragma mark - Labels
+
+@property(nonatomic, retain) NSArray* yAxisLabels;
+@property(nonatomic, retain) NSString* yAxisUnits;
+@property(nonatomic, assign) BOOL yAxisLabelsCenteredOnRows;
+@property(nonatomic, retain) NSArray* xAxisLabels;
+@property(nonatomic, retain) NSString* xAxisUnits;
+@property(nonatomic, assign) BOOL xAxisLabelsCenteredOnColumns;
+@property(nonatomic, retain) NSString* errorString;
+
 @end
