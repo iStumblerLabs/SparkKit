@@ -55,7 +55,7 @@
 -(CGRect)rectOfRow:(NSUInteger)thisRow
 {
     CGFloat rowHeight = [self rowHeight];
-    return CGRectMake(0, (self.frame.size.height - (rowHeight * (thisRow + 1))), self.frame.size.width, rowHeight);
+    return CGRectIntegral(CGRectMake(0, (self.frame.size.height - (rowHeight * (thisRow + 1))), self.frame.size.width, rowHeight));
 }
 
 -(CGRect)rectOfColumn:(NSUInteger)thisColumn
