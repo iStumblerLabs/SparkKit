@@ -235,9 +235,10 @@ static const CGFloat labelMargin = 12;
 
 - (void) updateView
 {
+    [CATransaction begin];
+    [CATransaction setValue:@(0.1) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
+
     if (self.labelsNeedUpdate) {
-        [CATransaction setValue:@(0.1) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
-        
         CGRect bounds = self.layer.bounds;
         self.labelLayer.frame = bounds;
         self.labelLayer.sublayers = nil;
@@ -246,7 +247,7 @@ static const CGFloat labelMargin = 12;
         if (self.errorString) { // put it on a text layer in the middle
             CATextLayer* errorLayer = [self layerForLabel:self.errorString];
             errorLayer.position = ILPointCenteredInRect(self.labelLayer.frame);
-            NSLog(@"error: %@ frame: %@", self.errorString, ILStringFromCGRect(errorLayer.frame));
+            // NSLog(@"%@ error: %@ frame: %@", self.className, self.errorString, ILStringFromCGRect(errorLayer.frame));
         }
         else {
             if (self.yAxisLabels) {
@@ -372,7 +373,6 @@ static const CGFloat labelMargin = 12;
             }
         }
         
-        [CATransaction commit];
         self.labelsNeedUpdate = NO;
     }
 
@@ -387,6 +387,8 @@ static const CGFloat labelMargin = 12;
             [self.layer addSublayer:borderLayer];
         }
     }
+
+    [CATransaction commit];
 }
 
 @end

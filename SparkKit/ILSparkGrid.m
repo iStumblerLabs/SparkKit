@@ -87,13 +87,14 @@
 
 -(void)drawGrid // one shot, redraw the entire grid into self.gridLayer
 {
+    [CATransaction begin];
+    [CATransaction setValue:@(0.1) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
 #if DEBUG
     NSTimeInterval drawStart = [[NSDate new] timeIntervalSinceReferenceDate];
 #endif
     BOOL drawAlpha = YES;
     BOOL drawSlices = YES;
     
-    [CATransaction setValue:@(0.01) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
     self.gridLayer.frame = self.layer.bounds;
     self.gridLayer.sublayers = nil;
     self.gridLayer.backgroundColor = self.style.fill.CGColor;
