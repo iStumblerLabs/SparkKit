@@ -8,12 +8,6 @@
 
 @interface ILSparkGrid : ILSparkView <ILViews, ILGridDataDelegate>
 
-/*! @brief style information */
-@property(nonatomic, retain) ILSparkStyle* style;
-
-/*! @brief border layer */
-@property(nonatomic, readonly) CAShapeLayer* border;
-
 @property(nonatomic, retain) ILGridData* grid;
 @property(nonatomic, assign) NSRange valueRange;
 
