@@ -70,12 +70,38 @@ CGFloat const ILBoldlineWidth = 2;
     }
 }
 
+- (ILSparkStyle*) copyWithHints:(NSDictionary*)styleHints
+{
+    ILSparkStyle* copy = [self copy];
+    [copy addHints:styleHints];
+    return copy;
+}
+
 #pragma mark - NSObject
 
 - (NSString*) description
 {
     return [NSString stringWithFormat:@"<%@: %p fill=%@ stroke=%@ background=%@ gradient=%@ filled=%i bordered=%i width=%f>",
             [self class], self, self.fill, self.stroke, self.background, self.gradient, self.filled, self.bordered, self.width];
+}
+
+#pragma mark - NSCopying
+
+- (instancetype) copyWithZone:(NSZone *)zone
+{
+    ILSparkStyle* style = [ILSparkStyle new];
+    style.fill = self.fill;
+    style.stroke = self.stroke;
+    style.border = self.border;
+    style.background = self.background;
+    style.gradient = self.gradient;
+    style.filled = self.filled;
+    style.bordered = self.bordered;
+    style.width = self.width;
+    style.font = self.font;
+    style.hints = self.hints;
+    
+    return style;
 }
 
 @end

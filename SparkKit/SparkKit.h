@@ -7,6 +7,7 @@
 #import <SparkKit/ILSparkBars.h>
 #import <SparkKit/ILSparkLine.h>
 #import <SparkKit/ILSparkGrid.h>
+#import <SparkKit/ILSparkStack.h>
 
 /* Data Sources */
 #import <SparkKit/ILGridData.h>

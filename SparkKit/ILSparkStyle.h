@@ -13,7 +13,6 @@ extern NSString* const ILSparkStyleIsBordered;
 extern NSString* const ILSparkStyleWidth;
 extern NSString* const ILSparkStyleHints;
 
-
 #pragma mark - Line Widths
 
 extern CGFloat const ILHairlineWidth;
@@ -27,7 +26,7 @@ extern CGFloat const ILBoldlineWidth;
 @class ILSparkStyle 
 @abstract encapsulates style information for an ILSparkViews or ILSparkCell
 */
-@interface ILSparkStyle : NSObject
+@interface ILSparkStyle : NSObject <NSCopying>
 
 /*! @brief fill color */
 @property(nonatomic, retain) ILColor* fill;
@@ -71,6 +70,9 @@ extern CGFloat const ILBoldlineWidth;
 
 /*! @brief add provided hints to hints dictionary */
 - (void) addHints:(NSDictionary*)additionalHints;
+
+/*! @brief copy the style and apply the provided hints */
+- (ILSparkStyle*) copyWithHints:(NSDictionary*)styleHints;
 
 @end
 

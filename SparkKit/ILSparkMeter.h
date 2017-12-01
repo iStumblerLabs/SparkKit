@@ -1,35 +1,38 @@
 #import <SparkKit/ILSparkView.h>
 
+#pragma mark Hints
+
 /*! Pie and Ring Drawing Hints */
 extern NSString* const ILSparkMeterMinAngleHint; // Deg or Rad?
 extern NSString* const ILSparkMeterMaxAngleHint; // Deg or Rad?
-extern NSString* const ILSparkMeterFillClockwiseHint; // Boolean
 extern NSString* const ILSparkMeterDialWidthHint; // Defaults to ILSparkMeterDefaultDialWidth
 extern NSString* const ILSparkMeterRingWidthHint; // Defaults to ILSparkMeterDefaultRingWidth
-
-/*! Vert and Horz Drawing Direction Hint */
-extern NSString* const ILSparkMeterFillDirectionHint;
 
 /*! Defaults */
 extern CGFloat const ILSparkMeterDefaultDialWidth; // 4
 extern CGFloat const ILSparkMeterDefaultRingWidth; // 8
 
+/*! Vert and Horz Drawing Direction Hint */
+extern NSString* const ILSparkMeterFillDirectionHint;
+
 typedef NS_ENUM(NSInteger, ILSparkMeterFillDirection) {
     ILSparkMeterNaturalFill, // Use system text direction
-    ILSparkMeterLeftToRightFill, // Fixed Right to Left
-    ILSparkMeterRightToLeftFill, // Fixed Left to Right
+    ILSparkMeterLeftToRightFill, // Fixed Right to Left or Clockwise
+    ILSparkMeterRightToLeftFill, // Fixed Left to Right or Anti-Clockwise
     ILSparkMeterFlippedFill // Reverse of System Text Direction
 };
 
+extern NSString* const ILSparkMeterStyleHint;
+
 /*! @abstract drawing style of the level indicator
-    @cost IndicatorStyleText - the default style, a textual description of the value
-    @cost IndicatorStyleVertical - a vertical indicator, like a thermometer
-    @cost IndicatorStyleHorizontal - a horizontal indicator, like a thermometer
-    @cost IndicatorStyleSquare - a scaled square centered inside of the border
-    @cost IndicatorStyleCircle - a scaled circle centered inside of the border
-    @cost IndicatorStyleRing - a circular ring, with zero at the 12 o'clock position
-    @cost IndicatorStylePie - a pie chart, with zero at the 12 o'clock pososion
-    @cost IndicatorStyleDial - a dial, with zero at the 12 o'clock pososion
+    @cost ILSparkMeterTextStyle - the default style, a textual description of the value
+    @cost ILSparkMeterVerticalStyle - a vertical indicator, like a thermometer
+    @cost ILSparkMeterHorizontalStyle - a horizontal indicator, like a thermometer
+    @cost ILSparkMeterSquareStyle - a scaled square centered inside of the border
+    @cost ILSparkMeterCircleStyle - a scaled circle centered inside of the border
+    @cost ILSparkMeterRingStyle - a circular ring, with zero at the 12 o'clock position
+    @cost ILSparkMeterPieStyle - a pie chart, with zero at the 12 o'clock pososion
+    @cost ILSparkMeterDialStyle - a dial, with zero at the 12 o'clock pososion
 */
 typedef NS_ENUM(NSInteger, ILSparkMeterStyle) {
     ILSparkMeterTextStyle,
@@ -50,14 +53,8 @@ typedef NS_ENUM(NSInteger, ILSparkMeterStyle) {
 /*! @abstract An indicator view which displays a single numeric value as a string */
 @interface ILSparkMeter : ILSparkView
 
-/*! @abstract the style of the indicator */
-@property(nonatomic, assign) ILSparkMeterStyle gaugeStyle;
-
 /*! @abstract the data source for the indicator implmeneting the ILIndicatorDataSource protocol */
 @property(nonatomic, weak) id<ILSparkMeterDataSource> dataSource;
-
-// TODO @property (nonatomic, assign) CGFloat minAngle; // angle of the min value for circular indicators
-// TODO @property (nonatomic, assign) CGFloat maxAngle; // angle of the max value for circular indicators
 
 @end
 
@@ -72,13 +69,25 @@ typedef NS_ENUM(NSInteger, ILSparkMeterStyle) {
 
 @end
 
+#pragma mark -
+
+/*! ILSParkStyle category for Spark Meters Hints */
+@interface ILSparkStyle (ILSparkMeter)
+@property (nonatomic, readonly) ILSparkMeterStyle meterStyle;
+@property (nonatomic, readonly) ILSparkMeterFillDirection fillDirection;
+@property (nonatomic, readonly) CGFloat minAngle;
+@property (nonatomic, readonly) CGFloat maxAngle;
+@property (nonatomic, readonly) BOOL fillClockwise;
+@property (nonatomic, readonly) CGFloat dialWidth;
+@property (nonatomic, readonly) CGFloat ringWidth;
+
+@end
+
+#pragma mark -
 #ifdef IL_APP_KIT
 
 /*! @class ILSparkMeterCell */
 @interface ILSparkMeterCell : NSActionCell
-
-/*! @abstract the style of the indicator */
-@property(nonatomic, assign) ILSparkMeterStyle gaugeStyle;
 
 /*! @brief style information */
 @property(nonatomic, retain) ILSparkStyle* style;

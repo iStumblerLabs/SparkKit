@@ -14,16 +14,26 @@
 {
     [self loadView];
     
-    self.sparkText.gaugeStyle = ILSparkMeterTextStyle;
-    self.sparkVert.gaugeStyle = ILSparkMeterVerticalStyle;
-    self.sparkHorz.gaugeStyle = ILSparkMeterHorizontalStyle;
-    self.sparkSquare.gaugeStyle = ILSparkMeterSquareStyle;
-    self.sparkCircle.gaugeStyle = ILSparkMeterCircleStyle;
-    self.sparkRing.gaugeStyle = ILSparkMeterRingStyle;
-    self.sparkPie.gaugeStyle = ILSparkMeterPieStyle;
-    self.sparkDial.gaugeStyle = ILSparkMeterDialStyle;
-    
+    self.sparkText.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterTextStyle)}];
+    self.sparkVert.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterVerticalStyle)}];
+    self.sparkHorz.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterHorizontalStyle)}];
+    self.sparkSquare.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterSquareStyle)}];
+    self.sparkCircle.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterCircleStyle)}];
+    self.sparkRing.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterRingStyle)}];
+    self.sparkPie.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterPieStyle)}];
+    self.sparkDial.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterDialStyle)}];
+
+    self.stackText.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterTextStyle)}];
+    self.stackVert.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterVerticalStyle)}];
+    self.stackHorz.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterHorizontalStyle)}];
+    self.stackSquare.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterSquareStyle)}];
+    self.stackCircle.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterCircleStyle)}];
+    self.stackRing.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterRingStyle)}];
+    self.stackPie.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterPieStyle)}];
+    self.stackDial.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterDialStyle)}];
+
     self.sparkLine.dataSource = self;
+    
     self.sparkText.dataSource = self;
     self.sparkVert.dataSource = self;
     self.sparkHorz.dataSource = self;
@@ -32,7 +42,16 @@
     self.sparkRing.dataSource = self;
     self.sparkPie.dataSource = self;
     self.sparkDial.dataSource = self;
-    
+
+    self.stackText.stackDataSource = self;
+    self.stackVert.stackDataSource = self;
+    self.stackHorz.stackDataSource = self;
+    self.stackSquare.stackDataSource = self;
+    self.stackCircle.stackDataSource = self;
+    self.stackRing.stackDataSource = self;
+    self.stackPie.stackDataSource = self;
+    self.stackDial.stackDataSource = self;
+
     self.gridData = [ILGridData floatGridWithRows:0 columns:100];
     self.sparkGrid.grid = self.gridData;
     self.sparkGrid.xAxisLabels = @[@"1", @"2", @"3", @"4", @"5"];
@@ -61,6 +80,7 @@
 - (void) updateView
 {
     [self.sparkLine updateView];
+    [self.sparkBars updateView];
 
     // square indicators
     [self.sparkText updateView];
@@ -73,8 +93,16 @@
     [self.sparkRing updateView];
     [self.sparkPie updateView];
     [self.sparkDial updateView];
-    
-    [self.sparkBars updateView];
+
+    // stacks
+    [self.stackText updateView];
+    [self.stackVert updateView];
+    [self.stackHorz updateView];
+    [self.stackSquare updateView];
+    [self.stackCircle updateView];
+    [self.stackRing updateView];
+    [self.stackPie updateView];
+    [self.stackDial updateView];
 }
 
 #pragma mark - NSTimer
@@ -110,6 +138,17 @@
     CGFloat sine = (sin(interval) / 2) + 0.5;
     // NSLog(@"sampleValueAtIndex: %lu interval: %f -> %f", (unsigned long)index, interval, sine);
     return sine;
+}
+
+#pragma mark - ILSparkStackDataSource
+
+- (NSArray<NSNumber*>*) data
+{
+    static NSArray<NSNumber*>* squares = nil;
+    if (!squares) {
+        squares = @[@(1), @(4), @(9), @(16)];
+    }
+    return squares;
 }
 
 #pragma mark - ILSparkLineDataSource

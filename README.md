@@ -1,7 +1,7 @@
 
 # SparkKit
 
-Small, Simple and Fast; Line, Pie, Dial, Bar and Grid Views for macOS, iOS and tvOS
+Small, Simple and Fast; Line, Pie, Dial, Bar, Ring, Stack and Grid Views for macOS, iOS and tvOS
 
 ## Dependencies
 
