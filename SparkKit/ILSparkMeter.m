@@ -33,7 +33,7 @@ NSString* const ILSparkMeterStyleHint = @"ILSparkMeterStyleHint";
 {
     CALayer* meterLayer = nil;
     ILBezierPath* filledPath = nil;
-    CGRect insetRect = NSMakeRect(0, 0, size.width, size.height); // self.borderInset;
+    CGRect insetRect = CGRectMake(0, 0, size.width, size.height); // self.borderInset;
     
     switch (sparkStyle.meterStyle) {
         case ILSparkMeterTextStyle: {

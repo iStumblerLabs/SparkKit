@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="V10-3k-ian">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="V10-3k-ian">
     <device id="appleTV" orientation="landscape">
         <adaptation id="light"/>
     </device>
     <dependencies>
         <deployment identifier="tvOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsV-ay-Wgd" customClass="ILSparkMeter">
-                                <rect key="frame" x="132" y="752" width="200" height="200"/>
+                                <rect key="frame" x="132" y="634" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="gBC-Je-TT5"/>
@@ -31,7 +31,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tK-Kq-0h5" customClass="ILSparkMeter">
-                                <rect key="frame" x="756" y="752" width="200" height="200"/>
+                                <rect key="frame" x="756" y="634" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="Y6Y-5b-f4w"/>
@@ -39,7 +39,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNp-ve-eAa" customClass="ILSparkMeter">
-                                <rect key="frame" x="964" y="752" width="200" height="200"/>
+                                <rect key="frame" x="964" y="634" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="AyC-ax-J3e"/>
@@ -47,7 +47,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ne-Up-Xc0" customClass="ILSparkMeter">
-                                <rect key="frame" x="340" y="752" width="200" height="200"/>
+                                <rect key="frame" x="340" y="634" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Fdm-M5-7ou"/>
@@ -55,7 +55,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTg-pk-o0L" customClass="ILSparkMeter">
-                                <rect key="frame" x="1380" y="752" width="200" height="200"/>
+                                <rect key="frame" x="1380" y="634" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="MGO-ce-Vc0"/>
@@ -63,7 +63,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NaM-5i-f2a" customClass="ILSparkMeter">
-                                <rect key="frame" x="1172" y="752" width="200" height="200"/>
+                                <rect key="frame" x="1172" y="634" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="Vsf-Cf-r6d"/>
@@ -71,15 +71,14 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRI-ST-StK" customClass="ILSparkLine">
-                                <rect key="frame" x="132" y="544" width="1656" height="200"/>
+                                <rect key="frame" x="132" y="451" width="1656" height="175"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="AqW-Cr-IQK"/>
-                                    <constraint firstAttribute="width" constant="1656" id="f41-gm-PIT"/>
+                                    <constraint firstAttribute="height" constant="175" id="M5y-Q0-pYQ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3q8-om-Q6q" customClass="ILSparkMeter">
-                                <rect key="frame" x="1588" y="752" width="200" height="200"/>
+                                <rect key="frame" x="1588" y="634" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="25u-0y-SJc"/>
@@ -87,63 +86,151 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EcN-0u-FUH" customClass="ILSparkMeter">
-                                <rect key="frame" x="548" y="752" width="200" height="200"/>
+                                <rect key="frame" x="548" y="634" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="21H-iv-p2r"/>
                                     <constraint firstAttribute="height" constant="200" id="BYj-2a-QQB"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8F-em-0GV" customClass="ILSparkBars">
-                                <rect key="frame" x="132" y="128" width="1656" height="200"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kEI-Df-09U" customClass="ILSparkBars">
+                                <rect key="frame" x="132" y="268" width="1656" height="175"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="Etn-V9-dkV"/>
-                                    <constraint firstAttribute="width" constant="1656" id="j3I-QB-r3C"/>
+                                    <constraint firstAttribute="height" constant="175" id="f7a-AK-OwC"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kEI-Df-09U" customClass="ILSparkGrid">
-                                <rect key="frame" x="132" y="336" width="1656" height="200"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X1z-26-KdM" customClass="ILSparkStack">
+                                <rect key="frame" x="132" y="842" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="1656" id="JhF-fZ-F8B"/>
-                                    <constraint firstAttribute="height" constant="200" id="LOR-Xs-nSF"/>
+                                    <constraint firstAttribute="width" constant="200" id="RIQ-q0-iuO"/>
+                                    <constraint firstAttribute="height" constant="200" id="TKc-48-Oqs"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Usi-vV-hEX" customClass="ILSparkStack">
+                                <rect key="frame" x="756" y="842" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="w6L-7d-GOC"/>
+                                    <constraint firstAttribute="width" constant="200" id="ynS-Ru-4l6"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="84z-NH-WyH" customClass="ILSparkStack">
+                                <rect key="frame" x="964" y="842" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Mn4-PW-HGZ"/>
+                                    <constraint firstAttribute="height" constant="200" id="NfX-MO-vMo"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ut1-ox-Mh6" customClass="ILSparkStack">
+                                <rect key="frame" x="340" y="842" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="PR0-3l-lCE"/>
+                                    <constraint firstAttribute="width" constant="200" id="qCt-xF-7Fs"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caq-Fg-ciS" customClass="ILSparkStack">
+                                <rect key="frame" x="1380" y="842" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="YFp-mt-lOH"/>
+                                    <constraint firstAttribute="width" constant="200" id="kaX-tO-jiC"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lTO-ek-ldb" customClass="ILSparkStack">
+                                <rect key="frame" x="1172" y="842" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Cbd-CH-Dg9"/>
+                                    <constraint firstAttribute="width" constant="200" id="Mxv-XN-3nn"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I7g-UT-2WG" customClass="ILSparkStack">
+                                <rect key="frame" x="1588" y="842" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="GKq-PS-QbK"/>
+                                    <constraint firstAttribute="height" constant="200" id="HBd-Ve-PCn"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCu-Hy-P3q" customClass="ILSparkStack">
+                                <rect key="frame" x="548" y="842" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="29W-Lz-rgb"/>
+                                    <constraint firstAttribute="width" constant="200" id="Ts9-ai-pDE"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8F-em-0GV" customClass="ILSparkGrid">
+                                <rect key="frame" x="132" y="85" width="1656" height="175"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="ocm-Lc-uV3"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="7Ne-Up-Xc0" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="1Ci-jQ-LSy"/>
-                            <constraint firstItem="T8F-em-0GV" firstAttribute="top" secondItem="b7s-PE-NqE" secondAttribute="bottom" constant="128" id="2ZY-RJ-cXY"/>
-                            <constraint firstItem="kEI-Df-09U" firstAttribute="top" secondItem="T8F-em-0GV" secondAttribute="bottom" constant="8" symbolic="YES" id="38W-C2-dHk"/>
-                            <constraint firstItem="xsV-ay-Wgd" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="3RK-73-Nw2"/>
-                            <constraint firstItem="3q8-om-Q6q" firstAttribute="leading" secondItem="GTg-pk-o0L" secondAttribute="trailing" constant="8" id="9RK-MT-vEd"/>
-                            <constraint firstItem="fRI-ST-StK" firstAttribute="top" secondItem="kEI-Df-09U" secondAttribute="bottom" constant="8" id="DF5-hW-U9w"/>
-                            <constraint firstItem="kEI-Df-09U" firstAttribute="leading" secondItem="YRk-h5-Fll" secondAttribute="leadingMargin" constant="112" id="HfZ-v9-D9q"/>
-                            <constraint firstItem="GTg-pk-o0L" firstAttribute="leading" secondItem="NaM-5i-f2a" secondAttribute="trailing" constant="8" id="M2M-kh-RLP"/>
-                            <constraint firstItem="GTg-pk-o0L" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="NEk-cL-R0Z"/>
-                            <constraint firstItem="kEI-Df-09U" firstAttribute="top" secondItem="T8F-em-0GV" secondAttribute="bottom" constant="8" id="O1h-dJ-eFr"/>
-                            <constraint firstItem="gNp-ve-eAa" firstAttribute="leading" secondItem="4tK-Kq-0h5" secondAttribute="trailing" constant="8" id="Q8a-Dt-7mD"/>
-                            <constraint firstItem="4tK-Kq-0h5" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="Sax-0A-wqC"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fRI-ST-StK" secondAttribute="trailing" constant="112" id="Tzy-2u-EVy"/>
-                            <constraint firstItem="3q8-om-Q6q" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="UXX-hV-2nn"/>
-                            <constraint firstItem="xsV-ay-Wgd" firstAttribute="leading" secondItem="YRk-h5-Fll" secondAttribute="leadingMargin" constant="112" id="WP1-Sq-gK1"/>
-                            <constraint firstItem="fRI-ST-StK" firstAttribute="leading" secondItem="YRk-h5-Fll" secondAttribute="leadingMargin" constant="112" id="ap0-LC-RzO"/>
-                            <constraint firstItem="7Ne-Up-Xc0" firstAttribute="leading" secondItem="xsV-ay-Wgd" secondAttribute="trailing" constant="8" id="cdz-Tj-vgU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="kEI-Df-09U" secondAttribute="trailing" constant="112" id="cfU-f5-JEr"/>
-                            <constraint firstItem="EcN-0u-FUH" firstAttribute="leading" secondItem="7Ne-Up-Xc0" secondAttribute="trailing" constant="8" id="jct-ow-IV2"/>
-                            <constraint firstItem="EcN-0u-FUH" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="k0k-F2-uyY"/>
-                            <constraint firstItem="4tK-Kq-0h5" firstAttribute="leading" secondItem="EcN-0u-FUH" secondAttribute="trailing" constant="8" id="kx7-gc-KWX"/>
-                            <constraint firstItem="gNp-ve-eAa" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="oRP-kc-DqO"/>
-                            <constraint firstItem="T8F-em-0GV" firstAttribute="leading" secondItem="kEI-Df-09U" secondAttribute="leading" id="ozy-A1-Te6"/>
-                            <constraint firstItem="NaM-5i-f2a" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="sNB-in-vKa"/>
-                            <constraint firstItem="NaM-5i-f2a" firstAttribute="leading" secondItem="gNp-ve-eAa" secondAttribute="trailing" constant="8" id="tvO-yi-Otd"/>
+                            <constraint firstAttribute="bottom" secondItem="ZCu-Hy-P3q" secondAttribute="bottom" constant="38" id="1CN-Lw-0Fa"/>
+                            <constraint firstItem="I7g-UT-2WG" firstAttribute="leading" secondItem="caq-Fg-ciS" secondAttribute="trailing" constant="8" id="3bP-zX-7Dv"/>
+                            <constraint firstItem="EcN-0u-FUH" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="5nB-VL-Q3e"/>
+                            <constraint firstItem="ut1-ox-Mh6" firstAttribute="top" secondItem="7Ne-Up-Xc0" secondAttribute="bottom" constant="8" id="6iv-O9-n9s"/>
+                            <constraint firstAttribute="bottom" secondItem="X1z-26-KdM" secondAttribute="bottom" constant="38" id="7Zc-OE-Jog"/>
+                            <constraint firstItem="GTg-pk-o0L" firstAttribute="leading" secondItem="NaM-5i-f2a" secondAttribute="trailing" constant="8" id="8gc-f8-saF"/>
+                            <constraint firstItem="fRI-ST-StK" firstAttribute="leading" secondItem="YRk-h5-Fll" secondAttribute="leadingMargin" constant="22" id="95b-HY-9bA"/>
+                            <constraint firstItem="3q8-om-Q6q" firstAttribute="leading" secondItem="GTg-pk-o0L" secondAttribute="trailing" constant="8" id="9IN-59-zoG"/>
+                            <constraint firstItem="T8F-em-0GV" firstAttribute="leading" secondItem="YRk-h5-Fll" secondAttribute="leadingMargin" constant="22" id="9Jv-CZ-hre"/>
+                            <constraint firstItem="ut1-ox-Mh6" firstAttribute="leading" secondItem="X1z-26-KdM" secondAttribute="trailing" constant="8" id="9Px-BT-BbM"/>
+                            <constraint firstItem="ZCu-Hy-P3q" firstAttribute="top" secondItem="EcN-0u-FUH" secondAttribute="bottom" constant="8" id="BGK-2b-6v5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="T8F-em-0GV" secondAttribute="trailing" constant="22" id="BjM-0T-f26"/>
+                            <constraint firstItem="kEI-Df-09U" firstAttribute="top" secondItem="T8F-em-0GV" secondAttribute="bottom" constant="8" id="BmN-Vc-F9m"/>
+                            <constraint firstItem="caq-Fg-ciS" firstAttribute="leading" secondItem="lTO-ek-ldb" secondAttribute="trailing" constant="8" id="ClQ-iR-Vnn"/>
+                            <constraint firstItem="caq-Fg-ciS" firstAttribute="top" secondItem="GTg-pk-o0L" secondAttribute="bottom" constant="8" id="Edo-zE-60j"/>
+                            <constraint firstItem="T8F-em-0GV" firstAttribute="top" secondItem="b7s-PE-NqE" secondAttribute="bottom" constant="25" id="FF3-Fk-puq"/>
+                            <constraint firstItem="ZCu-Hy-P3q" firstAttribute="leading" secondItem="ut1-ox-Mh6" secondAttribute="trailing" constant="8" id="Fgs-Ba-aZl"/>
+                            <constraint firstItem="7Ne-Up-Xc0" firstAttribute="leading" secondItem="xsV-ay-Wgd" secondAttribute="trailing" constant="8" id="HgE-vB-PGb"/>
+                            <constraint firstItem="gNp-ve-eAa" firstAttribute="leading" secondItem="4tK-Kq-0h5" secondAttribute="trailing" constant="8" id="HiY-EW-4tC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3q8-om-Q6q" secondAttribute="trailing" constant="22" id="Iun-gR-LC6"/>
+                            <constraint firstItem="lTO-ek-ldb" firstAttribute="top" secondItem="NaM-5i-f2a" secondAttribute="bottom" constant="8" id="JFu-M1-48e"/>
+                            <constraint firstAttribute="bottom" secondItem="84z-NH-WyH" secondAttribute="bottom" constant="38" id="Lj4-bV-GGM"/>
+                            <constraint firstAttribute="bottom" secondItem="ut1-ox-Mh6" secondAttribute="bottom" constant="38" id="N8y-a2-6hX"/>
+                            <constraint firstItem="3q8-om-Q6q" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="Nok-dt-jTP"/>
+                            <constraint firstItem="4tK-Kq-0h5" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="Ouh-37-Zdq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="I7g-UT-2WG" secondAttribute="trailing" constant="22" id="OzW-JL-N49"/>
+                            <constraint firstItem="X1z-26-KdM" firstAttribute="top" secondItem="xsV-ay-Wgd" secondAttribute="bottom" constant="8" id="PaG-AH-lce"/>
+                            <constraint firstItem="84z-NH-WyH" firstAttribute="top" secondItem="gNp-ve-eAa" secondAttribute="bottom" constant="8" id="RBC-dC-Seu"/>
+                            <constraint firstItem="84z-NH-WyH" firstAttribute="leading" secondItem="Usi-vV-hEX" secondAttribute="trailing" constant="8" id="U5N-AN-9NN"/>
+                            <constraint firstItem="xsV-ay-Wgd" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="W1T-ha-yJm"/>
+                            <constraint firstItem="lTO-ek-ldb" firstAttribute="leading" secondItem="84z-NH-WyH" secondAttribute="trailing" constant="8" id="WxW-VK-EaX"/>
+                            <constraint firstItem="NaM-5i-f2a" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="XFp-Er-dKr"/>
+                            <constraint firstAttribute="bottom" secondItem="caq-Fg-ciS" secondAttribute="bottom" constant="38" id="Xea-Tq-Q8A"/>
+                            <constraint firstItem="X1z-26-KdM" firstAttribute="leading" secondItem="YRk-h5-Fll" secondAttribute="leadingMargin" constant="22" id="ZLv-7n-PcG"/>
+                            <constraint firstAttribute="bottom" secondItem="lTO-ek-ldb" secondAttribute="bottom" constant="38" id="adE-LE-DWo"/>
+                            <constraint firstItem="I7g-UT-2WG" firstAttribute="top" secondItem="3q8-om-Q6q" secondAttribute="bottom" constant="8" id="ctb-Pg-k4d"/>
+                            <constraint firstItem="EcN-0u-FUH" firstAttribute="leading" secondItem="7Ne-Up-Xc0" secondAttribute="trailing" constant="8" id="e35-f6-5Z7"/>
+                            <constraint firstItem="Usi-vV-hEX" firstAttribute="top" secondItem="4tK-Kq-0h5" secondAttribute="bottom" constant="8" id="fYh-7C-Yld"/>
+                            <constraint firstItem="7Ne-Up-Xc0" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="gFa-Du-NHn"/>
+                            <constraint firstItem="GTg-pk-o0L" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="grr-fW-aWg"/>
+                            <constraint firstItem="Usi-vV-hEX" firstAttribute="leading" secondItem="ZCu-Hy-P3q" secondAttribute="trailing" constant="8" id="k2z-OL-j32"/>
+                            <constraint firstItem="gNp-ve-eAa" firstAttribute="top" secondItem="fRI-ST-StK" secondAttribute="bottom" constant="8" id="lGY-ne-bA7"/>
+                            <constraint firstItem="kEI-Df-09U" firstAttribute="leading" secondItem="YRk-h5-Fll" secondAttribute="leadingMargin" constant="22" id="m9J-3a-4I2"/>
+                            <constraint firstItem="4tK-Kq-0h5" firstAttribute="leading" secondItem="EcN-0u-FUH" secondAttribute="trailing" constant="8" id="nuh-2e-QWG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kEI-Df-09U" secondAttribute="trailing" constant="22" id="oTH-LT-8ta"/>
+                            <constraint firstItem="fRI-ST-StK" firstAttribute="top" secondItem="kEI-Df-09U" secondAttribute="bottom" constant="8" id="owc-fe-Mbo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fRI-ST-StK" secondAttribute="trailing" constant="22" id="pnU-K4-cVj"/>
+                            <constraint firstAttribute="bottom" secondItem="I7g-UT-2WG" secondAttribute="bottom" constant="38" id="qjv-ij-O2u"/>
+                            <constraint firstItem="xsV-ay-Wgd" firstAttribute="leading" secondItem="YRk-h5-Fll" secondAttribute="leadingMargin" constant="22" id="slS-to-pay"/>
+                            <constraint firstItem="NaM-5i-f2a" firstAttribute="leading" secondItem="gNp-ve-eAa" secondAttribute="trailing" constant="8" id="x2M-Yf-1lN"/>
+                            <constraint firstAttribute="bottom" secondItem="Usi-vV-hEX" secondAttribute="bottom" constant="38" id="zrG-vm-kXl"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="sparkBars" destination="T8F-em-0GV" id="Asy-ih-isa"/>
+                        <outlet property="sparkBars" destination="kEI-Df-09U" id="TmO-qh-p7I"/>
                         <outlet property="sparkCircle" destination="GTg-pk-o0L" id="Ahi-NT-usH"/>
                         <outlet property="sparkDial" destination="4tK-Kq-0h5" id="HKC-Ni-GJq"/>
-                        <outlet property="sparkGrid" destination="kEI-Df-09U" id="Fc6-6b-Ohp"/>
+                        <outlet property="sparkGrid" destination="T8F-em-0GV" id="d9E-EB-cTA"/>
                         <outlet property="sparkHorz" destination="7Ne-Up-Xc0" id="ZXZ-vr-2SK"/>
                         <outlet property="sparkLine" destination="fRI-ST-StK" id="6aj-CU-kfa"/>
                         <outlet property="sparkPie" destination="NaM-5i-f2a" id="P0m-Op-1wH"/>
@@ -151,11 +238,19 @@
                         <outlet property="sparkSquare" destination="3q8-om-Q6q" id="HMZ-JE-KJB"/>
                         <outlet property="sparkText" destination="xsV-ay-Wgd" id="OfE-n1-rZI"/>
                         <outlet property="sparkVert" destination="EcN-0u-FUH" id="yeR-LT-uBW"/>
+                        <outlet property="stackCircle" destination="X1z-26-KdM" id="kwR-GY-gQ7"/>
+                        <outlet property="stackDial" destination="ut1-ox-Mh6" id="ghc-yR-9SE"/>
+                        <outlet property="stackHorz" destination="ZCu-Hy-P3q" id="g9C-gK-Kmc"/>
+                        <outlet property="stackPie" destination="Usi-vV-hEX" id="JEn-A0-4Yy"/>
+                        <outlet property="stackRing" destination="84z-NH-WyH" id="dl6-gi-xQB"/>
+                        <outlet property="stackSquare" destination="lTO-ek-ldb" id="1VK-Qr-FzR"/>
+                        <outlet property="stackText" destination="caq-Fg-ciS" id="SqA-ys-XFd"/>
+                        <outlet property="stackVert" destination="I7g-UT-2WG" id="cVh-yC-Sp8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dEu-8M-e0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="178" y="-185"/>
+            <point key="canvasLocation" x="671" y="-190"/>
         </scene>
     </scenes>
 </document>

@@ -143,7 +143,7 @@
     size_t imageBytes = (imageHeight * imageBytesPerRow);
     CATextLayer* debugLayer = [CATextLayer layer];
     debugLayer.string = [NSString stringWithFormat:@"%@ (grid %lu x %lu) [image %lu x %lu] %lu bytes in %0.8fs",
-                                                   self.className, self.grid.columns, self.grid.rows, imageWidth, imageHeight, imageBytes, drawTime];
+                                                   self, self.grid.columns, self.grid.rows, imageWidth, imageHeight, imageBytes, drawTime];
     ILFont* debugFont = [ILFont userFixedPitchFontOfSize:11];
     CGSize textSize = [debugLayer.string sizeWithAttributes:@{NSFontAttributeName: debugFont}];
     debugLayer.font = (__bridge CFTypeRef _Nullable)debugFont.fontName;

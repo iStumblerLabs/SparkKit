@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SparkyController">
             <connections>
-                <outlet property="sparkBars" destination="gFc-7E-64c" id="YWW-WA-O80"/>
+                <outlet property="sparkBars" destination="abH-Nc-wdz" id="iro-jE-TOy"/>
                 <outlet property="sparkCircle" destination="g6p-7e-85t" id="t2V-9j-Wl5"/>
                 <outlet property="sparkDial" destination="pmV-DR-sxj" id="ERi-2w-Lw1"/>
-                <outlet property="sparkGrid" destination="abH-Nc-wdz" id="xA8-1Z-giO"/>
+                <outlet property="sparkGrid" destination="gFc-7E-64c" id="kmA-zp-K7d"/>
                 <outlet property="sparkHorz" destination="USR-2Y-jIT" id="7jI-rn-oAe"/>
                 <outlet property="sparkLine" destination="oFV-Ot-AWt" id="N0m-TB-3nY"/>
                 <outlet property="sparkPie" destination="XNr-o2-DlQ" id="GAU-yq-DwE"/>
@@ -41,14 +41,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="496" height="522"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="gFc-7E-64c" customClass="ILSparkBars">
-                        <rect key="frame" x="20" y="435" width="456" height="67"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="67" id="Bvx-rI-ldp"/>
-                        </constraints>
-                    </customView>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="abH-Nc-wdz" customClass="ILSparkGrid">
-                        <rect key="frame" x="20" y="211" width="456" height="216"/>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="abH-Nc-wdz" customClass="ILSparkBars">
+                        <rect key="frame" x="20" y="219" width="456" height="75"/>
                     </customView>
                     <stackView distribution="equalCentering" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Xl-3k-kN2">
                         <rect key="frame" x="20" y="78" width="456" height="50"/>
@@ -233,9 +227,15 @@
                         </customSpacing>
                     </stackView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="oFV-Ot-AWt" customClass="ILSparkLine">
-                        <rect key="frame" x="20" y="136" width="456" height="67"/>
+                        <rect key="frame" x="20" y="136" width="456" height="75"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="67" id="oCz-M4-mgB"/>
+                            <constraint firstAttribute="height" constant="75" id="oCz-M4-mgB"/>
+                        </constraints>
+                    </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="gFc-7E-64c" customClass="ILSparkGrid">
+                        <rect key="frame" x="20" y="302" width="456" height="200"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="200" id="Bvx-rI-ldp"/>
                         </constraints>
                     </customView>
                 </subviews>

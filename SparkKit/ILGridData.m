@@ -555,7 +555,7 @@ exit:
         else {
             [[NSException
                 exceptionWithName:NSRangeException
-                reason:[NSString stringWithFormat:@"%@ setData:atRow: slice lands outside of data range: %@ row %lu", self.className, slice, (unsigned long)row]
+                reason:[NSString stringWithFormat:@"%@ setData:atRow: slice lands outside of data range: %@ row %lu", self, slice, (unsigned long)row]
                 userInfo:nil] raise];
         }
         
@@ -579,7 +579,7 @@ exit:
         else {
             [[NSException
                 exceptionWithName:NSRangeException
-                reason: [NSString stringWithFormat:@"%@ appendData, wrong sized slice: %lu bytes", self.className, (unsigned long)slice.length]
+                reason: [NSString stringWithFormat:@"%@ appendData, wrong sized slice: %lu bytes", self, (unsigned long)slice.length]
                 userInfo:nil] raise];
         }
     }

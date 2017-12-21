@@ -38,7 +38,7 @@ NSString* const ILSparkStackColorsHint = @"ILSparkStackColorsHint"; // NSArray<I
 + (CALayer*) sparkStackWithData:(NSArray<NSNumber*>*)data size:(CGSize)size sparkStyle:(ILSparkStyle*)sparkStyle
 {
     CALayer* stackLayer = [CALayer new];
-    CGRect insetRect = NSMakeRect(0, 0, size.width, size.height); // self.borderInset;
+    CGRect insetRect = CGRectMake(0, 0, size.width, size.height); // self.borderInset;
 
     stackLayer.frame = insetRect;
     

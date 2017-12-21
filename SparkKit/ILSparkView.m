@@ -107,7 +107,7 @@
     return label;
 }
 
-static const CGFloat labelAlpha = 0.3;
+// static const CGFloat labelAlpha = 0.3;
 static const CGFloat labelRadius = 6;
 static const CGFloat labelMargin = 12;
 
@@ -120,7 +120,7 @@ static const CGFloat labelMargin = 12;
     labelLayer.fontSize = self.style.font.pointSize;
     labelLayer.foregroundColor = self.style.fontColor.CGColor;
     labelLayer.contentsScale = [[ILScreen mainScreen] scale];
-    labelLayer.backgroundColor = [ILColor colorWithDeviceWhite:1.0 alpha:labelAlpha].CGColor;
+    labelLayer.backgroundColor = [ILColor whiteColor].CGColor;
     labelLayer.allowsFontSubpixelQuantization = YES;
     labelLayer.cornerRadius = labelRadius;
     labelLayer.alignmentMode = kCAAlignmentCenter;
