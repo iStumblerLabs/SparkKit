@@ -185,6 +185,16 @@
 		755E62CA1E68B33C00342CCD /* ILStreamData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILStreamData.m; sourceTree = "<group>"; };
 		756DB2201ED37FE000B84AE7 /* ILSparkMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ILSparkMeter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		756DB2211ED37FE000B84AE7 /* ILSparkMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ILSparkMeter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		757D6A8C2011183900C2E96F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		757D6A8D2011183A00C2E96F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		757D6A8E2011183A00C2E96F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Sparky.strings; sourceTree = "<group>"; };
+		757D6A8F2011183A00C2E96F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		757D6A902011183A00C2E96F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Sparky.strings; sourceTree = "<group>"; };
+		757D6AC32011189E00C2E96F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		757D6AC5201118A200C2E96F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		757D6AC7201118A800C2E96F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Sparky.strings; sourceTree = "<group>"; };
+		757D6AC9201118AF00C2E96F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		757D6ACB201118B400C2E96F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Sparky.strings; sourceTree = "<group>"; };
 		758BC6751FC7EBC4005E6507 /* ILSparkStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILSparkStack.h; sourceTree = "<group>"; };
 		758BC6761FC7EBC4005E6507 /* ILSparkStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ILSparkStack.m; sourceTree = "<group>"; };
 		758EA4AE1F04E9A600069634 /* ILSparkBars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkBars.h; sourceTree = "<group>"; };
@@ -748,6 +758,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				7526C1881D25ACF8000E5A60 /* Base */,
+				757D6A8C2011183900C2E96F /* es */,
+				757D6AC32011189E00C2E96F /* en */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -756,6 +768,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				7526C1901D25AD5F000E5A60 /* Base */,
+				757D6A8D2011183A00C2E96F /* es */,
+				757D6AC5201118A200C2E96F /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -764,6 +778,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				7526C1921D25AD5F000E5A60 /* Base */,
+				757D6A8E2011183A00C2E96F /* es */,
+				757D6AC7201118A800C2E96F /* en */,
 			);
 			name = Sparky.storyboard;
 			sourceTree = "<group>";
@@ -772,6 +788,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				75543AFC1F22A1E70050BAF2 /* Base */,
+				757D6A8F2011183A00C2E96F /* es */,
+				757D6AC9201118AF00C2E96F /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -780,6 +798,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				75543B0D1F22A4F20050BAF2 /* Base */,
+				757D6A902011183A00C2E96F /* es */,
+				757D6ACB201118B400C2E96F /* en */,
 			);
 			name = Sparky.storyboard;
 			sourceTree = "<group>";
