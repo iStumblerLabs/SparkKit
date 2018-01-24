@@ -96,7 +96,6 @@
     self.gridLayer.sublayers = nil; // TODO retain existing layer and only draw new ones
     self.gridLayer.backgroundColor = self.style.fill.CGColor;
 
-    CGImageRef gridBits = nil;
     
     NSUInteger rowIndex = 0;
     while (rowIndex < self.grid.rows) {
@@ -113,13 +112,9 @@
 #if DEBUG
     NSTimeInterval drawDone = [[NSDate new] timeIntervalSinceReferenceDate];
     NSTimeInterval drawTime = (drawDone - drawStart);
-    size_t imageBytesPerRow = CGImageGetBytesPerRow(gridBits);
-    size_t imageWidth = CGImageGetWidth(gridBits);
-    size_t imageHeight = CGImageGetHeight(gridBits);
-    size_t imageBytes = (imageHeight * imageBytesPerRow);
     CATextLayer* debugLayer = [CATextLayer layer];
-    debugLayer.string = [NSString stringWithFormat:@"%@ (grid %lu x %lu) [image %lu x %lu] %lu bytes in %0.8fs",
-                                                   self, self.grid.columns, self.grid.rows, imageWidth, imageHeight, imageBytes, drawTime];
+    debugLayer.string = [NSString stringWithFormat:@"%@ [%lu x %lu] %lu tiles in %0.6fs",
+                                                   self, self.grid.columns, self.grid.rows, (self.grid.columns * self.grid.rows), drawTime];
     ILFont* debugFont = [ILFont userFixedPitchFontOfSize:11];
     CGSize textSize = [debugLayer.string sizeWithAttributes:@{NSFontAttributeName: debugFont}];
     debugLayer.font = (__bridge CFTypeRef _Nullable)debugFont.fontName;
