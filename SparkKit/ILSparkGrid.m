@@ -92,46 +92,22 @@
 #if DEBUG
     NSTimeInterval drawStart = [[NSDate new] timeIntervalSinceReferenceDate];
 #endif
-    BOOL drawAlpha = YES;
-    BOOL drawSlices = YES;
-    
     self.gridLayer.frame = self.layer.bounds;
-    self.gridLayer.sublayers = nil;
+    self.gridLayer.sublayers = nil; // TODO retain existing layer and only draw new ones
     self.gridLayer.backgroundColor = self.style.fill.CGColor;
 
     CGImageRef gridBits = nil;
     
-    if (drawSlices) {
-        NSUInteger rowIndex = 0;
-        while (rowIndex < self.grid.rows) {
-            CGImageRef sliceImage = [self.grid alphaBitmapOfRow:rowIndex withRange:self.valueRange];
-            CALayer* sliceLayer = [CALayer new];
-            sliceLayer.contents = CFBridgingRelease(sliceImage);
-            sliceLayer.magnificationFilter = kCAFilterNearest;
-            sliceLayer.backgroundColor = self.style.background.CGColor;
-            [self.gridLayer addSublayer:sliceLayer];
-            sliceLayer.frame = [self rectOfRow:rowIndex];
-            rowIndex++;
-        }
-    }
-    else if (drawAlpha) {
-        gridBits = [self.grid alphaBitmapWithRange:self.valueRange];
-        
-        // create a mask layer
-        CALayer* maskLayer = [CALayer new];
-        maskLayer.contents = CFBridgingRelease(gridBits);
-        maskLayer.magnificationFilter = kCAFilterNearest;
-        maskLayer.frame = self.layer.bounds;
-        
-        // make sure the color are updated
-        self.layer.backgroundColor = self.style.background.CGColor;
-
-        self.gridLayer.mask = maskLayer;
-    }
-    else {
-        gridBits = [self.grid grayscaleBitmapWithRange:self.valueRange];
-        self.gridLayer.contents = CFBridgingRelease(gridBits);
-        self.gridLayer.magnificationFilter = kCAFilterNearest; // kCAFilterLinear;
+    NSUInteger rowIndex = 0;
+    while (rowIndex < self.grid.rows) {
+        CGImageRef sliceImage = [self.grid alphaBitmapOfRow:rowIndex withRange:self.valueRange];
+        CALayer* sliceLayer = [CALayer new];
+        sliceLayer.contents = CFBridgingRelease(sliceImage);
+        sliceLayer.magnificationFilter = kCAFilterNearest;
+        sliceLayer.backgroundColor = self.style.background.CGColor;
+        [self.gridLayer addSublayer:sliceLayer];
+        sliceLayer.frame = [self rectOfRow:rowIndex];
+        rowIndex++;
     }
 
 #if DEBUG
@@ -173,12 +149,8 @@
     // self.layer.sublayers = nil; // TODO use the gridLayer
     // self.layer.backgroundColor = self.style.background.CGColor;
 
-    if (!self.grid) {
-        self.errorString = @"No Data";
-        [self clearGrid];
-    }
-    else if ( self.grid.rows == 0 || self.grid.columns == 0) {
-        self.errorString = @"Not Enough Data";
+    if (!self.grid || self.grid.rows == 0 || self.grid.columns == 0) {
+        self.errorString = NSLocalizedString(@"No Data", @"No Data Avaliable to Graph");
         [self clearGrid];
     }
     else {

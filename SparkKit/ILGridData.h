@@ -74,7 +74,12 @@
 - (void) trimToRangeOfRows:(NSRange)rows;
 - (void) extendToRow:(NSUInteger)rows;
 
+#pragma mark - Buckets
+
+- (NSArray<NSNumber*>*) bucketsAtRow:(NSUInteger)row withRange:(NSRange)valueRange;
+
 @end
+
 
 #pragma mark - ILGridDataDelegate
 

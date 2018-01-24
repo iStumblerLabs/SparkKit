@@ -1,18 +1,30 @@
 #import "ILSparkBars.h"
 #import "ILBucketData.h"
 
+@interface ILSparkBars ()
+@property(nonatomic,retain) CALayer* barsLayer;
+@end
+
+#pragma mark -
+
 @implementation ILSparkBars
 
 - (void) initView
 {
     [super initView];
+
+    self.barsLayer = [CALayer new];
+    [self.layer addSublayer:self.barsLayer];
+    self.barsLayer.frame = self.layer.bounds;
+    self.barsLayer.contentsGravity = kCAGravityResize;
 }
 
 - (void) updateView
 {
     // TODO a style preference and vertical buckets
-    self.layer.backgroundColor = self.style.background.CGColor;
-    self.layer.sublayers = nil; // TODO put buckets on a seperate layer
+    self.barsLayer.frame = self.layer.bounds;
+    self.barsLayer.backgroundColor = self.style.background.CGColor;
+    self.barsLayer.sublayers = nil;
     
     if (self.dataSource) {
         NSUInteger bucketCount = self.dataSource.buckets.count;
@@ -35,7 +47,7 @@
                 bucketLayer.path = bucketPath;
                 bucketLayer.fillColor = self.style.fill.CGColor;
                 bucketLayer.strokeColor = self.style.stroke.CGColor;
-                [self.layer addSublayer:bucketLayer];
+                [self.barsLayer addSublayer:bucketLayer];
                 CGPathRelease(bucketPath);
             }
             bucketIndex++;

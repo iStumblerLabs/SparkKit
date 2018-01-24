@@ -620,6 +620,23 @@ exit:
     }
 }
 
+#pragma mark - Buckets
+
+- (NSArray<NSNumber*>*) bucketsAtRow:(NSUInteger)row withRange:(NSRange)valueRange
+{
+    NSMutableArray<NSNumber*>* buckets = [NSMutableArray arrayWithCapacity:self.columns];
+    @synchronized (self) {
+        NSUInteger thisColumn = 0;
+        while (thisColumn < self.columns) {
+            CGFloat percentValue = [self percentOfValueAtRow:row column:thisColumn inRange:valueRange];
+            buckets[thisColumn] = @(percentValue);
+            thisColumn++;
+        }
+    }
+    
+    return buckets;
+}
+
 @end
 
 #pragma mark -

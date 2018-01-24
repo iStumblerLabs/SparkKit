@@ -109,7 +109,7 @@
 
 // static const CGFloat labelAlpha = 0.3;
 static const CGFloat labelRadius = 6;
-static const CGFloat labelMargin = 12;
+static const CGFloat labelMargin = 9;
 
 - (CATextLayer*) layerForLabel:(NSString*)label
 {
@@ -120,7 +120,11 @@ static const CGFloat labelMargin = 12;
     labelLayer.fontSize = self.style.font.pointSize;
     labelLayer.foregroundColor = self.style.fontColor.CGColor;
     labelLayer.contentsScale = [[ILScreen mainScreen] scale];
+#ifdef IL_APP_KIT
+    labelLayer.backgroundColor = [ILColor colorWithWhite:1.0 alpha:0.66].CGColor;
+#else
     labelLayer.backgroundColor = [ILColor whiteColor].CGColor;
+#endif
     labelLayer.allowsFontSubpixelQuantization = YES;
     labelLayer.cornerRadius = labelRadius;
     labelLayer.alignmentMode = kCAAlignmentCenter;
@@ -302,13 +306,12 @@ static const CGFloat labelMargin = 12;
                             bottomLabel.frame = CGRectMake(labelMargin, labelMargin, bottomLabel.bounds.size.width, bottomLabel.bounds.size.height);
                         }
 
-                        if ((yLabelCount > 2) && (labelGap > (topLabel.bounds.size.height * 1.5))) { // add middle values if there's room
+                        if ((yLabelCount > 2) && (labelGap > (topLabel.bounds.size.height * 1.1))) { // add middle values if there's room
                             NSUInteger labelIndex = 1;
                             while (labelIndex < (yLabelCount - 1)) {
                                 CATextLayer* middleLabel = [self layerForLabel:[self stringForValue:self.yAxisLabels[labelIndex] units:self.yAxisUnits]];
                                 CGFloat yPosition = ((labelGap * labelIndex) - (middleLabel.bounds.size.height / 2));
-                                middleLabel.frame = CGRectMake(labelMargin, yPosition,
-                                                               middleLabel.bounds.size.width, middleLabel.bounds.size.height);
+                                middleLabel.frame = CGRectMake(labelMargin, yPosition, middleLabel.bounds.size.width, middleLabel.bounds.size.height);
                                 labelIndex++;
                             }
                         }
@@ -325,18 +328,16 @@ static const CGFloat labelMargin = 12;
                     for (id xLabel in self.xAxisLabels) {
                         CATextLayer* label = [self layerForLabel:[self stringForValue:xLabel units:self.xAxisUnits]];
                         CGFloat xPosition = ((labelGap * (labelIndex - 1)) - (label.bounds.size.width / 2) + labelOffset);
-                        label.frame = CGRectMake(xPosition, labelMargin, label.bounds.size.width, label.bounds.size.height);
-                        if ((labelIndex == 1) && (labelGap < (label.bounds.size.width * 5))) {
-                            label.frame = CGRectMake(labelMargin,
-                                                     (bounds.size.height - label.bounds.size.height - labelMargin),
-                                                     label.bounds.size.width,
-                                                     label.bounds.size.height);
+                        CGFloat yPosition = (bounds.size.height - label.bounds.size.height - (labelRadius / 2));
+                        label.frame = CGRectMake(xPosition, yPosition, label.bounds.size.width, label.bounds.size.height);
+                        
+                        // special case when the width isn't sufficent, we draw the last one then break the for loop
+                        if ((labelIndex == 1) && (labelGap < (label.bounds.size.width * 2))) {
+                            label.frame = CGRectMake(labelMargin, yPosition, label.bounds.size.width, label.bounds.size.height);
                             
                             CATextLayer* rightLabel = [self layerForLabel:[self stringForValue:self.xAxisLabels.lastObject units:self.xAxisUnits]];
-                            rightLabel.frame = CGRectMake((bounds.size.width - rightLabel.bounds.size.width - labelMargin),
-                                                          (bounds.size.height - rightLabel.bounds.size.height - labelMargin),
-                                                          rightLabel.bounds.size.width,
-                                                          rightLabel.bounds.size.height);
+                            CGFloat rightX = (bounds.size.width - rightLabel.bounds.size.width - labelMargin);
+                            rightLabel.frame = CGRectMake(rightX, yPosition, rightLabel.bounds.size.width, rightLabel.bounds.size.height);
                             break;
                         }
                         labelIndex++;
@@ -361,10 +362,8 @@ static const CGFloat labelMargin = 12;
                             while (labelIndex < (xLabelCount - 1)) { // skip last
                                 CATextLayer* middleLabel = [self layerForLabel:[self stringForValue:self.xAxisLabels[labelIndex] units:self.xAxisUnits]];
                                 CGFloat xPosition = labelOffset + ((labelGap * labelIndex) - (middleLabel.bounds.size.width / 2));
-                                middleLabel.frame = CGRectMake(xPosition,
-                                                               (bounds.size.height - middleLabel.bounds.size.height - labelMargin),
-                                                               middleLabel.bounds.size.width,
-                                                               middleLabel.bounds.size.height);
+                                CGFloat yPosition = (bounds.size.height - middleLabel.bounds.size.height - labelMargin);
+                                middleLabel.frame = CGRectMake(xPosition, yPosition, middleLabel.bounds.size.width, middleLabel.bounds.size.height);
                                 labelIndex++;
                             }
                         }
