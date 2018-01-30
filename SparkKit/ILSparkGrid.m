@@ -145,7 +145,7 @@
     // self.layer.backgroundColor = self.style.background.CGColor;
 
     if (!self.grid || self.grid.rows == 0 || self.grid.columns == 0) {
-        self.errorString = NSLocalizedString(@"No Data", @"No Data Avaliable to Graph");
+        self.errorString = NSLocalizedStringFromTableInBundle(@"No Data", nil, [NSBundle bundleForClass:[self class]], @"No Data Avaliable to Graph");
         [self clearGrid];
     }
     else {
