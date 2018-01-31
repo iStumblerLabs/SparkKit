@@ -61,6 +61,9 @@ extern CGFloat const ILBoldlineWidth;
 /*! @brief hints for subclasses */
 @property(nonatomic, retain) NSDictionary* hints;
 
+/*! @brief L10N bundle, for localizing strings */
+@property(nonatomic, retain) NSBundle* L10Nbundle;
+
 #pragma mark -
 
 /*! @brief default style given to ILSparkViews when initilized */
