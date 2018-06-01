@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "75F5A9251D1A133A00A17804"
-               BuildableName = "Sparky.app"
-               BlueprintName = "Sparky (iOS)"
+               BlueprintIdentifier = "75543AEF1F22A1E70050BAF2"
+               BuildableName = "Sparky TV.app"
+               BlueprintName = "Sparky TV"
                ReferencedContainer = "container:SparkKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "75F5A9251D1A133A00A17804"
-            BuildableName = "Sparky.app"
-            BlueprintName = "Sparky (iOS)"
+            BlueprintIdentifier = "75543AEF1F22A1E70050BAF2"
+            BuildableName = "Sparky TV.app"
+            BlueprintName = "Sparky TV"
             ReferencedContainer = "container:SparkKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "75F5A9251D1A133A00A17804"
-            BuildableName = "Sparky.app"
-            BlueprintName = "Sparky (iOS)"
+            BlueprintIdentifier = "75543AEF1F22A1E70050BAF2"
+            BuildableName = "Sparky TV.app"
+            BlueprintName = "Sparky TV"
             ReferencedContainer = "container:SparkKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "75F5A9251D1A133A00A17804"
-            BuildableName = "Sparky.app"
-            BlueprintName = "Sparky (iOS)"
+            BlueprintIdentifier = "75543AEF1F22A1E70050BAF2"
+            BuildableName = "Sparky TV.app"
+            BlueprintName = "Sparky TV"
             ReferencedContainer = "container:SparkKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

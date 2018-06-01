@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "75F5A9251D1A133A00A17804"
+               BlueprintIdentifier = "75F5A9071D1902C500A17804"
                BuildableName = "Sparky.app"
-               BlueprintName = "Sparky (iOS)"
+               BlueprintName = "Sparky (macOS)"
                ReferencedContainer = "container:SparkKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "75F5A9251D1A133A00A17804"
+            BlueprintIdentifier = "75F5A9071D1902C500A17804"
             BuildableName = "Sparky.app"
-            BlueprintName = "Sparky (iOS)"
+            BlueprintName = "Sparky (macOS)"
             ReferencedContainer = "container:SparkKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,12 +55,19 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "75F5A9251D1A133A00A17804"
+            BlueprintIdentifier = "75F5A9071D1902C500A17804"
             BuildableName = "Sparky.app"
-            BlueprintName = "Sparky (iOS)"
+            BlueprintName = "Sparky (macOS)"
             ReferencedContainer = "container:SparkKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "CG_NUMERICS_SHOW_BACKTRACE"
+            value = ""
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -74,9 +81,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "75F5A9251D1A133A00A17804"
+            BlueprintIdentifier = "75F5A9071D1902C500A17804"
             BuildableName = "Sparky.app"
-            BlueprintName = "Sparky (iOS)"
+            BlueprintName = "Sparky (macOS)"
             ReferencedContainer = "container:SparkKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
