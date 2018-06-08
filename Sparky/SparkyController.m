@@ -14,23 +14,33 @@
 {
     [self loadView];
     
-    self.sparkText.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterTextStyle)}];
-    self.sparkVert.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterVerticalStyle)}];
-    self.sparkHorz.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterHorizontalStyle)}];
+    self.sparkText.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterTextStyle)}];
+    self.sparkVert.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterVerticalStyle)}];
+    self.sparkHorz.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterHorizontalStyle)}];
     self.sparkSquare.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterSquareStyle)}];
     self.sparkCircle.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterCircleStyle)}];
-    self.sparkRing.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterRingStyle)}];
-    self.sparkPie.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterPieStyle)}];
-    self.sparkDial.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterDialStyle)}];
+    self.sparkRing.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterRingStyle)}];
+    self.sparkPie.style    = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterPieStyle)}];
+    self.sparkDial.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterDialStyle)}];
 
-    self.stackText.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterTextStyle)}];
-    self.stackVert.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterVerticalStyle)}];
-    self.stackHorz.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterHorizontalStyle)}];
-    self.stackSquare.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterSquareStyle)}];
-    self.stackCircle.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterCircleStyle)}];
-    self.stackRing.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterRingStyle)}];
-    self.stackPie.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterPieStyle)}];
-    self.stackDial.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterDialStyle)}];
+    NSArray* stackColors = @[[ILColor blackColor], [ILColor grayColor], [ILColor whiteColor], [ILColor clearColor]];
+
+    self.stackText.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterTextStyle),
+                                                                          ILSparkStackColorsHint: stackColors}];
+    self.stackVert.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterVerticalStyle),
+                                                                          ILSparkStackColorsHint: stackColors}];
+    self.stackHorz.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterHorizontalStyle),
+                                                                          ILSparkStackColorsHint: stackColors}];
+    self.stackSquare.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterSquareStyle),
+                                                                          ILSparkStackColorsHint: stackColors}];
+    self.stackCircle.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterCircleStyle),
+                                                                          ILSparkStackColorsHint: stackColors}];
+    self.stackRing.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterRingStyle),
+                                                                          ILSparkStackColorsHint: stackColors}];
+    self.stackPie.style    = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterPieStyle),
+                                                                          ILSparkStackColorsHint: stackColors}];
+    self.stackDial.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterDialStyle),
+                                                                          ILSparkStackColorsHint: stackColors}];
 
     self.sparkLine.dataSource = self;
     
@@ -117,8 +127,7 @@
     int index = 0;
     while (index < self.gridData.columns) {
         CGFloat percent = ((index + 1) / (CGFloat)self.gridData.columns);
-        // CGFloat integral = 0;
-        CGFloat sine = (sin(interval * percent) / 2) + 0.5;
+        CGFloat sine = fabs(sin(interval * percent));
         // NSLog( @"interval %f percent %f sine %f", interval, percent, sine);
         [dataArray addObject:@(sine)];
         void* valueAddress = (blankRow.mutableBytes + (index * sizeof(CGFloat)));
@@ -132,10 +141,12 @@
 
 #pragma mark - ILSparkMeterDataSource
 
+static CGFloat SPEED = 0.1;
+
 - (CGFloat) datum
 {
-    NSTimeInterval interval = [NSDate timeIntervalSinceReferenceDate];
-    CGFloat sine = (sin(interval) / 2) + 0.5;
+    NSTimeInterval interval = ([NSDate timeIntervalSinceReferenceDate] * SPEED);
+    CGFloat sine = fabs(sin(interval));
     // NSLog(@"sampleValueAtIndex: %lu interval: %f -> %f", (unsigned long)index, interval, sine);
     return sine;
 }
@@ -144,11 +155,13 @@
 
 - (NSArray<NSNumber*>*) data
 {
-    static NSArray<NSNumber*>* squares = nil;
-    if (!squares) {
-        squares = @[@(1), @(4), @(9), @(16)];
-    }
-    return squares;
+    NSTimeInterval interval = ([NSDate timeIntervalSinceReferenceDate] * SPEED);
+    double integer;
+    double fraction = modf(interval, &integer);
+    CGFloat sine = fabs(sin(fraction));
+    CGFloat cosine = fabs(cos(fraction));
+    CGFloat tan = fabs(tanf(fraction));
+    return @[@(fraction), @(sine), @(cosine), @(tan)];
 }
 
 #pragma mark - ILSparkLineDataSource
@@ -164,8 +177,8 @@
 }
 
 - (CGFloat) sampleValueAtIndex:(NSUInteger) index {
-    NSTimeInterval interval = [self.sampleDates[index] timeIntervalSinceReferenceDate];
-    CGFloat sine = (sin(interval/5)/2)+0.5;
+    NSTimeInterval interval = ([self.sampleDates[index] timeIntervalSinceReferenceDate] * SPEED);
+    CGFloat sine = fabs(sin(interval));
     // NSLog(@"sampleValueAtIndex: %lu interval: %f -> %f", (unsigned long)index, interval, sine);
     return sine;
 }

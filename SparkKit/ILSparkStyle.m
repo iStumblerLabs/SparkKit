@@ -82,7 +82,7 @@ CGFloat const ILBoldlineWidth = 2;
 - (NSString*) description
 {
     return [NSString stringWithFormat:@"<%@: %p fill=%@ stroke=%@ background=%@ gradient=%@ filled=%i bordered=%i width=%f>",
-            [self class], self, self.fill, self.stroke, self.background, self.gradient, self.filled, self.bordered, self.width];
+            self.className, self, self.fill, self.stroke, self.background, self.gradient, self.filled, self.bordered, self.width];
 }
 
 #pragma mark - NSCopying

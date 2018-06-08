@@ -1,13 +1,15 @@
 
 # SparkKit
 
+<img src="./Sparky/sparky-screenshot.png">
+
 Small, Simple and Fast; Line, Pie, Dial, Bar, Ring, Stack and Grid Views for macOS, iOS and tvOS
 
 ## Dependencies
 
-### KitBridge.framework
+### KitBridge
 
-Provides bridging macros for UIKit and AppKit support classes: https://gitlab.com/alfwatt/KitBridge
+<a href="https://github.com/alfwatt/KitBridge">KitBridge</a> provides bridging for UIKit and AppKit.
 
 ## Headers
 

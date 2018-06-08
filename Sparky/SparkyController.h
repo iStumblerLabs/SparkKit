@@ -17,7 +17,7 @@
 @property(nonatomic, retain) IBOutlet ILSparkLine* sparkLine;
 @property(nonatomic, retain) IBOutlet ILSparkGrid* sparkGrid;
 
-#pragma mark Meters
+#pragma mark - Meters
 @property(nonatomic, assign) IBOutlet ILSparkMeter* sparkText;
 @property(nonatomic, assign) IBOutlet ILSparkMeter* sparkVert;
 @property(nonatomic, assign) IBOutlet ILSparkMeter* sparkHorz;
@@ -27,7 +27,7 @@
 @property(nonatomic, assign) IBOutlet ILSparkMeter* sparkPie;
 @property(nonatomic, assign) IBOutlet ILSparkMeter* sparkDial;
 
-#pragma mark Stacks
+#pragma mark - Stacks
 @property(nonatomic, assign) IBOutlet ILSparkStack* stackText;
 @property(nonatomic, assign) IBOutlet ILSparkStack* stackVert;
 @property(nonatomic, assign) IBOutlet ILSparkStack* stackHorz;
