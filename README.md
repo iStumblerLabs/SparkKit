@@ -39,6 +39,8 @@ Multiple style gauge indicators
 
 High performance grid data view and source
 
+## TODO
+
 ### ILSparkStream &amp; ILStreamData
 
 Streaming data view and source
@@ -51,7 +53,7 @@ See the included Sparky! application for usage example.
 
     The MIT License (MIT)
 
-    Copyright (c) 2016-2017 Alf Watt
+    Copyright (c) 2016-2018 Alf Watt
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
