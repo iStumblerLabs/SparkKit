@@ -24,7 +24,7 @@
     self.sparkPie.style    = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterPieStyle)}];
     self.sparkDial.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterDialStyle)}];
 
-    NSArray* stackColors = @[[ILColor blackColor], [ILColor grayColor], [ILColor whiteColor], [ILColor clearColor]];
+    NSArray* stackColors = @[[ILColor blackColor], [ILColor darkGrayColor], [ILColor grayColor], [ILColor lightGrayColor]];
 
     self.stackText.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{
         ILSparkMeterStyleHint: @(ILSparkMeterTextStyle),
@@ -46,12 +46,17 @@
         ILSparkMeterStyleHint: @(ILSparkMeterCircleStyle),
         ILSparkStackColorsHint: stackColors}];
     
-    self.stackRing.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterRingStyle),
-                                                                          ILSparkStackColorsHint: stackColors}];
-    self.stackPie.style    = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterPieStyle),
-                                                                          ILSparkStackColorsHint: stackColors}];
-    self.stackDial.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterDialStyle),
-                                                                          ILSparkStackColorsHint: stackColors}];
+    self.stackRing.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{
+        ILSparkMeterStyleHint: @(ILSparkMeterRingStyle),
+        ILSparkStackColorsHint: stackColors}];
+    
+    self.stackPie.style    = [[ILSparkStyle defaultStyle] copyWithHints:@{
+        ILSparkMeterStyleHint: @(ILSparkMeterPieStyle),
+        ILSparkStackColorsHint: stackColors}];
+    
+    self.stackDial.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{
+        ILSparkMeterStyleHint: @(ILSparkMeterDialStyle),
+        ILSparkStackColorsHint: stackColors}];
 
     self.sparkLine.dataSource = self;
     

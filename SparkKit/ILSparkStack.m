@@ -116,7 +116,7 @@ NSString* const ILSparkStackColorsHint = @"ILSparkStackColorsHint"; // NSArray<I
                     CGRect squareRect = ILRectSquareInRect(insetRect);
                     CGFloat indicatorSideLength = (squareRect.size.height / 2) - ILPathlineWidth;
                     CGPoint squareCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2), squareRect.origin.y + (squareRect.size.height / 2));
-                    CGPoint topDeadCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2), squareCenter.y - indicatorSideLength);
+                    // CGPoint topDeadCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2), squareCenter.y - indicatorSideLength);
                     CGFloat firstAngle = ILZeroAngleRadians + ILPercentToRadians(dataOffset);
                     CGFloat secondAngle = firstAngle + ILPercentToRadians(datumPercentage);
                     filledPath = [ILBezierPath new];
@@ -125,7 +125,7 @@ NSString* const ILSparkStackColorsHint = @"ILSparkStackColorsHint"; // NSArray<I
                     CGPoint insetPoint = ILPointOnLineToPointAtDistance(outsideEndPoint, squareCenter, sparkStyle.ringWidth);
                     [filledPath addLineToPoint:insetPoint];
                     [filledPath addArcWithCenter:squareCenter radius:(indicatorSideLength - sparkStyle.ringWidth) startAngle:secondAngle endAngle:firstAngle clockwise:NO];
-                    [filledPath addLineToPoint:topDeadCenter];
+                    [filledPath closePath];
                     // TODO add a shape layer and position in the view
                     break;
                 }
@@ -133,7 +133,7 @@ NSString* const ILSparkStackColorsHint = @"ILSparkStackColorsHint"; // NSArray<I
                     CGRect squareRect = ILRectSquareInRect(insetRect);
                     CGFloat indicatorSideLength = (squareRect.size.height / 2) - ILPathlineWidth;
                     CGPoint squareCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2), squareRect.origin.y + (squareRect.size.height / 2));
-                    CGPoint topDeadCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2),squareCenter.y - indicatorSideLength);
+                    // CGPoint topDeadCenter = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2),squareCenter.y - indicatorSideLength);
                     CGFloat firstAngle = ILZeroAngleRadians + ILPercentToRadians(dataOffset);
                     CGFloat secondAngle = firstAngle + ILPercentToRadians(datumPercentage);
                     filledPath = [ILBezierPath new];
@@ -141,7 +141,7 @@ NSString* const ILSparkStackColorsHint = @"ILSparkStackColorsHint"; // NSArray<I
                     // filledPath.windingRule = NSEvenOddWindingRule;
                     [filledPath addArcWithCenter:squareCenter radius:indicatorSideLength startAngle:firstAngle endAngle:secondAngle clockwise:YES];
                     [filledPath addLineToPoint:squareCenter];
-                    [filledPath addLineToPoint:topDeadCenter];
+                    [filledPath closePath];
                     // TODO add a shape layer and position in the view
                     break;
                 }
@@ -168,7 +168,7 @@ NSString* const ILSparkStackColorsHint = @"ILSparkStackColorsHint"; // NSArray<I
                 indicatorLayer.zPosition = (1 - datumPercentage);
                 
                 if (sparkStyle.meterStyle == ILSparkMeterDialStyle) {
-                    indicatorLayer.strokeColor = sparkStyle.fill.CGColor;
+                    indicatorLayer.strokeColor = fillColor.CGColor;
                     indicatorLayer.lineWidth = sparkStyle.dialWidth;
                     indicatorLayer.lineCap = @"round";
                 } else {
