@@ -3,6 +3,7 @@
 
 @interface SparkyController ()
 @property(nonatomic, retain) NSTimer* dataTimer;
+@property(nonatomic, retain) NSMutableArray* dataDates;
 
 @end
 
@@ -25,16 +26,26 @@
 
     NSArray* stackColors = @[[ILColor blackColor], [ILColor grayColor], [ILColor whiteColor], [ILColor clearColor]];
 
-    self.stackText.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterTextStyle),
-                                                                          ILSparkStackColorsHint: stackColors}];
-    self.stackVert.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterVerticalStyle),
-                                                                          ILSparkStackColorsHint: stackColors}];
-    self.stackHorz.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterHorizontalStyle),
-                                                                          ILSparkStackColorsHint: stackColors}];
-    self.stackSquare.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterSquareStyle),
-                                                                          ILSparkStackColorsHint: stackColors}];
-    self.stackCircle.style = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterCircleStyle),
-                                                                          ILSparkStackColorsHint: stackColors}];
+    self.stackText.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{
+        ILSparkMeterStyleHint: @(ILSparkMeterTextStyle),
+        ILSparkStackColorsHint: stackColors}];
+    
+    self.stackVert.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{
+        ILSparkMeterStyleHint: @(ILSparkMeterVerticalStyle),
+        ILSparkStackColorsHint: stackColors}];
+    
+    self.stackHorz.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{
+        ILSparkMeterStyleHint: @(ILSparkMeterHorizontalStyle),
+        ILSparkStackColorsHint: stackColors}];
+    
+    self.stackSquare.style = [[ILSparkStyle defaultStyle] copyWithHints:@{
+        ILSparkMeterStyleHint: @(ILSparkMeterSquareStyle),
+        ILSparkStackColorsHint: stackColors}];
+    
+    self.stackCircle.style = [[ILSparkStyle defaultStyle] copyWithHints:@{
+        ILSparkMeterStyleHint: @(ILSparkMeterCircleStyle),
+        ILSparkStackColorsHint: stackColors}];
+    
     self.stackRing.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterRingStyle),
                                                                           ILSparkStackColorsHint: stackColors}];
     self.stackPie.style    = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterPieStyle),
@@ -65,10 +76,13 @@
     self.gridData = [ILGridData floatGridWithRows:0 columns:100];
     self.sparkGrid.grid = self.gridData;
     self.sparkGrid.xAxisLabels = @[@"1", @"2", @"3", @"4", @"5"];
-    self.sparkGrid.yAxisLabels = @[@"a", @"b", @"c", @"d", @"e"];
+    self.sparkGrid.yAxisLabels = @[@"y"];
     
     self.bucketData = [ILBucketData new];
     self.sparkBars.dataSource = self.bucketData;
+    
+    self.dataDates = [NSMutableArray new];
+    
     
     self.dataTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(dataTimer:) userInfo:nil repeats:YES];
     [self.dataTimer fire];
@@ -119,6 +133,8 @@
 
 - (void) dataTimer:(NSTimer*) timer;
 {
+    [self.dataDates addObject:[NSDate new]];
+    
     /* append some grid data */
     NSMutableData* blankRow = [NSMutableData dataWithLength:self.gridData.sizeOfRow]; // start small
     NSMutableArray* dataArray = [NSMutableArray array];
@@ -167,13 +183,7 @@ static CGFloat SPEED = 0.1;
 #pragma mark - ILSparkLineDataSource
 
 -(NSArray<NSDate*>*) sampleDates {
-    NSMutableArray* dateArray = [NSMutableArray new];
-    for (NSInteger index = 0; index < 1000; index = index+1) {
-        if (index < 100 || index > 200) { // 100 second gap
-            [dateArray addObject:[NSDate dateWithTimeIntervalSinceNow:-(index)]];
-        }
-    }
-    return [NSArray arrayWithArray:dateArray];
+    return [NSArray arrayWithArray:self.dataDates];
 }
 
 - (CGFloat) sampleValueAtIndex:(NSUInteger) index {

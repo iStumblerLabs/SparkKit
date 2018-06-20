@@ -21,6 +21,8 @@
 
 - (void) updateView
 {
+    [CATransaction begin];
+    [CATransaction setValue:@(1 / 60) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
     // TODO a style preference and vertical buckets
     self.barsLayer.frame = self.layer.bounds;
     self.barsLayer.backgroundColor = self.style.background.CGColor;
@@ -58,6 +60,7 @@
     }
 
     [super updateView];
+    [CATransaction commit];
 }
 
 #pragma mark - ILBucketDataDelegate

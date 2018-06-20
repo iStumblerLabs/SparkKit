@@ -114,6 +114,13 @@
 			remoteGlobalIDString = 75DCBEF11ED2C84B00538D87;
 			remoteInfo = "KitBridge (iOS)";
 		};
+		7586879220DA2C740029C1E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75D8ADD71ED37A31006F3823 /* KitBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75A0CEE020D997330091D26A;
+			remoteInfo = semantics;
+		};
 		75F5A9191D19034400A17804 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 75971DE61D138C0400EA65D3 /* Project object */;
@@ -310,6 +317,7 @@
 			children = (
 				756DB2161ED37A9400B84AE7 /* KitBridge.framework */,
 				756DB2181ED37A9400B84AE7 /* KitBridge.framework */,
+				7586879320DA2C740029C1E5 /* semantics */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -317,12 +325,12 @@
 		758EA4C01F04EE2900069634 /* Data Sources */ = {
 			isa = PBXGroup;
 			children = (
+				758EA4BA1F04EB1000069634 /* ILBucketData.h */,
+				758EA4BB1F04EB1000069634 /* ILBucketData.m */,
 				75F86DC51DF26CAC00BC0A35 /* ILGridData.h */,
 				75F86DC61DF26CAC00BC0A35 /* ILGridData.m */,
 				755E62C91E68B33C00342CCD /* ILStreamData.h */,
 				755E62CA1E68B33C00342CCD /* ILStreamData.m */,
-				758EA4BA1F04EB1000069634 /* ILBucketData.h */,
-				758EA4BB1F04EB1000069634 /* ILBucketData.m */,
 			);
 			name = "Data Sources";
 			path = SparkKit;
@@ -543,7 +551,7 @@
 		75971DE61D138C0400EA65D3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "iStumbler Labs";
 				TargetAttributes = {
 					75543AEF1F22A1E70050BAF2 = {
@@ -610,6 +618,13 @@
 			fileType = wrapper.framework;
 			path = KitBridge.framework;
 			remoteRef = 756DB2171ED37A9400B84AE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7586879320DA2C740029C1E5 /* semantics */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = semantics;
+			remoteRef = 7586879220DA2C740029C1E5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -850,6 +865,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -859,12 +875,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -905,6 +923,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -914,12 +933,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

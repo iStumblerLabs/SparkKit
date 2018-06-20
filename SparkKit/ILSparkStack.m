@@ -79,9 +79,9 @@ NSString* const ILSparkStackColorsHint = @"ILSparkStackColorsHint"; // NSArray<I
                     break;
                 }
                 case ILSparkMeterVerticalStyle: {
-                    CGFloat indicatorHeight = insetRect.size.height - (insetRect.size.height * datumPercentage);
-                    CGFloat indicatorOffset = insetRect.origin.y + (insetRect.size.height * dataOffset);
-                    CGRect filledRect = CGRectMake(insetRect.origin.x, (insetRect.origin.y + indicatorOffset), insetRect.size.width, (insetRect.size.height - indicatorHeight));
+                    CGFloat indicatorHeight = (insetRect.size.height * datumPercentage);
+                    CGFloat indicatorOffset = (insetRect.origin.y + insetRect.size.height) - (dataOffset * insetRect.size.height) - indicatorHeight;
+                    CGRect filledRect = CGRectMake(insetRect.origin.x, indicatorOffset, insetRect.size.width, indicatorHeight);
                     filledPath = [ILBezierPath bezierPathWithRect:filledRect];
                     // TODO add a shape layer and position in the view
                     break;

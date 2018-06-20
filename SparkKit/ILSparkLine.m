@@ -123,7 +123,11 @@ exit:
 
 #pragma mark - ILSparkView
 
-- (void) updateView {
+- (void) updateView
+{
+    [CATransaction begin];
+    [CATransaction setValue:@(1 / 60) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
+
     for (CALayer* layer in [self.layer.sublayers copy]) { // remove all sublayers
        [layer removeFromSuperlayer];
     }
@@ -134,6 +138,7 @@ exit:
     CALayer* sparkLine = [ILSparkLine timeSeriesWithData:[self dataSource] size:insetRect.size style:self.style];
     [self.layer addSublayer:sparkLine];
     sparkLine.frame = insetRect;
+    [CATransaction commit];
 }
 
 @end
