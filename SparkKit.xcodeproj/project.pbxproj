@@ -597,8 +597,8 @@
 			projectRoot = "";
 			targets = (
 				75971DEE1D138C0400EA65D3 /* SparkKit (macOS) */,
-				75F5A9071D1902C500A17804 /* Sparky (macOS) */,
 				75F5A93D1D1A134A00A17804 /* SparkKit (iOS) */,
+				75F5A9071D1902C500A17804 /* Sparky (macOS) */,
 				75F5A9251D1A133A00A17804 /* Sparky (iOS) */,
 				75543AEF1F22A1E70050BAF2 /* Sparky TV */,
 			);
@@ -623,7 +623,7 @@
 		7586879320DA2C740029C1E5 /* semantics */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
-			path = semantics;
+			path = colorist;
 			remoteRef = 7586879220DA2C740029C1E5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
