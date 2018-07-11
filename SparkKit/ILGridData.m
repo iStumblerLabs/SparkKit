@@ -121,7 +121,7 @@
 - (void*) addressOfRow:(NSUInteger)row column:(NSUInteger)column
 {
     if ((row > self.rows) || (column > self.columns)){
-        [[NSException exceptionWithName:NSRangeException reason:[NSString stringWithFormat:@"row: %lu or column: %lu out of range: %lu x %lu", (unsigned long)row, (unsigned long)column, self.rows, self.columns] userInfo:nil] raise];
+        [[NSException exceptionWithName:NSRangeException reason:[NSString stringWithFormat:@"row: %lu or column: %lu out of range: %lu x %lu", (unsigned long)row, (unsigned long)column, (unsigned long)self.rows, (unsigned long)self.columns] userInfo:nil] raise];
     }
     
     NSUInteger offset = ((row * self.sizeOfRow) + (column * self.valueSize)); // offset in bytes
@@ -598,12 +598,12 @@ exit:
             NSData* trimmedData = [self.data subdataWithRange:byteRange];
             
             if (self.columns > 0 && ((trimmedData.length % self.columns) != 0)) {
-                NSLog(@"EXCEPTION byte range (%lu,%lu) invalid data length: %lu", (unsigned long)byteRange.location, (unsigned long)byteRange.length, trimmedData.length);
+                NSLog(@"EXCEPTION byte range (%lu,%lu) invalid data length: %lu", (unsigned long)byteRange.location, (unsigned long)byteRange.length, (unsigned long)trimmedData.length);
             }
             
             [self.data setData:trimmedData];
         }
-        else NSLog(@"EXCEPTION trimmed range (%lu,%lu) exceeds grid size: %lu", (unsigned long)rowRange.location, (unsigned long)rowRange.length, self.rows);
+        else NSLog(@"EXCEPTION trimmed range (%lu,%lu) exceeds grid size: %lu", (unsigned long)rowRange.location, (unsigned long)rowRange.length, (unsigned long)self.rows);
     }
 }
 

@@ -114,7 +114,7 @@
     NSTimeInterval drawTime = (drawDone - drawStart);
     CATextLayer* debugLayer = [CATextLayer layer];
     debugLayer.string = [NSString stringWithFormat:@"%@ [%lu x %lu] %lu tiles in %0.6fs",
-                                                   self, self.grid.columns, self.grid.rows, (self.grid.columns * self.grid.rows), drawTime];
+                         self, (unsigned long)self.grid.columns, (unsigned long)self.grid.rows, (unsigned long)(self.grid.columns * self.grid.rows), drawTime];
     ILFont* debugFont = [ILFont userFixedPitchFontOfSize:11];
     CGSize textSize = [debugLayer.string sizeWithAttributes:@{NSFontAttributeName: debugFont}];
     debugLayer.font = (__bridge CFTypeRef _Nullable)debugFont.fontName;
@@ -197,7 +197,7 @@
 
 - (void) grid:(ILGridData*)grid didSetData:(NSData*)data atRow:(NSUInteger)row
 {
-    NSLog(@"grid:%@ didSetData:%lu Bytes atRow:%lu", grid, (unsigned long)data.length, row);
+    NSLog(@"grid:%@ didSetData:%lu Bytes atRow:%lu", grid, (unsigned long)data.length, (unsigned long)row);
     // TODO udpate the gridLayer
 }
 

@@ -4,79 +4,33 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>SparkKit (iOS).xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
 		<key>SparkKit (iOS).xcscheme_^#shared#^_</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
 			<key>orderHint</key>
-			<integer>5</integer>
-		</dict>
-		<key>SparkKit (macOS).xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>26</integer>
 		</dict>
 		<key>SparkKit (macOS).xcscheme_^#shared#^_</key>
 		<dict>
-			<key>isShown</key>
-			<true/>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>25</integer>
 		</dict>
 		<key>Sparky (iOS).xcscheme_^#shared#^_</key>
 		<dict>
-			<key>isShown</key>
-			<true/>
 			<key>orderHint</key>
-			<integer>11</integer>
+			<integer>28</integer>
 		</dict>
 		<key>Sparky (macOS).xcscheme_^#shared#^_</key>
 		<dict>
-			<key>isShown</key>
-			<true/>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>27</integer>
 		</dict>
 		<key>Sparky TV.xcscheme_^#shared#^_</key>
 		<dict>
-			<key>isShown</key>
-			<true/>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>29</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>75543AEF1F22A1E70050BAF2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>75971DEE1D138C0400EA65D3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>75F5A9071D1902C500A17804</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>75F5A9251D1A133A00A17804</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>75F5A93D1D1A134A00A17804</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>
