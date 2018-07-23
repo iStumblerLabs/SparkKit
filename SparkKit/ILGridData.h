@@ -4,17 +4,25 @@
 
 @protocol ILGridDataDelegate;
 
+typedef enum {
+    ILGridDataByteType,
+    ILGridDataIntegerType,
+    ILGridDataFloatType,
+    ILGridDataUnicharType
+}   ILGridDataType;
+
 /*! ILGridData is a wrapper for NSMutableData which provides access to a 2d array of values or a given size */
 @interface ILGridData : NSObject
-@property(retain) NSMutableData* data;
-@property(assign) size_t valueSize;
-@property(readonly) NSUInteger rows; // computed
-@property(assign) NSUInteger columns;
+@property(nonatomic, retain) NSMutableData* data;
+@property(nonatomic, assign) ILGridDataType dataType;
+@property(nonatomic, readonly) size_t valueSize; // depends on type
+@property(nonatomic, readonly) NSUInteger rows; // computed
+@property(nonatomic, assign) NSUInteger columns;
 @property(nonatomic, assign) NSObject<ILGridDataDelegate>* delegate;
 
-#pragma mark -
+#pragma mark - Factory
 
-+ (instancetype) gridWithValueSize:(size_t)valueSize rows:(NSUInteger)rows columns:(NSUInteger)columns;
++ (instancetype) gridWithDataType:(ILGridDataType)dataType rows:(NSUInteger)rows columns:(NSUInteger)columns;
 + (instancetype) byteGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns;
 + (instancetype) integerGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns;
 + (instancetype) floatGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns;
@@ -23,7 +31,7 @@
 #pragma mark -
 
 /** @designated initilizer */
-- (instancetype) initGridWithValueSize:(size_t)valueSize rows:(NSUInteger)rows columns:(NSUInteger)columns;
+- (instancetype) initGridWithDataType:(ILGridDataType)dataType rows:(NSUInteger)rows columns:(NSUInteger)columns;
 
 #pragma mark - Properties
 
@@ -96,15 +104,8 @@
 #if IL_APP_KIT
 #pragma mark - Table Data Source Adapter
 
-typedef enum {
-    ILGridDataByteType,
-    ILGridDataIntegerType,
-    ILGridDataFloatType,
-    ILGridDataUnicharType
-}   ILGridDataType;
 
 @interface ILGridTableDataSource : NSObject <NSTableViewDataSource>
-@property(nonatomic, assign) ILGridDataType type;
 @property(nonatomic, retain) ILGridData* grid;
 @property(nonatomic, retain) NSArray* labels;
 @property(nonatomic, assign) NSRange range;

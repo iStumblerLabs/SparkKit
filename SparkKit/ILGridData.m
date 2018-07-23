@@ -1,5 +1,19 @@
 #import "ILGridData.h"
 
+size_t ILSizeOfGridType(ILGridDataType dataType)
+{
+    size_t typeSize = 0;
+    
+    switch (dataType) {
+        case ILGridDataByteType:    typeSize = sizeof(uint8_t);     break;
+        case ILGridDataIntegerType: typeSize = sizeof(NSInteger);   break;
+        case ILGridDataFloatType:   typeSize = sizeof(CGFloat);     break;
+        case ILGridDataUnicharType: typeSize = sizeof(UniChar);     break;
+    }
+    
+    return typeSize;
+}
+
 #pragma mark Private
 
 @interface ILGridData ()
@@ -62,36 +76,36 @@
 
 #pragma mark - Factory Methods
 
-+ (ILGridData*) gridWithValueSize:(size_t)size rows:(NSUInteger)rows columns:(NSUInteger)columns
++ (ILGridData*) gridWithDataType:(ILGridDataType)dataType rows:(NSUInteger)rows columns:(NSUInteger)columns
 {
-    ILGridData* dataGrid = [[ILGridData alloc] initGridWithValueSize:size rows:rows columns:columns];
+    ILGridData* dataGrid = [[ILGridData alloc] initGridWithDataType:dataType rows:rows columns:columns];
     return dataGrid;
 }
 
 + (ILGridData*) byteGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns
 {
-    ILGridData* byteGrid = [[ILGridData alloc] initGridWithValueSize:sizeof(uint8_t) rows:rows columns:columns];
+    ILGridData* byteGrid = [[ILGridData alloc] initGridWithDataType:ILGridDataByteType rows:rows columns:columns];
     [byteGrid fillByteValue:0];
     return byteGrid;
 }
 
 + (ILGridData*) integerGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns
 {
-    ILGridData* integerGrid = [[ILGridData alloc] initGridWithValueSize:sizeof(NSInteger) rows:rows columns:columns];
+    ILGridData* integerGrid = [[ILGridData alloc] initGridWithDataType:ILGridDataIntegerType rows:rows columns:columns];
     [integerGrid fillIntegerValue:0];
     return integerGrid;
 }
 
 + (ILGridData*) floatGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns
 {
-    ILGridData* floatGrid = [[ILGridData alloc] initGridWithValueSize:sizeof(CGFloat) rows:rows columns:columns];
+    ILGridData* floatGrid = [[ILGridData alloc] initGridWithDataType:ILGridDataFloatType rows:rows columns:columns];
     [floatGrid fillFloatValue:0.0];
     return floatGrid;
 }
 
 + (ILGridData*) uniCharGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns
 {
-    ILGridData* unicharGrid = [[ILGridData alloc] initGridWithValueSize:sizeof(UniChar) rows:rows columns:columns];
+    ILGridData* unicharGrid = [[ILGridData alloc] initGridWithDataType:ILGridDataUnicharType rows:rows columns:columns];
     [unicharGrid fillUniCharValue:' '];
     return unicharGrid;
 }
@@ -99,12 +113,13 @@
 #pragma mark - Designated Initilizer
 
 /** designated initilizer */
-- (ILGridData*) initGridWithValueSize:(size_t)valueSize rows:(NSUInteger)rows columns:(NSUInteger)columns
+- (instancetype) initGridWithDataType:(ILGridDataType)dataType rows:(NSUInteger)rows columns:(NSUInteger)columns;
 {
-    size_t gridSize = (rows * columns * valueSize);
+    size_t typeSize = ILSizeOfGridType(dataType);
+    size_t gridSize = (rows * columns * typeSize);
     if (self = [super init]) {
         self.data = [NSMutableData dataWithCapacity:gridSize];
-        self.valueSize = valueSize;
+        self.dataType = dataType;
         self.columns = columns;
         bzero((void*)self.data.bytes, gridSize);
     }
@@ -112,6 +127,11 @@
 }
 
 #pragma mark -
+
+- (size_t) valueSize
+{
+    return ILSizeOfGridType(self.dataType);
+}
 
 - (size_t) sizeOfRow
 {
@@ -639,8 +659,8 @@ exit:
 
 @end
 
-#pragma mark -
 #if IL_APP_KIT
+#pragma mark -
 
 @implementation ILGridTableDataSource
 
@@ -660,15 +680,18 @@ exit:
         value = self.labels[row];
     }
     else {
-        if (self.type == ILGridDataIntegerType) {
-            value = [NSNumber numberWithDouble:[self.grid percentOfValueAtRow:row column:(columnIndex -1) inRange:self.range]];
+        if (self.grid.dataType == ILGridDataIntegerType) {
+            value = [NSNumber numberWithDouble:[self.grid percentOfValueAtRow:row column:(columnIndex - 1) inRange:self.range]];
             // value = [NSNumber numberWithInteger:[self.grid integerAtRow:row column:columnIndex-1]];
         }
-        else if (self.type == ILGridDataFloatType) {
+        else if (self.grid.dataType == ILGridDataByteType) {
+            value = [NSNumber numberWithUnsignedShort:[self.grid byteAtRow:row column:(columnIndex - 1)]];
+        }
+        else if (self.grid.dataType == ILGridDataFloatType) {
             value = [NSNumber numberWithDouble:[self.grid floatAtRow:row column:columnIndex-1]];
         }
-        else if (self.type == ILGridDataUnicharType) {
-            value = [NSString stringWithFormat:@"%C", [self.grid uniCharAtRow:row column:columnIndex-1]];
+        else if (self.grid.dataType == ILGridDataUnicharType) {
+            value = [NSString stringWithFormat:@"%C", [self.grid uniCharAtRow:row column:(columnIndex - 1)]];
         }
     }
     
