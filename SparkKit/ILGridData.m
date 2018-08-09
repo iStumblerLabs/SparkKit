@@ -588,20 +588,18 @@ exit:
 - (void) appendData:(NSData*) slice
 {
     @synchronized (self) {
-        NSInteger sliceColumns = (slice.length / self.valueSize);
-        if ((sliceColumns % self.columns) == 0) { // allow appending 0-N rows at a time
-            [self.data appendData:slice];
-            
-            if (self.delegate && [self.delegate respondsToSelector:@selector(grid:didAppendedData:asRow:)]) {
-                [self.delegate grid:self didAppendedData:slice asRow:self.rows];
+        if (self.columns > 0 && self.valueSize > 0) {
+            NSInteger sliceColumns = (slice.length / self.valueSize);
+            if ((sliceColumns % self.columns) == 0) { // allow appending 0-N rows at a time
+                [self.data appendData:slice];
+                
+                if (self.delegate && [self.delegate respondsToSelector:@selector(grid:didAppendedData:asRow:)]) {
+                    [self.delegate grid:self didAppendedData:slice asRow:self.rows];
+                }
             }
+            else NSLog(@"EXCEPTION appending data: %@, wrong sized slice: %lu bytes for grid: %@", slice, (unsigned long)slice.length, self);
         }
-        else {
-            [[NSException
-                exceptionWithName:NSRangeException
-                reason: [NSString stringWithFormat:@"%@ appendData, wrong sized slice: %lu bytes", self, (unsigned long)slice.length]
-                userInfo:nil] raise];
-        }
+        else NSLog(@"EXCEPTION appending data: %@ to a grid with 0 columns or no value size: %@", slice, self);
     }
 }
 
