@@ -53,10 +53,8 @@
 		75971DF31D138C0400EA65D3 /* SparkKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DF21D138C0400EA65D3 /* SparkKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75971DFC1D139FBA00EA65D3 /* ILSparkLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DFA1D139FBA00EA65D3 /* ILSparkLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75971DFD1D139FBA00EA65D3 /* ILSparkLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */; };
-		75971E031D13D37600EA65D3 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75971E021D13D37600EA65D3 /* AppKit.framework */; };
 		75971E091D13D79F00EA65D3 /* ILSparkView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971E071D13D79F00EA65D3 /* ILSparkView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75971E0A1D13D79F00EA65D3 /* ILSparkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971E081D13D79F00EA65D3 /* ILSparkView.m */; };
-		75971E0C1D13DAF600EA65D3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75971E0B1D13DAF600EA65D3 /* QuartzCore.framework */; };
 		75B866EA1EE9EBB40052BD30 /* Sparky.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B866E91EE9EBB40052BD30 /* Sparky.xib */; };
 		75F5A90C1D1902C500A17804 /* SparkyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A90B1D1902C500A17804 /* SparkyDelegate.m */; };
 		75F5A91B1D19034900A17804 /* SparkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75971DEF1D138C0400EA65D3 /* SparkKit.framework */; };
@@ -85,6 +83,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 75F5A93D1D1A134A00A17804;
 			remoteInfo = "SparkKit (iOS)";
+		};
+		7566CF94215CCFC900DD20F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75D8ADD71ED37A31006F3823 /* KitBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75C6A41B21274CFA00367C24;
+			remoteInfo = "KitBridge (iOS, Swift)";
+		};
+		7566CF96215CCFC900DD20F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75D8ADD71ED37A31006F3823 /* KitBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75C6A36E21268C5300367C24;
+			remoteInfo = "KitBridge (macOS, Swift)";
 		};
 		756DB2151ED37A9400B84AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -190,6 +202,7 @@
 		75543B0D1F22A4F20050BAF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Sparky.storyboard; sourceTree = "<group>"; };
 		755E62C91E68B33C00342CCD /* ILStreamData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILStreamData.h; sourceTree = "<group>"; };
 		755E62CA1E68B33C00342CCD /* ILStreamData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILStreamData.m; sourceTree = "<group>"; };
+		7566CF98215CCFF100DD20F6 /* SparkKit.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SparkKit.podspec; sourceTree = "<group>"; };
 		756DB2201ED37FE000B84AE7 /* ILSparkMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ILSparkMeter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		756DB2211ED37FE000B84AE7 /* ILSparkMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ILSparkMeter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		757D6A8C2011183900C2E96F /* es */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -246,8 +259,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				756DB21E1ED37AD500B84AE7 /* KitBridge.framework in Frameworks */,
-				75971E031D13D37600EA65D3 /* AppKit.framework in Frameworks */,
-				75971E0C1D13DAF600EA65D3 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,12 +323,22 @@
 			path = Sparky/tvOS;
 			sourceTree = SOURCE_ROOT;
 		};
+		7566CF90215CCFC800DD20F6 /* Packaging */ = {
+			isa = PBXGroup;
+			children = (
+				7566CF98215CCFF100DD20F6 /* SparkKit.podspec */,
+			);
+			name = Packaging;
+			sourceTree = "<group>";
+		};
 		756DB2111ED37A9400B84AE7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				756DB2161ED37A9400B84AE7 /* KitBridge.framework */,
 				756DB2181ED37A9400B84AE7 /* KitBridge.framework */,
-				7586879320DA2C740029C1E5 /* semantics */,
+				7566CF95215CCFC900DD20F6 /* KitBridge.framework */,
+				756DB2161ED37A9400B84AE7 /* KitBridge.framework */,
+				7566CF97215CCFC900DD20F6 /* KitBridge.framework */,
+				7586879320DA2C740029C1E5 /* colorist */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -347,6 +368,7 @@
 				75F5A9091D1902C500A17804 /* Sparky */,
 				75971E041D13D38C00EA65D3 /* Frameworks */,
 				75971DF01D138C0400EA65D3 /* Products */,
+				7566CF90215CCFC800DD20F6 /* Packaging */,
 			);
 			sourceTree = "<group>";
 		};
@@ -606,6 +628,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		7566CF95215CCFC900DD20F6 /* KitBridge.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KitBridge.framework;
+			remoteRef = 7566CF94215CCFC900DD20F6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7566CF97215CCFC900DD20F6 /* KitBridge.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KitBridge.framework;
+			remoteRef = 7566CF96215CCFC900DD20F6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		756DB2161ED37A9400B84AE7 /* KitBridge.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -620,7 +656,7 @@
 			remoteRef = 756DB2171ED37A9400B84AE7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		7586879320DA2C740029C1E5 /* semantics */ = {
+		7586879320DA2C740029C1E5 /* colorist */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = colorist;
