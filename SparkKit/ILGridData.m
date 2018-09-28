@@ -594,7 +594,7 @@ exit:
                 [self.data appendData:slice];
                 
                 if (self.delegate && [self.delegate respondsToSelector:@selector(grid:didAppendedData:asRow:)]) {
-                    [self.delegate grid:self didAppendedData:slice asRow:self.rows];
+                    [self.delegate grid:self didAppendedData:slice asRow:(self.rows - 1)];
                 }
             }
             else NSLog(@"EXCEPTION appending data: %@, wrong sized slice: %lu bytes for grid: %@", slice, (unsigned long)slice.length, self);

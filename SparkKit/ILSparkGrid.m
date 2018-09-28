@@ -90,7 +90,7 @@
     [CATransaction begin];
     [CATransaction setValue:@(1 / 60) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
 #if DEBUG
-    NSTimeInterval drawStart = [[NSDate new] timeIntervalSinceReferenceDate];
+    NSTimeInterval drawStart = NSDate.timeIntervalSinceReferenceDate;
 #endif
     self.gridLayer.frame = self.layer.bounds;
     self.gridLayer.sublayers = nil; // TODO retain existing layer and only draw new ones
@@ -110,18 +110,11 @@
     }
 
 #if DEBUG
-    NSTimeInterval drawDone = [[NSDate new] timeIntervalSinceReferenceDate];
+    NSTimeInterval drawDone = NSDate.timeIntervalSinceReferenceDate;
     NSTimeInterval drawTime = (drawDone - drawStart);
-    CATextLayer* debugLayer = [CATextLayer layer];
-    debugLayer.string = [NSString stringWithFormat:@"%@ [%lu x %lu] %lu tiles in %0.6fs",
-                         self, (unsigned long)self.grid.columns, (unsigned long)self.grid.rows, (unsigned long)(self.grid.columns * self.grid.rows), drawTime];
-    ILFont* debugFont = [ILFont userFixedPitchFontOfSize:11];
-    CGSize textSize = [debugLayer.string sizeWithAttributes:@{NSFontAttributeName: debugFont}];
-    debugLayer.font = (__bridge CFTypeRef _Nullable)debugFont.fontName;
-    debugLayer.fontSize = debugFont.pointSize;
-    debugLayer.contentsScale = [[ILScreen mainScreen] scale];
-    debugLayer.frame = CGRectMake((debugFont.pointSize * 4), (self.gridLayer.bounds.size.height - (textSize.height + (debugFont.pointSize * 4))), textSize.width, textSize.height);
-    [self.gridLayer addSublayer:debugLayer];
+    if (drawTime > (1.0f / 15)) { // warn if we drop below 15 fps
+        NSLog(@"%@ [%lu x %lu] %lu tiles in %0.6fs", self, (unsigned long)self.grid.columns, (unsigned long)self.grid.rows, (unsigned long)(self.grid.columns * self.grid.rows), drawTime);
+    }
 #endif
 
     [CATransaction commit];
@@ -201,29 +194,42 @@
     // TODO udpate the gridLayer
 }
 
-- (void) grid:(ILGridData*)grid didAppendedData:(NSData*)data asRow:(NSUInteger)row
+- (void) grid:(ILGridData*)grid didAppendedData:(NSData*)data asRow:(NSUInteger)rowIndex
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self updateView];
-    }];
-/*
-    self.gridLayer.frame = self.layer.bounds;
+        NSUInteger layerIndex = 0;
+        NSMutableArray* oldLayers = NSMutableArray.new;
+        CALayer* sliceLayer = CALayer.new;
+        CGImageRef sliceImage = [self.grid alphaBitmapOfRow:rowIndex withRange:self.valueRange];
+        sliceLayer.contents = CFBridgingRelease(sliceImage);
+        sliceLayer.magnificationFilter = kCAFilterNearest;
+        sliceLayer.backgroundColor = self.style.background.CGColor;
 
-    // TODO move this to a different queue???
-    CGImageRef rowImage = [self bitmapOfRow:row];
-
-    // move the existing rows down inside of an animation context
+        // move the existing rows down inside of an animation context
         [CATransaction begin];
-        [self updateGrid];
+        NSUInteger layerCount = self.gridLayer.sublayers.count;
+        for (CALayer* rowLayer in self.gridLayer.sublayers) {
+            if (layerCount > (rowIndex + 1)) { // remove the layer
+                [oldLayers addObject:rowLayer];
+                layerCount--;
+            }
+            else { // move the layer into place
+                rowLayer.frame = [self rectOfRow:++layerIndex];
+            }
+        }
         
-        CALayer* rowLayer = [CALayer new];
-        [self.gridLayer addSublayer:rowLayer];
-        rowLayer.frame = [self rectOfRow:row];
-        rowLayer.contents = CFBridgingRelease(rowImage);
-        
-        NSLog(@"grid:%@ didAppendedData:%lu Bytes asRow:%lu", grid, data.length, row);
+        for (CALayer* rowLayer in oldLayers) {
+            [rowLayer removeFromSuperlayer];
+        }
+
+        // now add the new row
+        [self.gridLayer addSublayer:sliceLayer];
+        sliceLayer.frame = [self rectOfRow:rowIndex];
+
         [CATransaction commit];
-*/
+        // NSLog(@"grid:%@ didAppendedData: %lu Bytes atRow:%lu height:%f", grid, data.length, rowIndex, self.rowHeight);
+        [super updateView];
+    }];
 }
 
 - (void) grid:(ILGridData*)grid willTrimToRangeOfRows:(NSRange)rows
