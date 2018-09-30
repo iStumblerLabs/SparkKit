@@ -1,0 +1,37 @@
+
+# iOS CircleCI 2.0 configuration file
+#
+version: 2
+jobs:
+  build:
+
+    # Specify the Xcode version to use
+    macos:
+      xcode: "10.0.0"
+
+    steps:
+      - checkout
+
+      - run:
+          name: Checkouit KitBridge
+          command: git checkout https://github.com/alfwatt/KitBridge.git
+
+      - run:
+          name: Build SparkKit (iOS)
+          command: xcodebuild -scheme "SparkKit (iOS)"
+
+      - run:
+          name: Build SparkKit (macOS)
+          command: xcodebuild -scheme "SparkKit (macOS)"
+
+      - run:
+          name: Build Sparky (iOS)
+          command: xcodebuild -scheme "Sparky (iOS)"
+
+      - run:
+          name: Build Sparky (macOS)
+          command: xcodebuild -scheme "Sparky (macOS)"
+
+      - run:
+          name: Build Sparky TV
+          command: xcodebuild -scheme "Sparky TV"

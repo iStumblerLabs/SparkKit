@@ -195,6 +195,7 @@
 		7526C1991D25B398000E5A60 /* SparkyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SparkyController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		753956D41D13F679004DDBDA /* ILSparkStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSparkStyle.h; sourceTree = "<group>"; };
 		753956D51D13F679004DDBDA /* ILSparkStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSparkStyle.m; sourceTree = "<group>"; };
+		7552D9432161825A004FF8C8 /* config.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = config.yml; path = .circleci/config.yml; sourceTree = "<group>"; };
 		75543AF01F22A1E70050BAF2 /* Sparky TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sparky TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75543AFC1F22A1E70050BAF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75543AFE1F22A1E70050BAF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -327,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				7566CF98215CCFF100DD20F6 /* SparkKit.podspec */,
+				7552D9432161825A004FF8C8 /* config.yml */,
 			);
 			name = Packaging;
 			sourceTree = "<group>";
