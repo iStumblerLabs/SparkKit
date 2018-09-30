@@ -1,6 +1,6 @@
-
 # iOS CircleCI 2.0 configuration file
 #
+
 version: 2
 jobs:
   build:
@@ -26,12 +26,12 @@ jobs:
 
       - run:
           name: Build Sparky (iOS)
-          command: xcodebuild -scheme "Sparky (iOS)"
+          command: xcodebuild -scheme "Sparky (iOS)" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
       - run:
           name: Build Sparky (macOS)
-          command: xcodebuild -scheme "Sparky (macOS)"
+          command: xcodebuild -scheme "Sparky (macOS)" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
       - run:
           name: Build Sparky TV
-          command: xcodebuild -scheme "Sparky TV"
+          command: xcodebuild -scheme "Sparky TV" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
