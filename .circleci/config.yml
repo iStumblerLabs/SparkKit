@@ -32,6 +32,6 @@ jobs:
           name: Build Sparky (macOS)
           command: xcodebuild -scheme "Sparky (macOS)" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
-      - run:
-          name: Build Sparky TV
-          command: xcodebuild -scheme "Sparky TV" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+#      - run:
+#          name: Build Sparky TV
+#          command: xcodebuild -scheme "Sparky TV" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
