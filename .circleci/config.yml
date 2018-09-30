@@ -13,8 +13,8 @@ jobs:
       - checkout
 
       - run:
-          name: Checkouit KitBridge
-          command: git checkout https://github.com/alfwatt/KitBridge.git
+          name: Clone KitBridge
+          command: git clone https://github.com/alfwatt/KitBridge.git
 
       - run:
           name: Build SparkKit (iOS)
