@@ -14,7 +14,7 @@ jobs:
 
       - run:
           name: Clone KitBridge
-          command: git clone https://github.com/alfwatt/KitBridge.git
+          command: git clone https://github.com/alfwatt/KitBridge.git ../KitBridge
 
       - run:
           name: Build SparkKit (iOS)
