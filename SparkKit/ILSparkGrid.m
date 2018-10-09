@@ -196,7 +196,7 @@
 
 - (void) grid:(ILGridData*)grid didAppendedData:(NSData*)data asRow:(NSUInteger)rowIndex
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    [NSOperationQueue.mainQueue addOperationWithBlock:^{
         NSUInteger layerIndex = 0;
         NSMutableArray* oldLayers = NSMutableArray.new;
         CALayer* sliceLayer = CALayer.new;
