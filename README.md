@@ -5,6 +5,12 @@
 
 Small, Simple and Fast; Line, Pie, Dial, Bar, Ring, Stack and Grid Views for macOS, iOS and tvOS
 
+## Support Spark Kit!
+
+Are you using SparkKit in your apps? Would you like to help support the project and get a sponsor credit?
+
+Visit our [Patreon Page](https://www.patreon.com/istumblerlabs) and patronize us in exchange for great rewards!
+
 ## Dependencies
 
 ### KitBridge
