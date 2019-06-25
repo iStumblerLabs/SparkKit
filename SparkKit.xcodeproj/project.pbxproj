@@ -21,7 +21,6 @@
 		753956D71D13F679004DDBDA /* ILSparkStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 753956D51D13F679004DDBDA /* ILSparkStyle.m */; };
 		75543AFD1F22A1E70050BAF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75543AFB1F22A1E70050BAF2 /* Main.storyboard */; };
 		75543AFF1F22A1E70050BAF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75543AFE1F22A1E70050BAF2 /* Assets.xcassets */; };
-		75543B041F22A31C0050BAF2 /* SparkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F5A9511D1A134A00A17804 /* SparkKit.framework */; };
 		75543B051F22A3220050BAF2 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756DB2181ED37A9400B84AE7 /* KitBridge.framework */; };
 		75543B061F22A33C0050BAF2 /* SparkyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F5A90B1D1902C500A17804 /* SparkyDelegate.m */; };
 		75543B071F22A33E0050BAF2 /* SparkyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7526C1991D25B398000E5A60 /* SparkyController.m */; };
@@ -30,8 +29,31 @@
 		755E62CC1E68B33C00342CCD /* ILStreamData.h in Headers */ = {isa = PBXBuildFile; fileRef = 755E62C91E68B33C00342CCD /* ILStreamData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755E62CD1E68B33C00342CCD /* ILStreamData.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E62CA1E68B33C00342CCD /* ILStreamData.m */; };
 		755E62CE1E68B33C00342CCD /* ILStreamData.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E62CA1E68B33C00342CCD /* ILStreamData.m */; };
-		756C2D9F1F26B1DF0060F718 /* SparkKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75F5A9511D1A134A00A17804 /* SparkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		756C2DA01F26B1E90060F718 /* KitBridge.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 756DB2181ED37A9400B84AE7 /* KitBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		756C434E21FD3CAE001DA012 /* ILSparkLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971DFB1D139FBA00EA65D3 /* ILSparkLine.m */; };
+		756C434F21FD3CAE001DA012 /* ILSparkMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = 756DB2211ED37FE000B84AE7 /* ILSparkMeter.m */; };
+		756C435021FD3CAE001DA012 /* ILSparkStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 753956D51D13F679004DDBDA /* ILSparkStyle.m */; };
+		756C435121FD3CAE001DA012 /* ILBucketData.m in Sources */ = {isa = PBXBuildFile; fileRef = 758EA4BB1F04EB1000069634 /* ILBucketData.m */; };
+		756C435221FD3CAE001DA012 /* ILStreamData.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E62CA1E68B33C00342CCD /* ILStreamData.m */; };
+		756C435321FD3CAE001DA012 /* ILSparkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75971E081D13D79F00EA65D3 /* ILSparkView.m */; };
+		756C435421FD3CAE001DA012 /* ILGridData.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F86DC61DF26CAC00BC0A35 /* ILGridData.m */; };
+		756C435521FD3CAE001DA012 /* ILSparkBars.m in Sources */ = {isa = PBXBuildFile; fileRef = 758EA4AF1F04E9A600069634 /* ILSparkBars.m */; };
+		756C435621FD3CAE001DA012 /* ILSparkGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F86DC81DF26CAC00BC0A35 /* ILSparkGrid.m */; };
+		756C435721FD3CAE001DA012 /* ILSparkStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 758BC6761FC7EBC4005E6507 /* ILSparkStack.m */; };
+		756C435921FD3CAE001DA012 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756DB2181ED37A9400B84AE7 /* KitBridge.framework */; };
+		756C435B21FD3CAE001DA012 /* SparkKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DF21D138C0400EA65D3 /* SparkKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		756C435C21FD3CAE001DA012 /* ILSparkMeter.h in Headers */ = {isa = PBXBuildFile; fileRef = 756DB2201ED37FE000B84AE7 /* ILSparkMeter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		756C435D21FD3CAE001DA012 /* ILSparkStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 753956D41D13F679004DDBDA /* ILSparkStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		756C435E21FD3CAE001DA012 /* ILSparkView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971E071D13D79F00EA65D3 /* ILSparkView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		756C435F21FD3CAE001DA012 /* ILStreamData.h in Headers */ = {isa = PBXBuildFile; fileRef = 755E62C91E68B33C00342CCD /* ILStreamData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		756C436021FD3CAE001DA012 /* ILSparkLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 75971DFA1D139FBA00EA65D3 /* ILSparkLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		756C436121FD3CAE001DA012 /* ILSparkBars.h in Headers */ = {isa = PBXBuildFile; fileRef = 758EA4AE1F04E9A600069634 /* ILSparkBars.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		756C436221FD3CAE001DA012 /* ILBucketData.h in Headers */ = {isa = PBXBuildFile; fileRef = 758EA4BA1F04EB1000069634 /* ILBucketData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		756C436321FD3CAE001DA012 /* ILGridData.h in Headers */ = {isa = PBXBuildFile; fileRef = 75F86DC51DF26CAC00BC0A35 /* ILGridData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		756C436421FD3CAE001DA012 /* ILSparkStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 758BC6751FC7EBC4005E6507 /* ILSparkStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		756C436521FD3CAE001DA012 /* ILSparkGrid.h in Headers */ = {isa = PBXBuildFile; fileRef = 75F86DC71DF26CAC00BC0A35 /* ILSparkGrid.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		756C437121FD3D60001DA012 /* SparkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756C436A21FD3CAE001DA012 /* SparkKit.framework */; };
+		756C437221FD3D60001DA012 /* SparkKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 756C436A21FD3CAE001DA012 /* SparkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		756DB21E1ED37AD500B84AE7 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756DB2161ED37A9400B84AE7 /* KitBridge.framework */; };
 		756DB21F1ED37AE600B84AE7 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756DB2181ED37A9400B84AE7 /* KitBridge.framework */; };
 		756DB2221ED37FE000B84AE7 /* ILSparkMeter.h in Headers */ = {isa = PBXBuildFile; fileRef = 756DB2201ED37FE000B84AE7 /* ILSparkMeter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -77,13 +99,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		75543B0A1F22A3880050BAF2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 75971DE61D138C0400EA65D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 75F5A93D1D1A134A00A17804;
-			remoteInfo = "SparkKit (iOS)";
-		};
 		7566CF94215CCFC900DD20F6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 75D8ADD71ED37A31006F3823 /* KitBridge.xcodeproj */;
@@ -97,6 +112,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 75C6A36E21268C5300367C24;
 			remoteInfo = "KitBridge (macOS, Swift)";
+		};
+		756C434C21FD3CAE001DA012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75D8ADD71ED37A31006F3823 /* KitBridge.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 75DCBEF11ED2C84B00538D87;
+			remoteInfo = "KitBridge (iOS)";
+		};
+		756C437321FD3D60001DA012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75971DE61D138C0400EA65D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 756C434A21FD3CAE001DA012;
+			remoteInfo = "SparkKit (tvOS)";
 		};
 		756DB2151ED37A9400B84AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -156,8 +185,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				756C2D9F1F26B1DF0060F718 /* SparkKit.framework in CopyFiles */,
 				756C2DA01F26B1E90060F718 /* KitBridge.framework in CopyFiles */,
+				756C437221FD3D60001DA012 /* SparkKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +233,7 @@
 		755E62C91E68B33C00342CCD /* ILStreamData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILStreamData.h; sourceTree = "<group>"; };
 		755E62CA1E68B33C00342CCD /* ILStreamData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILStreamData.m; sourceTree = "<group>"; };
 		7566CF98215CCFF100DD20F6 /* SparkKit.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SparkKit.podspec; sourceTree = "<group>"; };
+		756C436A21FD3CAE001DA012 /* SparkKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SparkKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		756DB2201ED37FE000B84AE7 /* ILSparkMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ILSparkMeter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		756DB2211ED37FE000B84AE7 /* ILSparkMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ILSparkMeter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		757D6A8C2011183900C2E96F /* es */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -251,7 +281,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				75543B051F22A3220050BAF2 /* KitBridge.framework in Frameworks */,
-				75543B041F22A31C0050BAF2 /* SparkKit.framework in Frameworks */,
+				756C437121FD3D60001DA012 /* SparkKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		756C435821FD3CAE001DA012 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				756C435921FD3CAE001DA012 /* KitBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +420,7 @@
 				75F5A9261D1A133A00A17804 /* Sparky.app */,
 				75F5A9511D1A134A00A17804 /* SparkKit.framework */,
 				75543AF01F22A1E70050BAF2 /* Sparky TV.app */,
+				756C436A21FD3CAE001DA012 /* SparkKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -435,6 +474,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		756C435A21FD3CAE001DA012 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				756C435B21FD3CAE001DA012 /* SparkKit.h in Headers */,
+				756C435C21FD3CAE001DA012 /* ILSparkMeter.h in Headers */,
+				756C435D21FD3CAE001DA012 /* ILSparkStyle.h in Headers */,
+				756C435E21FD3CAE001DA012 /* ILSparkView.h in Headers */,
+				756C435F21FD3CAE001DA012 /* ILStreamData.h in Headers */,
+				756C436021FD3CAE001DA012 /* ILSparkLine.h in Headers */,
+				756C436121FD3CAE001DA012 /* ILSparkBars.h in Headers */,
+				756C436221FD3CAE001DA012 /* ILBucketData.h in Headers */,
+				756C436321FD3CAE001DA012 /* ILGridData.h in Headers */,
+				756C436421FD3CAE001DA012 /* ILSparkStack.h in Headers */,
+				756C436521FD3CAE001DA012 /* ILSparkGrid.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75971DEC1D138C0400EA65D3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -486,12 +543,31 @@
 			buildRules = (
 			);
 			dependencies = (
-				75543B0B1F22A3880050BAF2 /* PBXTargetDependency */,
+				756C437421FD3D60001DA012 /* PBXTargetDependency */,
 			);
 			name = "Sparky TV";
 			productName = "Sparky TV";
 			productReference = 75543AF01F22A1E70050BAF2 /* Sparky TV.app */;
 			productType = "com.apple.product-type.application";
+		};
+		756C434A21FD3CAE001DA012 /* SparkKit (tvOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 756C436721FD3CAE001DA012 /* Build configuration list for PBXNativeTarget "SparkKit (tvOS)" */;
+			buildPhases = (
+				756C434D21FD3CAE001DA012 /* Sources */,
+				756C435821FD3CAE001DA012 /* Frameworks */,
+				756C435A21FD3CAE001DA012 /* Headers */,
+				756C436621FD3CAE001DA012 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				756C434B21FD3CAE001DA012 /* PBXTargetDependency */,
+			);
+			name = "SparkKit (tvOS)";
+			productName = SparkKit;
+			productReference = 756C436A21FD3CAE001DA012 /* SparkKit.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		75971DEE1D138C0400EA65D3 /* SparkKit (macOS) */ = {
 			isa = PBXNativeTarget;
@@ -583,6 +659,9 @@
 						DevelopmentTeam = E8G8ARB44Z;
 						ProvisioningStyle = Automatic;
 					};
+					756C434A21FD3CAE001DA012 = {
+						ProvisioningStyle = Automatic;
+					};
 					75971DEE1D138C0400EA65D3 = {
 						CreatedOnToolsVersion = 7.3.1;
 						ProvisioningStyle = Automatic;
@@ -606,8 +685,10 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 75971DE51D138C0400EA65D3;
 			productRefGroup = 75971DF01D138C0400EA65D3 /* Products */;
@@ -621,6 +702,7 @@
 			projectRoot = "";
 			targets = (
 				75971DEE1D138C0400EA65D3 /* SparkKit (macOS) */,
+				756C434A21FD3CAE001DA012 /* SparkKit (tvOS) */,
 				75F5A93D1D1A134A00A17804 /* SparkKit (iOS) */,
 				75F5A9071D1902C500A17804 /* Sparky (macOS) */,
 				75F5A9251D1A133A00A17804 /* Sparky (iOS) */,
@@ -678,6 +760,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		756C436621FD3CAE001DA012 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75971DED1D138C0400EA65D3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -721,6 +810,23 @@
 			files = (
 				75543B061F22A33C0050BAF2 /* SparkyDelegate.m in Sources */,
 				75543B071F22A33E0050BAF2 /* SparkyController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		756C434D21FD3CAE001DA012 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				756C434E21FD3CAE001DA012 /* ILSparkLine.m in Sources */,
+				756C434F21FD3CAE001DA012 /* ILSparkMeter.m in Sources */,
+				756C435021FD3CAE001DA012 /* ILSparkStyle.m in Sources */,
+				756C435121FD3CAE001DA012 /* ILBucketData.m in Sources */,
+				756C435221FD3CAE001DA012 /* ILStreamData.m in Sources */,
+				756C435321FD3CAE001DA012 /* ILSparkView.m in Sources */,
+				756C435421FD3CAE001DA012 /* ILGridData.m in Sources */,
+				756C435521FD3CAE001DA012 /* ILSparkBars.m in Sources */,
+				756C435621FD3CAE001DA012 /* ILSparkGrid.m in Sources */,
+				756C435721FD3CAE001DA012 /* ILSparkStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,10 +885,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		75543B0B1F22A3880050BAF2 /* PBXTargetDependency */ = {
+		756C434B21FD3CAE001DA012 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75F5A93D1D1A134A00A17804 /* SparkKit (iOS) */;
-			targetProxy = 75543B0A1F22A3880050BAF2 /* PBXContainerItemProxy */;
+			name = "KitBridge (iOS)";
+			targetProxy = 756C434C21FD3CAE001DA012 /* PBXContainerItemProxy */;
+		};
+		756C437421FD3D60001DA012 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 756C434A21FD3CAE001DA012 /* SparkKit (tvOS) */;
+			targetProxy = 756C437321FD3D60001DA012 /* PBXContainerItemProxy */;
 		};
 		756DB21A1ED37AA300B84AE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -896,6 +1007,56 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		756C436821FD3CAE001DA012 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SparkKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.SparkKit;
+				PRODUCT_NAME = SparkKit;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+			};
+			name = Debug;
+		};
+		756C436921FD3CAE001DA012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SparkKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.SparkKit;
+				PRODUCT_NAME = SparkKit;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 			};
 			name = Release;
 		};
@@ -1167,6 +1328,15 @@
 			buildConfigurations = (
 				75543B011F22A1E70050BAF2 /* Debug */,
 				75543B021F22A1E70050BAF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		756C436721FD3CAE001DA012 /* Build configuration list for PBXNativeTarget "SparkKit (tvOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				756C436821FD3CAE001DA012 /* Debug */,
+				756C436921FD3CAE001DA012 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
