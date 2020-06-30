@@ -510,7 +510,7 @@ exit:
     exit:
         CGContextRelease(maskContext);
         CGColorSpaceRelease(colorSpace);
-        free(imageData);
+        CFRelease(imageData);
         // CFAutorelease(rowBitMap);
     }
     
