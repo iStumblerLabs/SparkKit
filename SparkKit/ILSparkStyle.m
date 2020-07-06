@@ -30,12 +30,12 @@ CGFloat const ILBoldlineWidth = 2;
 {
     static ILSparkStyle* style = nil;
     if (!style) {
-        style = [ILSparkStyle new];
-        style.fill = [ILColor grayColor];
-        style.stroke = [ILColor darkGrayColor];
-        style.border = [ILColor lightGrayColor];
-        style.background = [ILColor clearColor];
-        style.gradient = nil; // [[ILGradient alloc] initWithStartingColor:self.fill endingColor:self.stroke];
+        style = ILSparkStyle.new;
+        style.fill = ILColor.grayColor;
+        style.stroke = ILColor.darkGrayColor;
+        style.border = ILColor.lightGrayColor;
+        style.background = ILColor.clearColor;
+        style.gradient = nil; // [ILGradient.alloc initWithStartingColor:self.fill endingColor:self.stroke];
         style.filled = NO;
         style.bordered = YES;
         style.width = ILPathlineWidth;
@@ -61,7 +61,7 @@ CGFloat const ILBoldlineWidth = 2;
 - (void) addHints:(NSDictionary*)additionalHints
 {
     if (self.hints) {
-        NSMutableDictionary* merged = [self.hints mutableCopy];
+        NSMutableDictionary* merged = self.hints.mutableCopy;
         [merged addEntriesFromDictionary:additionalHints];
         self.hints = [NSDictionary dictionaryWithDictionary:merged];
     }

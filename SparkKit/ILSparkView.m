@@ -27,7 +27,7 @@
         effectiveStyle = self.styleStorage;
     }
     else {
-        effectiveStyle = [ILSparkStyle defaultStyle];
+        effectiveStyle = ILSparkStyle.defaultStyle;
     }
     
     return effectiveStyle;
