@@ -1,6 +1,6 @@
-#import <Foundation/Foundation.h>
-#import <CoreGraphics/CoreGraphics.h>
-#import <KitBridge/KitBridge.h>
+@import Foundation;
+@import CoreGraphics;
+@import KitBridge;
 
 @protocol ILGridDataDelegate;
 

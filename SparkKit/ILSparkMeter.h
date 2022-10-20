@@ -1,4 +1,8 @@
+#if SWIFT_PACKAGE
+#import "ILSparkView.h"
+#else
 #import <SparkKit/ILSparkView.h>
+#endif
 
 #pragma mark Hints
 

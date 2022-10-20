@@ -1,4 +1,8 @@
+#if SWIFT_PACKAGE
+#import "ILSparkView.h"
+#else
 #import <SparkKit/ILSparkView.h>
+#endif
 
 extern NSString* const ILSparkLineScaleFactor;
 extern NSString* const ILSparkLineFalloffInterval;

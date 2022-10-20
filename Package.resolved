@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "KitBridge",
+        "repositoryURL": "https://github.com/iStumblerLabs/KitBridge.git",
+        "state": {
+          "branch": null,
+          "revision": "b9d527f539e734a4fddc03f3035779a7ab870de9",
+          "version": "1.2.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

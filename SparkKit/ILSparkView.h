@@ -1,6 +1,9 @@
+#if SWIFT_PACKAGE
+#import "ILSparkStyle.h"
+#else
 #import <KitBridge/KitBridge.h>
 #import <SparkKit/ILSparkStyle.h>
-
+#endif
 
 /*! @class ILSparkView
     @brief base class for all SparkKit views */

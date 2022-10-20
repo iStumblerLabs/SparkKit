@@ -14,7 +14,7 @@ size_t ILSizeOfGridType(ILGridDataType dataType)
     return typeSize;
 }
 
-#pragma mark Private
+#pragma mark - Private
 
 @interface ILGridData ()
 @property(nonatomic, assign) CGFloat minValueStorage;

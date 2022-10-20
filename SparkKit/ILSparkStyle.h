@@ -1,5 +1,5 @@
-#import <KitBridge/KitBridge.h>
-#import <QuartzCore/QuartzCore.h>
+@import KitBridge;
+@import QuartzCore;
 
 #pragma mark Constants
 
