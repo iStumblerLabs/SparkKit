@@ -3,7 +3,7 @@
 NSString* const ILSparkLineScaleFactor = @"ILSparkLineScaleFactor";
 NSString* const ILSparkLineFalloffInterval = @"ILSparkLineFalloffTInterval";
 
-#pragma mark -
+// MARK: -
 
 @interface ILSparkStyle (ILSparkLine)
 @property(nonatomic, readonly) CGFloat scale;
@@ -11,12 +11,11 @@ NSString* const ILSparkLineFalloffInterval = @"ILSparkLineFalloffTInterval";
 
 @end
 
-#pragma mark -
+// MARK: -
 
 @implementation ILSparkLine
 
-+ (CALayer*) timeSeriesWithData:(NSObject<ILSparkLineDataSource>*)data size:(CGSize)size style:(ILSparkStyle*)style
-{
++ (CALayer*) timeSeriesWithData:(NSObject<ILSparkLineDataSource>*)data size:(CGSize)size style:(ILSparkStyle*)style {
     CALayer* seriesLayer = [CALayer new];
     NSArray* sampleDates = nil;
     NSDate* startDate = [NSDate date];
@@ -121,10 +120,9 @@ exit:
     return seriesLayer;
 }
 
-#pragma mark - ILSparkView
+// MARK: - ILSparkView
 
-- (void) updateView
-{
+- (void) updateView {
     [CATransaction begin];
     [CATransaction setValue:@(1 / 60) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
 
@@ -143,12 +141,11 @@ exit:
 
 @end
 
-#pragma mark -
+// MARK: -
 
 @implementation ILSparkStyle (ILSparkLine)
 
-- (CGFloat) scale
-{
+- (CGFloat) scale {
     CGFloat scale = 1.0;
     if (self.hints[ILSparkLineScaleFactor]) {
         scale = [self.hints[ILSparkLineScaleFactor] doubleValue];
@@ -156,8 +153,7 @@ exit:
     return scale;
 }
 
-- (NSTimeInterval) falloff
-{
+- (NSTimeInterval) falloff {
     NSTimeInterval falloff = 0.0;
     if (self.hints[ILSparkLineFalloffInterval]) {
         falloff = [self.hints[ILSparkLineFalloffInterval] doubleValue];
@@ -170,46 +166,41 @@ exit:
 
 #if IL_APP_KIT
 
-#pragma mark -
+// MARK: -
 
 @implementation ILSparkLineCell
 
-- (void) initCell
-{
+- (void) initCell {
     self.style = [ILSparkStyle defaultStyle];
 }
 
-#pragma mark - NSObject
+// MARK: - NSObject
 
-- (id) init
-{
-    if( self = [super init]) {
+- (id) init {
+    if (self = [super init]) {
         [self initCell];
     }
     return self;
 }
 
-#pragma mark - NSCell
+// MARK: - NSCell
 
-- (id) initTextCell:(NSString*)aString
-{
-    if( self = [super initTextCell:aString]) {
+- (id) initTextCell:(NSString*)aString {
+    if (self = [super initTextCell:aString]) {
         [self initCell];
     }
     return self;
 }
 
-- (id) initImageCell:(NSImage*)anImage
-{
-    if( self = [super initImageCell:anImage]) {
+- (id) initImageCell:(NSImage*)anImage {
+    if (self = [super initImageCell:anImage]) {
         [self initCell];
     }
     return self;
 }
 
-- (void)drawWithFrame:(NSRect)rect inView:(NSView *)view
-{
-    if ([[self representedObject] conformsToProtocol:@protocol(ILSparkLineDataSource)]) {
+- (void)drawWithFrame:(NSRect)rect inView:(NSView *)view {
+    if ([self.representedObject conformsToProtocol:@protocol(ILSparkLineDataSource)]) {
         CALayer* sparkLine = [ILSparkLine timeSeriesWithData:[self representedObject] size:rect.size style:self.style];
         [[view layer] addSublayer:sparkLine];
         sparkLine.frame = rect;

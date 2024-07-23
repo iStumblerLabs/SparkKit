@@ -1,7 +1,7 @@
-@import KitBridge;
-@import QuartzCore;
+#import <KitBridge/KitBridge.h>
+#import <QuartzCore/QuartzCore.h>
 
-#pragma mark Constants
+// MARK: Constants
 
 extern NSString* const ILSparkStyleFill;
 extern NSString* const ILSparkStyleStroke;
@@ -13,14 +13,14 @@ extern NSString* const ILSparkStyleIsBordered;
 extern NSString* const ILSparkStyleWidth;
 extern NSString* const ILSparkStyleHints;
 
-#pragma mark - Line Widths
+// MARK: - Line Widths
 
 extern CGFloat const ILHairlineWidth;
 extern CGFloat const ILFinelineWidth;
 extern CGFloat const ILPathlineWidth;
 extern CGFloat const ILBoldlineWidth;
 
-#pragma mark -
+// MARK: -
 
 /*!
 @class ILSparkStyle 
@@ -64,12 +64,12 @@ extern CGFloat const ILBoldlineWidth;
 /*! @brief L10N bundle, for localizing strings */
 @property(nonatomic, retain) NSBundle* L10Nbundle;
 
-#pragma mark -
+// MARK: -
 
 /*! @brief default style given to ILSparkViews when initilized */
 + (ILSparkStyle*) defaultStyle;
 
-#pragma mark -
+// MARK: -
 
 /*! @brief add provided hints to hints dictionary */
 - (void) addHints:(NSDictionary*)additionalHints;
@@ -79,7 +79,7 @@ extern CGFloat const ILBoldlineWidth;
 
 @end
 
-#pragma mark -
+// MARK: -
 
 @protocol ILSparkStyle <NSObject>
 

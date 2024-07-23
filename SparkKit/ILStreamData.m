@@ -2,17 +2,15 @@
 
 @implementation ILStreamData
 
--(instancetype)init
-{
-    if (self = [super init]) {
+-(instancetype)init {
+    if ((self = super.init)) {
         self.width = 1; // single byte stream width
     }
     
     return self;
 }
 
--(void)appendData:(NSData*)data
-{
+-(void)appendData:(NSData*)data {
     if (!self.buffer) {
         self.buffer = [NSMutableData dataWithLength:data.length];
 
@@ -29,8 +27,7 @@
     }
 }
 
--(void)closeStream
-{
+-(void)closeStream {
     if (self.delegate && [self.delegate respondsToSelector:@selector(streamWillClose:)]) {
         [self.delegate streamWillClose:self];
     }

@@ -4,8 +4,7 @@
 
 @implementation SparkyDelegate
 
-- (void) update
-{
+- (void) update {
     [self.viewController updateView];
 }
 
@@ -13,8 +12,7 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 #else
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-#endif
-{
+#endif {
     ILSparkStyle* defaultStyle = [ILSparkStyle defaultStyle];
     defaultStyle.bordered = YES;
     defaultStyle.filled = YES;
@@ -37,7 +35,7 @@
 
 @end
 
-#pragma mark -
+// MARK: -
 
 
 int main(int argc, char* _Nonnull argv[]) {

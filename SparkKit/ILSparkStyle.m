@@ -15,19 +15,18 @@ CGFloat const ILFinelineWidth = 0.5;
 CGFloat const ILPathlineWidth = 1;
 CGFloat const ILBoldlineWidth = 2;
 
-#pragma mark - Private
+// MARK: - Private
 
 @interface ILSparkStyle ()
 @property(nonatomic, retain) ILColor* fontColorStorage;
 
 @end
 
-#pragma mark -
+// MARK: -
 
 @implementation ILSparkStyle
 
-+ (ILSparkStyle*) defaultStyle
-{
++ (ILSparkStyle*) defaultStyle {
     static ILSparkStyle* style = nil;
     if (!style) {
         style = ILSparkStyle.new;
@@ -44,22 +43,19 @@ CGFloat const ILBoldlineWidth = 2;
     return style;
 }
 
-#pragma mark - Properties
+// MARK: - Properties
 
-- (ILColor*) fontColor
-{
+- (ILColor*) fontColor {
     return (self.fontColorStorage ? self.fontColorStorage : self.stroke);
 }
 
-- (void) setFontColor:(ILColor*)fontColor
-{
+- (void) setFontColor:(ILColor*)fontColor {
     self.fontColorStorage = fontColor;
 }
 
-#pragma mark -
+// MARK: -
 
-- (void) addHints:(NSDictionary*)additionalHints
-{
+- (void) addHints:(NSDictionary*)additionalHints {
     if (self.hints) {
         NSMutableDictionary* merged = self.hints.mutableCopy;
         [merged addEntriesFromDictionary:additionalHints];
@@ -70,25 +66,22 @@ CGFloat const ILBoldlineWidth = 2;
     }
 }
 
-- (ILSparkStyle*) copyWithHints:(NSDictionary*)styleHints
-{
+- (ILSparkStyle*) copyWithHints:(NSDictionary*)styleHints {
     ILSparkStyle* copy = [self copy];
     [copy addHints:styleHints];
     return copy;
 }
 
-#pragma mark - NSObject
+// MARK: - NSObject
 
-- (NSString*) description
-{
+- (NSString*) description {
     return [NSString stringWithFormat:@"<%@: %p fill=%@ stroke=%@ background=%@ gradient=%@ filled=%i bordered=%i width=%f>",
             self.class, self, self.fill, self.stroke, self.background, self.gradient, self.filled, self.bordered, self.width];
 }
 
-#pragma mark - NSCopying
+// MARK: - NSCopying
 
-- (instancetype) copyWithZone:(NSZone *)zone
-{
+- (instancetype) copyWithZone:(NSZone *)zone {
     ILSparkStyle* style = [ILSparkStyle new];
     style.fill = self.fill;
     style.stroke = self.stroke;

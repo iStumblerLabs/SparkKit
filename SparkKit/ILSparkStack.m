@@ -1,21 +1,20 @@
 #import "ILSparkStack.h"
 
-#pragma mark Hints
+// MARK: Hints
 
 NSString* const ILSparkStackColorsHint = @"ILSparkStackColorsHint"; // NSArray<ILColor*>*
 
-#pragma mark - Private
+// MARK: - Private
 
 @interface ILSparkStack ()
 @property(nonatomic, retain) CALayer* stackLayer;
 @end
 
-#pragma mark -
+// MARK: -
 
 @implementation ILSparkStack
 
-+ (NSArray<ILColor*>*) defaultStackColors
-{
++ (NSArray<ILColor*>*) defaultStackColors {
     static NSArray<ILColor*>* defaultColors = nil;
     if (!defaultColors) {
         defaultColors = @[
@@ -35,8 +34,7 @@ NSString* const ILSparkStackColorsHint = @"ILSparkStackColorsHint"; // NSArray<I
     return defaultColors;
 }
 
-+ (CALayer*) sparkStackWithData:(NSArray<NSNumber*>*)data size:(CGSize)size sparkStyle:(ILSparkStyle*)sparkStyle
-{
++ (CALayer*) sparkStackWithData:(NSArray<NSNumber*>*)data size:(CGSize)size sparkStyle:(ILSparkStyle*)sparkStyle {
     CALayer* stackLayer = [CALayer new];
     CGRect insetRect = CGRectMake(0, 0, size.width, size.height); // self.borderInset;
 
@@ -162,7 +160,8 @@ NSString* const ILSparkStackColorsHint = @"ILSparkStackColorsHint"; // NSArray<I
 
             if (filledPath) {
                 CAShapeLayer* indicatorLayer = [CAShapeLayer layer];
-                indicatorLayer.path = filledPath.CGPath;
+                indicatorLayer.path = filledPath.ILCGPath;
+
                 // self.indicatorLayer.mask = self.border;
                 indicatorLayer.fillColor = fillColor.CGColor;
                 indicatorLayer.zPosition = (1 - datumPercentage);
@@ -185,24 +184,21 @@ NSString* const ILSparkStackColorsHint = @"ILSparkStackColorsHint"; // NSArray<I
     return stackLayer;
 }
 
-#pragma mark - ILSparkMeter Overrides
+// MARK: - ILSparkMeter Overrides
 
-- (void)initView
-{
+- (void)initView {
     [super initView];
     self.stackDataSource = nil;
 }
 
-- (void)updateView
-{
+- (void)updateView {
     [super updateView];
     self.stackLayer = [ILSparkStack sparkStackWithData:self.stackDataSource.data size:self.frame.size sparkStyle:self.style];
     self.stackLayer.frame = self.bounds;
     self.layer.sublayers = @[self.stackLayer];
 }
 
-- (BOOL) isCircular
-{
+- (BOOL) isCircular {
     return (self.style.meterStyle == ILSparkMeterCircleStyle)
         || (self.style.meterStyle == ILSparkMeterRingStyle)
         || (self.style.meterStyle == ILSparkMeterPieStyle)
@@ -211,12 +207,11 @@ NSString* const ILSparkStackColorsHint = @"ILSparkStackColorsHint"; // NSArray<I
 
 @end
 
-#pragma mark -
+// MARK: -
 
 @implementation ILSparkStyle (ILSparkStack)
 
-- (NSArray<ILColor*>*) stackColors
-{
+- (NSArray<ILColor*>*) stackColors {
     NSArray<ILColor*>* stackColors = [ILSparkStack defaultStackColors];
     if (self.hints[ILSparkStackColorsHint]) {
         stackColors = self.hints[ILSparkStackColorsHint];

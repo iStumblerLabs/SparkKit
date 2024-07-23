@@ -7,17 +7,17 @@
 @interface SparkyController : NSViewController <ILSparkMeterDataSource, ILSparkStackDataSource, ILSparkLineDataSource, ILViews>
 #endif
 
-#pragma mark - Properties
+// MARK: - Properties
 @property(nonatomic, retain) ILGridData* gridData;
 @property(nonatomic, retain) ILStreamData* streamData;
 @property(nonatomic, retain) ILBucketData* bucketData;
 
-#pragma mark - IBOutlets
+// MARK: - IBOutlets
 @property(nonatomic, retain) IBOutlet ILSparkBars* sparkBars;
 @property(nonatomic, retain) IBOutlet ILSparkLine* sparkLine;
 @property(nonatomic, retain) IBOutlet ILSparkGrid* sparkGrid;
 
-#pragma mark - Meters
+// MARK: - Meters
 @property(nonatomic, assign) IBOutlet ILSparkMeter* sparkText;
 @property(nonatomic, assign) IBOutlet ILSparkMeter* sparkVert;
 @property(nonatomic, assign) IBOutlet ILSparkMeter* sparkHorz;
@@ -27,7 +27,7 @@
 @property(nonatomic, assign) IBOutlet ILSparkMeter* sparkPie;
 @property(nonatomic, assign) IBOutlet ILSparkMeter* sparkDial;
 
-#pragma mark - Stacks
+// MARK: - Stacks
 @property(nonatomic, assign) IBOutlet ILSparkStack* stackText;
 @property(nonatomic, assign) IBOutlet ILSparkStack* stackVert;
 @property(nonatomic, assign) IBOutlet ILSparkStack* stackHorz;

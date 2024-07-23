@@ -9,7 +9,7 @@
     @brief base class for all SparkKit views */
 @interface ILSparkView : ILView <ILViews, ILSparkStyle>
 
-#pragma mark - ILSparkStyle
+// MARK: - ILSparkStyle
 
 /*! @brief view style */
 @property(nonatomic, retain) ILSparkStyle* style;
@@ -23,7 +23,7 @@
 /*! @brief inset of border rectangle, effective drawable area */
 @property(nonatomic, readonly) CGRect borderInset;
 
-#pragma mark - Labels
+// MARK: - Labels
 
 @property(nonatomic, retain) NSArray* yAxisLabels;
 @property(nonatomic, retain) NSString* yAxisUnits;

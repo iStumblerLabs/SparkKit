@@ -2,7 +2,7 @@
 #import "ILSparkStyle.h"
 
 
-#pragma mark -
+// MARK: -
 
 @interface ILSparkView ()
 @property(nonatomic, retain) ILSparkStyle* styleStorage;
@@ -19,8 +19,7 @@
 
 @implementation ILSparkView
 
-- (ILSparkStyle*) style
-{
+- (ILSparkStyle*) style {
     ILSparkStyle* effectiveStyle = nil;
     
     if (self.styleStorage) {
@@ -33,64 +32,53 @@
     return effectiveStyle;
 }
 
-- (void) setStyle:(ILSparkStyle *)style
-{
+- (void) setStyle:(ILSparkStyle *)style {
     self.styleStorage = style;
 }
 
-#pragma mark - Labels
+// MARK: - Labels
 
--(NSArray*)yAxisLabels
-{
+-(NSArray*) yAxisLabels {
     return self.yAxisLabelStorage;
 }
 
--(void)setYAxisLabels:(NSArray*)yAxisLabels
-{
+-(void) setYAxisLabels:(NSArray*)yAxisLabels {
     self.yAxisLabelStorage = yAxisLabels;
     self.labelsNeedUpdate = YES;
 }
 
--(NSString*)yAxisUnits
-{
+-(NSString*) yAxisUnits {
     return self.yAxisUnitStorage;
 }
 
--(void)setYAxisUnits:(NSString*)yAxisUnits
-{
+-(void) setYAxisUnits:(NSString*)yAxisUnits {
     self.yAxisUnitStorage = yAxisUnits;
     self.labelsNeedUpdate = YES;
 }
 
--(NSArray*)xAxisLabels
-{
+-(NSArray*) xAxisLabels {
     return self.xAxisLabelStorage;
 }
 
--(void)setXAxisLabels:(NSArray*)xAxisLabels
-{
+-(void) setXAxisLabels:(NSArray*)xAxisLabels {
     self.xAxisLabelStorage = xAxisLabels;
     self.labelsNeedUpdate = YES;
 }
 
--(NSString*)xAxisUnits
-{
+-(NSString*) xAxisUnits {
     return self.xAxisUnitStorage;
 }
 
--(void)setXAxisUnits:(NSString*)xAxisUnits
-{
+-(void) setXAxisUnits:(NSString*)xAxisUnits {
     self.xAxisUnitStorage = xAxisUnits;
     self.labelsNeedUpdate = YES;
 }
 
--(NSString*)errorString
-{
+-(NSString*) errorString {
     return self.errorStringStorage;
 }
 
--(void)setErrorString:(NSString*)errorString
-{
+-(void) setErrorString:(NSString*)errorString {
     NSString* oldError = self.errorStringStorage;
     self.errorStringStorage = errorString;
     if (oldError != errorString) { // only mark the view for updates if the error string changed
@@ -98,8 +86,7 @@
     }
 }
 
-- (NSString*) stringForValue:(id)value units:(NSString*)units
-{
+- (NSString*) stringForValue:(id)value units:(NSString*)units {
     NSString* label = [value description];
     if (units) {
         label = [NSString stringWithFormat:@"%@ %@", value, units];
@@ -111,8 +98,7 @@
 static const CGFloat labelRadius = 6;
 static const CGFloat labelMargin = 9;
 
-- (CATextLayer*) layerForLabel:(NSString*)label
-{
+- (CATextLayer*) layerForLabel:(NSString*)label {
     CATextLayer* labelLayer = [CATextLayer layer];
     labelLayer.string = label;
     labelLayer.contentsGravity = kCAGravityCenter;
@@ -135,10 +121,9 @@ static const CGFloat labelMargin = 9;
     return labelLayer;
 }
 
-#pragma mark - ILView
+// MARK: - ILView
 
-- (instancetype) initWithFrame:(CGRect)frame
-{
+- (instancetype) initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self initView];
     }
@@ -146,10 +131,9 @@ static const CGFloat labelMargin = 9;
     return self;
 }
 
-#pragma mark - NSCoder
+// MARK: - NSCoder
 
-- (instancetype) initWithCoder:(NSCoder *)aDecoder
-{
+- (instancetype) initWithCoder:(NSCoder*)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         [self initView];
     }
@@ -158,25 +142,22 @@ static const CGFloat labelMargin = 9;
 }
 
 #ifdef IL_APP_KIT
-#pragma mark - NSView
+// MARK: - NSView
 
-- (void)setFrameSize:(NSSize)newSize;
-{
+- (void) setFrameSize:(NSSize)newSize; {
     [super setFrameSize:newSize];
     self.borderLayerStorage = nil;
     [self updateView];
 }
 
-- (BOOL) isFlipped
-{
+- (BOOL) isFlipped {
     return YES;
 }
 #endif
 
-#pragma mark - border
+// MARK: - border
 
-- (CAShapeLayer*) border
-{
+- (CAShapeLayer*) border {
     if (!self.borderLayerStorage) {
         if (self.isCircular) {
             self.borderLayerStorage = [CAShapeLayer new];
@@ -196,13 +177,11 @@ static const CGFloat labelMargin = 9;
     return self.borderLayerStorage;
 }
 
-- (BOOL) isCircular
-{
+- (BOOL) isCircular {
     return NO;
 }
 
-- (CGRect) borderInset
-{
+- (CGRect) borderInset {
     CGRect insetRect = CGRectZero;
 
     if (self.style.bordered) {
@@ -216,10 +195,9 @@ static const CGFloat labelMargin = 9;
     return insetRect;
 }
 
-#pragma mark - ILViews
+// MARK: - ILViews
 
-- (void) initView
-{
+- (void) initView {
 #if IL_APP_KIT
     [self setLayer:[CALayer new]];
     [self setWantsLayer:YES];
@@ -237,8 +215,7 @@ static const CGFloat labelMargin = 9;
     self.labelLayer.frame = self.layer.bounds;
 }
 
-- (void) updateView
-{
+- (void) updateView {
     [CATransaction begin];
     [CATransaction setValue:@(0.1) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
 

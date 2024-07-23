@@ -9,7 +9,7 @@ extern NSString* const ILSparkLineFalloffInterval;
 
 @protocol ILSparkLineDataSource;
 
-#pragma mark -
+// MARK: -
 
 /*! @class ILSparkLine provides a time-series view for iOS and macOS */
 @interface ILSparkLine : ILSparkView
@@ -21,7 +21,7 @@ extern NSString* const ILSparkLineFalloffInterval;
 
 #ifdef IL_APP_KIT
 
-#pragma mark -
+// MARK: -
 
 /*! @class ILSparkLineCell */
 @interface ILSparkLineCell : NSCell
@@ -41,7 +41,7 @@ typedef struct {
     NSTimeInterval length;
 } ILTimePeriod;
 
-#pragma mark -
+// MARK: -
 
 /*! @protocol ILSparkLineDataSource
     @brief Data Source Protocol for ILSparkLine */

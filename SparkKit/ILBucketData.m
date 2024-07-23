@@ -5,17 +5,15 @@
 
 @end
 
-#pragma mark -
+// MARK: -
 
 @implementation ILBucketData
 
-- (NSArray<NSNumber*>*) buckets
-{
+- (NSArray<NSNumber*>*) buckets {
     return self.bucketsStorage;
 }
 
-- (void) setBuckets:(NSArray<NSNumber *> *)buckets
-{
+- (void) setBuckets:(NSArray<NSNumber*>*)buckets {
     self.bucketsStorage = buckets;
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(bucketDataDidUpdate:)]) {
@@ -23,8 +21,7 @@
     }
 }
 
-- (CGFloat) bucketValue:(NSUInteger) bucketIndex
-{
+- (CGFloat) bucketValue:(NSUInteger) bucketIndex {
     return [self.buckets[bucketIndex] doubleValue];
 }
 

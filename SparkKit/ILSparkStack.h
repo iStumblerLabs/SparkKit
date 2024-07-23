@@ -4,12 +4,12 @@
 #import <SparkKit/SparkKit.h>
 #endif
 
-#pragma mark Hints
+// MARK: Hints
 
 extern NSString* const ILSparkStackColorsHint; // NSArray<ILColor*>*
 // extern NSString* const ILSparkStackGradientHint; // ILGradient*
 
-#pragma mark -
+// MARK: -
 
 @protocol ILSparkStackDataSource;
 
@@ -19,7 +19,7 @@ extern NSString* const ILSparkStackColorsHint; // NSArray<ILColor*>*
 
 @end
 
-#pragma mark -
+// MARK: -
 
 /*! @protocol ILSparkStackDataSource
  @brief data source protocol for ILSparkStack */
@@ -30,7 +30,7 @@ extern NSString* const ILSparkStackColorsHint; // NSArray<ILColor*>*
 
 @end
 
-#pragma mark -
+// MARK: -
 
 /*! ILSParkStyle category for Spark Meters Hints */
 @interface ILSparkStyle (ILSparkStack)
@@ -38,7 +38,7 @@ extern NSString* const ILSparkStackColorsHint; // NSArray<ILColor*>*
 
 @end
 
-#pragma mark -
+// MARK: -
 #ifdef IL_APP_KIT
 
 /*! @class ILSparkStackCell */

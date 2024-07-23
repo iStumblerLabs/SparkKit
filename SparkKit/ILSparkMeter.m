@@ -1,6 +1,6 @@
 #import "ILSparkMeter.h"
 
-#pragma mark Hints
+// MARK: Hints
 
 /*! Pie and Ring Drawing Hints */
 NSString* const ILSparkMeterMinAngleHint = @"ILSparkMeterMinAngleHint";
@@ -18,19 +18,18 @@ CGFloat const ILSparkMeterDefaultRingWidth = 8;
 
 NSString* const ILSparkMeterStyleHint = @"ILSparkMeterStyleHint";
 
-#pragma mark -
+// MARK: -
 
 @interface ILSparkMeter ()
 @property (nonatomic, retain) CALayer *indicatorLayer;
 
 @end
 
-#pragma mark -
+// MARK: -
 
 @implementation ILSparkMeter
 
-+ (CALayer*) sparkMeterWithDatum:(CGFloat) datum size:(CGSize)size sparkStyle:(ILSparkStyle*)sparkStyle
-{
++ (CALayer*) sparkMeterWithDatum:(CGFloat) datum size:(CGSize)size sparkStyle:(ILSparkStyle*)sparkStyle {
     CALayer* meterLayer = nil;
     ILBezierPath* filledPath = nil;
     CGRect insetRect = CGRectMake(0, 0, size.width, size.height); // self.borderInset;
@@ -130,7 +129,8 @@ NSString* const ILSparkMeterStyleHint = @"ILSparkMeterStyleHint";
     
     if (filledPath) {
         CAShapeLayer* indicatorLayer = [CAShapeLayer layer];
-        indicatorLayer.path = filledPath.CGPath;
+        indicatorLayer.path = filledPath.ILCGPath;
+
         // self.indicatorLayer.mask = self.border;
         indicatorLayer.fillColor = sparkStyle.fill.CGColor;
         
@@ -150,10 +150,9 @@ NSString* const ILSparkMeterStyleHint = @"ILSparkMeterStyleHint";
 }
 
 #ifdef IL_UI_KIT
-#pragma mark - UIView
+// MARK: - UIView
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     [super layoutSubviews];
     self.indicatorLayer.frame = self.bounds;
 //    NSLog(@"<%@ %p layoutSubviews frame: %@ layer frame: %@ layer bounds: %@>",
@@ -163,24 +162,21 @@ NSString* const ILSparkMeterStyleHint = @"ILSparkMeterStyleHint";
 }
 #endif
 
-#pragma mark - ILSparkView
+// MARK: - ILSparkView
 
-- (void)initView
-{
+- (void)initView {
     [super initView];
     self.dataSource = nil;
 }
 
-- (void)updateView
-{
+- (void)updateView {
     [super updateView];
     self.indicatorLayer = [ILSparkMeter sparkMeterWithDatum:self.dataSource.datum size:self.frame.size sparkStyle:self.style];
     self.indicatorLayer.frame = self.bounds;
     self.layer.sublayers = @[self.indicatorLayer];
 }
 
-- (BOOL) isCircular
-{
+- (BOOL) isCircular {
     return (self.style.meterStyle == ILSparkMeterCircleStyle)
         || (self.style.meterStyle == ILSparkMeterRingStyle)
         || (self.style.meterStyle == ILSparkMeterPieStyle)
@@ -189,12 +185,11 @@ NSString* const ILSparkMeterStyleHint = @"ILSparkMeterStyleHint";
 
 @end
 
-#pragma mark -
+// MARK: -
 
 @implementation ILSparkStyle (ILSparkMeter)
 
-- (ILSparkMeterStyle) meterStyle
-{
+- (ILSparkMeterStyle) meterStyle {
     ILSparkMeterStyle meterStyle = ILSparkMeterHorizontalStyle;
     if (self.hints[ILSparkMeterStyleHint]) {
         meterStyle = [self.hints[ILSparkMeterStyleHint] integerValue]; // TODO range check this
@@ -202,8 +197,7 @@ NSString* const ILSparkMeterStyleHint = @"ILSparkMeterStyleHint";
     return meterStyle;
 }
 
-- (ILSparkMeterFillDirection) fillDirection
-{
+- (ILSparkMeterFillDirection) fillDirection {
     ILSparkMeterFillDirection direciton = ILSparkMeterNaturalFill;
     if (self.hints[ILSparkMeterFillDirectionHint]) {
         direciton = [self.hints[ILSparkMeterFillDirectionHint] integerValue]; // TODO range check this
@@ -211,8 +205,7 @@ NSString* const ILSparkMeterStyleHint = @"ILSparkMeterStyleHint";
     return direciton;
 }
 
-- (CGFloat) minAngle
-{
+- (CGFloat) minAngle {
     CGFloat angle = 0.0;
     if (self.hints[ILSparkMeterMinAngleHint]) {
         angle = [self.hints[ILSparkMeterMinAngleHint] doubleValue];
@@ -220,8 +213,7 @@ NSString* const ILSparkMeterStyleHint = @"ILSparkMeterStyleHint";
     return angle;
 }
 
-- (CGFloat) maxAngle
-{
+- (CGFloat) maxAngle {
     CGFloat angle = 1.0;
     if (self.hints[ILSparkMeterMaxAngleHint]) {
         angle = [self.hints[ILSparkMeterMaxAngleHint] doubleValue];
@@ -229,8 +221,7 @@ NSString* const ILSparkMeterStyleHint = @"ILSparkMeterStyleHint";
     return angle;
 }
 
-- (BOOL) fillClockwise
-{
+- (BOOL) fillClockwise {
     BOOL clockwise = YES;
     if (self.hints[ILSparkMeterFillClockwiseHint]) {
         clockwise = [self.hints[ILSparkMeterFillClockwiseHint] boolValue];
@@ -238,8 +229,7 @@ NSString* const ILSparkMeterStyleHint = @"ILSparkMeterStyleHint";
     return clockwise;
 }
 
-- (CGFloat) dialWidth;
-{
+- (CGFloat) dialWidth {
     CGFloat width = ILSparkMeterDefaultDialWidth;
     if (self.hints[ILSparkMeterDialWidthHint]) {
         width = [self.hints[ILSparkMeterDialWidthHint] doubleValue];
@@ -247,8 +237,7 @@ NSString* const ILSparkMeterStyleHint = @"ILSparkMeterStyleHint";
     return width;
 }
 
-- (CGFloat) ringWidth;
-{
+- (CGFloat) ringWidth {
     CGFloat width = ILSparkMeterDefaultRingWidth;
     if (self.hints[ILSparkMeterRingWidthHint]) {
         width = [self.hints[ILSparkMeterRingWidthHint] doubleValue];
@@ -260,46 +249,41 @@ NSString* const ILSparkMeterStyleHint = @"ILSparkMeterStyleHint";
 
 #if IL_APP_KIT
 
-#pragma mark -
+// MARK: -
 
 @implementation ILSparkMeterCell
 
-- (void) initCell
-{
-    self.style = [ILSparkStyle defaultStyle];
+- (void) initCell {
+    self.style = ILSparkStyle.defaultStyle;
 }
 
-#pragma mark - NSObject
+// MARK: - NSObject
 
-- (id) init
-{
-    if (self = [super init]) {
+- (id) init {
+    if ((self = super.init)) {
         [self initCell];
     }
     return self;
 }
 
-#pragma mark - NSCell
+// MARK: - NSCell
 
-- (id) initTextCell:(NSString*)aString
-{
+- (id) initTextCell:(NSString*)aString {
     if (self = [super initTextCell:aString]) {
         [self initCell];
     }
     return self;
 }
 
-- (id) initImageCell:(NSImage*)anImage
-{
+- (id) initImageCell:(NSImage*)anImage {
     if (self = [super initImageCell:anImage]) {
         [self initCell];
     }
     return self;
 }
 
-- (void)drawWithFrame:(NSRect)rect inView:(NSView *)view
-{
-    if ([[self representedObject] conformsToProtocol:@protocol(ILSparkMeterDataSource)]) {
+- (void)drawWithFrame:(NSRect)rect inView:(NSView *)view {
+    if ([self.representedObject conformsToProtocol:@protocol(ILSparkMeterDataSource)]) {
         CGFloat datum = [(NSObject<ILSparkMeterDataSource>*)[self representedObject] datum];
         CALayer* sparkMeter = [ILSparkMeter sparkMeterWithDatum:datum size:rect.size sparkStyle:self.style];
         [[view layer] addSublayer:sparkMeter];

@@ -14,19 +14,17 @@
 
 @end
 
-#pragma mark -
+// MARK: -
 
 @implementation ILSparkGrid
 
-#pragma mark - Properties
+// MARK: - Properties
 
--(ILGridData*)grid
-{
+-(ILGridData*)grid {
     return self.gridStorage;
 }
 
--(void)setGrid:(ILGridData*)gridData
-{
+-(void)setGrid:(ILGridData*)gridData {
     self.gridStorage = gridData;
     gridData.delegate = self;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -35,39 +33,33 @@
     }];
 }
 
-#pragma mark - Computed Properties
+// MARK: - Computed Properties
 
--(CGFloat)rowHeight
-{
+-(CGFloat)rowHeight {
     return ((self.frame.size.height > self.grid.rows) ? (self.frame.size.height / self.grid.rows) : 1.0);
 }
 
--(CGFloat)columnWidth
-{
+-(CGFloat)columnWidth {
     return ((self.frame.size.width > self.grid.columns) ? (self.frame.size.width / self.grid.columns) : 1.0);
 }
 
--(CGSize)cellSize
-{
+-(CGSize)cellSize {
    return CGSizeMake([self rowHeight], [self columnWidth]);
 }
 
--(CGRect)rectOfRow:(NSUInteger)thisRow
-{
+-(CGRect)rectOfRow:(NSUInteger)thisRow {
     CGFloat rowHeight = [self rowHeight];
     return CGRectIntegral(CGRectMake(0, (self.frame.size.height - (rowHeight * (thisRow + 1))), self.frame.size.width, rowHeight));
 }
 
--(CGRect)rectOfColumn:(NSUInteger)thisColumn
-{
+-(CGRect)rectOfColumn:(NSUInteger)thisColumn {
     CGFloat columnWidth = [self columnWidth];
     return CGRectMake((columnWidth * thisColumn), 0, columnWidth, self.frame.size.height);
 }
 
-#pragma mark - ILViews
+// MARK: - ILViews
 
--(void)initView
-{
+-(void)initView {
     [super initView];
 
     self.grid = nil;
@@ -79,14 +71,12 @@
     self.gridLayer.contentsGravity = kCAGravityResize;
 }
 
--(void)clearGrid
-{
+-(void)clearGrid {
     self.gridLayer.sublayers = nil; // clear grid layer
     self.gridLayer.contents = nil;
 }
 
--(void)drawGrid // one shot, redraw the entire grid into self.gridLayer
-{
+-(void)drawGrid { // one shot, redraw the entire grid into self.gridLayer
     [CATransaction begin];
     [CATransaction setValue:@(1 / 60) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
 #if DEBUG
@@ -120,8 +110,7 @@
     [CATransaction commit];
 }
 
--(void)updateGrid
-{
+-(void)updateGrid {
     [CATransaction begin];
     [CATransaction setValue:@(0.1) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
     NSUInteger thisRow = 0;
@@ -132,8 +121,7 @@
     [CATransaction commit];
 }
 
--(void)updateView
-{
+-(void)updateView {
     // self.layer.sublayers = nil; // TODO use the gridLayer
     // self.layer.backgroundColor = self.style.background.CGColor;
 
@@ -153,10 +141,9 @@
     [super updateView];
 }
 
-#pragma mark - NSCoding
+// MARK: - NSCoding
 
-- (nullable instancetype) initWithCoder:(NSCoder*)aDecoder; // NS_DESIGNATED_INITIALIZER
-{
+- (nullable instancetype) initWithCoder:(NSCoder*)aDecoder { // NS_DESIGNATED_INITIALIZER
     self = [super initWithCoder:aDecoder];
     if (self) {
         [self initView];
@@ -166,10 +153,9 @@
 
 #if IL_APP_KIT
 
-#pragma mark - NSView
+// MARK: - NSView
 
-- (instancetype) initWithFrame:(NSRect)frame
-{
+- (instancetype) initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self initView];
@@ -177,25 +163,22 @@
     return self;
 }
 
-#pragma mark - NSNibAwakening
+// MARK: - NSNibAwakening
 
-- (void) awakeFromNib
-{
+- (void) awakeFromNib {
     [self initView];
 }
 
 #endif
 
-#pragma mark - ILGridDataDelegate
+// MARK: - ILGridDataDelegate
 
-- (void) grid:(ILGridData*)grid didSetData:(NSData*)data atRow:(NSUInteger)row
-{
+- (void) grid:(ILGridData*)grid didSetData:(NSData*)data atRow:(NSUInteger)row {
     NSLog(@"grid:%@ didSetData:%lu Bytes atRow:%lu", grid, (unsigned long)data.length, (unsigned long)row);
     // TODO udpate the gridLayer
 }
 
-- (void) grid:(ILGridData*)grid didAppendedData:(NSData*)data asRow:(NSUInteger)rowIndex
-{
+- (void) grid:(ILGridData*)grid didAppendedData:(NSData*)data asRow:(NSUInteger)rowIndex {
     [NSOperationQueue.mainQueue addOperationWithBlock:^{
         NSUInteger layerIndex = 0;
         NSMutableArray* oldLayers = NSMutableArray.new;
@@ -232,8 +215,7 @@
     }];
 }
 
-- (void) grid:(ILGridData*)grid willTrimToRangeOfRows:(NSRange)rows
-{
+- (void) grid:(ILGridData*)grid willTrimToRangeOfRows:(NSRange)rows {
 //    NSLog(@"grid:%@ willTrimToRangeOfRows:(%lu,%lu)", grid, rows.location, rows.length);
     // TODO update the gridLayer
 }

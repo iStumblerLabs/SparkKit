@@ -5,12 +5,11 @@
 @property(nonatomic,retain) CALayer* barsLayer;
 @end
 
-#pragma mark -
+// MARK: -
 
 @implementation ILSparkBars
 
-- (void) initView
-{
+- (void) initView {
     [super initView];
 
     self.barsLayer = [CALayer new];
@@ -19,8 +18,7 @@
     self.barsLayer.contentsGravity = kCAGravityResize;
 }
 
-- (void) updateView
-{
+- (void) updateView {
     [CATransaction begin];
     [CATransaction setValue:@(1 / 60) forKey:kCATransactionAnimationDuration]; // TODO use the time between updates
     // TODO a style preference and vertical buckets
@@ -63,10 +61,9 @@
     [CATransaction commit];
 }
 
-#pragma mark - ILBucketDataDelegate
+// MARK: - ILBucketDataDelegate
 
-- (void) bucketDataDidUpdate:(ILBucketData*) data
-{
+- (void) bucketDataDidUpdate:(ILBucketData*) data {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self updateView];
     }];

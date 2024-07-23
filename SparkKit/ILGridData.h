@@ -1,6 +1,6 @@
-@import Foundation;
-@import CoreGraphics;
-@import KitBridge;
+#import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
+#import <KitBridge/KitBridge.h>
 
 @protocol ILGridDataDelegate;
 
@@ -20,7 +20,7 @@ typedef enum {
 @property(nonatomic, assign) NSUInteger columns;
 @property(nonatomic, assign) NSObject<ILGridDataDelegate>* delegate;
 
-#pragma mark - Factory
+// MARK: - Factory
 
 + (instancetype) gridWithDataType:(ILGridDataType)dataType rows:(NSUInteger)rows columns:(NSUInteger)columns;
 + (instancetype) byteGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns;
@@ -28,12 +28,12 @@ typedef enum {
 + (instancetype) floatGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns;
 + (instancetype) uniCharGridWithRows:(NSUInteger)rows columns:(NSUInteger)columns;
 
-#pragma mark -
+// MARK: -
 
 /** @designated initilizer */
 - (instancetype) initGridWithDataType:(ILGridDataType)dataType rows:(NSUInteger)rows columns:(NSUInteger)columns;
 
-#pragma mark - Properties
+// MARK: - Properties
 
 - (size_t) sizeOfRow;
 - (void*) addressOfRow:(NSUInteger)row column:(NSUInteger)column;
@@ -45,7 +45,7 @@ typedef enum {
 
 - (CGFloat) percentOfValueAtRow:(NSUInteger)row column:(NSUInteger)column inRange:(NSRange)range;
 
-#pragma mark - Setters
+// MARK: - Setters
 
 - (void) setValue:(void*)data ofSize:(size_t)valueSize atRow:(NSUInteger)row column:(NSUInteger)column;
 - (void) setByte:(uint8_t) byteValue atRow:(NSUInteger)row column:(NSUInteger)column;
@@ -53,28 +53,28 @@ typedef enum {
 - (void) setFloat:(CGFloat) floatValue atRow:(NSUInteger) row column:(NSUInteger)column;
 - (void) setUniChar:(UniChar) charValue atRow:(NSUInteger) row column:(NSUInteger)column;
 
-#pragma mark - Fill Grid with a Value
+// MARK: - Fill Grid with a Value
 
 - (void) fillByteValue:(uint8_t) byteValue;
 - (void) fillIntegerValue:(NSInteger) integerValue;
 - (void) fillUniCharValue:(UniChar) unicharValue;
 - (void) fillFloatValue:(CGFloat) floatValue;
 
-#pragma mark - String Representations
+// MARK: - String Representations
 
 - (NSString*) integerGridRepresentation;
 - (NSString*) jsonIntegerRepresentation; // arrays of arrays of numbers
 - (NSString*) jsonFloatRepresentation; // arrays of arrays of numbers
 - (NSString*) jsonUniCharRepresentation; // arrays of unichar strings
 
-#pragma mark - Image Representations
+// MARK: - Image Representations
 
 - (CGImageRef) grayscaleBitmapOfRow:(NSUInteger)thisRow withRange:(NSRange)range CF_RETURNS_RETAINED;
 - (CGImageRef) grayscaleBitmapWithRange:(NSRange)range CF_RETURNS_RETAINED;
 - (CGImageRef) alphaBitmapOfRow:(NSUInteger)thisRow withRange:(NSRange)range CF_RETURNS_RETAINED;
 - (CGImageRef) alphaBitmapWithRange:(NSRange) range CF_RETURNS_RETAINED;
 
-#pragma mark - Slices
+// MARK: - Slices
 
 - (NSData*) dataAtRow:(NSUInteger)row;
 - (void) setData:(NSData*)data atRow:(NSUInteger)row;
@@ -82,18 +82,18 @@ typedef enum {
 - (void) trimToRangeOfRows:(NSRange)rows;
 - (void) extendToRow:(NSUInteger)rows;
 
-#pragma mark - Buckets
+// MARK: - Buckets
 
 - (NSArray<NSNumber*>*) bucketsAtRow:(NSUInteger)row withRange:(NSRange)valueRange;
 
 @end
 
 
-#pragma mark - ILGridDataDelegate
+// MARK: - ILGridDataDelegate
 
 @protocol ILGridDataDelegate <NSObject>
 
-#pragma mark - Slice Operations
+// MARK: - Slice Operations
 
 - (void) grid:(ILGridData*)grid didSetData:(NSData*)data atRow:(NSUInteger)row;
 - (void) grid:(ILGridData*)grid didAppendedData:(NSData*)data asRow:(NSUInteger)row;
@@ -102,7 +102,7 @@ typedef enum {
 @end
 
 #if IL_APP_KIT
-#pragma mark - Table Data Source Adapter
+// MARK: - Table Data Source Adapter
 
 
 @interface ILGridTableDataSource : NSObject <NSTableViewDataSource>

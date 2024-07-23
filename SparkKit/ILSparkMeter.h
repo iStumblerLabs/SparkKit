@@ -4,7 +4,7 @@
 #import <SparkKit/ILSparkView.h>
 #endif
 
-#pragma mark Hints
+// MARK: Hints
 
 /*! Pie and Ring Drawing Hints */
 extern NSString* const ILSparkMeterMinAngleHint; // Deg or Rad?
@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, ILSparkMeterStyle) {
 
 @protocol ILSparkMeterDataSource;
 
-#pragma mark -
+// MARK: -
 
 /*! @abstract An indicator view which displays a single numeric value as a string */
 @interface ILSparkMeter : ILSparkView
@@ -62,7 +62,7 @@ typedef NS_ENUM(NSInteger, ILSparkMeterStyle) {
 
 @end
 
-#pragma mark -
+// MARK: -
 
 /*! @protocol ILSparkMeterDataSource
  @brief data source protocol for SparkViews */
@@ -73,7 +73,7 @@ typedef NS_ENUM(NSInteger, ILSparkMeterStyle) {
 
 @end
 
-#pragma mark -
+// MARK: -
 
 /*! ILSParkStyle category for Spark Meters Hints */
 @interface ILSparkStyle (ILSparkMeter)
@@ -87,7 +87,7 @@ typedef NS_ENUM(NSInteger, ILSparkMeterStyle) {
 
 @end
 
-#pragma mark -
+// MARK: -
 #ifdef IL_APP_KIT
 
 /*! @class ILSparkMeterCell */

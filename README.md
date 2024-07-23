@@ -51,15 +51,22 @@ High performance grid data view and source
 
 Streaming data view and source
 
+
+
 ## Examples
 
 See the included Sparky! application for usage example.
+
+## Releases
+
+- 0.1-beta      2018ish?
+- 0.2-beta      2024ish? (TODO)
 
 ## License
 
     The MIT License (MIT)
 
-    Copyright © 2016-2018 Alf Watt
+    Copyright © 2016-2024 Alf Watt
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal

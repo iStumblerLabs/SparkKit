@@ -9,10 +9,9 @@
 
 @implementation SparkyController
 
-#pragma mark - ILViews
+// MARK: - ILViews
 
-- (void) initView
-{
+- (void) initView {
     [self loadView];
     
     self.sparkText.style   = [[ILSparkStyle defaultStyle] copyWithHints:@{ILSparkMeterStyleHint: @(ILSparkMeterTextStyle)}];
@@ -106,8 +105,7 @@
 #endif
 }
 
-- (void) updateView
-{
+- (void) updateView {
     [self.sparkLine updateView];
     [self.sparkBars updateView];
 
@@ -134,10 +132,9 @@
     [self.stackDial updateView];
 }
 
-#pragma mark - NSTimer
+// MARK: - NSTimer
 
-- (void) dataTimer:(NSTimer*) timer;
-{
+- (void) dataTimer:(NSTimer*) timer; {
     [self.dataDates addObject:[NSDate new]];
     
     /* append some grid data */
@@ -160,22 +157,20 @@
     [self.sparkGrid updateView];
 }
 
-#pragma mark - ILSparkMeterDataSource
+// MARK: - ILSparkMeterDataSource
 
 static CGFloat SPEED = 0.1;
 
-- (CGFloat) datum
-{
+- (CGFloat) datum {
     NSTimeInterval interval = ([NSDate timeIntervalSinceReferenceDate] * SPEED);
     CGFloat sine = fabs(sin(interval));
     // NSLog(@"sampleValueAtIndex: %lu interval: %f -> %f", (unsigned long)index, interval, sine);
     return sine;
 }
 
-#pragma mark - ILSparkStackDataSource
+// MARK: - ILSparkStackDataSource
 
-- (NSArray<NSNumber*>*) data
-{
+- (NSArray<NSNumber*>*) data {
     NSTimeInterval interval = ([NSDate timeIntervalSinceReferenceDate] * SPEED);
     double integer;
     double fraction = modf(interval, &integer);
@@ -185,7 +180,7 @@ static CGFloat SPEED = 0.1;
     return @[@(fraction), @(sine), @(cosine), @(tan)];
 }
 
-#pragma mark - ILSparkLineDataSource
+// MARK: - ILSparkLineDataSource
 
 -(NSArray<NSDate*>*) sampleDates {
     return [NSArray arrayWithArray:self.dataDates];

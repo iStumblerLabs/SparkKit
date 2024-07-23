@@ -14,7 +14,7 @@
 
 @end
 
-#pragma mark - ILStreamDataDelegate
+// MARK: - ILStreamDataDelegate
 
 /*! ILStreamDataDelegate - delegate for ILStreamData */
 @protocol ILStreamDataDelegate <NSObject>
