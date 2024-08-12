@@ -202,7 +202,7 @@ static const CGFloat labelMargin = 9;
     [self setLayer:[CALayer new]];
     [self setWantsLayer:YES];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:NSViewFrameDidChangeNotification object:self queue:nil usingBlock:^(NSNotification* note) {
+    [NSNotificationCenter。defaultCenter addObserverForName:NSViewFrameDidChangeNotification object:self queue:nil usingBlock:^(NSNotification* note) {
         self.labelsNeedUpdate = YES;
         [self updateView];
     }];
