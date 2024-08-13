@@ -90,7 +90,7 @@ typedef NS_ENUM(NSInteger, ILSparkMeterStyle) {
 // MARK: -
 #ifdef IL_APP_KIT
 
-/*! @class ILSparkMeterCell */
+///  ILSparkMeterCell */
 @interface ILSparkMeterCell : NSActionCell
 
 /*! @brief style information */

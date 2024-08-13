@@ -1,6 +1,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
+#ifdef SWIFT_PACKAGE
+#import "KitBridge.h"
+#else
 #import <KitBridge/KitBridge.h>
+#endif
 
 @protocol ILGridDataDelegate;
 
@@ -11,7 +15,7 @@ typedef enum {
     ILGridDataUnicharType
 }   ILGridDataType;
 
-/*! ILGridData is a wrapper for NSMutableData which provides access to a 2d array of values or a given size */
+/// ILGridData is a wrapper for NSMutableData which provides access to a 2d array of values or a given size
 @interface ILGridData : NSObject
 @property(nonatomic, retain) NSMutableData* data;
 @property(nonatomic, assign) ILGridDataType dataType;
@@ -30,7 +34,7 @@ typedef enum {
 
 // MARK: -
 
-/** @designated initilizer */
+/// @designated initilizer
 - (instancetype) initGridWithDataType:(ILGridDataType)dataType rows:(NSUInteger)rows columns:(NSUInteger)columns;
 
 // MARK: - Properties

@@ -9,10 +9,10 @@
 }
 
 #ifdef IL_UI_KIT
-- (void)applicationDidFinishLaunching:(UIApplication *)application
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
 #else
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-#endif {
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+#endif
     ILSparkStyle* defaultStyle = [ILSparkStyle defaultStyle];
     defaultStyle.bordered = YES;
     defaultStyle.filled = YES;
@@ -35,8 +35,7 @@
 
 @end
 
-// MARK: -
-
+// MARK: - main
 
 int main(int argc, char* _Nonnull argv[]) {
 #ifdef IL_APP_KIT

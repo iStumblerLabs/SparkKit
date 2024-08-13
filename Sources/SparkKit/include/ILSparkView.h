@@ -1,26 +1,24 @@
 #if SWIFT_PACKAGE
 #import "ILSparkStyle.h"
 #else
-#import <KitBridge/KitBridge.h>
 #import <SparkKit/ILSparkStyle.h>
 #endif
 
-/*! @class ILSparkView
-    @brief base class for all SparkKit views */
+/// base class for all SparkKit views
 @interface ILSparkView : ILView <ILViews, ILSparkStyle>
 
 // MARK: - ILSparkStyle
 
-/*! @brief view style */
+/// view style
 @property(nonatomic, retain) ILSparkStyle* style;
 
-/*! @brief border layer */
+/// border layer
 @property(nonatomic, readonly) CAShapeLayer* border;
 
-/*! @brief is the bortder circular? */
+/// is the bortder circular?
 @property(nonatomic, readonly) BOOL isCircular;
 
-/*! @brief inset of border rectangle, effective drawable area */
+/// inset of border rectangle, effective drawable area
 @property(nonatomic, readonly) CGRect borderInset;
 
 // MARK: - Labels

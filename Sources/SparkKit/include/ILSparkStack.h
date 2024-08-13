@@ -21,8 +21,7 @@ extern NSString* const ILSparkStackColorsHint; // NSArray<ILColor*>*
 
 // MARK: -
 
-/*! @protocol ILSparkStackDataSource
- @brief data source protocol for ILSparkStack */
+/// data source protocol for ILSparkStack
 @protocol ILSparkStackDataSource <NSObject>
 
 /*! @brief any number of numbers */
@@ -32,7 +31,7 @@ extern NSString* const ILSparkStackColorsHint; // NSArray<ILColor*>*
 
 // MARK: -
 
-/*! ILSParkStyle category for Spark Meters Hints */
+/// Style category for Spark Meters Hints
 @interface ILSparkStyle (ILSparkStack)
 @property(nonatomic, readonly) NSArray<ILColor*>* stackColors;
 
@@ -41,10 +40,10 @@ extern NSString* const ILSparkStackColorsHint; // NSArray<ILColor*>*
 // MARK: -
 #ifdef IL_APP_KIT
 
-/*! @class ILSparkStackCell */
+///  ILSparkStackCell */
 @interface ILSparkStackCell : NSActionCell
 
-/*! @brief style information */
+/// style information
 @property(nonatomic, retain) ILSparkStyle* style;
 
 @end

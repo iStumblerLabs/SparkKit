@@ -11,7 +11,7 @@ extern NSString* const ILSparkLineFalloffInterval;
 
 // MARK: -
 
-/*! @class ILSparkLine provides a time-series view for iOS and macOS */
+///  ILSparkLine provides a time-series view for iOS and macOS
 @interface ILSparkLine : ILSparkView
 
 /*! @brief dataSource */
@@ -23,7 +23,7 @@ extern NSString* const ILSparkLineFalloffInterval;
 
 // MARK: -
 
-/*! @class ILSparkLineCell */
+///  ILSparkLineCell
 @interface ILSparkLineCell : NSCell
 
 /*! @brief style information */

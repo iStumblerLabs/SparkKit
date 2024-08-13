@@ -6,7 +6,7 @@
 #import <SparkKit/ILBucketData.h>
 #endif
 
-/*! @class ILSparkBuckegts is a view for showing ILBucketData */
+/// ILSparkBuckegts is a view for showing ILBucketData
 @interface ILSparkBars : ILSparkView <ILBucketDataDelegate>
 @property(nonatomic,retain) ILBucketData* dataSource;
 

@@ -1,5 +1,9 @@
-#import <KitBridge/KitBridge.h>
 #import <QuartzCore/QuartzCore.h>
+#ifdef SWIFT_PACKAGE
+#import "KitBridge.h"
+#else
+#import <KitBridge/KitBridge.h>
+#endif
 
 // MARK: Constants
 
@@ -22,59 +26,56 @@ extern CGFloat const ILBoldlineWidth;
 
 // MARK: -
 
-/*!
-@class ILSparkStyle 
-@abstract encapsulates style information for an ILSparkViews or ILSparkCell
-*/
+/// encapsulates style information for an ILSparkViews or ILSparkCell
 @interface ILSparkStyle : NSObject <NSCopying>
 
-/*! @brief fill color */
+///  fill color
 @property(nonatomic, retain) ILColor* fill;
 
-/*! @brief stroke color */
+///  stroke color
 @property(nonatomic, retain) ILColor* stroke;
 
-/*! @brief background color */
+///  background color
 @property(nonatomic, retain) ILColor* background;
 
-/*! @brief border color */
+///  border color
 @property(nonatomic, retain) ILColor* border;
 
-/*! @brief gradient for color values */
+///  gradient for color values
 @property(nonatomic, retain) ILGradient* gradient;
 
-/*! @brief font used to render labels */
+///  font used to render labels
 @property(nonatomic, retain) ILFont* font;
 
-/*! @brief color used to render labels, defaults to stroke color */
+///  color used to render labels, defaults to stroke color
 @property(nonatomic, retain) ILColor* fontColor;
 
-/*! @brief is the area filled? */
+///  is the area filled?
 @property(nonatomic, assign) BOOL filled;
 
-/*! @brief is the view outlined? */
+///  is the view outlined?
 @property(nonatomic, assign) BOOL bordered;
 
-/*! @brief stroke width */
+///  stroke width
 @property(nonatomic, assign) CGFloat width;
 
-/*! @brief hints for subclasses */
+///  hints for subclasses
 @property(nonatomic, retain) NSDictionary* hints;
 
-/*! @brief L10N bundle, for localizing strings */
+///  L10N bundle, for localizing strings
 @property(nonatomic, retain) NSBundle* L10Nbundle;
 
 // MARK: -
 
-/*! @brief default style given to ILSparkViews when initilized */
+///  default style given to ILSparkViews when initilized
 + (ILSparkStyle*) defaultStyle;
 
 // MARK: -
 
-/*! @brief add provided hints to hints dictionary */
+///  add provided hints to hints dictionary
 - (void) addHints:(NSDictionary*)additionalHints;
 
-/*! @brief copy the style and apply the provided hints */
+///  copy the style and apply the provided hints
 - (ILSparkStyle*) copyWithHints:(NSDictionary*)styleHints;
 
 @end
@@ -83,10 +84,10 @@ extern CGFloat const ILBoldlineWidth;
 
 @protocol ILSparkStyle <NSObject>
 
-/*! @brief style information */
+///  style information
 @property(nonatomic, retain) ILSparkStyle* style;
 
-/*! @brief border layer */
+///  border layer
 @property(nonatomic, readonly) CAShapeLayer* border;
 
 @end
