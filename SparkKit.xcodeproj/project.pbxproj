@@ -100,6 +100,11 @@
 		75207CAE2C6B4C9E0057B0A9 /* ILBucketData.m in Sources */ = {isa = PBXBuildFile; fileRef = 75207BC52C6B44620057B0A9 /* ILBucketData.m */; };
 		75207CAF2C6B4C9E0057B0A9 /* ILSparkLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 75207BC92C6B44620057B0A9 /* ILSparkLine.m */; };
 		75207CB02C6B4C9E0057B0A9 /* ILSparkStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 75207BCB2C6B44620057B0A9 /* ILSparkStack.m */; };
+		75207CB12C6B51F50057B0A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75207BE02C6B44620057B0A9 /* Assets.xcassets */; };
+		75207CB22C6B51FC0057B0A9 /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75207BE32C6B44620057B0A9 /* MainMenu.strings */; };
+		75207CB32C6B51FC0057B0A9 /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75207BE52C6B44620057B0A9 /* MainMenu.strings */; };
+		75207CB52C6B52070057B0A9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75207BE72C6B44620057B0A9 /* MainMenu.xib */; };
+		75207CB62C6B520C0057B0A9 /* Sparky.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75207BE82C6B44620057B0A9 /* Sparky.xib */; };
 		7526C1A11D263506000E5A60 /* SparkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F5A9511D1A134A00A17804 /* SparkKit.framework */; };
 		7526C1A21D26350D000E5A60 /* SparkKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75F5A9511D1A134A00A17804 /* SparkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		756C437121FD3D60001DA012 /* SparkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756C436A21FD3CAE001DA012 /* SparkKit.framework */; };
@@ -840,6 +845,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75207CB22C6B51FC0057B0A9 /* MainMenu.strings in Resources */,
+				75207CB32C6B51FC0057B0A9 /* MainMenu.strings in Resources */,
+				75207CB12C6B51F50057B0A9 /* Assets.xcassets in Resources */,
+				75207CB62C6B520C0057B0A9 /* Sparky.xib in Resources */,
+				75207CB52C6B52070057B0A9 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

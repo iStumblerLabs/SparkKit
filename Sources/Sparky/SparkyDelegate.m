@@ -13,7 +13,7 @@
 #else
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 #endif
-    ILSparkStyle* defaultStyle = [ILSparkStyle defaultStyle];
+    ILSparkStyle* defaultStyle = ILSparkStyle.defaultStyle;
     defaultStyle.bordered = YES;
     defaultStyle.filled = YES;
     defaultStyle.width = 1;
@@ -24,7 +24,7 @@
     self.viewController = sparkyStoryboard.instantiateInitialViewController;
     self.window.rootViewController = self.viewController;
 #else
-    self.viewController = [[SparkyController alloc] initWithNibName:@"Sparky" bundle:[NSBundle mainBundle]];
+    self.viewController = [SparkyController.alloc initWithNibName:@"Sparky" bundle:[NSBundle mainBundle]];
 #endif
     
     [self.viewController initView];
